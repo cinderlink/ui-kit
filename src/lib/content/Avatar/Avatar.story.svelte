@@ -10,11 +10,11 @@
 
 <script lang="ts">
 	import Avatar from './Avatar.svelte';
-	import Syntax from '../Syntax/Syntax.svelte';
-	import Typography from '../Typography/Typography.svelte';
+	import Syntax from '$lib/markup/Syntax/Syntax.svelte';
+	import Typography from '$lib/content/Typography/Typography.svelte';
 	import Input from '$lib/interactive/Input/Input.svelte';
 	import Select from '$lib/interactive/Select/Select.svelte';
-	import Panel from '../Panel/Panel.svelte';
+	import Panel from '$lib/content/Panel/Panel.svelte';
 
 	let image = 'https://loremflickr.com/640/360';
 	let size: 'md' | 'sm' | 'lg' = 'md';
@@ -23,7 +23,7 @@
 </script>
 
 <svelte:head>
-	<title>{story.title} - Content Components - @candor/ui-kit</title>
+	<title>{story.title} - Content Components - @cinderlink/ui-kit</title>
 </svelte:head>
 
 <Typography>{story.title}</Typography>

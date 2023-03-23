@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Typography from '$lib/content/Typography/Typography.svelte';
-	import Panel from '../Panel/Panel.svelte';
+	import Panel from '$lib/content/Panel/Panel.svelte';
 
 	export let classes = '';
 	export let collapsed = true;

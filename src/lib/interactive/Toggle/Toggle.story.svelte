@@ -9,7 +9,7 @@
 </script>
 
 <script lang="ts">
-	import Syntax from '$lib/content/Syntax/Syntax.svelte';
+	import Syntax from '$lib/markup/Syntax/Syntax.svelte';
 	import Typography from '$lib/content/Typography/Typography.svelte';
 	import Toggle from './Toggle.svelte';
 	import type { Size } from '$lib/theme/types';
@@ -21,7 +21,7 @@
 </script>
 
 <svelte:head>
-	<title>Toggle - Interactive Components - @candor/ui-kit</title>
+	<title>Toggle - Interactive Components - @cinderlink/ui-kit</title>
 </svelte:head>
 
 <div class="story">

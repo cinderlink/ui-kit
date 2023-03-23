@@ -4,7 +4,7 @@
 	import { createEventDispatcher, onMount } from 'svelte';
 	import { scale } from 'svelte/transition';
 	import emojiList from '../../emoji';
-	import Panel from '../Panel/Panel.svelte';
+	import Panel from '$lib/content/Panel/Panel.svelte';
 
 	let showEmojis = false;
 

@@ -12,11 +12,11 @@
 <script lang="ts">
 	import Breadcrumb from './Breadcrumb.svelte';
 	import Typography from '$lib/content/Typography/Typography.svelte';
-	import Syntax from '$lib/content/Syntax/Syntax.svelte';
+	import Syntax from '$lib/markup/Syntax/Syntax.svelte';
 </script>
 
 <svelte:head>
-	<title>Breadcrumb - Navigation Components - @candor/ui-kit</title>
+	<title>Breadcrumb - Navigation Components - @cinderlink/ui-kit</title>
 </svelte:head>
 
 <Typography>Breadcrumb</Typography>

@@ -14,11 +14,11 @@
 	import Panel from '$lib/content/Panel/Panel.svelte';
 	import List from './List.svelte';
 	import ListItem from './ListItem.svelte';
-	import Syntax from '$lib/content/Syntax/Syntax.svelte';
+	import Syntax from '$lib/markup/Syntax/Syntax.svelte';
 </script>
 
 <svelte:head>
-	<title>List - Interactive Components - @candor/ui-kit</title>
+	<title>List - Interactive Components - @cinderlink/ui-kit</title>
 </svelte:head>
 
 <div class="story">

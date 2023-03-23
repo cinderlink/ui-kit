@@ -9,14 +9,14 @@
 </script>
 
 <script lang="ts">
-	import Syntax from '$lib/content/Syntax/Syntax.svelte';
+	import Syntax from '$lib/markup/Syntax/Syntax.svelte';
 	import Typography from '$lib/content/Typography/Typography.svelte';
 	import LoadingIndicator from './LoadingIndicator.svelte';
 	import Panel from '$lib/content/Panel/Panel.svelte';
 </script>
 
 <svelte:head>
-	<title>Loading - Indicator Components - @candor/ui-kit</title>
+	<title>Loading - Indicator Components - @cinderlink/ui-kit</title>
 </svelte:head>
 
 <Typography>Loading</Typography>

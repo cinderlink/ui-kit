@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { FlexAlign, FlexJustify } from '$lib/unocss/types';
-	import Typography from '../Typography/Typography.svelte';
-	import Panel from '../Panel/Panel.svelte';
+	import Typography from '$lib/content/Typography/Typography.svelte';
+	import Panel from '$lib/content/Panel/Panel.svelte';
 	import './Card.css';
 
 	export let align: FlexAlign = 'items-center';

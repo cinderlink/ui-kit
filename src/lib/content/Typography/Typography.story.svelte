@@ -10,13 +10,13 @@
 
 <script lang="ts">
 	import Card from '../Card/Card.svelte';
-	import Panel from '../Panel/Panel.svelte';
-	import Syntax from '../Syntax/Syntax.svelte';
+	import Panel from '$lib/content/Panel/Panel.svelte';
+	import Syntax from '$lib/markup/Syntax/Syntax.svelte';
 	import Typography from './Typography.svelte';
 </script>
 
 <svelte:head>
-	<title>Typography - Content Components - @candor/ui-kit</title>
+	<title>Typography - Content Components - @cinderlink/ui-kit</title>
 </svelte:head>
 
 <Typography>Typography</Typography>

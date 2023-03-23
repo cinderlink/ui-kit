@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Markdown from '../Markdown/Markdown.svelte';
-	import Syntax from '../Syntax/Syntax.svelte';
+	import Markdown from '$lib/markup/Markdown/Markdown.svelte';
+	import Syntax from '$lib/markup/Syntax/Syntax.svelte';
 	export let code = '';
 	export let lang = 'svelte';
 	let copied = false;

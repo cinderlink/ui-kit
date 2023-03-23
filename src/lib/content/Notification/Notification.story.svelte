@@ -12,12 +12,12 @@
 	import Notification from '../Notification/Notification.svelte';
 	import type { Notification as NotificationType } from './types';
 
-	import Panel from '../Panel/Panel.svelte';
-	import Typography from '../Typography/Typography.svelte';
+	import Panel from '$lib/content/Panel/Panel.svelte';
+	import Typography from '$lib/content/Typography/Typography.svelte';
 	import Notifications from './Notifications.svelte';
 	import NotificationsIcon from './NotificationsIcon.svelte';
 	import Input from '$lib/interactive/Input/Input.svelte';
-	import Syntax from '../Syntax/Syntax.svelte';
+	import Syntax from '$lib/markup/Syntax/Syntax.svelte';
 
 	let notification: NotificationType = {
 		id: '1',
@@ -63,7 +63,7 @@
 </script>
 
 <svelte:head>
-	<title>{story.title} - Interactive Components - @candor/ui-kit</title>
+	<title>{story.title} - Interactive Components - @cinderlink/ui-kit</title>
 </svelte:head>
 
 <Typography>{story.title}</Typography>

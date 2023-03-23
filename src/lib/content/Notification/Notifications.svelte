@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
-	import Panel from '../Panel/Panel.svelte';
+	import Panel from '$lib/content/Panel/Panel.svelte';
 	import Notification from './Notification.svelte';
 	import type { Notification as NotificationType } from './types';
 	export let notifications: NotificationType[] = [];

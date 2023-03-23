@@ -9,7 +9,7 @@
 </script>
 
 <script lang="ts">
-	import Syntax from '$lib/content/Syntax/Syntax.svelte';
+	import Syntax from '$lib/markup/Syntax/Syntax.svelte';
 	import Typography from '$lib/content/Typography/Typography.svelte';
 	import Select from './Select.svelte';
 	import Panel from '$lib/content/Panel/Panel.svelte';
@@ -17,7 +17,7 @@
 </script>
 
 <svelte:head>
-	<title>Select - Interactive Components - @candor/ui-kit</title>
+	<title>Select - Interactive Components - @cinderlink/ui-kit</title>
 </svelte:head>
 
 <Typography>Select</Typography>

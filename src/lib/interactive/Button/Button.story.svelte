@@ -15,7 +15,7 @@
 </script>
 
 <svelte:head>
-	<title>Button - Interactive Components - @candor/ui-kit</title>
+	<title>Button - Interactive Components - @cinderlink/ui-kit</title>
 </svelte:head>
 
 <Typography>Button</Typography>
@@ -23,7 +23,7 @@
 <div class="story">
 	<Panel variant="offset">
 		<Typography el="h2">Variants</Typography>
-		<div class="showcase sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
+		<div class="showcase sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 			<div>
 				<Typography el="h4">Default</Typography>
 				<Button variant="default">Hello, world</Button>

@@ -9,7 +9,7 @@
 </script>
 
 <script lang="ts">
-	import Syntax from '$lib/content/Syntax/Syntax.svelte';
+	import Syntax from '$lib/markup/Syntax/Syntax.svelte';
 	import Typography from '$lib/content/Typography/Typography.svelte';
 	import Button from '../Button/Button.svelte';
 	import Modal from './Modal.svelte';
@@ -19,7 +19,7 @@
 </script>
 
 <svelte:head>
-	<title>Modal - Interactive Components - @candor/ui-kit</title>
+	<title>Modal - Interactive Components - @cinderlink/ui-kit</title>
 </svelte:head>
 
 <Typography>Modal</Typography>

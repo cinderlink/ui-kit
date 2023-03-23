@@ -15,7 +15,7 @@
 			<div class="flex w-full justify-center items-center">
 				<Logo />
 			</div>
-			<a id="brand" href="/">@candor/ui-kit</a>
+			<a id="brand" href="/">@cinderlink/ui-kit</a>
 			<nav class="flex-1 flex flex-col gap-2">
 				<Drawer label="Guides">
 					<ul>
@@ -23,7 +23,7 @@
 							<a href="/guides/getting-started">Getting Started</a>
 						</li>
 						<li>
-							<a href="/guides/web3">Web3 Guides</a>
+							<a href="https://swagmi.cinderlink.com">Swagmi Docs</a>
 						</li>
 					</ul>
 				</Drawer>
@@ -58,9 +58,6 @@
 						</li>
 						<li>
 							<a href="/components/navigation">Navigation</a>
-						</li>
-						<li>
-							<a href="/components/web3">Web3</a>
 						</li>
 					</ul>
 				</Drawer>

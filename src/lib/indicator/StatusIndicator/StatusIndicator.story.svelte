@@ -9,7 +9,7 @@
 </script>
 
 <script lang="ts">
-	import Syntax from '$lib/content/Syntax/Syntax.svelte';
+	import Syntax from '$lib/markup/Syntax/Syntax.svelte';
 	import Typography from '$lib/content/Typography/Typography.svelte';
 	import StatusIndicator from './StatusIndicator.svelte';
 	import type { Size } from '$lib/theme/types';
@@ -26,7 +26,7 @@
 </script>
 
 <svelte:head>
-	<title>Status - Indicator Components - @candor/ui-kit</title>
+	<title>Status - Indicator Components - @cinderlink/ui-kit</title>
 </svelte:head>
 
 <Typography>Status</Typography>

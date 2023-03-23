@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
 	import type { StoryDef } from '$lib/ddl/stories';
-	import Panel from '../Panel/Panel.svelte';
+	import Panel from '$lib/content/Panel/Panel.svelte';
 	export const story: StoryDef = {
 		group: 'content',
 		id: 'syntax',
@@ -10,12 +10,12 @@
 </script>
 
 <script lang="ts">
-	import Syntax from '../Syntax/Syntax.svelte';
-	import Typography from '../Typography/Typography.svelte';
+	import Syntax from '$lib/markup/Syntax/Syntax.svelte';
+	import Typography from '$lib/content/Typography/Typography.svelte';
 </script>
 
 <svelte:head>
-	<title>Syntax - Content Components - @candor/ui-kit</title>
+	<title>Syntax - Content Components - @cinderlink/ui-kit</title>
 </svelte:head>
 
 <Typography>Syntax</Typography>

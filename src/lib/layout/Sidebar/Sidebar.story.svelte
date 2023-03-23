@@ -15,7 +15,7 @@
 </script>
 
 <svelte:head>
-	<title>Sidebar - Layout Components - @candor/ui-kit</title>
+	<title>Sidebar - Layout Components - @cinderlink/ui-kit</title>
 </svelte:head>
 
 <Typography>Sidebar</Typography>

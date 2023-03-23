@@ -1,6 +1,6 @@
 <script lang="ts" context="module">
 	import type { StoryDef } from '$lib/ddl/stories';
-	import Typography from '../../Typography/Typography.svelte';
+	import Typography from '$lib/content/Typography/Typography.svelte';
 	export const story: StoryDef = {
 		group: 'content',
 		id: 'markdown',
@@ -10,9 +10,9 @@
 </script>
 
 <script lang="ts">
-	import Emoji from '../../Emoji/Emoji.svelte';
-	import Markdown from './../Markdown.svelte';
-	import Panel from '../../Panel/Panel.svelte';
+	import Emoji from '$lib/content/Emoji/Emoji.svelte';
+	import Markdown from '$lib/markup/Markdown/Markdown.svelte';
+	import Panel from '$lib/content/Panel/Panel.svelte';
 	import List from '$lib/interactive/List/List.svelte';
 	import ListItem from '$lib/interactive/List/ListItem.svelte';
 	import Button from '$lib/interactive/Button/Button.svelte';
@@ -28,7 +28,7 @@
 </script>
 
 <svelte:head>
-	<title>{story.title} - Content Components - @candor/ui-kit</title>
+	<title>{story.title} - Content Components - @cinderlink/ui-kit</title>
 </svelte:head>
 
 <Typography>{story.title}</Typography>

@@ -11,13 +11,13 @@
 
 <script lang="ts">
 	import Input from '$lib/interactive/Input/Input.svelte';
-	import Typography from '../Typography/Typography.svelte';
+	import Typography from '$lib/content/Typography/Typography.svelte';
 
 	let inputValue = '';
 </script>
 
 <svelte:head>
-	<title>{story.title} - Content Components - @candor/ui-kit</title>
+	<title>{story.title} - Content Components - @cinderlink/ui-kit</title>
 </svelte:head>
 
 <Typography>{story.title}</Typography>
