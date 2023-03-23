@@ -68,7 +68,8 @@
 }
 
 #page {
-	@apply flex-1 flex flex-col w-full h-full overflow-hidden;
+	@apply flex flex-col w-full overflow-auto;
+	height: calc(100vh - 160px);
 }
 
 #brand {
