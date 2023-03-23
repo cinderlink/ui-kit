@@ -80,6 +80,6 @@
 		@apply text-md text-purple-800 dark-(text-yellow-100);
 	}
 	main {
-		@apply px-8 py-2 bg-purple-50/5;
+		@apply px-8 py-2 bg-purple-50/5 overflow-hidden;
 	}
 </style>

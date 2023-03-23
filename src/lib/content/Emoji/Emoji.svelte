@@ -2,9 +2,8 @@
 	import { clickoutside } from '$lib/actions';
 	import type MarkdownIt from 'markdown-it';
 	import { createEventDispatcher, onMount } from 'svelte';
-	import { scale } from 'svelte/transition';
-	import emojiList from '../../emoji';
-	import Panel from '$lib/content/Panel/Panel.svelte';
+
+	import EmojiList from './EmojiList.svelte';
 
 	let showEmojis = false;
 
@@ -23,9 +22,8 @@
 		};
 	});
 
-	function onClick(event: MouseEvent | KeyboardEvent) {
-		const target = event.target as HTMLElement;
-		const emoji = target.innerText;
+	function onClick(event: CustomEvent) {
+		const emoji = event.detail;
 		showEmojis = false;
 		dispatch('selected', emoji);
 	}
@@ -38,15 +36,7 @@
 <div use:clickoutside on:clickoutside={() => (showEmojis = false)} class="emojis__container">
 	{#if md}
 		{#if showEmojis}
-			<div transition:scale>
-				<Panel el="div" classes="emojis">
-					{#each Object.keys(emojiList) as key}
-						<span class="emoji emoji__{key}" on:click={onClick} on:keypress={onClick}>
-							{@html md.render(`:${key}:`)}
-						</span>
-					{/each}
-				</Panel>
-			</div>
+			<EmojiList on:selected={onClick} />
 		{/if}
 		<div class="emojis__btn" on:click={toggleEmojis} on:keypress={toggleEmojis}>
 			<span class="text-2xl text-gray-500">
@@ -67,11 +57,5 @@
 		@apply absolute bottom-full right-0 mb-2;
 		@apply flex flex-row flex-wrap justify-around;
 		@apply overflow-y-auto shadow-lg w-300px h-400px border-1px border-gray-100/20;
-	}
-	.emoji {
-		@apply text-3xl px-2 py-1 cursor-pointer;
-	}
-	.emoji:hover {
-		@apply bg-purple-900;
 	}
 </style>
