@@ -1,7 +1,7 @@
 {
-	"name": "@candor/ui-kit",
+	"name": "@cinderlink/ui-kit",
 	"type": "module",
-	"version": "0.1.2",
+	"version": "0.0.1",
 	"scripts": {
 		"dev": "vite dev --port 3000",
 		"watch": "svelte-package --watch",
@@ -73,8 +73,8 @@
 		"package.json"
 	],
 	"devDependencies": {
-		"@candor/core-types": "workspace:^0.1.2",
-		"@candor/protocol": "workspace:^0.1.0",
+		"@cinderlink/core-types": "workspace:^0.0.1",
+		"@cinderlink/protocol": "workspace:^0.0.1",
 		"@esbuild-plugins/node-globals-polyfill": "^0.2.3",
 		"@iconify-json/logos": "^1.1.23",
 		"@iconify-json/tabler": "^1.1.62",
