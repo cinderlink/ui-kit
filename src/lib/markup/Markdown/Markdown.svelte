@@ -39,7 +39,7 @@
 	$: style = `<style>${$theme.darkMode ? darkTheme : lightTheme}</style>`;
 	const classes = 'h-auto w-full overflow-auto border-1px border-gray-300/10';
 
-	$: renderedMarkdown = markdown.render(value as string);
+	$: renderedMarkdown = markdown ? markdown.render(value as string) : '';
 </script>
 
 <svelte:head>

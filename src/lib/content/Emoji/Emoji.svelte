@@ -36,22 +36,24 @@
 </script>
 
 <div use:clickoutside on:clickoutside={() => (showEmojis = false)} class="emojis__container">
-	{#if showEmojis && md}
-		<div transition:scale>
-			<Panel el="div" classes="emojis">
-				{#each Object.keys(emojiList) as key}
-					<span class="emoji emoji__{key}" on:click={onClick} on:keypress={onClick}>
-						{@html md.render(`:${key}:`)}
-					</span>
-				{/each}
-			</Panel>
+	{#if md}
+		{#if showEmojis}
+			<div transition:scale>
+				<Panel el="div" classes="emojis">
+					{#each Object.keys(emojiList) as key}
+						<span class="emoji emoji__{key}" on:click={onClick} on:keypress={onClick}>
+							{@html md.render(`:${key}:`)}
+						</span>
+					{/each}
+				</Panel>
+			</div>
+		{/if}
+		<div class="emojis__btn" on:click={toggleEmojis} on:keypress={toggleEmojis}>
+			<span class="text-2xl text-gray-500">
+				{@html md.render(':smiley:')}
+			</span>
 		</div>
 	{/if}
-	<div class="emojis__btn" on:click={toggleEmojis} on:keypress={toggleEmojis}>
-		<span class="text-2xl text-gray-500">
-			{@html md.render(':smiley:')}
-		</span>
-	</div>
 </div>
 
 <style>
