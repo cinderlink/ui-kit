@@ -4,7 +4,7 @@
 	import Panel from '$lib/content/Panel/Panel.svelte';
 </script>
 
-<div class="max-w-400px md-(max-w-50vw) lg-(max-w-40vw) xl-(max-w-25vw) max-h-full overflow-auto">
+<div class="w-400px md-(w-50vw) lg-(w-40vw) xl-(w-25vw) max-h-full">
 	<Panel size="lg">
 		<div class=" flex flex-col items-center justify-center gap-8">
 			<div class="flex w-full justify-end">
@@ -13,7 +13,7 @@
 			<slot name="brand">
 				<Logo />
 			</slot>
-			<div class="flex flex-col gap-4 items-center justify-center">
+			<div class="flex flex-col gap-4 items-center justify-center w-full h-full overflow-hidden">
 				<slot />
 			</div>
 		</div>
