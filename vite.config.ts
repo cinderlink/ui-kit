@@ -14,13 +14,10 @@ const config: UserConfig = {
 	},
 	build: {
 		minify: false,
-		target: 'esnext',
-		rollupOptions: {
-			external: ['svelte-highlight']
-		}
+		target: 'esnext'
 	},
 	optimizeDeps: {
-		force: true,
+		include: ['svelte-highlight', 'highlight.js', 'highlightjs-svelte', 'highlightjs-solidity'],
 		esbuildOptions: {
 			target: 'esnext'
 		}
