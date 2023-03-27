@@ -17,7 +17,6 @@ const config: UserConfig = {
 		target: 'esnext'
 	},
 	optimizeDeps: {
-		include: ['svelte-highlight', 'highlight.js', 'highlightjs-svelte', 'highlightjs-solidity'],
 		esbuildOptions: {
 			target: 'esnext'
 		}
