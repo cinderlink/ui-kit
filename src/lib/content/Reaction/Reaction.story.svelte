@@ -10,12 +10,31 @@
 
 <script lang="ts">
 	import Reaction from '../Reaction/Reaction.svelte';
+	import type { Reaction as ReactionType } from '../Reaction/types';
 	import Panel from '$lib/content/Panel/Panel.svelte';
 	import Syntax from '$lib/markup/Syntax/Syntax.svelte';
 	import Typography from '$lib/content/Typography/Typography.svelte';
+	let reactions: ReactionType[] = [];
+	const reactionAdd = (e: CustomEvent) => {
+		const { reaction } = e.detail;
+		const exist = reactions.find((r) => r.emoji === reaction.emoji);
+		if (exist) {
+			exist.count++;
+			reactions = reactions.map((r) => (r.emoji === exist.emoji ? exist : r));
+			return;
+		}
+		reactions = [...reactions, { ...reaction, count: 1 }];
+	};
 
-	const readReactions = (e: CustomEvent) => {
-		console.log(e.detail);
+	const reactionClick = (e: CustomEvent) => {
+		const { reaction } = e.detail;
+		const exist = reactions.find((r) => r.emoji === reaction.emoji && r.count > 1);
+		if (exist) {
+			exist.count--;
+			reactions = reactions.map((r) => (r.emoji === exist.emoji ? exist : r));
+			return;
+		}
+		reactions = reactions.filter((r) => r.emoji !== reaction.emoji);
 	};
 </script>
 
@@ -26,7 +45,7 @@
 <Typography>{story.title}</Typography>
 
 <Panel>
-	<Reaction id="1" on:reaction={readReactions}>
+	<Reaction id={1} {reactions} on:reaction-add={reactionAdd} on:reaction-click={reactionClick}>
 		<Panel variant="offset">
 			<Typography el="p">Panel With reaction</Typography>
 		</Panel>
