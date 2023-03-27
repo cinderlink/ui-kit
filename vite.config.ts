@@ -14,7 +14,10 @@ const config: UserConfig = {
 	},
 	build: {
 		minify: false,
-		target: 'esnext'
+		target: 'esnext',
+		rollupOptions: {
+			external: ['svelte-highlight']
+		}
 	},
 	optimizeDeps: {
 		force: true,
