@@ -48,7 +48,7 @@ jobs:
     - name: Create release artifact
       run: |
         mkdir -p release
-        cp -r path/to/build/output/* release/
+        cp -r dist/* release/
         zip -r release.zip release
       shell: bash
 
