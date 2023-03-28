@@ -3,7 +3,7 @@
 	import type { Reaction } from './types';
 	import ReactionList from './ReactionList.svelte';
 	import ReactionMenu from './ReactionMenu.svelte';
-	export let id: number = 0;
+	export let id: string = '';
 	export let reactions: Reaction[] = [];
 
 	const dispatch = createEventDispatcher();
@@ -28,6 +28,6 @@
 
 <style>
 	.reaction__container {
-		@apply relative;
+		@apply relative w-full;
 	}
 </style>
