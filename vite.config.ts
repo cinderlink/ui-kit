@@ -17,6 +17,7 @@ const config: UserConfig = {
 		target: 'esnext'
 	},
 	optimizeDeps: {
+		exclude: ['unocss', 'uno.css'],
 		esbuildOptions: {
 			target: 'esnext'
 		}
