@@ -12,7 +12,7 @@
 	export let disabled = false;
 	export let classes = '';
 	export let inputClasses = 'justify-between items-center';
-
+	export let previewClasses = 'flex-col gap-2 items-center justify-center';
 	export let value: string | number | undefined = '';
 	export let files: FileList | undefined = undefined;
 	export let placeholder = '';
@@ -113,7 +113,7 @@
 				{placeholder}
 				class="hidden"
 			/>
-			<div class="input__preview">
+			<div class="input__preview {previewClasses}">
 				<slot name="preview">
 					<img bind:this={imgRef} alt="Upload preview" />
 				</slot>
@@ -186,7 +186,7 @@
 	}
 
 	.input__preview {
-		@apply relative flex flex-col gap-2 items-center justify-center;
+		@apply relative flex;
 	}
 	.input__wrapper--xs {
 		@apply px-8px py-4px;
