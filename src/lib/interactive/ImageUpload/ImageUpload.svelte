@@ -8,8 +8,6 @@
 	export let inputRef: HTMLInputElement | undefined = undefined;
 	export let selected = false;
 
-	console.info('ImageUpload', image, inputRef, selected);
-
 	const dispatch = createEventDispatcher();
 
 	async function updateImagePreview() {
@@ -19,7 +17,7 @@
 		reader.onload = (e) => {
 			image = e.target?.result as string;
 		};
-		reader.readAsDataURL(files[0]);
+		reader.readAsArrayBuffer(files[0]);
 		selected = true;
 		dispatch('change', { image, selected, files });
 	}
