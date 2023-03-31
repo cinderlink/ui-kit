@@ -4,10 +4,10 @@ import { sveltekit } from '@sveltejs/kit/vite';
 
 const config: UserConfig = {
 	plugins: [
-		sveltekit(),
 		unocss({
 			configFile: 'unocss.config.ts'
-		})
+		}),
+		sveltekit()
 	],
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}']

@@ -1,12 +1,9 @@
 <script>
+	import 'uno.css';
 	import Theme from '$lib/theme/Theme.svelte';
 	import SidebarLayout from '$lib/layout/SidebarLayout/SidebarLayout.svelte';
 	import Logo from '$lib/Logo.svelte';
-	import Toggle from '$lib/interactive/Toggle/Toggle.svelte';
-	import theme from '$lib/theme/store';
-	import Dropdown from '$lib/interactive/Dropdown/Dropdown.svelte';
 	import Drawer from '$lib/content/Drawer/Drawer.svelte';
-	import Panel from '$lib/content/Panel/Panel.svelte';
 </script>
 
 <Theme>
