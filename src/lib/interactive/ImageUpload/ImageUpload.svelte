@@ -4,6 +4,7 @@
 	import Input from '../Input/Input.svelte';
 
 	export let label = '';
+	export let buffer: ArrayBuffer | undefined = undefined;
 	export let image: string | undefined = '';
 	export let inputRef: HTMLInputElement | undefined = undefined;
 	export let selected = false;
@@ -13,13 +14,22 @@
 	async function updateImagePreview() {
 		const files = inputRef?.files;
 		if (!files || !files.length) return;
-		const reader = new FileReader();
-		reader.onload = (e) => {
-			image = e.target?.result as string;
-		};
-		reader.readAsArrayBuffer(files[0]);
+		buffer = await new Promise((resolve) => {
+			const reader = new FileReader();
+			reader.onload = (e) => {
+				resolve(e.target?.result as ArrayBuffer);
+			};
+			reader.readAsArrayBuffer(files[0]);
+		});
+		image = await new Promise((resolve) => {
+			const reader = new FileReader();
+			reader.onload = (e) => {
+				resolve(e.target?.result as string);
+			};
+			reader.readAsDataURL(files[0]);
+		});
 		selected = true;
-		dispatch('change', { image, selected, files });
+		dispatch('change', { buffer, image, selected, files });
 	}
 </script>
 
@@ -34,7 +44,7 @@
 	on:change={updateImagePreview}
 >
 	<svelte:fragment slot="preview">
-		<slot name="preview">
+		<slot name="preview" {image}>
 			<Avatar image={image || undefined} size="lg" classes="bg-gray-400 dark-bg-blue-100" />
 		</slot>
 	</svelte:fragment>
