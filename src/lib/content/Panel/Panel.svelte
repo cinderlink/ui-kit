@@ -72,7 +72,7 @@
 	}
 
 	.panel--md {
-		@apply p-4 shadow-md;
+		@apply p-1 md-(p-2) lg-(p-4) shadow-md;
 	}
 
 	.panel--interactive.panel--md {
