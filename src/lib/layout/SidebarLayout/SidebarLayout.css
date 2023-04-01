@@ -1,15 +1,17 @@
-.panel.layout__panel {
-	@apply m-0 md-(m-4) lg-(m-10 mb-4) xl-(m-12 mb-4) flex-1 h-full overflow-hidden relative p-0;
-	@apply w-full md-(w-7/8) xl-(w-3/4);
-}
-
 .layout.layout--sidebar {
-	@apply flex flex-row flex-1 h-full w-full overflow-hidden;
+	@apply relative h-full w-full lg-(flex flex-row flex-1 overflow-hidden);
+}
+.layout.layout--sidebar aside.layout__sidebar {
+	@apply hidden;
+	@apply border-r-2 border-r-neutral-300;
+	@apply bg-purple-50 text-purple-900 opacity-0 transition-opacity duration-1s z-10;
+	@apply dark-(border-purple-800 bg-purple-900 text-white);
+	@apply lg-(overflow-auto p-4 pr-6 h-full flex flex-col items-center justify-start opacity-100);
 }
 
-.layout.layout--sidebar aside.layout__sidebar {
-	@apply overflow-auto p-4 pr-6 h-full flex flex-col items-center justify-start;
-	@apply border-r-2 border-r-neutral-300 dark-(border-purple-800);
+.layout.layout--sidebar aside.layout__sidebar--toggled {
+	@apply overflow-auto p-2 h-full absolute left-0 top-0 w-full flex flex-col items-center justify-start opacity-100;
+	@apply lg-(p-4 pr-6 h-full relative);
 }
 
 .layout.layout--sidebar aside.layout__sidebar a:not(.button) {
@@ -42,6 +44,7 @@
 	@apply flex flex-col gap-2;
 }
 
+
 #theme .layout.layout--sidebar aside nav > a:not(.button) {
 	@apply flex flex-row gap-2 items-center p-2 border-b-2 w-full border-neutral-300 text-purple-600 transition-colors duration-300;
 	@apply dark-(border-purple-800 text-yellow-100);
@@ -69,7 +72,7 @@
 
 #page {
 	@apply flex flex-col w-full overflow-auto;
-	height: calc(100vh - 160px);
+	height: calc(100vh - 92px);
 }
 
 #brand {
