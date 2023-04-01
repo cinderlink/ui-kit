@@ -10,8 +10,9 @@
 }
 
 .layout.layout--sidebar aside.layout__sidebar--toggled {
-	@apply overflow-auto p-2 h-full absolute left-0 top-0 w-full flex flex-col items-center justify-start opacity-100;
-	@apply lg-(p-4 pr-6 h-full relative);
+	@apply overflow-auto p-2 absolute left-0 top-0 w-full flex flex-col items-center justify-start opacity-100;
+	@apply lg-(p-4 pr-6 relative);
+	height: calc(100% - 91px);
 }
 
 .layout.layout--sidebar aside.layout__sidebar a:not(.button) {
@@ -23,7 +24,7 @@
 }
 
 .layout.layout--sidebar .layout__page {
-	@apply flex flex-col flex-1 h-full w-full overflow-hidden bg-white/50 dark-bg-purple-900;
+	@apply flex flex-col flex-1 h-full w-full overflow-auto bg-white/50 dark-bg-purple-900;
 }
 
 .layout.layout--sidebar main {
@@ -71,8 +72,7 @@
 }
 
 #page {
-	@apply flex flex-col w-full overflow-auto;
-	height: calc(100vh - 92px);
+	@apply flex flex-col w-full h-full;
 }
 
 #brand {

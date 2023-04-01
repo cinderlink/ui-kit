@@ -2,7 +2,8 @@
 	import { fly } from 'svelte/transition';
 	import { onMount } from 'svelte';
 
-	let animate = true;
+	export let dark = false;
+	export let animate = true;
 	onMount(() => {
 		animate = false;
 	});
@@ -15,6 +16,7 @@
 	fill="none"
 	xmlns="http://www.w3.org/2000/svg"
 	class="overflow-visible"
+	class:dark
 >
 	{#if !animate}
 		<path
