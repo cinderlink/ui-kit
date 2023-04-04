@@ -1,6 +1,6 @@
 <script lang="ts">
+	import type { Color, Size } from '$lib/unocss';
 	import { scale } from 'svelte/transition';
-	import type { Color, Size } from '$lib/theme/types';
 
 	export let count = 0;
 	export let color: Color = 'purple';
