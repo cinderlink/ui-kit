@@ -1,5 +1,6 @@
-export type Notification = {
-	id: string;
+export type NotificationType = {
+	uid: string;
+	sourceUid: string;
 	type: string;
 	title: string;
 	body: string;

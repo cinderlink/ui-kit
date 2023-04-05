@@ -3,7 +3,7 @@
 	import { scale } from 'svelte/transition';
 
 	export let count = 0;
-	export let color: Color = 'purple';
+	export let color: Color = 'green';
 	export let size: Size = 'xs';
 </script>
 
@@ -19,36 +19,36 @@
 <style>
 	.notifications-count {
 		@apply flex justify-center items-center shadow-md border-1px border-purple-200/20;
-		@apply text-xs font-bold text-purple-50 bg-purple-500 rounded-full;
+		@apply text-xs font-bold text-purple-50 bg-purple-500 rounded-full px-1;
 	}
 
 	.notifications-count--xs {
-		@apply w-4 h-4;
+		@apply min-w-4 h-4;
 		@apply text-xs;
 	}
 
 	.notifications-count--sm {
-		@apply w-5 h-5;
+		@apply min-w-5 h-5;
 		@apply text-sm;
 	}
 
 	.notifications-count--md {
-		@apply w-6 h-6;
-		@apply text-base;
+		@apply min-w-6 h-6;
+		@apply text-sm;
 	}
 
 	.notifications-count--lg {
-		@apply w-7 h-7;
+		@apply min-w-7 h-7;
 		@apply text-lg;
 	}
 
 	.notifications-count--xl {
-		@apply w-8 h-8;
+		@apply min-w-8 h-8;
 		@apply text-xl;
 	}
 
 	.notifications-count--2xl {
-		@apply w-9 h-9;
+		@apply min-w-9 h-9;
 		@apply text-2xl;
 	}
 
