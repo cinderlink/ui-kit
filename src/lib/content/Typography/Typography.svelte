@@ -5,7 +5,7 @@
 	export let classes = 'text-purple-900 dark-(text-purple-50)';
 </script>
 
-<svelte:element this={el} class="typography {classes} {margin}">
+<svelte:element this={el} class="typography {classes} {margin}" on:click on:keypress>
 	<slot />
 </svelte:element>
 
