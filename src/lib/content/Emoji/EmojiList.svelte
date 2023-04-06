@@ -3,9 +3,11 @@
 	import Panel from '$lib/content/Panel/Panel.svelte';
 	import { createEventDispatcher, onMount } from 'svelte';
 	import type MarkdownIt from 'markdown-it';
+	import Input from '$lib/interactive/Input/Input.svelte';
 
 	let md: MarkdownIt;
 	const dispatch = createEventDispatcher();
+	let searchValue = '';
 	onMount(async () => {
 		const { default: markdown } = await import('markdown-it');
 		const { default: emoji } = await import('markdown-it-emoji');
@@ -22,16 +24,29 @@
 		const emoji = target.innerText;
 		dispatch('selected', emoji);
 	}
+
+	$: filtered = Object.keys(emojiList).filter((key) => {
+		return key.includes(searchValue);
+	});
 </script>
 
 {#if md}
 	<div>
 		<Panel el="div" classes="emojis">
-			{#each Object.keys(emojiList) as key}
-				<span class="emoji emoji__{key}" on:click={onClick} on:keypress={onClick}>
-					{@html md.render(`:${key}:`)}
-				</span>
-			{/each}
+			<Input
+				id="emoji-search"
+				type="text"
+				placeholder="search"
+				size="sm"
+				bind:value={searchValue}
+			/>
+			<div class="list__container">
+				{#each filtered as key}
+					<span class="emoji emoji__{key}" on:click={onClick} on:keypress={onClick}>
+						{@html md.render(`:${key}:`)}
+					</span>
+				{/each}
+			</div>
 		</Panel>
 	</div>
 {/if}
@@ -41,6 +56,12 @@
 		@apply text-3xl px-2 py-1 cursor-pointer;
 	}
 	.emoji:hover {
-		@apply bg-purple-900;
+		@apply bg-purple-100/50 dark-bg-purple-800;
+		@apply scale-110;
+	}
+
+	.list__container {
+		@apply flex flex-row flex-wrap justify-between items-start content-start;
+		@apply overflow-y-auto w-300px h-400px;
 	}
 </style>
