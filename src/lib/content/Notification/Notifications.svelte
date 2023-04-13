@@ -3,15 +3,12 @@
 	import { createEventDispatcher } from 'svelte';
 	import Panel from '$lib/content/Panel/Panel.svelte';
 	import Notification from './Notification.svelte';
-	import type { Notification as NotificationType } from './types';
+	import type { NotificationType } from './types';
+
 	export let notifications: NotificationType[] = [];
 
 	const dispatch = createEventDispatcher();
 	function dismissAll() {
-		notifications = notifications.map((notification) => ({
-			...notification,
-			dismissed: true
-		}));
 		dispatch('dismissed-all', notifications);
 	}
 </script>
@@ -28,7 +25,12 @@
 				</div>
 			</div>
 			{#each notifications as notification}
-				<Notification {notification}>
+				<Notification
+					{notification}
+					on:dismiss={() => {
+						dispatch('dismiss', notification.uid);
+					}}
+				>
 					<svelte:fragment slot="header">
 						<span class="font-bold">{notification.title}</span>
 					</svelte:fragment>

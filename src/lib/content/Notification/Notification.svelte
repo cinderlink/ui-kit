@@ -2,14 +2,13 @@
 	import { fly } from 'svelte/transition';
 	import { goto } from '$app/navigation';
 	import { createEventDispatcher } from 'svelte';
-	import type { Notification as NotificationType } from './types';
+	import type { NotificationType } from './types';
 	export let notification: NotificationType;
 	export let classes = '';
 
 	const dispatch = createEventDispatcher();
 	function onDismiss() {
-		notification.dismissed = true;
-		dispatch('dismissed', notification);
+		dispatch('dismiss', notification);
 	}
 
 	function goToLink() {

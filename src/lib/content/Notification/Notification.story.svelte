@@ -10,7 +10,7 @@
 
 <script lang="ts">
 	import Notification from '../Notification/Notification.svelte';
-	import type { Notification as NotificationType } from './types';
+	import type { NotificationType } from './types';
 
 	import Panel from '$lib/content/Panel/Panel.svelte';
 	import Typography from '$lib/content/Typography/Typography.svelte';
@@ -20,7 +20,8 @@
 	import Syntax from '$lib/markup/Syntax/Syntax.svelte';
 
 	let notification: NotificationType = {
-		id: '1',
+		uid: '1',
+		sourceUid: '1',
 		title: 'Notification title',
 		type: 'connections',
 		body: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis officiis adipisci ipsam quod, harum impedit nihil voluptate qui provident quisquam tempore, esse odio odit fugiat quis minima facere',
@@ -31,7 +32,8 @@
 
 	let notifications: NotificationType[] = [
 		{
-			id: '1',
+			uid: '1',
+			sourceUid: '1',
 			title: 'Notification title 1',
 			type: 'connections',
 			body: 'content 1',
@@ -40,7 +42,8 @@
 			createdAt: Date.now()
 		},
 		{
-			id: '2',
+			uid: '2',
+			sourceUid: '2',
 			title: 'Notification title 2',
 			type: 'connections',
 			body: 'content 2',
@@ -49,7 +52,8 @@
 			createdAt: Date.now()
 		},
 		{
-			id: '3',
+			uid: '3',
+			sourceUid: '3',
 			title: 'Notification title 3',
 			type: 'connections',
 			body: 'content 3',

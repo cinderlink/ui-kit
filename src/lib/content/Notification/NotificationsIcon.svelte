@@ -1,13 +1,21 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	import NotificationsCount from './NotificationsCount.svelte';
 
 	export let icon: string = 'i-tabler-bell';
 	export let count: number = 0;
+	let toggle = false;
+	const dispatch = createEventDispatcher();
+	function onToggle() {
+		toggle = !toggle;
+		dispatch('toggle', toggle);
+	}
 </script>
 
-<div class="notifications-icon" on:click on:keypress>
-	<div class="notifications-icon__icon {icon}" on:click on:keypress />
+<div class="notifications-icon">
+	<div class="notifications-icon__icon {icon}" on:click={onToggle} on:keypress={onToggle} />
 	<NotificationsCount {count} />
+	<slot {toggle} />
 </div>
 
 <style>

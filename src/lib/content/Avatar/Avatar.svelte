@@ -108,6 +108,6 @@
 	}
 
 	.avatar__badge {
-		@apply absolute top-0 right-0;
+		@apply absolute -bottom-1 -right-2;
 	}
 </style>
