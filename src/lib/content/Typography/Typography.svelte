@@ -2,7 +2,7 @@
 	import type { TypographyElement } from './types';
 	export let el: TypographyElement = 'h1';
 	export let margin = 'mb-4';
-	export let classes = 'text-purple-900 dark-(text-purple-50)';
+	export let classes = '';
 </script>
 
 <svelte:element this={el} class="typography {classes} {margin}">

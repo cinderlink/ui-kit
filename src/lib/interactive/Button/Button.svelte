@@ -162,7 +162,7 @@
 	}
 
 	.button--sm {
-		@apply text-sm p-2 rounded-md;
+		@apply text-sm py-1 px-3 rounded-md;
 	}
 
 	.button--md {

@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { Size } from '$lib/theme/types';
+	import type { Size } from '$lib/unocss/types';
 
 	export let href: string | undefined = undefined;
 	export let el = href ? 'a' : 'div';
 	export let size: Size = 'md';
 	export let flex = 'flex flex-col gap-2';
-	export let variant: 'default' | 'dark' | 'light' | 'offset' = 'default';
+	export let variant: 'default' | 'dark' | 'light' | 'offset' | 'red' = 'default';
 	export let interactive = false;
 	export let rounded = 'rounded-md';
 	export let classes = '';
@@ -25,7 +25,7 @@
 
 <style>
 	.panel {
-		@apply transition-all duration-200 ease-in-out text-white;
+		@apply transition-all duration-200 ease-in-out;
 	}
 
 	.panel.panel--light {
@@ -101,5 +101,17 @@
 
 	.panel--interactive.panel--2xl {
 		@apply hover-(shadow-3xl);
+	}
+
+	.panel.panel--red {
+		@apply bg-red-50 text-red-900 border-2 border-red-900;
+	}
+
+	.panel.panel--red.panel--invert {
+		@apply bg-red-900 text-red-50 border-2 border-red-50;
+	}
+
+	.panel.panel--red.panel--invert :global(a) {
+		@apply text-red-800;
 	}
 </style>

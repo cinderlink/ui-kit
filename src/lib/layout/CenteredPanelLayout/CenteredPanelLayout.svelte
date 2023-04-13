@@ -4,8 +4,8 @@
 	import Panel from '$lib/content/Panel/Panel.svelte';
 </script>
 
-<div class="w-400px md-(w-50vw) lg-(w-40vw) xl-(w-25vw) max-h-full">
-	<Panel size="lg">
+<div class="w-full sm-(w-7/8) md-(w-50vw) lg-(w-40vw) xl-(w-30vw) max-h-full overflow-auto py-2">
+	<Panel size="lg" classes="shadow-xl">
 		<div class=" flex flex-col items-center justify-center gap-8">
 			<div class="flex w-full justify-end">
 				<ThemeToggle />
