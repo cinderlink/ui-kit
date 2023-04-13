@@ -38,7 +38,12 @@
 		{#if showEmojis}
 			<EmojiList on:selected={onClick} />
 		{/if}
-		<div class="emojis__btn" on:click={toggleEmojis} on:keypress={toggleEmojis}>
+		<div
+			class="emojis__btn"
+			class:active={showEmojis}
+			on:click={toggleEmojis}
+			on:keypress={toggleEmojis}
+		>
 			<span class="text-2xl text-gray-500">
 				{@html md.render(':smiley:')}
 			</span>
@@ -53,9 +58,14 @@
 	.emojis__btn {
 		@apply cursor-pointer outline-none;
 	}
+	.emojis__btn.active {
+		@apply scale-120;
+	}
+	.emojis__btn:not(.active):hover {
+		@apply scale-120 transition-all duration-200 ease-in-out;
+	}
 	.emojis__container :global(.emojis) {
 		@apply absolute bottom-full right-0 mb-2;
-		@apply flex flex-row flex-wrap justify-around;
-		@apply overflow-y-auto shadow-lg w-300px h-400px border-1px border-gray-100/20;
+		@apply shadow-lg border-1px border-gray-100/20;
 	}
 </style>
