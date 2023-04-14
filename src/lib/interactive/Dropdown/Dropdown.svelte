@@ -1,12 +1,12 @@
 <script lang="ts">
 	import type { Option } from './types';
-	import type { Size } from '$lib/theme/types';
 	import type { TypographyElement } from '$lib/content/Typography/types';
 	import { clickoutside } from '$lib/actions';
 	import { createEventDispatcher } from 'svelte';
 	import { slide } from 'svelte/transition';
 	import Typography from '$lib/content/Typography/Typography.svelte';
 	import './Dropdown.css';
+	import type { Size } from '$lib/unocss';
 
 	export let id: string = 'dropdown';
 	export let label: string | undefined = undefined;
