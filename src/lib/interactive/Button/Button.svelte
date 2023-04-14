@@ -59,8 +59,8 @@
 	}
 
 	.button--default {
-		@apply bg-purple-50 text-purple-900 border-purple-900;
-		@apply dark-(bg-purple-900 text-purple-50 border-purple-50);
+		@apply bg-purple-50 text-purple-900 border-purple-900/50;
+		@apply dark-(bg-purple-900 text-purple-50 border-purple-50/75);
 	}
 	.button--default:hover:not(:disabled) {
 		@apply bg-purple-100 text-purple-800;
@@ -158,11 +158,11 @@
 	}
 
 	.button--xs {
-		@apply text-xs p-1 rounded-sm;
+		@apply text-xs p-1 rounded-sm border-1;
 	}
 
 	.button--sm {
-		@apply text-sm py-1 px-3 rounded-md;
+		@apply text-sm py-1 px-3 rounded-md border-2;
 	}
 
 	.button--md {
