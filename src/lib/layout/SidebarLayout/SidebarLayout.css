@@ -72,7 +72,7 @@
 }
 
 #page {
-	@apply flex flex-col w-full h-full;
+	@apply flex flex-col w-full h-full overflow-auto;
 }
 
 #brand {
