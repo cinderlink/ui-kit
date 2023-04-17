@@ -26,8 +26,8 @@
 		"README"
 	],
 	"devDependencies": {
-		"@cinderlink/core-types": "workspace:^0.0.3",
-		"@cinderlink/protocol": "workspace:^0.0.4",
+		"@cinderlink/core-types": "^0.0.3",
+		"@cinderlink/protocol": "^0.0.4",
 		"@esbuild-plugins/node-globals-polyfill": "^0.2.3",
 		"@iconify-json/logos": "^1.1.24",
 		"@iconify-json/tabler": "^1.1.72",
