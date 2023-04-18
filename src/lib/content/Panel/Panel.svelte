@@ -114,4 +114,15 @@
 	.panel.panel--red.panel--invert :global(a) {
 		@apply text-red-800;
 	}
+	.panel.panel--green {
+		@apply bg-green-50 text-green-900 border-2 border-green-200;
+	}
+
+	.panel.panel--green.panel--invert {
+		@apply bg-green-900 text-green-50 border-2 border-green-700;
+	}
+
+	.panel.panel--green.panel--invert :global(a) {
+		@apply text-green-800;
+	}
 </style>
