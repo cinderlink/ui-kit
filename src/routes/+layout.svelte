@@ -1,5 +1,5 @@
 <script>
-	import 'virtual:uno.css'
+	import 'virtual:uno.css';
 	import Theme from '$lib/theme/Theme.svelte';
 	import SidebarLayout from '$lib/layout/SidebarLayout/SidebarLayout.svelte';
 	import Logo from '$lib/Logo.svelte';
