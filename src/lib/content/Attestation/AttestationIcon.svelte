@@ -26,7 +26,7 @@
 	}
 
 	.attestation-icon__icon {
-		@apply text-xl px-2;
+		@apply text-lg px-2;
 	}
 
 	.attestation-icon__count {
