@@ -1,6 +1,11 @@
 <script lang="ts">
-	import type { BorderRadius, FlexDirection, Size } from '$lib/theme/types';
-	import type { FlexAlign, FlexJustify } from '$lib/unocss/types';
+	import type {
+		BorderRadius,
+		FlexAlign,
+		FlexDirection,
+		FlexJustify,
+		Size
+	} from '$lib/unocss/types';
 
 	export let href: string | undefined = undefined;
 	export let rounded: BorderRadius = 'rounded-lg';
