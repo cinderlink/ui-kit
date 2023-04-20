@@ -7,7 +7,7 @@ import {
 	transformerDirectives,
 	transformerVariantGroup
 } from 'unocss';
-import { extractorSvelte } from '@unocss/core';
+import extractorSvelte from '@unocss/extractor-svelte';
 
 export default defineConfig({
 	presets: [
@@ -20,7 +20,7 @@ export default defineConfig({
 			dark: 'class'
 		})
 	],
-	extractors: [extractorSvelte],
+	extractors: [extractorSvelte()],
 	transformers: [transformerDirectives(), transformerVariantGroup()],
 	theme: {
 		colors: {
