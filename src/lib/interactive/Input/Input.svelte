@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Emoji from '$lib/content/Emoji/Emoji.svelte';
-	import type { Size } from '$lib/theme/types';
+	import type { Size } from '$lib/unocss/types';
 	import Button from '../Button/Button.svelte';
 
 	export let id: string;
@@ -12,13 +12,14 @@
 	export let disabled = false;
 	export let classes = '';
 	export let inputClasses = 'justify-between items-center';
-	export let previewClasses = 'flex-col gap-2 items-center justify-center';
+	export let preview = false;
+	export let previewClasses = preview ? 'flex-col gap-2 items-center justify-center' : '';
 	export let value: string | number | undefined = '';
 	export let files: FileList | undefined = undefined;
 	export let placeholder = '';
 	export let width: `w-${string}` | 'w-full' = 'w-full';
 	export let variant: 'default' | 'inverted' | 'custom' = 'default';
-	export let size: Size = 'md';
+	export let size: Size | 'slim' = 'md';
 	export let readonly = false;
 	export let autocomplete: 'on' | 'off' = 'off';
 	export let emoji = false;
@@ -113,28 +114,28 @@
 				{placeholder}
 				class="hidden"
 			/>
-			<div class="input__preview {previewClasses}">
-				<slot name="preview">
-					<img bind:this={imgRef} alt="Upload preview" />
-				</slot>
-				<slot name="button">
-					<div class="p-2">
-						<Button
-							type="button"
-							rounded="rounded-lg"
-							{size}
-							on:click={() => {
-								if (inputRef) inputRef.click();
-							}}
-						>
-							<slot name="button-text">
-								<div class="i-tabler-upload" />
-								Upload
-							</slot>
-						</Button>
+			<slot name="preview">
+				{#if preview}
+					<div class="input__preview {previewClasses}">
+						<img bind:this={imgRef} alt="Upload preview" />
 					</div>
-				</slot>
-			</div>
+				{/if}
+			</slot>
+			<slot name="button" input={inputRef}>
+				<Button
+					type="button"
+					rounded="rounded-lg"
+					{size}
+					on:click={() => {
+						if (inputRef) inputRef.click();
+					}}
+				>
+					<slot name="button-text">
+						<div class="i-tabler-upload" />
+						Upload
+					</slot>
+				</Button>
+			</slot>
 		{:else if type === 'markdown'}
 			<textarea
 				bind:this={textareaRef}
@@ -182,11 +183,14 @@
 		@apply font-sans font-normal text-md b-none outline-none resize-none bg-transparent;
 	}
 	.input__wrapper {
-		@apply rounded-lg px-24px py-16px flex flex-row gap-2 text-xl w-full border-4;
+		@apply rounded-lg flex flex-row gap-2 text-xl w-full border-4;
 	}
 
 	.input__preview {
 		@apply relative flex;
+	}
+	.input__wrapper--slim {
+		@apply px-0 py-0;
 	}
 	.input__wrapper--xs {
 		@apply px-8px py-4px;
