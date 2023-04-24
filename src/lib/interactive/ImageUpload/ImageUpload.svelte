@@ -74,7 +74,7 @@
 <style>
 	.input--file__button {
 		@apply absolute flex justify-start items-end cursor-pointer;
-		@apply bg-transparent hover-bg-purple-900/70  w-full h-full rounded-full;
+		@apply bg-transparent hover-bg-purple-900/70  w-90px h-90px rounded-full;
 	}
 	.input--file__text {
 		@apply absolute justify-center items-center;

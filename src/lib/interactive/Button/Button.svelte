@@ -15,7 +15,7 @@
 	export let width: `w-${string}` = 'w-auto';
 	export let height: `h-${string}` = 'h-auto';
 	export let gap: `gap-${string}` = 'gap-2';
-	export let size: Size = 'md';
+	export let size: Size | 'slim' = 'md';
 	export let type: 'button' | 'submit' | 'reset' = 'button';
 	export let variant:
 		| 'default'
