@@ -4,10 +4,9 @@
 
 	export let icon: string = 'i-tabler-bell';
 	export let count: number = 0;
-	let toggle = false;
+	export let toggle = false;
 	const dispatch = createEventDispatcher();
 	function onToggle() {
-		toggle = !toggle;
 		dispatch('toggle', toggle);
 	}
 </script>

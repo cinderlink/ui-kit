@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { clickoutside } from '$lib/actions';
 	import { fade } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
 	import Panel from '$lib/content/Panel/Panel.svelte';
@@ -14,7 +15,7 @@
 </script>
 
 {#if notifications.filter((n) => !n.dismissed).length > 0}
-	<div transition:fade class="notifications">
+	<div use:clickoutside on:clickoutside transition:fade class="notifications">
 		<Panel classes="gap-2 p-4 border-1px border-purple-200/20 rounded-md overflow-hidden">
 			<div class="notifications__header">
 				<slot name="header">
@@ -29,6 +30,9 @@
 					{notification}
 					on:dismiss={() => {
 						dispatch('dismiss', notification.uid);
+					}}
+					on:go-to-link={() => {
+						dispatch('go-to-link', notification);
 					}}
 				>
 					<svelte:fragment slot="header">

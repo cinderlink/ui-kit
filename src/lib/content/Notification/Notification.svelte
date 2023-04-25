@@ -13,7 +13,7 @@
 
 	function goToLink() {
 		onDismiss();
-		if (notification.link) goto(notification.link);
+		dispatch('go-to-link', notification);
 	}
 </script>
 
@@ -21,7 +21,7 @@
 	<div transition:fly={{ x: -100 }} class="notification {classes}">
 		<div class="notification__header">
 			<slot name="header" />
-			<i class="icon i-tabler-x" on:click={onDismiss} on:keypress={goToLink} />
+			<i class="icon i-tabler-x" on:click={onDismiss} on:keypress={onDismiss} />
 		</div>
 		<div class="notification__body">
 			<slot />
