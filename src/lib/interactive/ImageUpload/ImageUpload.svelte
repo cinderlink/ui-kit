@@ -2,13 +2,14 @@
 	import { createEventDispatcher } from 'svelte';
 	import Avatar from '$lib/content/Avatar/Avatar.svelte';
 	import Input from '../Input/Input.svelte';
+	import type { Size } from '$lib/unocss';
 
 	export let label = '';
 	export let buffer: ArrayBuffer | undefined = undefined;
 	export let image: string | undefined = '';
 	export let inputRef: HTMLInputElement | undefined = undefined;
 	export let selected = false;
-
+	export let size: Size = 'md';
 	const dispatch = createEventDispatcher();
 
 	async function updateImagePreview() {
@@ -50,7 +51,7 @@
 	</svelte:fragment>
 	<div
 		slot="button"
-		class="input--file__button"
+		class="input--file__button input--file__button--{size}"
 		on:click={() => {
 			if (inputRef) inputRef.click();
 		}}
@@ -74,7 +75,7 @@
 <style>
 	.input--file__button {
 		@apply absolute flex justify-start items-end cursor-pointer;
-		@apply bg-transparent hover-bg-purple-900/70  w-90px h-90px rounded-full;
+		@apply bg-transparent hover-bg-purple-900/70  w-15 h-15 rounded-full;
 	}
 	.input--file__text {
 		@apply absolute justify-center items-center;
@@ -91,5 +92,18 @@
 		@apply border-1px border-purple-700/20 dark-border-purple-50/30;
 		@apply w-28px h-28px rounded-full;
 		@apply text-base;
+	}
+
+	.input--file__button--sm {
+		@apply w-11 h-11;
+	}
+	.input--file__button--md {
+		@apply w-15 h-15;
+	}
+	.input--file__button--lg {
+		@apply w-19 h-19;
+	}
+	.input--file__button--xl {
+		@apply w-23 h-23;
 	}
 </style>
