@@ -5,7 +5,7 @@
 	export let el = href ? 'a' : 'div';
 	export let size: Size = 'md';
 	export let flex = 'flex flex-col gap-2';
-	export let variant: 'default' | 'dark' | 'light' | 'offset' | 'red' = 'default';
+	export let variant: 'default' | 'dark' | 'light' | 'offset' | 'red' | 'green' | 'blue' | 'yellow' = 'default';
 	export let interactive = false;
 	export let rounded = 'rounded-md';
 	export let classes = '';
@@ -99,30 +99,52 @@
 		@apply p-16 shadow-2xl;
 	}
 
+	/* red */
 	.panel--interactive.panel--2xl {
 		@apply hover-(shadow-3xl);
 	}
-
 	.panel.panel--red {
 		@apply bg-red-50 text-red-900 border-2 border-red-900;
 	}
-
 	.panel.panel--red.panel--invert {
 		@apply bg-red-900 text-red-50 border-2 border-red-50;
 	}
 
+	/* green */
 	.panel.panel--red.panel--invert :global(a) {
 		@apply text-red-800;
 	}
 	.panel.panel--green {
 		@apply bg-green-50 text-green-900 border-2 border-green-200;
 	}
-
 	.panel.panel--green.panel--invert {
 		@apply bg-green-900 text-green-50 border-2 border-green-700;
 	}
-
 	.panel.panel--green.panel--invert :global(a) {
 		@apply text-green-800;
 	}
+
+	/* blue */
+	.panel.panel--blue {
+		@apply bg-blue-200 text-blue-900 border-2 border-blue-200;
+		@apply dark-(bg-blue-800/50 text-blue-300 border-2 border-blue-300);
+	}
+	.panel.panel--blue.panel--invert {
+		@apply bg-blue-900 text-blue-200 border-2 border-blue-700;
+	}
+	.panel.panel--blue.panel--invert :global(a) {
+		@apply text-blue-800;
+	}
+
+	/* yellow */
+	.panel.panel--yellow {
+		@apply bg-yellow-50 text-yellow-900 border-2 border-yellow-200;
+	}
+	.panel.panel--yellow.panel--invert {
+		@apply bg-yellow-900 text-yellow-50 border-2 border-yellow-700;
+	}
+	.panel.panel--yellow.panel--invert :global(a) {
+		@apply text-yellow-800;
+	}
+
 </style>
