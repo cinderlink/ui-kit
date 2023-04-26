@@ -1,7 +1,7 @@
 {
 	"name": "@cinderlink/ui-kit",
 	"type": "module",
-	"version": "0.0.23",
+	"version": "0.0.24",
 	"scripts": {
 		"dev": "vite dev --port 3002",
 		"watch": "svelte-package --watch",
@@ -26,7 +26,7 @@
 		"README"
 	],
 	"devDependencies": {
-		"@cinderlink/core-types": "^0.0.8",
+		"@cinderlink/core-types": "^0.0.9",
 		"@cinderlink/protocol": "^0.0.7",
 		"@esbuild-plugins/node-globals-polyfill": "^0.2.3",
 		"@iconify-json/logos": "^1.1.25",
@@ -51,11 +51,11 @@
 		"tslib": "^2.5.0",
 		"typescript": "^5.0.4",
 		"unocss": "^0.49.8",
-		"vite": "^4.3.2",
+		"vite": "^4.3.3",
 		"vitest": "^0.30.1"
 	},
 	"dependencies": {
-		"@sveltejs/kit": "^1.15.8",
+		"@sveltejs/kit": "^1.15.9",
 		"@unocss/reset": "^0.51.8",
 		"ajv": "^8.12.0",
 		"copy-to-clipboard": "^3.3.3",
