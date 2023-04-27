@@ -19,10 +19,6 @@ body {
 	background-image: linear-gradient(63.34deg, #35169d 0.24%, #73526a 50.12%, #d9a23c 100%);
 }
 
-#theme main {
-	@apply flex-1 w-full;
-}
-
 hr {
 	@apply border-purple-200 dark:(border-purple-800);
 }
