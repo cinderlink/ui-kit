@@ -2,12 +2,13 @@
 	import Emoji from '$lib/content/Emoji/Emoji.svelte';
 	import type { Size } from '$lib/unocss/types';
 	import Button from '../Button/Button.svelte';
+	import Toggle from '../Toggle/Toggle.svelte';
 
 	export let id: string;
 	export let name: string | undefined = undefined;
 	export let label: string | undefined = undefined;
 	export let error: string | undefined = undefined;
-	export let type: 'text' | 'password' | 'number' | 'email' | 'textarea' | 'file' | 'markdown' =
+	export let type: 'text' | 'password' | 'number' | 'email' | 'textarea' | 'file' | 'markdown' | 'checkbox' | 'toggle' =
 		'text';
 	export let disabled = false;
 	export let classes = '';
@@ -15,6 +16,7 @@
 	export let preview = false;
 	export let previewClasses = preview ? 'flex-col gap-2 items-center justify-center' : '';
 	export let value: string | number | undefined = '';
+	export let toggled: boolean | undefined = undefined;
 	export let files: FileList | undefined = undefined;
 	export let placeholder = '';
 	export let width: `w-${string}` | 'w-full' = 'w-full';
@@ -157,6 +159,10 @@
 					}}
 				/>
 			{/if}
+		{:else if ['checkbox', 'toggle'].includes(type)}
+		<div class="w-full">
+			<Toggle {id} {disabled} bind:toggled />
+</div>
 		{/if}
 		<slot name="append" />
 	</div>
