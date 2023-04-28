@@ -6,8 +6,9 @@
 	export let code = '';
 	export let language = 'svelte';
 	export let ref: HTMLElement | undefined = undefined;
-	let style = '';
-	$: style = $theme.darkMode ? darkTheme : lightTheme;
+	export let dark = false;
+	let style = $theme.darkMode || dark ? darkTheme : lightTheme;
+	$: style = $theme.darkMode || dark ? darkTheme : lightTheme;
 
 	let hljs: any;
 	onMount(async () => {
@@ -30,10 +31,13 @@
 	{@html style}
 </svelte:head>
 
-<pre class="{language} whitespace-pre-wrap" bind:this={ref}><code>{code}</code></pre>
+<pre class="{language} whitespace-pre-wrap" class:dark bind:this={ref}><code>{code}</code></pre>
 
 <style>
 	pre {
-		@apply p-4 my-2 bg-neutral-100 dark-(bg-gray-900) rounded-md overflow-auto w-full border-1px border-gray-300/10;
+		@apply p-4 my-2 bg-neutral-100 dark-(bg-purple-900) rounded-md overflow-auto w-full border-1px border-gray-300/10;
+	}
+	pre.dark {
+		@apply bg-purple-900;
 	}
 </style>
