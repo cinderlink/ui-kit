@@ -3,6 +3,7 @@
 	import Syntax from '$lib/markup/Syntax/Syntax.svelte';
 	export let code = '';
 	export let lang = 'svelte';
+	export let dark = false;
 	let copied = false;
 	async function copyCode() {
 		const copy = await import('copy-to-clipboard');
@@ -24,7 +25,7 @@
 			on:keypress={copyCode}
 		/>
 	{:else}
-		<Syntax {code} language={lang} />
+		<Syntax {code} language={lang} {dark} />
 		<div
 			class="i-tabler-copy code__icon"
 			class:code__copied={copied}

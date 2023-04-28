@@ -218,7 +218,7 @@
 		@apply bg-purple-50 text-purple-900 border-purple-100;
 		@apply dark-(bg-purple-900 text-purple-50 border-purple-100);
 	}
-	.input--invert:not(.input--file) .input__wrapper {
+	.input--inverted:not(.input--file) .input__wrapper {
 		@apply bg-purple-900 text-purple-50 border-purple-100;
 		@apply dark-(bg-purple-50 text-purple-900 border-purple-100);
 	}
