@@ -40,7 +40,7 @@
 	{label}
 	placeholder="Avatar"
 	type="file"
-	inputClasses="justify-center items-center"
+	inputClasses="justify-center items-center relative"
 	bind:inputRef
 	on:change={updateImagePreview}
 >

@@ -193,7 +193,7 @@
 	}
 
 	.input__preview {
-		@apply relative flex;
+		@apply relative flex overflow-hidden;
 	}
 	.input__wrapper--slim {
 		@apply px-0 py-0;
