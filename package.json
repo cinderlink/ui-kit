@@ -1,7 +1,7 @@
 {
 	"name": "@cinderlink/ui-kit",
 	"type": "module",
-	"version": "0.0.26",
+	"version": "0.0.27",
 	"scripts": {
 		"dev": "vite dev --port 3002",
 		"watch": "svelte-package --watch",
@@ -26,12 +26,12 @@
 		"README"
 	],
 	"devDependencies": {
-		"@cinderlink/core-types": "^0.0.9",
+		"@cinderlink/core-types": "^0.0.10",
 		"@cinderlink/protocol": "^0.0.7",
 		"@esbuild-plugins/node-globals-polyfill": "^0.2.3",
 		"@iconify-json/logos": "^1.1.25",
 		"@iconify-json/tabler": "^1.1.74",
-		"@playwright/test": "^1.32.3",
+		"@playwright/test": "^1.33.0",
 		"@sveltejs/adapter-auto": "^2.0.1",
 		"@sveltejs/package": "^2.0.2",
 		"@types/highlight.js": "^10.1.0",
