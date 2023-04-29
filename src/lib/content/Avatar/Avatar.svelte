@@ -1,10 +1,11 @@
 <script lang="ts">
+	import type { Size } from '$lib/unocss';
 	import { fade } from 'svelte/transition';
 
 	export let image: string | undefined = undefined;
 	export let name: string | undefined = undefined;
 	export let status: 'online' | 'offline' | 'busy' | 'away' | undefined = undefined;
-	export let size: 'sm' | 'md' | 'lg' | 'xl' = 'md';
+	export let size: Size = 'md';
 	export let classes = '';
 </script>
 
