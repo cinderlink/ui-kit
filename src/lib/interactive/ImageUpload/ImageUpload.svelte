@@ -35,7 +35,7 @@
 </script>
 
 <Input
-	size="sm"
+	{size}
 	id="avatar"
 	{label}
 	placeholder="Avatar"
@@ -46,7 +46,7 @@
 >
 	<svelte:fragment slot="preview">
 		<slot name="preview" {image}>
-			<Avatar image={image || undefined} size="lg" classes="bg-gray-400 dark-bg-blue-100" />
+			<Avatar image={image || undefined} {size} classes="bg-gray-400 dark-bg-blue-100" />
 		</slot>
 	</svelte:fragment>
 	<div
@@ -95,15 +95,15 @@
 	}
 
 	.input--file__button--sm {
-		@apply w-11 h-11;
+		@apply w-12 h-12;
 	}
 	.input--file__button--md {
-		@apply w-15 h-15;
+		@apply w-16 h-16;
 	}
 	.input--file__button--lg {
-		@apply w-19 h-19;
+		@apply w-20 h-20;
 	}
 	.input--file__button--xl {
-		@apply w-23 h-23;
+		@apply w-24 h-24;
 	}
 </style>
