@@ -1,5 +1,6 @@
 <script lang="ts">
-	import type { Size } from '$lib/theme/types';
+	import type { Size } from '$lib/unocss';
+
 	export let id: string;
 	export let size: Size = 'md';
 	export let toggled = false;
