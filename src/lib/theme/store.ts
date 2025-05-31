@@ -1,14 +1,14 @@
-import { writable } from 'svelte/store';
+import { $state, $effect } from 'svelte/runes';
 
-export const theme = writable({
+export const theme = $state({
 	darkMode:
 		(typeof window !== 'undefined' && window?.sessionStorage?.getItem('darkMode') === 'true') ||
 		false
 });
 
 if (typeof window !== 'undefined') {
-	theme.subscribe((value) => {
-		window?.sessionStorage?.setItem('darkMode', value.darkMode.toString());
+	$effect(() => {
+		window?.sessionStorage?.setItem('darkMode', theme.darkMode.toString());
 	});
 }
 
