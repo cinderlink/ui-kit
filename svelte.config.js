@@ -1,15 +1,24 @@
 import adapter from '@sveltejs/adapter-auto';
-import { vitePreprocess } from '@sveltejs/kit/vite';
+import sveltePreprocess from 'svelte-preprocess';
+import unoPostcssPlugin from 'unocss/postcss';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
-	// for more information about preprocessors
-	preprocess: vitePreprocess(),
-
+	preprocess: [
+		sveltePreprocess({
+			postcss: {
+				plugins: [
+					unoPostcssPlugin(), // Using default options, should pick up unocss.config.ts
+				],
+			},
+		}),
+	],
 	kit: {
 		adapter: adapter()
-	}
+	},
+	// compilerOptions: { // Runes are enabled by default in Svelte 5
+	//  runes: true
+	// }
 };
 
 export default config;

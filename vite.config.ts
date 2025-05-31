@@ -9,9 +9,9 @@ const config: UserConfig = {
 		}),
 		sveltekit()
 	],
-	test: {
-		include: ['src/**/*.{test,spec}.{js,ts}']
-	},
+	// test: {
+	// 	include: ['src/**/*.{test,spec}.{js,ts}']
+	// },
 	build: {
 		minify: false,
 		target: 'esnext'

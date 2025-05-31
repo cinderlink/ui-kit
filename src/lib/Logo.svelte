@@ -1,11 +1,12 @@
-<script>
+<script lang="ts">
 	import { fly } from 'svelte/transition';
 	import { onMount } from 'svelte';
 
-	export let dark = false;
-	export let animate = true;
+	let { dark = false, animate: initialAnimate = true } = $props();
+	let animateState = $state(initialAnimate);
+
 	onMount(() => {
-		animate = false;
+		animateState = false;
 	});
 </script>
 
@@ -16,9 +17,9 @@
 	fill="none"
 	xmlns="http://www.w3.org/2000/svg"
 	class="overflow-visible"
-	class:dark
+	class:dark={dark}
 >
-	{#if !animate}
+	{#if !animateState}
 		<path
 			in:fly={{ y: -100, x: -100, duration: 1500 }}
 			d="M27.0993 31.2089H22.3098C22.3098 28.2034 23.3635 25.4136 25.2554 23.3541C27.2311 21.1988 29.9731 20.0253 32.9665 20.0253C36.2473 20.0253 39.3126 21.7256 41.1207 24.3838L45.9222 22.1447C43.8268 18.7322 39.9832 15.4394 32.9665 15.4394V10.6498C44.5811 10.6498 49.4904 17.9539 51.3942 22.3123L52.3282 24.4556L38.5942 30.8257L37.756 28.2633C37.1933 26.5391 35.3732 24.8029 32.9665 24.8029C29.5659 24.8029 27.0993 27.497 27.0993 31.2089Z"
