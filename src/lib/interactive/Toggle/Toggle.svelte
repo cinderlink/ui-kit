@@ -1,16 +1,22 @@
 <script lang="ts">
 	import type { Size } from '$lib/unocss';
 
-	export let id: string;
-	export let size: Size = 'md';
-	export let toggled = false;
-	export let disabled = false;
+	let {
+		id,
+		size = 'md', // size is a regular prop
+		toggled = $bindable(false), // toggled is directly declared as bindable here
+		disabled = false
+	} = $props();
 
-	$: if (disabled) toggled = false;
+	$effect(() => {
+		if (disabled) {
+			toggled = false;
+		}
+	});
 </script>
 
 <div class="toggle__container">
-	<slot name="label" />
+	{@render slot_label()}
 	<label class="toggle toggle--{size}" class:toggle--disabled={disabled} for="toggle__input--{id}">
 		<input
 			id="toggle__input--{id}"
@@ -18,21 +24,32 @@
 			class="toggle__input"
 			{disabled}
 			bind:checked={toggled}
-			on:change
 		/>
 		<div class="toggle__slider-container">
 			<div class="toggle__text toggle__text-on" class:toggle__text--visible={toggled}>
-				<slot name="on">On</slot>
+				{@render slot_on()}
 			</div>
 			<div class="flex-1 flex items-center justify-center transition-all duration-200">
 				<div class="toggle__slider" class:toggle__slider--toggled={toggled} />
 			</div>
 			<div class="toggle__text toggle__text-off" class:toggle__text--visible={!toggled}>
-				<slot name="off">Off</slot>
+				{@render slot_off()}
 			</div>
 		</div>
 	</label>
 </div>
+
+{#snippet slot_label()}
+	<slot name="label" />
+{/snippet}
+
+{#snippet slot_on()}
+	<slot name="on">On</slot>
+{/snippet}
+
+{#snippet slot_off()}
+	<slot name="off">Off</slot>
+{/snippet}
 
 <style>
 	.toggle__container {

@@ -36,14 +36,16 @@
 
 	export let renderedMarkdown: string = '';
 	export let value = '';
-	$: style = `<style>${$theme.darkMode ? darkTheme : lightTheme}</style>`;
+	$: currentThemeStyle = $theme.darkMode ? darkTheme : lightTheme;
 	const classes = 'h-auto w-full overflow-auto border-1px border-gray-300/10';
 
 	$: renderedMarkdown = markdown ? markdown.render(value as string) : '';
 </script>
 
 <svelte:head>
-	{@html style}
+	<style>
+		{@html currentThemeStyle}
+	</style>
 </svelte:head>
 
 <slot {renderedMarkdown}>
