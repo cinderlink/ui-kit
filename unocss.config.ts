@@ -11,14 +11,17 @@ import extractorSvelte from '@unocss/extractor-svelte';
 
 export default defineConfig({
 	presets: [
+		presetUno({
+			dark: 'class'
+		}),
 		presetAttributify({
 			prefix: 'un-'
 		}),
-		presetIcons(),
-		presetTypography(),
-		presetUno({
-			dark: 'class'
-		})
+		presetIcons({
+			scale: 1.2,
+			warn: true
+		}),
+		presetTypography()
 	],
 	extractors: [extractorSvelte()],
 	transformers: [transformerDirectives(), transformerVariantGroup()],
