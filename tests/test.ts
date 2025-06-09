@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 
-test('index page has expected h1', async ({ page }) => {
+test('index page loads correctly', async ({ page }) => {
 	await page.goto('/');
-	expect(await page.textContent('h1')).toBe('Welcome to SvelteKit');
+	await expect(page.locator('h1')).toBeVisible();
+	await expect(page.locator('#brand')).toHaveText('@cinderlink/ui-kit');
 });

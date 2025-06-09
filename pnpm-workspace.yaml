@@ -1,6 +1,2 @@
 packages:
   - .
-  - ../framework/packages/*
-overrides:
-  '@cinderlink/protocol': link:../framework/packages/protocol
-  '@cinderlink/core-types': link:../framework/packages/core-types
