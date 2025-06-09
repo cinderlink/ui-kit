@@ -1,5 +1,3 @@
-import { $state, $effect } from 'svelte/runes';
-
 export const theme = $state({
 	darkMode:
 		(typeof window !== 'undefined' && window?.sessionStorage?.getItem('darkMode') === 'true') ||

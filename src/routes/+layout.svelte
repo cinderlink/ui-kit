@@ -2,6 +2,7 @@
 	import 'virtual:uno.css';
 	import '../app.css';
 	import Theme from '$lib/theme/Theme.svelte';
+	import ThemeToggle from '$lib/theme/ThemeToggle.svelte';
 	import SidebarLayout from '$lib/layout/SidebarLayout/SidebarLayout.svelte';
 	import Logo from '$lib/Logo.svelte';
 	import Drawer from '$lib/content/Drawer/Drawer.svelte';
@@ -19,7 +20,10 @@
 				<div class="flex w-full justify-center items-center">
 					<Logo />
 				</div>
-				<a id="brand" href="/">@cinderlink/ui-kit</a>
+				<div class="flex w-full justify-between items-center">
+					<a id="brand" href="/">@cinderlink/ui-kit</a>
+					<ThemeToggle />
+				</div>
 				<nav class="flex-1 flex flex-col gap-2">
 					<Drawer label="Guides">
 						<ul>
