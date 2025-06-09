@@ -1,51 +1,65 @@
 <script lang="ts">
 	import { clickoutside } from '$lib/actions';
 	import { fade } from 'svelte/transition';
-	import { createEventDispatcher } from 'svelte';
 	import Panel from '$lib/content/Panel/Panel.svelte';
 	import Notification from './Notification.svelte';
 	import type { NotificationType } from './types';
 
-	export let notifications: NotificationType[] = [];
+	interface Props {
+		notifications?: NotificationType[];
+		header?: import('svelte').Snippet;
+		onclickoutside?: () => void;
+		ondismiss?: (uid: string) => void;
+		ondismissedAll?: (notifications: NotificationType[]) => void;
+		ongoToLink?: (notification: NotificationType) => void;
+	}
 
-	const dispatch = createEventDispatcher();
+	let { 
+		notifications = [], 
+		header,
+		onclickoutside,
+		ondismiss,
+		ondismissedAll,
+		ongoToLink
+	}: Props = $props();
+
 	function dismissAll() {
-		dispatch('dismissed-all', notifications);
+		ondismissedAll?.(notifications);
 	}
 </script>
 
 {#if notifications.filter((n) => !n.dismissed).length > 0}
-	<div use:clickoutside on:clickoutside transition:fade class="notifications">
+	<div use:clickoutside {onclickoutside} transition:fade class="notifications">
 		<Panel classes="gap-2 p-4 border-1px border-purple-200/20 rounded-md overflow-hidden">
 			<div class="notifications__header">
-				<slot name="header">
+				{#if header}{@render header()}{:else}
 					<span>Notifications title</span>
-				</slot>
-				<div class="notifications__dismiss" on:click={dismissAll} on:keypress={dismissAll}>
+				{/if}
+				<div class="notifications__dismiss" onclick={dismissAll} onkeypress={dismissAll}>
 					Dismiss all
 				</div>
 			</div>
 			{#each notifications as notification}
 				<Notification
 					{notification}
-					on:dismiss={() => {
-						dispatch('dismiss', notification.uid);
+					ondismiss={() => {
+						ondismiss?.(notification.uid);
 					}}
-					on:go-to-link={() => {
-						dispatch('go-to-link', notification);
+					ongoToLink={() => {
+						ongoToLink?.(notification);
 					}}
 				>
-					<svelte:fragment slot="header">
+					{#snippet header()}
 						<span class="font-bold">{notification.title}</span>
-					</svelte:fragment>
+					{/snippet}
 
 					<p>
 						{notification.body}
 					</p>
 
-					<svelte:fragment slot="footer">
+					{#snippet footer()}
 						<span class="text-xs">{new Date(notification.createdAt).toDateString()}</span>
-					</svelte:fragment>
+					{/snippet}
 				</Notification>
 			{/each}
 		</Panel>

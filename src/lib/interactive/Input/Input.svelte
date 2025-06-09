@@ -1,45 +1,95 @@
 <script lang="ts">
 	import Emoji from '$lib/content/Emoji/Emoji.svelte';
 	import type { Size } from '$lib/unocss/types';
+	import type { Snippet } from 'svelte';
 	import Button from '../Button/Button.svelte';
 	import Toggle from '../Toggle/Toggle.svelte';
 
-	export let id: string;
-	export let name: string | undefined = undefined;
-	export let label: string | undefined = undefined;
-	export let error: string | undefined = undefined;
-	export let type:
-		| 'text'
-		| 'password'
-		| 'number'
-		| 'email'
-		| 'textarea'
-		| 'file'
-		| 'markdown'
-		| 'checkbox'
-		| 'toggle' = 'text';
-	export let disabled = false;
-	export let classes = '';
-	export let inputClasses = 'justify-between items-center';
-	export let preview = false;
-	export let previewClasses = preview ? 'flex-col gap-2 items-center justify-center' : '';
-	export let value: string | number | undefined = '';
-	export let toggled: boolean | undefined = false;
-	export let files: FileList | undefined = undefined;
-	export let placeholder = '';
-	export let width: `w-${string}` | 'w-full' = 'w-full';
-	export let variant: 'default' | 'inverted' | 'custom' = 'default';
-	export let size: Size | 'slim' = 'md';
-	export let readonly = false;
-	export let autocomplete: 'on' | 'off' = 'off';
-	export let emoji = false;
+	interface Props {
+		id: string;
+		name?: string | undefined;
+		label?: string | undefined;
+		error?: string | undefined;
+		type?: 
+			| 'text'
+			| 'password'
+			| 'number'
+			| 'email'
+			| 'textarea'
+			| 'file'
+			| 'markdown'
+			| 'checkbox'
+			| 'toggle';
+		disabled?: boolean;
+		classes?: string;
+		inputClasses?: string;
+		preview?: boolean;
+		previewClasses?: string;
+		value?: string | number | undefined;
+		toggled?: boolean | undefined;
+		files?: FileList | undefined;
+		placeholder?: string;
+		width?: `w-${string}` | 'w-full';
+		variant?: 'default' | 'inverted' | 'custom';
+		size?: Size | 'slim';
+		readonly?: boolean;
+		autocomplete?: 'on' | 'off';
+		emoji?: boolean;
+		imgRef?: HTMLImageElement | undefined;
+		inputRef?: HTMLInputElement | undefined;
+		textareaRef?: HTMLTextAreaElement | undefined;
+		onfocus?: (event: FocusEvent) => void;
+		onblur?: (event: FocusEvent) => void;
+		onchange?: (event: Event) => void;
+		onkeypress?: (event: KeyboardEvent) => void;
+		labelSlot?: Snippet;
+		prepend?: Snippet;
+		previewSlot?: Snippet;
+		buttonSlot?: Snippet<[{ input: HTMLInputElement | undefined }]>;
+		buttonText?: Snippet;
+		append?: Snippet;
+		errorSlot?: Snippet;
+	}
 
-	export let imgRef: HTMLImageElement | undefined = undefined;
-	export let inputRef: HTMLInputElement | undefined = undefined;
-	export let textareaRef: HTMLTextAreaElement | undefined = undefined;
+	let {
+		id,
+		name = undefined,
+		label = undefined,
+		error = undefined,
+		type = 'text',
+		disabled = false,
+		classes = '',
+		inputClasses = 'justify-between items-center',
+		preview = false,
+		previewClasses = '',
+		value = $bindable(''),
+		toggled = $bindable(false),
+		files = $bindable(undefined),
+		placeholder = '',
+		width = 'w-full',
+		variant = 'default',
+		size = 'md',
+		readonly = false,
+		autocomplete = 'off',
+		emoji = false,
+		imgRef = $bindable(undefined),
+		inputRef = $bindable(undefined),
+		textareaRef = $bindable(undefined),
+		onfocus,
+		onblur,
+		onchange,
+		onkeypress,
+		labelSlot,
+		prepend,
+		previewSlot,
+		buttonSlot,
+		buttonText,
+		append,
+		errorSlot
+	}: Props = $props();
 
-	let empty = true;
-	$: empty = value === '';
+	let computedPreviewClasses = $derived(preview ? 'flex-col gap-2 items-center justify-center' : previewClasses);
+	let empty = $derived(value === '');
 </script>
 
 <div
@@ -47,9 +97,15 @@
 	class:input--empty={empty}
 	class:input--error={error}
 >
-	{#if $$slots.label || label}<slot name="label"><label for={id}>{label}</label></slot>{/if}
+	{#if labelSlot || label}
+		{#if labelSlot}
+			{@render labelSlot()}
+		{:else}
+			<label for={id}>{label}</label>
+		{/if}
+	{/if}
 	<div class="input__wrapper input__wrapper--{size} {inputClasses} {width}">
-		<slot name="prepend" />
+		{#if prepend}{@render prepend()}{/if}
 		{#if type === 'password'}
 			<input
 				{readonly}
@@ -92,16 +148,16 @@
 				{disabled}
 				{autocomplete}
 				type="text"
-				on:focus
-				on:blur
+				{onfocus}
+				{onblur}
 				bind:value
 				{placeholder}
 				class="input"
 			/>
 			{#if emoji}
 				<Emoji
-					on:selected={(e) => {
-						value += e.detail;
+					onselected={(emoji) => {
+						value += emoji;
 						inputRef?.focus();
 					}}
 				/>
@@ -109,12 +165,12 @@
 		{:else if type === 'textarea'}
 			<textarea {readonly} {id} {name} {disabled} bind:value {placeholder} class="input" />
 			{#if emoji}
-				<Emoji on:selected={(e) => (value += e.detail)} />
+				<Emoji onselected={(emoji) => (value += emoji)} />
 			{/if}
 		{:else if type === 'file'}
 			<input
 				bind:this={inputRef}
-				on:change
+				{onchange}
 				{id}
 				{name}
 				{disabled}
@@ -124,28 +180,32 @@
 				{placeholder}
 				class="hidden"
 			/>
-			<slot name="preview">
-				{#if preview}
-					<div class="input__preview {previewClasses}">
-						<img bind:this={imgRef} alt="Upload preview" />
-					</div>
-				{/if}
-			</slot>
-			<slot name="button" input={inputRef}>
+			{#if previewSlot}
+				{@render previewSlot()}
+			{:else if preview}
+				<div class="input__preview {computedPreviewClasses}">
+					<img bind:this={imgRef} alt="Upload preview" />
+				</div>
+			{/if}
+			{#if buttonSlot}
+				{@render buttonSlot({ input: inputRef })}
+			{:else}
 				<Button
 					type="button"
 					rounded="rounded-lg"
 					{size}
-					on:click={() => {
+					onclick={() => {
 						if (inputRef) inputRef.click();
 					}}
 				>
-					<slot name="button-text">
+					{#if buttonText}
+						{@render buttonText()}
+					{:else}
 						<div class="i-tabler-upload" />
 						Upload
-					</slot>
+					{/if}
 				</Button>
-			</slot>
+			{/if}
 		{:else if type === 'markdown'}
 			<textarea
 				bind:this={textareaRef}
@@ -155,26 +215,32 @@
 				{name}
 				{disabled}
 				bind:value
-				on:keypress
+				{onkeypress}
 				{placeholder}
 				class="input"
 			/>
 			{#if emoji}
 				<Emoji
-					on:selected={(e) => {
-						value += e.detail;
+					onselected={(emoji) => {
+						value += emoji;
 						textareaRef?.focus();
 					}}
 				/>
 			{/if}
 		{:else if ['checkbox', 'toggle'].includes(type)}
 			<div class="w-full">
-				<Toggle {id} {disabled} on:change bind:toggled />
+				<Toggle {id} {disabled} {onchange} bind:toggled />
 			</div>
 		{/if}
-		<slot name="append" />
+		{#if append}{@render append()}{/if}
 	</div>
-	{#if $$slots.error || error}<slot name="error"><span class="error">{error}</span></slot>{/if}
+	{#if errorSlot || error}
+		{#if errorSlot}
+			{@render errorSlot()}
+		{:else}
+			<span class="error">{error}</span>
+		{/if}
+	{/if}
 </div>
 
 <style>

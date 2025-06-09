@@ -4,23 +4,27 @@
 	import type { Size, Status } from '$lib/theme/types';
 	import StatusIndicator from './StatusIndicator.svelte';
 
-	export let status: 'online' | 'offline' | 'away' | 'connecting' | 'idle' = 'offline';
-	export let size: Size = 'xs';
-	export let classes = '';
-	$: indicatorStatus = {
+	interface Props {
+		status?: 'online' | 'offline' | 'away' | 'connecting' | 'idle';
+		size?: Size;
+		classes?: string;
+	}
+
+	let { status = 'offline', size = 'xs', classes = '' }: Props = $props();
+	let indicatorStatus = $derived({
 		online: 'success',
 		offline: 'neutral',
 		away: 'error',
 		connecting: 'warning',
 		idle: 'warning'
-	}[status] as Status;
-	$: colors = {
+	}[status] as Status);
+	let colors = $derived({
 		online: 'text-green-600 dark:text-green-400',
 		offline: 'text-gray-600 dark:text-gray-400',
 		away: 'text-red-600 dark:text-red-400',
 		connecting: 'text-blue-500 dark:text-blue-400',
 		idle: 'text-yellow-600 dark:text-yellow-400'
-	}[status];
+	}[status]);
 </script>
 
 <div class="indicator__online indicator__online--{status} indicator__online--{size}">

@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { StoryDef } from '$lib/ddl/stories';
 	export const story: StoryDef = {
 		group: 'interactive',
@@ -50,8 +50,12 @@
 	<Panel variant="offset">
 		<Typography el="h3">Prepend & Append</Typography>
 		<Input id="example_attach" type="text" label="Label" placeholder="Text input">
-			<div class="i-tabler-search" slot="prepend" />
-			<div class="i-tabler-clock" slot="append" />
+			{#snippet prepend()}
+				<div class="i-tabler-search"></div>
+			{/snippet}
+			{#snippet append()}
+				<div class="i-tabler-clock"></div>
+			{/snippet}
 		</Input>
 		<Typography el="h4">Usage</Typography>
 		<Syntax

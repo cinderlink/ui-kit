@@ -1,20 +1,32 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 
-	export let visible = false;
+	interface Props {
+		visible?: boolean;
+		header?: import('svelte').Snippet;
+		children?: import('svelte').Snippet;
+		footer?: import('svelte').Snippet;
+	}
+
+	let {
+		visible = false,
+		header,
+		children,
+		footer
+	}: Props = $props();
 </script>
 
 {#if visible}
 	<div class="modal__backdrop" transition:fade>
 		<div class="modal__inner">
 			<div class="modal__header">
-				<slot name="header" />
+				{@render header?.()}
 			</div>
 			<div class="modal__content">
-				<slot />
+				{@render children?.()}
 			</div>
 			<div class="modal__footer">
-				<slot name="footer" />
+				{@render footer?.()}
 			</div>
 		</div>
 	</div>

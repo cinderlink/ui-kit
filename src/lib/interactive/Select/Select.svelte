@@ -4,15 +4,28 @@
 	import Dropdown from '../Dropdown/Dropdown.svelte';
 	import type { Option } from '../Dropdown/types';
 
-	export let align: FlexAlign = 'items-start';
-	export let justify: FlexJustify = 'justify-start';
-	export let selected: Option = { label: 'Select', value: 'select' };
-	export let variant: 'default' | 'dark' | 'light' | 'pink' | 'green' | 'blue' | 'yellow' =
-		'default';
-	export let square = false;
-	export let options: Option[] = [];
 
-	export let toggle: ((value?: boolean) => void) | undefined = undefined;
+	interface Props {
+		align?: FlexAlign;
+		justify?: FlexJustify;
+		selected?: Option;
+		variant?: 'default' | 'dark' | 'light' | 'pink' | 'green' | 'blue' | 'yellow';
+		square?: boolean;
+		options?: Option[];
+		toggle?: ((value?: boolean) => void) | undefined;
+		[key: string]: any
+	}
+
+	let {
+		align = 'items-start',
+		justify = 'justify-start',
+		selected = $bindable({ label: 'Select', value: 'select' }),
+		variant = 'default',
+		square = false,
+		options = [],
+		toggle = undefined,
+		...rest
+	}: Props = $props();
 
 	const dispatch = createEventDispatcher();
 
@@ -23,22 +36,24 @@
 	}
 </script>
 
-<Dropdown {...$$restProps} {variant} label={selected.label} let:toggle>
-	{#if options.length > 0}
-		<ul class="dropdown__list dropdown__list--{variant}" class:dropdown__list--square={square}>
-			{#each options as option}
-				<li
-					class="{align} {justify}"
-					on:click={() => onSelect(option)}
-					on:keypress={() => onSelect(option)}
-					class:active={option.value === selected.value}
-				>
-					{#if option.icon}
-						<div class="list__icon {option.icon}" />
-					{/if}
-					{option.label}
-				</li>
-			{/each}
-		</ul>
-	{/if}
+<Dropdown {...rest} {variant} label={selected.label} >
+	{#snippet children({ toggle })}
+		{#if options.length > 0}
+			<ul class="dropdown__list dropdown__list--{variant}" class:dropdown__list--square={square}>
+				{#each options as option}
+					<li
+						class="{align} {justify}"
+						onclick={() => onSelect(option)}
+						onkeypress={() => onSelect(option)}
+						class:active={option.value === selected.value}
+					>
+						{#if option.icon}
+							<div class="list__icon {option.icon}"></div>
+						{/if}
+						{option.label}
+					</li>
+				{/each}
+			</ul>
+		{/if}
+	{/snippet}
 </Dropdown>

@@ -1,13 +1,18 @@
 <script lang="ts">
 	import emojiList from '../../emoji';
 	import Panel from '$lib/content/Panel/Panel.svelte';
-	import { createEventDispatcher, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 	import type MarkdownIt from 'markdown-it';
 	import Input from '$lib/interactive/Input/Input.svelte';
 
-	let md: MarkdownIt;
-	const dispatch = createEventDispatcher();
-	let searchValue = '';
+	interface Props {
+		onselected?: (emoji: string) => void;
+	}
+
+	let { onselected }: Props = $props();
+
+	let md: MarkdownIt = $state();
+	let searchValue = $state('');
 	onMount(async () => {
 		const { default: markdown } = await import('markdown-it');
 		const { default: emoji } = await import('markdown-it-emoji');
@@ -22,12 +27,12 @@
 	function onClick(event: MouseEvent | KeyboardEvent) {
 		const target = event.target as HTMLElement;
 		const emoji = target.innerText;
-		dispatch('selected', emoji);
+		onselected?.(emoji);
 	}
 
-	$: filtered = Object.keys(emojiList).filter((key) => {
+	let filtered = $derived(Object.keys(emojiList).filter((key) => {
 		return key.includes(searchValue);
-	});
+	}));
 </script>
 
 {#if md}
@@ -42,7 +47,7 @@
 			/>
 			<div class="list__container">
 				{#each filtered as key}
-					<span class="emoji emoji__{key}" on:click={onClick} on:keypress={onClick}>
+					<span class="emoji emoji__{key}" onclick={onClick} onkeypress={onClick}>
 						{@html md.render(`:${key}:`)}
 					</span>
 				{/each}

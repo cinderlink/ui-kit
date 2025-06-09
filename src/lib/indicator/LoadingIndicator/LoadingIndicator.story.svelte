@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script module lang="ts">
 	import type { StoryDef } from '$lib/ddl/stories';
 	export const story: StoryDef = {
 		group: 'indicator',

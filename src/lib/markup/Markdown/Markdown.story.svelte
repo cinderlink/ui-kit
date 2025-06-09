@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { StoryDef } from '$lib/ddl/stories';
 	import Typography from '$lib/content/Typography/Typography.svelte';
 	export const story: StoryDef = {
@@ -10,6 +10,7 @@
 </script>
 
 <script lang="ts">
+
 	import Emoji from '$lib/content/Emoji/Emoji.svelte';
 	import Markdown from '$lib/markup/Markdown/Markdown.svelte';
 	import Panel from '$lib/content/Panel/Panel.svelte';
@@ -18,8 +19,8 @@
 	import Button from '$lib/interactive/Button/Button.svelte';
 	import Input from '$lib/interactive/Input/Input.svelte';
 
-	let value = '';
-	let list: string[] = [];
+	let value = $state('');
+	let list: string[] = $state([]);
 
 	function handSubmit(renderedMarkdown: string) {
 		list = [...list, renderedMarkdown];
@@ -33,25 +34,30 @@
 
 <Typography>{story.title}</Typography>
 <div class="story h-full">
-	<Markdown bind:value let:renderedMarkdown>
-		<Panel>
-			<List>
-				{#each list as item}
-					<ListItem variant="square" classes="flex-col items-start justify-start">
-						{@html item}
-					</ListItem>
-				{/each}
-			</List>
-		</Panel>
-		<div class="h-full">
-			<form
-				class="h-full flex items-end"
-				on:submit|preventDefault={() => handSubmit(renderedMarkdown)}
-			>
-				<Input id="markdown-input" type="markdown" bind:value />
-				<Emoji on:selected={(e) => (value += e.detail)} />
-				<Button type="submit">Submit</Button>
-			</form>
-		</div>
-	</Markdown>
+	<Markdown bind:value >
+		{#snippet children({ renderedMarkdown })}
+				<Panel>
+				<List>
+					{#each list as item}
+						<ListItem variant="square" classes="flex-col items-start justify-start">
+							{@html item}
+						</ListItem>
+					{/each}
+				</List>
+			</Panel>
+			<div class="h-full">
+				<form
+					class="h-full flex items-end"
+					onsubmit={(e) => {
+						e.preventDefault();
+						handSubmit(renderedMarkdown);
+					}}
+				>
+					<Input id="markdown-input" type="markdown" bind:value />
+					<Emoji onselected={(emoji) => (value += emoji)} />
+					<Button type="submit">Submit</Button>
+				</form>
+			</div>
+					{/snippet}
+		</Markdown>
 </div>

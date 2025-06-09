@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import Panel from '$lib/content/Panel/Panel.svelte';
 	import Typography from '$lib/content/Typography/Typography.svelte';
 	import type { StoryDef } from '$lib/ddl/stories';

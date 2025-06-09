@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script module lang="ts">
 	import type { StoryDef } from '$lib/ddl/stories';
 	export const story: StoryDef = {
 		group: 'interactive',
@@ -15,9 +15,9 @@
 	import type { Size } from '$lib/theme/types';
 	import Select from '../Select/Select.svelte';
 	import Panel from '$lib/content/Panel/Panel.svelte';
-	let size: Size = 'md';
-	let toggled = false;
-	let disableToggle = false;
+	let size: Size = $state('md');
+	let toggled = $state(false);
+	let disableToggle = $state(false);
 </script>
 
 <svelte:head>
@@ -27,7 +27,9 @@
 <div class="story">
 	<Panel variant="offset">
 		<Toggle id="1" bind:toggled bind:size disabled={disableToggle}>
-			<div slot="label">Toggle label</div>
+			{#snippet label()}
+						<div >Toggle label</div>
+					{/snippet}
 		</Toggle>
 	</Panel>
 	<br />
@@ -35,7 +37,9 @@
 		<div class="grid grid-cols-3 items-center gap-2">
 			<Typography el="p">Status: {toggled ? 'On' : 'Off (default)'}</Typography>
 			<Toggle id="2" bind:toggled={disableToggle}>
-				<div slot="label">Disable</div>
+				{#snippet label()}
+								<div >Disable</div>
+							{/snippet}
 			</Toggle>
 			<Select
 				label="Size"

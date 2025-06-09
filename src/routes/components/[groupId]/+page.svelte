@@ -5,8 +5,8 @@
 	import { getStoriesByGroupId } from '$lib/ddl/stories';
 	import Card from '$lib/content/Card/Card.svelte';
 	import Breadcrumb from '$lib/navigation/Breadcrumb/Breadcrumb.svelte';
-	let group: any;
-	$: group = getGroupById($page.params.groupId);
+	let group: any = $derived(getGroupById($page.params.groupId));
+	
 </script>
 
 <Breadcrumb
@@ -18,7 +18,7 @@
 
 {#if group}
 	{@const stories = getStoriesByGroupId($page.params.groupId)}
-	<svelte:component this={group.default} />
+	<group.default />
 	<div class="flex flex-col gap-2 mt-4 overflow-auto">
 		{#each stories as { default: Story, story }}
 			<Card href="/components/{story.group}/{story.id}" title={story.title} align="items-start">

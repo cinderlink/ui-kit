@@ -1,12 +1,26 @@
 <script lang="ts">
 	import type { TypographyElement } from './types';
-	export let el: TypographyElement = 'h1';
-	export let margin = 'mb-4';
-	export let classes = '';
+	interface Props {
+		el?: TypographyElement;
+		margin?: string;
+		classes?: string;
+		children?: import('svelte').Snippet;
+		onclick?: (event: MouseEvent) => void;
+		onkeypress?: (event: KeyboardEvent) => void;
+	}
+
+	let {
+		el = 'h1',
+		margin = 'mb-4',
+		classes = '',
+		children,
+		onclick,
+		onkeypress
+	}: Props = $props();
 </script>
 
-<svelte:element this={el} class="typography {classes} {margin}" on:click on:keypress>
-	<slot />
+<svelte:element this={el} class="typography {classes} {margin}" {onclick} {onkeypress}>
+	{@render children?.()}
 </svelte:element>
 
 <style>

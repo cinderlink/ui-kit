@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { StoryDef } from '$lib/ddl/stories';
 	export const story: StoryDef = {
 		group: 'interactive',
@@ -14,7 +14,7 @@
 	import Dropdown from './Dropdown.svelte';
 	import Panel from '$lib/content/Panel/Panel.svelte';
 	import Toggle from '../Toggle/Toggle.svelte';
-	let square = false;
+	let square = $state(false);
 </script>
 
 <svelte:head>
@@ -25,8 +25,12 @@
 	<Panel variant="offset">
 		<Typography el="h3">Customize</Typography>
 		<Toggle id="toggle-dropdown" bind:toggled={square}>
-			<svelte:fragment slot="on">Square</svelte:fragment>
-			<svelte:fragment slot="off">Rounded - Default</svelte:fragment>
+			{#snippet on()}
+						Square
+					{/snippet}
+			{#snippet off()}
+						Rounded - Default
+					{/snippet}
 		</Toggle>
 	</Panel>
 	<Panel variant="offset">
@@ -44,13 +48,15 @@
 	</Panel>
 	<Panel variant="offset">
 		<Dropdown label="custom content" width="w-full" {square}>
-			<div class="p-4" slot="content">
-				<Typography el="h4">Custom content</Typography>
-				<Typography el="p">
-					You can add custom content to the dropdown. This is useful for adding a search input or
-					other interactive elements.
-				</Typography>
-			</div>
+			{#snippet content()}
+						<div class="p-4" >
+					<Typography el="h4">Custom content</Typography>
+					<Typography el="p">
+						You can add custom content to the dropdown. This is useful for adding a search input or
+						other interactive elements.
+					</Typography>
+				</div>
+					{/snippet}
 		</Dropdown>
 	</Panel>
 	<Panel variant="offset">

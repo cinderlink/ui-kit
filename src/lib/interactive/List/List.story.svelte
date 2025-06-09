@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import Typography from '$lib/content/Typography/Typography.svelte';
 	import type { StoryDef } from '$lib/ddl/stories';
 	export const story: StoryDef = {
@@ -25,23 +25,27 @@
 	<Panel variant="offset">
 		<Typography>Users List</Typography>
 		<List>
-			<ListItem data={{ id: 1, name: 'user A' }} on:click={(e) => console.log(e.detail)}>
+			<ListItem data={{ id: 1, name: 'user A' }} onclick={(e) => console.log(e.detail)}>
 				<div class="mr-2">
 					<Avatar image="https://loremflickr.com/640/360" size="sm" status="online" />
 				</div>
-				<svelte:fragment slot="body">
-					<Typography el="p">User A</Typography>
-					<span class="text-xs text-green">online</span>
-				</svelte:fragment>
+				{#snippet body()}
+							
+						<Typography el="p">User A</Typography>
+						<span class="text-xs text-green">online</span>
+					
+							{/snippet}
 			</ListItem>
 			<ListItem>
 				<div class="mr-2">
 					<Avatar image="https://loremflickr.com/640/360" size="sm" status="offline" />
 				</div>
-				<svelte:fragment slot="body">
-					<Typography el="p">User B</Typography>
-					<span class="text-xs">offline</span>
-				</svelte:fragment>
+				{#snippet body()}
+							
+						<Typography el="p">User B</Typography>
+						<span class="text-xs">offline</span>
+					
+							{/snippet}
 			</ListItem>
 		</List>
 	</Panel>
@@ -50,20 +54,28 @@
 		<Typography>Items List</Typography>
 		<List>
 			<ListItem>
-				<svelte:fragment slot="icon">
-					<div class="i-tabler-user mr-2" />
-				</svelte:fragment>
-				<svelte:fragment slot="body">
-					<Typography el="h5">Items 1</Typography>
-				</svelte:fragment>
+				{#snippet icon()}
+							
+						<div class="i-tabler-user mr-2"></div>
+					
+							{/snippet}
+				{#snippet body()}
+							
+						<Typography el="h5">Items 1</Typography>
+					
+							{/snippet}
 			</ListItem>
 			<ListItem>
-				<svelte:fragment slot="icon">
-					<div class="i-tabler-user mr-2" />
-				</svelte:fragment>
-				<svelte:fragment slot="body">
-					<Typography el="h5">Item 2</Typography>
-				</svelte:fragment>
+				{#snippet icon()}
+							
+						<div class="i-tabler-user mr-2"></div>
+					
+							{/snippet}
+				{#snippet body()}
+							
+						<Typography el="h5">Item 2</Typography>
+					
+							{/snippet}
 			</ListItem>
 		</List>
 	</Panel>

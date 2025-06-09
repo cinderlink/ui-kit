@@ -1,3 +1,7 @@
+import { actionkeys } from './actionkeys';
+import type { ToggleConfig } from './closeable';
+import { DefaultToggleConfig } from './closeable';
+
 export function openable(node: HTMLElement, config: ToggleConfig = DefaultToggleConfig) {
 	if (!config.open) return;
 	const open = () => {
@@ -18,7 +22,7 @@ export function openable(node: HTMLElement, config: ToggleConfig = DefaultToggle
 	let _globalKeydown: ReturnType<typeof actionkeys> | undefined;
 	if (config.open.globalKeys) {
 		_globalKeydown = actionkeys(
-			window,
+			window as any,
 			config.open.globalKeys.reduce(
 				(acc, key) => ({ ...acc, [key]: open }),
 				{} as Record<string, () => void>
@@ -31,7 +35,7 @@ export function openable(node: HTMLElement, config: ToggleConfig = DefaultToggle
 		destroy() {
 			_keydown?.destroy();
 			_globalKeydown?.destroy();
-			if (config.open?.onClickOutside) node.removeEventListener('click', open);
+			if (config.open?.onClick) node.removeEventListener('click', open);
 		}
 	};
 }

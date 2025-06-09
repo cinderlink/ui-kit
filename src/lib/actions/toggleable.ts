@@ -1,3 +1,7 @@
+import { openable } from './openable';
+import { closeable, DefaultToggleConfig } from './closeable';
+import type { ToggleConfig } from './closeable';
+
 export function toggleable(node: HTMLElement, conf: ToggleConfig = DefaultToggleConfig) {
 	const config = { ...DefaultToggleConfig, ...conf };
 	if (config.open) {

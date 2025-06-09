@@ -1,3 +1,4 @@
+<!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot (sidebar to sidebar_1) making the component unusable -->
 <script>
 	import Toggle from '$lib/interactive/Toggle/Toggle.svelte';
 	import theme from '$lib/theme/store';

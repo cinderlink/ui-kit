@@ -1,3 +1,32 @@
+import { actionkeys } from './actionkeys';
+import { clickoutside } from './clickoutside';
+
+export interface CloseConfig {
+	onClick?: boolean;
+	onClickOutside?: boolean;
+	onKeys?: string[];
+	globalKeys?: string[];
+}
+
+export interface ToggleConfig {
+	open?: {
+		onClick?: boolean;
+		onKeys?: string[];
+		globalKeys?: string[];
+	};
+	close?: CloseConfig;
+}
+
+export const DefaultToggleConfig: ToggleConfig = {
+	open: {
+		onClick: true
+	},
+	close: {
+		onClickOutside: true,
+		globalKeys: ['Escape']
+	}
+};
+
 export function closeable(node: HTMLElement, config: ToggleConfig = DefaultToggleConfig) {
 	if (!config.close) return;
 	const close = () => {
@@ -8,15 +37,15 @@ export function closeable(node: HTMLElement, config: ToggleConfig = DefaultToggl
 	if (config.close.onKeys) {
 		_keydown = actionkeys(
 			node,
-			config.close.onKeys.reduce((acc, key) => ({ ...acc, [key]: close }), {})
+			config.close.onKeys.reduce((acc: any, key: any) => ({ ...acc, [key]: close }), {})
 		);
 	}
 
 	let _globalKeydown: ReturnType<typeof actionkeys> | undefined;
 	if (config.close.globalKeys) {
 		_globalKeydown = actionkeys(
-			window,
-			config.close.globalKeys.reduce((acc, key) => ({ ...acc, [key]: close }), {})
+			window as any,
+			config.close.globalKeys.reduce((acc: any, key: any) => ({ ...acc, [key]: close }), {})
 		);
 	}
 

@@ -2,9 +2,19 @@
 	import { createEventDispatcher } from 'svelte';
 	import NotificationsCount from './NotificationsCount.svelte';
 
-	export let icon: string = 'i-tabler-bell';
-	export let count: number = 0;
-	export let toggle = false;
+	interface Props {
+		icon?: string;
+		count?: number;
+		toggle?: boolean;
+		children?: import('svelte').Snippet<[any]>;
+	}
+
+	let {
+		icon = 'i-tabler-bell',
+		count = 0,
+		toggle = false,
+		children
+	}: Props = $props();
 	const dispatch = createEventDispatcher();
 	function onToggle() {
 		dispatch('toggle', toggle);
@@ -12,9 +22,9 @@
 </script>
 
 <div class="notifications-icon">
-	<div class="notifications-icon__icon {icon}" on:click={onToggle} on:keypress={onToggle} />
+	<div class="notifications-icon__icon {icon}" onclick={onToggle} onkeypress={onToggle}></div>
 	<NotificationsCount {count} />
-	<slot {toggle} />
+	{@render children?.({ toggle, })}
 </div>
 
 <style>

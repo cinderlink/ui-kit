@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script module lang="ts">
 	import type { StoryDef } from '$lib/ddl/stories';
 	export const story: StoryDef = {
 		group: 'indicator',
@@ -19,10 +19,10 @@
 	export const statusProps: {
 		size: Size;
 		status: 'success' | 'warning' | 'error' | 'info';
-	} = {
+	} = $state({
 		size: 'md',
 		status: 'success'
-	};
+	});
 </script>
 
 <svelte:head>

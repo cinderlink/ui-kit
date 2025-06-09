@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { GroupDef } from '$lib/ddl/groups';
 	import Typography from './Typography/Typography.svelte';
 	export const group: GroupDef = {

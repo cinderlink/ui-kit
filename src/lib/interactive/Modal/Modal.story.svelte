@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { StoryDef } from '$lib/ddl/stories';
 	export const story: StoryDef = {
 		group: 'interactive',
@@ -15,7 +15,7 @@
 	import Modal from './Modal.svelte';
 	import Panel from '$lib/content/Panel/Panel.svelte';
 
-	let open = false;
+	let open = $state(false);
 </script>
 
 <svelte:head>
@@ -27,29 +27,33 @@
 <div class="story">
 	<Panel variant="offset">
 		<Typography el="h4">Example</Typography>
-		<Button on:click={() => (open = true)}>Open Modal</Button>
+		<Button onclick={() => (open = true)}>Open Modal</Button>
 		<Modal bind:visible={open}>
-			<svelte:fragment slot="header">
-				<Typography el="h3">Modal Title</Typography>
-				<Button size="sm" variant="outlined" color="rose" on:click={() => (open = false)}
-					>Close</Button
-				>
-			</svelte:fragment>
+			{#snippet header()}
+					
+					<Typography el="h3">Modal Title</Typography>
+					<Button size="sm" variant="outlined" color="rose" onclick={() => (open = false)}
+						>Close</Button
+					>
+				
+					{/snippet}
 
 			<Typography el="p">Modal content</Typography>
 
-			<svelte:fragment slot="footer">
-				<Typography el="p">Modal footer</Typography>
-			</svelte:fragment>
+			{#snippet footer()}
+					
+					<Typography el="p">Modal footer</Typography>
+				
+					{/snippet}
 		</Modal>
 
 		<Typography el="h4">Usage</Typography>
 		<Syntax
-			code={`<Button on:click={openModal}>Open Modal</Button>
+			code={`<Button onclick={openModal}>Open Modal</Button>
 <Modal bind:visible={open}>
   <svelte:fragment slot="header">
     <Typography el="h3">Modal Title</Typography>
-    <Button size="sm" variant="outlined" color="rose" on:click={closeModal}>
+    <Button size="sm" variant="outlined" color="rose" onclick={closeModal}>
       Close
     </Button>
   </svelte:fragment>

@@ -4,12 +4,25 @@
 	import Input from '../Input/Input.svelte';
 	import type { Size } from '$lib/unocss';
 
-	export let label = '';
-	export let buffer: ArrayBuffer | undefined = undefined;
-	export let image: string | undefined = '';
-	export let inputRef: HTMLInputElement | undefined = undefined;
-	export let selected = false;
-	export let size: Size = 'md';
+	interface Props {
+		label?: string;
+		buffer?: ArrayBuffer | undefined;
+		image?: string | undefined;
+		inputRef?: HTMLInputElement | undefined;
+		selected?: boolean;
+		size?: Size;
+		preview?: import('svelte').Snippet<[any]>;
+	}
+
+	let {
+		label = '',
+		buffer = $bindable(undefined),
+		image = $bindable(''),
+		inputRef = $bindable(undefined),
+		selected = $bindable(false),
+		size = 'md',
+		preview
+	}: Props = $props();
 	const dispatch = createEventDispatcher();
 
 	async function updateImagePreview() {
@@ -32,6 +45,8 @@
 		selected = true;
 		dispatch('change', { buffer, image, selected, files });
 	}
+
+	const preview_render = $derived(preview);
 </script>
 
 <Input
@@ -44,32 +59,36 @@
 	bind:inputRef
 	on:change={updateImagePreview}
 >
-	<svelte:fragment slot="preview">
-		<slot name="preview" {image}>
-			<Avatar image={image || undefined} {size} classes="bg-gray-400 dark-bg-blue-100" />
-		</slot>
-	</svelte:fragment>
-	<div
-		slot="button"
-		class="input--file__button input--file__button--{size}"
-		on:click={() => {
-			if (inputRef) inputRef.click();
-		}}
-		on:keypress={() => {
-			if (inputRef) inputRef.click();
-		}}
-	>
-		<div class="input--file__text">
-			{#if selected}
-				Change
-			{:else}
-				Upload
+	{#snippet preview()}
+	
+			{#if preview_render}{@render preview_render({ image, })}{:else}
+				<Avatar image={image || undefined} {size} classes="bg-gray-400 dark-bg-blue-100" />
 			{/if}
+		
+	{/snippet}
+	{#snippet button()}
+		<div
+			
+			class="input--file__button input--file__button--{size}"
+			onclick={() => {
+			if (inputRef) inputRef.click();
+		}}
+			onkeypress={() => {
+			if (inputRef) inputRef.click();
+		}}
+		>
+			<div class="input--file__text">
+				{#if selected}
+					Change
+				{:else}
+					Upload
+				{/if}
+			</div>
+			<div class="input--file__icon">
+				<div class="i-tabler-pencil"></div>
+			</div>
 		</div>
-		<div class="input--file__icon">
-			<div class="i-tabler-pencil" />
-		</div>
-	</div>
+	{/snippet}
 </Input>
 
 <style>

@@ -1,16 +1,28 @@
 <script lang="ts">
+
 	import darkTheme from 'svelte-highlight/styles/a11y-dark';
 	import lightTheme from 'svelte-highlight/styles/a11y-light';
 	import { onMount } from 'svelte';
 	import theme from '$lib/theme/store';
-	export let code = '';
-	export let language = 'svelte';
-	export let ref: HTMLElement | undefined = undefined;
-	export let dark = false;
-	let style = $theme.darkMode || dark ? darkTheme : lightTheme;
-	$: style = $theme.darkMode || dark ? darkTheme : lightTheme;
+	interface Props {
+		code?: string;
+		language?: string;
+		ref?: HTMLElement | undefined;
+		dark?: boolean;
+	}
 
-	let hljs: any;
+	let {
+		code = '',
+		language = 'svelte',
+		ref = $bindable(undefined),
+		dark = false
+	}: Props = $props();
+	let style = $state($theme.darkMode || dark ? darkTheme : lightTheme);
+	$effect(() => {
+		style = $theme.darkMode || dark ? darkTheme : lightTheme;
+	});
+
+	let hljs: any = $state();
 	onMount(async () => {
 		const hljsModule = await import('highlight.js');
 		hljs = hljsModule.default;
@@ -20,11 +32,13 @@
 		}
 	});
 
-	$: if (ref && hljs) {
-		hljs.highlightElement(ref);
-	} else {
-		console.info({ ref, hljs });
-	}
+	run(() => {
+		if (ref && hljs) {
+			hljs.highlightElement(ref);
+		} else {
+			console.info({ ref, hljs });
+		}
+	});
 </script>
 
 <svelte:head>

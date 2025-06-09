@@ -1,35 +1,50 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
 	import { goto } from '$app/navigation';
-	import { createEventDispatcher } from 'svelte';
 	import type { NotificationType } from './types';
-	export let notification: NotificationType;
-	export let classes = '';
+	interface Props {
+		notification: NotificationType;
+		classes?: string;
+		header?: import('svelte').Snippet;
+		children?: import('svelte').Snippet;
+		footer?: import('svelte').Snippet;
+		ondismiss?: (notification: NotificationType) => void;
+		ongoToLink?: (notification: NotificationType) => void;
+	}
 
-	const dispatch = createEventDispatcher();
+	let {
+		notification,
+		classes = '',
+		header,
+		children,
+		footer,
+		ondismiss,
+		ongoToLink
+	}: Props = $props();
+
 	function onDismiss() {
-		dispatch('dismiss', notification);
+		ondismiss?.(notification);
 	}
 
 	function goToLink() {
 		onDismiss();
-		dispatch('go-to-link', notification);
+		ongoToLink?.(notification);
 	}
 </script>
 
 {#if !notification.dismissed}
 	<div transition:fly={{ x: -100 }} class="notification {classes}">
 		<div class="notification__header">
-			<slot name="header" />
-			<i class="icon i-tabler-x" on:click={onDismiss} on:keypress={onDismiss} />
+			{@render header?.()}
+			<i class="icon i-tabler-x" onclick={onDismiss} onkeypress={onDismiss}></i>
 		</div>
 		<div class="notification__body">
-			<slot />
+			{@render children?.()}
 		</div>
 		<div class="notification__footer">
-			<slot name="footer" />
+			{@render footer?.()}
 			{#if notification.link}
-				<i class="icon i-tabler-external-link" on:click={goToLink} on:keypress={goToLink} />
+				<i class="icon i-tabler-external-link" onclick={goToLink} onkeypress={goToLink}></i>
 			{/if}
 		</div>
 	</div>

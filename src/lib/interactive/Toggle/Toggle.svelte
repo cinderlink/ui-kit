@@ -1,12 +1,28 @@
 <script lang="ts">
 	import type { Size } from '$lib/unocss';
+	import type { Snippet } from 'svelte';
+
+	interface Props {
+		id: string;
+		size?: Size;
+		toggled?: boolean;
+		disabled?: boolean;
+		onchange?: (event: Event) => void;
+		label?: Snippet;
+		on?: Snippet;
+		off?: Snippet;
+	}
 
 	let {
 		id,
-		size = 'md', // size is a regular prop
-		toggled = $bindable(false), // toggled is directly declared as bindable here
-		disabled = false
-	} = $props();
+		size = 'md',
+		toggled = $bindable(false),
+		disabled = false,
+		onchange,
+		label,
+		on,
+		off
+	}: Props = $props();
 
 	$effect(() => {
 		if (disabled) {
@@ -16,40 +32,39 @@
 </script>
 
 <div class="toggle__container">
-	{@render slot_label()}
+	{#if label}
+		{@render label()}
+	{/if}
 	<label class="toggle toggle--{size}" class:toggle--disabled={disabled} for="toggle__input--{id}">
 		<input
 			id="toggle__input--{id}"
 			type="checkbox"
 			class="toggle__input"
 			{disabled}
+			{onchange}
 			bind:checked={toggled}
 		/>
 		<div class="toggle__slider-container">
 			<div class="toggle__text toggle__text-on" class:toggle__text--visible={toggled}>
-				{@render slot_on()}
+				{#if on}
+					{@render on()}
+				{:else}
+					On
+				{/if}
 			</div>
 			<div class="flex-1 flex items-center justify-center transition-all duration-200">
 				<div class="toggle__slider" class:toggle__slider--toggled={toggled} />
 			</div>
 			<div class="toggle__text toggle__text-off" class:toggle__text--visible={!toggled}>
-				{@render slot_off()}
+				{#if off}
+					{@render off()}
+				{:else}
+					Off
+				{/if}
 			</div>
 		</div>
 	</label>
 </div>
-
-{#snippet slot_label()}
-	<slot name="label" />
-{/snippet}
-
-{#snippet slot_on()}
-	<slot name="on">On</slot>
-{/snippet}
-
-{#snippet slot_off()}
-	<slot name="off">Off</slot>
-{/snippet}
 
 <style>
 	.toggle__container {

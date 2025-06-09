@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { StoryDef } from '$lib/ddl/stories';
 	export const story: StoryDef = {
 		group: 'content',
@@ -16,10 +16,10 @@
 	import Select from '$lib/interactive/Select/Select.svelte';
 	import Panel from '$lib/content/Panel/Panel.svelte';
 
-	let image = 'https://loremflickr.com/640/360';
-	let size: 'md' | 'sm' | 'lg' = 'md';
-	let badge = false;
-	let status: 'online' | 'offline' | 'busy' | 'away' | undefined = undefined;
+	let image = $state('https://loremflickr.com/640/360');
+	let size: 'md' | 'sm' | 'lg' = $state('md');
+	let badge = $state(false);
+	let status: 'online' | 'offline' | 'busy' | 'away' | undefined = $state(undefined);
 </script>
 
 <svelte:head>

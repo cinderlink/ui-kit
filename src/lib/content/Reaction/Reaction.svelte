@@ -1,29 +1,39 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
 	import type { Reaction } from './types';
+	import type { Snippet } from 'svelte';
 	import ReactionList from './ReactionList.svelte';
 	import ReactionMenu from './ReactionMenu.svelte';
-	export let id: string = '';
-	export let reactions: Reaction[] = [];
 
-	const dispatch = createEventDispatcher();
-
-	function onReactionAdd(event: CustomEvent) {
-		const emoji = event.detail;
-		let reaction: Reaction = { id: '1', emoji, count: 1 };
-		dispatch('reaction-add', { reaction, id });
+	interface Props {
+		id?: string;
+		reactions?: Reaction[];
+		children?: Snippet;
+		onreactionadd?: (data: { reaction: Reaction; id: string }) => void;
+		onreactionclick?: (data: { reaction: Reaction; id: string }) => void;
 	}
 
-	function onReactionClick(event: CustomEvent) {
-		const reaction = event.detail;
-		dispatch('reaction-click', { reaction, id });
+	let { 
+		id = '', 
+		reactions = [], 
+		children,
+		onreactionadd,
+		onreactionclick
+	}: Props = $props();
+
+	function onReactionAdd(emoji: string) {
+		let reaction: Reaction = { id: '1', emoji, count: 1 };
+		onreactionadd?.({ reaction, id });
+	}
+
+	function onReactionClick(reaction: Reaction) {
+		onreactionclick?.({ reaction, id });
 	}
 </script>
 
 <div {id} class="reaction__container">
-	<slot />
-	<ReactionList {reactions} on:reaction-click={onReactionClick} />
-	<ReactionMenu on:reaction-add={onReactionAdd} />
+	{@render children?.()}
+	<ReactionList {reactions} onreactionclick={onReactionClick} />
+	<ReactionMenu onreactionadd={onReactionAdd} />
 </div>
 
 <style>

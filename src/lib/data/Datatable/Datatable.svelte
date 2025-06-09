@@ -1,18 +1,22 @@
 <script lang="ts">
+
 	import { type SchemaObject, default as Ajv } from 'ajv';
-	import { createEventDispatcher } from 'svelte';
-	export let data: Record<string, unknown>[];
-	export let schema: SchemaObject;
-	export let columns: {
+	interface Props {
+		data: Record<string, unknown>[];
+		schema: SchemaObject;
+		columns?: {
 		id: string;
 		label?: string;
 		width?: string;
 		component?: ConstructorOfATypedSvelteComponent;
 		props?: Record<string, unknown>;
 		transform?: (value: unknown) => unknown;
-	}[] = Object.keys(schema.properties).map((key) => ({
+	}[];
+	}
+
+	let { data, schema, columns = Object.keys(schema.properties).map((key) => ({
 		id: key
-	}));
+	})) }: Props = $props();
 
 	const validate = (value: unknown, schema: SchemaObject) => {
 		const ajv = new Ajv();
@@ -26,13 +30,17 @@
 
 	let valid: boolean;
 
-	let columnString = '';
-	let defaultWidthPct = 0;
+	let columnString = $state('');
+	let defaultWidthPct = $state(0);
 
-	$: defaultWidthPct = 100 / columns.length;
-	$: columnString = columns
-		.map((c) => `minmax(150px, ${c.width ? c.width : `${Math.ceil(defaultWidthPct)}%`})`)
-		.join(' ');
+	$effect(() => {
+		defaultWidthPct = 100 / columns.length;
+	});
+	$effect(() => {
+		columnString = columns
+			.map((c) => `minmax(150px, ${c.width ? c.width : `${Math.ceil(defaultWidthPct)}%`})`)
+			.join(' ');
+	});
 </script>
 
 <div class="datatable" style="grid-template-columns: {columnString};">
@@ -53,8 +61,7 @@
 				{#each columns as column}
 					<div class="datatable__cell">
 						{#if column.component}
-							<svelte:component
-								this={column.component}
+							<column.component
 								record={row}
 								{...column.props || {}}
 								on:refresh

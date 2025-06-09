@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { StoryDef } from '$lib/ddl/stories';
 	export const story: StoryDef = {
 		group: 'content',
@@ -14,7 +14,7 @@
 	import Panel from '$lib/content/Panel/Panel.svelte';
 	import Syntax from '$lib/markup/Syntax/Syntax.svelte';
 	import Typography from '$lib/content/Typography/Typography.svelte';
-	let reactions: ReactionType[] = [];
+	let reactions: ReactionType[] = $state([]);
 	const reactionAdd = (e: CustomEvent) => {
 		const { reaction } = e.detail;
 		const exist = reactions.find((r) => r.emoji === reaction.emoji);
@@ -45,7 +45,7 @@
 <Typography>{story.title}</Typography>
 
 <Panel>
-	<Reaction id={1} {reactions} on:reaction-add={reactionAdd} on:reaction-click={reactionClick}>
+	<Reaction id={1} {reactions} onreactionadd={reactionAdd} onreactionclick={reactionClick}>
 		<Panel variant="offset">
 			<Typography el="p">Panel With reaction</Typography>
 		</Panel>

@@ -1,4 +1,5 @@
 <script lang="ts">
+
 	import type MarkdownIt from 'markdown-it';
 	import { onMount } from 'svelte';
 	import theme from '$lib/theme/store';
@@ -6,7 +7,7 @@
 	import lightTheme from 'svelte-highlight/styles/a11y-light';
 
 	let style = '';
-	let markdown: MarkdownIt;
+	let markdown: MarkdownIt = $state();
 	onMount(async () => {
 		const { default: hljs } = await import('highlight.js');
 		const { default: md } = await import('markdown-it');
@@ -34,12 +35,19 @@
 		hljsSolidity(hljs);
 	});
 
-	export let renderedMarkdown: string = '';
-	export let value = '';
-	$: currentThemeStyle = $theme.darkMode ? darkTheme : lightTheme;
+	interface Props {
+		renderedMarkdown?: string;
+		value?: string;
+		children?: import('svelte').Snippet<[any]>;
+	}
+
+	let { renderedMarkdown = $bindable(''), value = '', children }: Props = $props();
+	let currentThemeStyle = $derived($theme.darkMode ? darkTheme : lightTheme);
 	const classes = 'h-auto w-full overflow-auto border-1px border-gray-300/10';
 
-	$: renderedMarkdown = markdown ? markdown.render(value as string) : '';
+	$effect(() => {
+		renderedMarkdown = markdown ? markdown.render(value as string) : '';
+	});
 </script>
 
 <svelte:head>
@@ -48,6 +56,6 @@
 	</style>
 </svelte:head>
 
-<slot {renderedMarkdown}>
+{#if children}{@render children({ renderedMarkdown, })}{:else}
 	{@html renderedMarkdown}
-</slot>
+{/if}

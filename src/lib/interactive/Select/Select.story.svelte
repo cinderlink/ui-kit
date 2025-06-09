@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { StoryDef } from '$lib/ddl/stories';
 	export const story: StoryDef = {
 		group: 'interactive',
@@ -13,7 +13,7 @@
 	import Typography from '$lib/content/Typography/Typography.svelte';
 	import Select from './Select.svelte';
 	import Panel from '$lib/content/Panel/Panel.svelte';
-	let value = '';
+	let value = $state('');
 </script>
 
 <svelte:head>

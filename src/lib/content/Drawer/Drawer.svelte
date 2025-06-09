@@ -1,10 +1,28 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import Typography from '$lib/content/Typography/Typography.svelte';
 	import Panel from '$lib/content/Panel/Panel.svelte';
 
-	export let classes = '';
-	export let collapsed = true;
-	export let label = '';
+	interface Props {
+		classes?: string;
+		collapsed?: boolean;
+		label?: string;
+		notificationsCount?: Snippet;
+		toggle?: Snippet;
+		actions?: Snippet;
+		children?: Snippet;
+	}
+
+	let {
+		classes = '',
+		collapsed = $bindable(true),
+		label = '',
+		notificationsCount,
+		toggle: toggleSlot,
+		actions,
+		children
+	}: Props = $props();
+
 	function toggle() {
 		collapsed = !collapsed;
 	}
@@ -14,11 +32,15 @@
 	<div class="drawer {classes}" class:drawer--collapsed={collapsed}>
 		<div class="drawer__header">
 			<div class="drawer__notifications-count">
-				<slot name="notifications-count" />
+				{#if notificationsCount}
+					{@render notificationsCount()}
+				{/if}
 			</div>
 
-			<button class="drawer__toggle" on:click={toggle}>
-				<slot name="toggle">
+			<button class="drawer__toggle" onclick={toggle}>
+				{#if toggleSlot}
+					{@render toggleSlot()}
+				{:else}
 					<div class="drawer__label">
 						<Typography el="h3" margin="m-0">{label}</Typography>
 					</div>
@@ -26,15 +48,19 @@
 						class="i-tabler-chevron-down text-2xl transform transition-transform duration-200"
 						class:rotate-180={collapsed}
 					/>
-				</slot>
+				{/if}
 			</button>
 
 			<div class="drawer__actions">
-				<slot name="actions" />
+				{#if actions}
+					{@render actions()}
+				{/if}
 			</div>
 		</div>
 		<div class="drawer__content">
-			<slot />
+			{#if children}
+				{@render children()}
+			{/if}
 		</div>
 	</div>
 </Panel>

@@ -1,38 +1,127 @@
-# create-svelte
+# Cinderlink UI Kit
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+A modern Svelte 5 component library for the Cinderlink ecosystem.
 
-## Creating a project
+## 🚀 Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **Svelte 5 Ready**: Built with Svelte 5 runes API (`$props()`, `$state()`, `$effect()`)
+- **TypeScript First**: Full TypeScript support with comprehensive type definitions
+- **UnoCSS Styling**: Utility-first CSS with custom theme integration
+- **Dark Mode**: Built-in dark mode support
+- **Modular**: Tree-shakeable components organized by category
+- **Framework Integration**: Designed to work seamlessly with @cinderlink framework packages
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## 📦 Installation
 
 ```bash
-npm run dev
+# Using pnpm (recommended)
+pnpm add @cinderlink/ui-kit
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+# Using npm
+npm install @cinderlink/ui-kit
+
+# Using yarn
+yarn add @cinderlink/ui-kit
 ```
 
-## Building
+## 🎯 Quick Start
 
-To create a production version of your app:
+```svelte
+<script>
+  import { Button, Card, Typography } from '@cinderlink/ui-kit';
+  
+  let count = $state(0);
+</script>
+
+<Card>
+  {#snippet titleSlot()}
+    <Typography el="h2">Counter Example</Typography>
+  {/snippet}
+  
+  <Typography>Count: {count}</Typography>
+  <Button onclick={() => count++}>Increment</Button>
+</Card>
+```
+
+## 🏗️ Component Categories
+
+### Content Components
+- **Avatar** - User avatars with status indicators
+- **Card** - Flexible content containers
+- **Typography** - Text styling and hierarchy
+- **Notification** - Toast and alert components
+- **Panel** - Layout panels and surfaces
+
+### Interactive Components  
+- **Button** - Buttons with various styles and states
+- **Input** - Form inputs with validation
+- **Modal** - Dialog and overlay components
+- **Dropdown** - Select and menu dropdowns
+- **Toggle** - Switch and checkbox components
+
+### Layout Components
+- **Sidebar** - Navigation sidebars
+- **CenteredPanelLayout** - Centered content layouts
+
+### Indicator Components
+- **LoadingIndicator** - Loading spinners and progress
+- **StatusIndicator** - Status badges and indicators
+
+## 🎨 Theming
+
+The UI kit includes built-in theme support with UnoCSS:
+
+```svelte
+<script>
+  import { ThemeToggle } from '@cinderlink/ui-kit';
+</script>
+
+<ThemeToggle />
+```
+
+## 🔧 Development
 
 ```bash
-npm run build
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm dev
+
+# Build the library
+pnpm build
+
+# Run tests
+pnpm test
+
+# Type checking
+pnpm check
+
+# Linting
+pnpm lint
 ```
 
-You can preview the production build with `npm run preview`.
+## 📚 Documentation
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Visit the component stories at `http://localhost:3002` when running the dev server to see all components with examples and usage patterns.
+
+## 🔗 Framework Integration
+
+This UI kit is designed to work with the Cinderlink framework packages:
+
+- `@cinderlink/core-types` - Core type definitions
+- `@cinderlink/protocol` - Protocol implementation
+- `@cinderlink/client` - Client framework
+
+## 🤝 Contributing
+
+1. Clone the repository
+2. Install dependencies: `pnpm install`
+3. Make your changes
+4. Run tests: `pnpm test`
+5. Build: `pnpm build`
+6. Submit a pull request
+
+## 📄 License
+
+MIT License - see LICENSE file for details.

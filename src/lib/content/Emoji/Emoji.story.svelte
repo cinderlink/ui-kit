@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { StoryDef } from '$lib/ddl/stories';
 
 	export const story: StoryDef = {
@@ -13,7 +13,7 @@
 	import Input from '$lib/interactive/Input/Input.svelte';
 	import Typography from '$lib/content/Typography/Typography.svelte';
 
-	let inputValue = '';
+	let inputValue = $state('');
 </script>
 
 <svelte:head>

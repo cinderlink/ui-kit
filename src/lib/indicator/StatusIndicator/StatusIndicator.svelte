@@ -1,13 +1,23 @@
 <script lang="ts">
 	import type { Size, Status } from '$lib/theme/types';
 
-	export let status: Status = 'info';
-	export let size: Size = 'xs';
-	export let classes = '';
+	interface Props {
+		status?: Status;
+		size?: Size;
+		classes?: string;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		status = 'info',
+		size = 'xs',
+		classes = '',
+		children
+	}: Props = $props();
 </script>
 
 <div class="status-indicator status-indicator--{status} status-indicator--{size} {classes}">
-	<slot />
+	{@render children?.()}
 </div>
 
 <style>

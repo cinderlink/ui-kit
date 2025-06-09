@@ -1,28 +1,31 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
 	import EmojiList from '../Emoji/EmojiList.svelte';
 
-	let showEmojis = false;
+	interface Props {
+		onreactionadd?: (emoji: string) => void;
+	}
 
-	const dispatch = createEventDispatcher();
+	let { onreactionadd }: Props = $props();
+
+	let showEmojis = $state(false);
+
 	function toggleEmojis() {
 		showEmojis = !showEmojis;
 	}
 
-	function onReaction(event: CustomEvent) {
-		const emoji = event.detail;
-		dispatch('reaction-add', emoji);
+	function onReaction(emoji: string) {
+		onreactionadd?.(emoji);
 		showEmojis = false;
 	}
 </script>
 
-<div class="reaction-menu__toggle" on:click={toggleEmojis} on:keypress={toggleEmojis}>
-	<div class="i-tabler-mood-smile-filled" />
+<div class="reaction-menu__toggle" onclick={toggleEmojis} onkeypress={toggleEmojis}>
+	<div class="i-tabler-mood-smile-filled"></div>
 </div>
 {#if showEmojis}
 	<div class="relative">
 		<div class="reaction-menu__emojis">
-			<EmojiList on:selected={onReaction} />
+			<EmojiList onselected={onReaction} />
 		</div>
 	</div>
 {/if}

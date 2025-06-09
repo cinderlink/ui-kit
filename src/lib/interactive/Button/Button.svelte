@@ -6,18 +6,20 @@
 		FlexJustify,
 		Size
 	} from '$lib/unocss/types';
+	import type { Snippet } from 'svelte';
 
-	export let href: string | undefined = undefined;
-	export let rounded: BorderRadius = 'rounded-lg';
-	export let direction: FlexDirection = 'flex-row';
-	export let align: FlexAlign = 'items-center';
-	export let justify: FlexJustify = 'justify-start';
-	export let width: `w-${string}` = 'w-auto';
-	export let height: `h-${string}` = 'h-auto';
-	export let gap: `gap-${string}` = 'gap-2';
-	export let size: Size | 'slim' = 'md';
-	export let type: 'button' | 'submit' | 'reset' = 'button';
-	export let variant:
+	interface Props {
+		href?: string | undefined;
+		rounded?: BorderRadius;
+		direction?: FlexDirection;
+		align?: FlexAlign;
+		justify?: FlexJustify;
+		width?: `w-${string}`;
+		height?: `h-${string}`;
+		gap?: `gap-${string}`;
+		size?: Size | 'slim';
+		type?: 'button' | 'submit' | 'reset';
+		variant?: 
 		| 'default'
 		| 'dark'
 		| 'light'
@@ -26,12 +28,38 @@
 		| 'blue'
 		| 'yellow'
 		| 'red'
-		| 'none' = 'default';
-	export let elevation = 0;
-	export let disabled = false;
-	export let invert = false;
-	export let link = false;
-	export let classes = '';
+		| 'none';
+		elevation?: number;
+		disabled?: boolean;
+		invert?: boolean;
+		link?: boolean;
+		classes?: string;
+		onclick?: (event: MouseEvent) => void;
+		children?: Snippet;
+		[key: string]: any;
+	}
+
+	let {
+		href = undefined,
+		rounded = 'rounded-lg',
+		direction = 'flex-row',
+		align = 'items-center',
+		justify = 'justify-start',
+		width = 'w-auto',
+		height = 'h-auto',
+		gap = 'gap-2',
+		size = 'md',
+		type = 'button',
+		variant = 'default',
+		elevation = 0,
+		disabled = false,
+		invert = false,
+		link = false,
+		classes = '',
+		onclick,
+		children,
+		...rest
+	}: Props = $props();
 </script>
 
 <svelte:element
@@ -42,10 +70,10 @@
 	{disabled}
 	{href}
 	{type}
-	{...$$restProps}
-	on:click
+	{...rest}
+	{onclick}
 >
-	<slot />
+	{@render children?.()}
 </svelte:element>
 
 <style>

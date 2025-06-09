@@ -1,11 +1,15 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
 	import type { Reaction } from './types';
-	export let reactions: Reaction[] = [];
+	
+	interface Props {
+		reactions?: Reaction[];
+		onreactionclick?: (reaction: Reaction) => void;
+	}
 
-	let dispatch = createEventDispatcher();
-	function onReactionClick(reaction: Reaction) {
-		dispatch('reaction-click', reaction);
+	let { reactions = [], onreactionclick }: Props = $props();
+
+	function handleReactionClick(reaction: Reaction) {
+		onreactionclick?.(reaction);
 	}
 </script>
 
@@ -13,8 +17,8 @@
 	{#each reactions as reaction}
 		<div
 			class="reactions-list__reaction"
-			on:click={() => onReactionClick(reaction)}
-			on:keypress={() => onReactionClick(reaction)}
+			onclick={() => handleReactionClick(reaction)}
+			onkeypress={() => handleReactionClick(reaction)}
 		>
 			<div class="reactions-list__emoji text-2xl">{@html reaction.emoji}</div>
 			<div class="reactions-list__count">{reaction.count}</div>

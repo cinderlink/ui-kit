@@ -1,13 +1,18 @@
 <script lang="ts">
 	import type { Size } from '$lib/unocss/types';
 
-	export let size: Size = 'xl';
-	export let icon = 'i-tabler-loader';
+	interface Props {
+		size?: Size;
+		icon?: string;
+		children?: import('svelte').Snippet;
+	}
+
+	let { size = 'xl', icon = 'i-tabler-loader', children }: Props = $props();
 </script>
 
 <div class="loading-indicator loading-indicator--{size}">
-	<div class="{icon} animate-spin loading-indicator__icon" />
-	<slot />
+	<div class="{icon} animate-spin loading-indicator__icon"></div>
+	{@render children?.()}
 </div>
 
 <style>

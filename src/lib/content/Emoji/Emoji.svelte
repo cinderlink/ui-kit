@@ -1,14 +1,19 @@
 <script lang="ts">
 	import { clickoutside } from '$lib/actions';
 	import type MarkdownIt from 'markdown-it';
-	import { createEventDispatcher, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 
 	import EmojiList from './EmojiList.svelte';
 
-	let showEmojis = false;
+	interface Props {
+		onselected?: (emoji: string) => void;
+	}
 
-	const dispatch = createEventDispatcher();
-	let md: MarkdownIt;
+	let { onselected }: Props = $props();
+
+	let showEmojis = $state(false);
+
+	let md: MarkdownIt = $state();
 
 	onMount(async () => {
 		const { default: markdown } = await import('markdown-it');
@@ -25,7 +30,7 @@
 	function onClick(event: CustomEvent) {
 		const emoji = event.detail;
 		showEmojis = false;
-		dispatch('selected', emoji);
+		onselected?.(emoji);
 	}
 
 	function toggleEmojis() {
@@ -33,16 +38,16 @@
 	}
 </script>
 
-<div use:clickoutside on:clickoutside={() => (showEmojis = false)} class="emojis__container">
+<div use:clickoutside onclickoutside={() => (showEmojis = false)} class="emojis__container">
 	{#if md}
 		{#if showEmojis}
-			<EmojiList on:selected={onClick} />
+			<EmojiList onselected={(emoji) => onClick({ detail: emoji } as CustomEvent)} />
 		{/if}
 		<div
 			class="emojis__btn"
 			class:active={showEmojis}
-			on:click={toggleEmojis}
-			on:keypress={toggleEmojis}
+			onclick={toggleEmojis}
+			onkeypress={toggleEmojis}
 		>
 			<span class="text-2xl text-gray-500">
 				{@html md.render(':smiley:')}

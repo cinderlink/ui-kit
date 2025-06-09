@@ -10,9 +10,9 @@
 	class="theme-toggle {$theme.darkMode
 		? 'i-tabler-sun text-yellow-200'
 		: 'i-tabler-moon text-purple-700'}"
-	on:click={onToggle}
-	on:keypress={onToggle}
-/>
+	onclick={onToggle}
+	onkeypress={onToggle}
+></div>
 
 <style>
 	.theme-toggle {

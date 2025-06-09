@@ -1,34 +1,57 @@
 <script lang="ts">
 	import type { FlexAlign, FlexJustify } from '$lib/unocss/types';
+	import type { Snippet } from 'svelte';
 	import Typography from '$lib/content/Typography/Typography.svelte';
 	import Panel from '$lib/content/Panel/Panel.svelte';
 	import './Card.css';
 
-	export let align: FlexAlign = 'items-center';
-	export let justify: FlexJustify = 'justify-center';
-	export let href: string | undefined = undefined;
-	export let title: string | undefined = undefined;
-	export let classes = '';
+	interface Props {
+		align?: FlexAlign;
+		justify?: FlexJustify;
+		href?: string | undefined;
+		title?: string | undefined;
+		classes?: string;
+		onclick?: (event: MouseEvent) => void;
+		children?: Snippet;
+		titleSlot?: Snippet;
+		footer?: Snippet;
+		[key: string]: any;
+	}
+
+	let { 
+		align = 'items-center',
+		justify = 'justify-center',
+		href = undefined,
+		title = undefined,
+		classes = '',
+		onclick,
+		children,
+		titleSlot,
+		footer,
+		...restProps
+	}: Props = $props();
 </script>
 
-<Panel {href} on:click {...$$props} classes="card group {classes}">
-	{#if title || $$slots.title}
+<Panel {href} {onclick} {...restProps} classes="card group {classes}">
+	{#if title || titleSlot}
 		<div class="card__title">
-			<slot name="title">
+			{#if titleSlot}
+				{@render titleSlot()}
+			{:else}
 				<Typography el="h3">
 					{title}
 				</Typography>
-			</slot>
+			{/if}
 		</div>
 	{/if}
-	{#if $$slots.default}
+	{#if children}
 		<div class="card__content {align} {justify}">
-			<slot />
+			{@render children()}
 		</div>
 	{/if}
-	{#if $$slots.footer}
+	{#if footer}
 		<div class="card__footer">
-			<slot name="footer" />
+			{@render footer()}
 		</div>
 	{/if}
 </Panel>

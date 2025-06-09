@@ -8,19 +8,6 @@
 	import './Dropdown.css';
 	import type { Size } from '$lib/unocss';
 
-	export let id: string = 'dropdown';
-	export let label: string | undefined = undefined;
-	export let type: 'select' | 'dropdown' = 'dropdown';
-	export let square: boolean = false;
-	export let variant: 'default' | 'dark' | 'light' | 'pink' | 'green' | 'blue' | 'yellow' =
-		'default';
-	export let align: 'left' | 'right' = 'left';
-	export let size: Size = 'md';
-	export let width: `w-${string}` = 'w-auto';
-	export let toggled = false;
-	export let icon: string | false = 'i-tabler-chevron-down';
-	export let classes = '';
-	export let selected: Option = { label: 'Select', value: 'select' };
 	const elSizes = {
 		xs: 'p',
 		sm: 'h6',
@@ -29,7 +16,41 @@
 		xl: 'h2',
 		'2xl': 'h1'
 	};
-	export let el = (elSizes[size as keyof typeof elSizes] as TypographyElement) || 'p';
+	interface Props {
+		id?: string;
+		label?: string | undefined;
+		type?: 'select' | 'dropdown';
+		square?: boolean;
+		variant?: 'default' | 'dark' | 'light' | 'pink' | 'green' | 'blue' | 'yellow';
+		align?: 'left' | 'right';
+		size?: Size;
+		width?: `w-${string}`;
+		toggled?: boolean;
+		icon?: string | false;
+		classes?: string;
+		selected?: Option;
+		el?: any;
+		button?: import('svelte').Snippet<[any]>;
+		children?: import('svelte').Snippet<[any]>;
+	}
+
+	let {
+		id = 'dropdown',
+		label = undefined,
+		type = 'dropdown',
+		square = false,
+		variant = 'default',
+		align = 'left',
+		size = 'md',
+		width = 'w-auto',
+		toggled = $bindable(false),
+		icon = 'i-tabler-chevron-down',
+		classes = '',
+		selected = { label: 'Select', value: 'select' },
+		el = (elSizes[size as keyof typeof elSizes] as TypographyElement) || 'p',
+		button,
+		children
+	}: Props = $props();
 
 	const dispatch = createEventDispatcher();
 	function onToggle(val: boolean) {
@@ -53,7 +74,7 @@
 	{/if}
 	<div
 		use:clickoutside
-		on:clickoutside={() => {
+		onclickoutside={() => {
 			onToggle(false);
 		}}
 		class="dropdown__container dropdown--{size} {width} {classes}"
@@ -61,20 +82,20 @@
 		<div
 			class="dropdown__select dropdown__select--{variant}"
 			class:dropdown__select--square={square}
-			on:click={() => onToggle(!toggled)}
-			on:keypress={onKeyPress}
+			onclick={() => onToggle(!toggled)}
+			onkeypress={onKeyPress}
 		>
-			<slot name="button" toggle={onToggle}>
+			{#if button}{@render button({ toggle: onToggle, })}{:else}
 				<div class="dropdown__selected">{type === 'select' ? selected.label : label}</div>
-				<div class="dropdown__icon {icon}" class:dropdown__icon--rotate={toggled} />
-			</slot>
+				<div class="dropdown__icon {icon}" class:dropdown__icon--rotate={toggled}></div>
+			{/if}
 		</div>
 		{#if toggled}
 			<div
 				transition:slide={{ duration: 200 }}
 				class="dropdown__menu dropdown__menu--{align} {size}"
 			>
-				<slot toggle={onToggle} />
+				{@render children?.({ toggle: onToggle, })}
 			</div>
 		{/if}
 	</div>

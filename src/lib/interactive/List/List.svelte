@@ -1,9 +1,15 @@
 <script lang="ts">
-	export let flex = 'flex flex-col gap-2';
+	interface Props {
+		flex?: string;
+		children?: import('svelte').Snippet;
+		[key: string]: any
+	}
+
+	let { flex = 'flex flex-col gap-2', children, ...rest }: Props = $props();
 </script>
 
-<div class="list {flex}" {...$$restProps}>
-	<slot />
+<div class="list {flex}" {...rest}>
+	{@render children?.()}
 </div>
 
 <style>

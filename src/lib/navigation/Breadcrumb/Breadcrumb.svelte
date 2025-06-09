@@ -1,13 +1,18 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	export let sections: { label: string; path: string }[] = [];
+	interface Props {
+		sections?: { label: string; path: string }[];
+		children?: import('svelte').Snippet;
+	}
+
+	let { sections = [], children }: Props = $props();
 </script>
 
 <div class="breadcrumb">
 	<a href="/">
-		<div class="i-tabler-home text-purple-600 dark-(text-purple-200)" />
+		<div class="i-tabler-home text-purple-600 dark-(text-purple-200)"></div>
 	</a>
-	<slot>
+	{#if children}{@render children()}{:else}
 		{#each sections as section}
 			{@const active = $page.url.pathname === section.path}
 			<div class="breadcrumb__separator">/</div>
@@ -15,7 +20,7 @@
 				>{section.label}</a
 			>
 		{/each}
-	</slot>
+	{/if}
 </div>
 
 <style>

@@ -1,14 +1,19 @@
 <script lang="ts">
 	import type { Size } from "$lib/unocss";
 
-	export let progress = 0;
-	export let size: Size = "md";
+	interface Props {
+		progress?: number;
+		size?: Size;
+		children?: import('svelte').Snippet;
+	}
+
+	let { progress = 0, size = "md", children }: Props = $props();
 </script>
 
 <div class="progress__bar progress__bar--{size}">
-	<div class="progress__fill" style="width: {progress}%" />
+	<div class="progress__fill" style="width: {progress}%"></div>
 	<div class="progress__content">
-		<slot />
+		{@render children?.()}
 	</div>
 </div>
 

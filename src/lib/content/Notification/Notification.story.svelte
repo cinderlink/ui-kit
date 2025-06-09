@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script module lang="ts">
 	import type { StoryDef } from '$lib/ddl/stories';
 	export const story: StoryDef = {
 		group: 'interactive',
@@ -63,7 +63,7 @@
 		}
 	];
 
-	$: count = notifications.filter((n) => !n.dismissed).length;
+	let count = $derived(notifications.filter((n) => !n.dismissed).length);
 </script>
 
 <svelte:head>
@@ -92,17 +92,21 @@
 	<Panel>
 		<Typography el="h3">Notification</Typography>
 		<Notification {notification}>
-			<svelte:fragment slot="header">
-				<span class="font-bold">{notification.title}</span>
-			</svelte:fragment>
+			{#snippet header()}
+					
+					<span class="font-bold">{notification.title}</span>
+				
+					{/snippet}
 
 			<p>
 				{notification.body}
 			</p>
 
-			<svelte:fragment slot="footer">
-				<span class="text-xs">{new Date(notification.createdAt).toDateString()}</span>
-			</svelte:fragment>
+			{#snippet footer()}
+					
+					<span class="text-xs">{new Date(notification.createdAt).toDateString()}</span>
+				
+					{/snippet}
 		</Notification>
 		<hr class="my-4" />
 		<Typography el="h3">Usage</Typography>

@@ -2,11 +2,12 @@
 	import { fade, type FadeParams } from 'svelte/transition';
 	import type { Size } from '$lib/unocss/types';
 
-	export let href: string | undefined = undefined;
-	export let el = href ? 'a' : 'div';
-	export let size: Size = 'md';
-	export let flex = 'flex flex-col gap-2';
-	export let variant:
+	interface Props {
+		href?: string | undefined;
+		el?: any;
+		size?: Size;
+		flex?: string;
+		variant?: 
 		| 'default'
 		| 'dark'
 		| 'light'
@@ -14,26 +15,46 @@
 		| 'red'
 		| 'green'
 		| 'blue'
-		| 'yellow' = 'default';
-	export let interactive = false;
-	export let rounded = 'rounded-md';
-	export let classes = '';
-	export let invert = false;
-	export let transition: FadeParams & { enable?: boolean } | undefined = undefined;
+		| 'yellow';
+		interactive?: boolean;
+		rounded?: string;
+		classes?: string;
+		invert?: boolean;
+		transition?: FadeParams & { enable?: boolean } | undefined;
+		children?: import('svelte').Snippet;
+		onclick?: (event: MouseEvent) => void;
+		[key: string]: any
+	}
+
+	let {
+		href = undefined,
+		el = href ? 'a' : 'div',
+		size = 'md',
+		flex = 'flex flex-col gap-2',
+		variant = 'default',
+		interactive = false,
+		rounded = 'rounded-md',
+		classes = '',
+		invert = false,
+		transition = undefined,
+		children,
+		onclick,
+		...rest
+	}: Props = $props();
 
 	const smart = (node: Element, args: any) => args?.enable && fade(node, args);
 </script>
 
 <svelte:element
 	this={el}
-	on:click
+	{onclick}
 	in:smart={transition}
 	class="panel panel--{variant} panel--{size} {classes} {flex} {rounded}"
 	class:panel--invert={invert}
 	class:panel--interactive={interactive}
-	{...{ ...$$restProps, ...(el === 'a' ? { href } : {}) }}
+	{...{ ...rest, ...(el === 'a' ? { href } : {}) }}
 >
-	<slot />
+	{@render children?.()}
 </svelte:element>
 
 <style>

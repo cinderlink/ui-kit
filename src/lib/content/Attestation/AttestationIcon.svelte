@@ -1,15 +1,24 @@
 <script lang="ts">
 	import type { Color } from '$lib/unocss';
 
-	export let icon: `i-tabler-${string}` = 'i-tabler-eye-off';
-	export let count: number = 0;
-	export let color: Color = 'purple';
-	export let title: string = '';
+	interface Props {
+		icon?: `i-tabler-${string}`;
+		count?: number;
+		color?: Color;
+		title?: string;
+	}
+
+	let {
+		icon = 'i-tabler-eye-off',
+		count = 0,
+		color = 'purple',
+		title = ''
+	}: Props = $props();
 </script>
 
 <div class="attestation-icon">
 	<div class="attestation-icon__pill" {title}>
-		<div class="{icon} attestation-icon__icon attestation-icon__icon--{color}" />
+		<div class="{icon} attestation-icon__icon attestation-icon__icon--{color}"></div>
 		{#if count > 0}
 			<div class="attestation-icon__count attestation-icon__count--{color}">{count}</div>
 		{/if}

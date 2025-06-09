@@ -2,9 +2,13 @@
 	import type { Color, Size } from '$lib/unocss';
 	import { scale } from 'svelte/transition';
 
-	export let count = 0;
-	export let color: Color = 'green';
-	export let size: Size = 'xs';
+	interface Props {
+		count?: number;
+		color?: Color;
+		size?: Size;
+	}
+
+	let { count = 0, color = 'green', size = 'xs' }: Props = $props();
 </script>
 
 {#if count > 0}

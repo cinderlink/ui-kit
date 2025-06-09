@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	import type { StoryDef } from '$lib/ddl/stories';
 	import Panel from '$lib/content/Panel/Panel.svelte';
 	export const story: StoryDef = {

@@ -1,24 +1,39 @@
 <script lang="ts">
 	import type { Size } from '$lib/unocss';
+	import type { Snippet } from 'svelte';
 	import { fade } from 'svelte/transition';
 
-	export let image: string | undefined = undefined;
-	export let name: string | undefined = undefined;
-	export let status: 'online' | 'offline' | 'busy' | 'away' | undefined = undefined;
-	export let size: Size = 'md';
-	export let classes = '';
+	interface Props {
+		image?: string | undefined;
+		name?: string | undefined;
+		status?: 'online' | 'offline' | 'busy' | 'away' | undefined;
+		size?: Size;
+		classes?: string;
+		imageSlot?: Snippet;
+		corner?: Snippet;
+	}
+
+	let { 
+		image = undefined,
+		name = undefined,
+		status = undefined,
+		size = 'md',
+		classes = '',
+		imageSlot,
+		corner
+	}: Props = $props();
 </script>
 
 <div class="avatar avatar--{size} {status ? `avatar--${status}` : ''} {classes}">
-	<slot name="image">
-		{#if image}
-			<img src={image} alt={name} class="avatar__image" transition:fade />
-		{/if}
-	</slot>
+	{#if imageSlot}
+		{@render imageSlot()}
+	{:else if image}
+		<img src={image} alt={name} class="avatar__image" transition:fade />
+	{/if}
 
-	{#if $$slots.corner}
+	{#if corner}
 		<div class="avatar__badge">
-			<slot name="corner" />
+			{@render corner()}
 		</div>
 	{/if}
 </div>
