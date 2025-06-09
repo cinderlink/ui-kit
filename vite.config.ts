@@ -1,12 +1,10 @@
 import type { UserConfig } from 'vite';
-import unocss from 'unocss/vite';
+import UnoCSS from 'unocss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 
 const config: UserConfig = {
 	plugins: [
-		unocss({
-			configFile: 'unocss.config.ts'
-		}),
+		UnoCSS(),
 		sveltekit()
 	],
 	// test: {
