@@ -3,9 +3,9 @@
 		BorderRadius,
 		FlexAlign,
 		FlexDirection,
-		FlexJustify,
-		Size
+		FlexJustify
 	} from '$lib/unocss/types';
+	import type { Size } from '$lib/theme/types';
 	import type { Snippet } from 'svelte';
 
 	interface Props {
@@ -28,7 +28,8 @@
 		| 'blue'
 		| 'yellow'
 		| 'red'
-		| 'none';
+		| 'none'
+		| 'outlined';
 		elevation?: number;
 		disabled?: boolean;
 		invert?: boolean;

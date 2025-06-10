@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Size } from '$lib/unocss';
+	import type { Size } from '$lib/theme/types';
 	import type { Snippet } from 'svelte';
 
 	interface Props {

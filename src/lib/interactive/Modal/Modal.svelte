@@ -9,7 +9,7 @@
 	}
 
 	let {
-		visible = false,
+		visible = $bindable(false),
 		header,
 		children,
 		footer

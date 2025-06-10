@@ -41,7 +41,7 @@
 		children?: import('svelte').Snippet<[any]>;
 	}
 
-	let { renderedMarkdown = $bindable(''), value = '', children }: Props = $props();
+	let { renderedMarkdown = $bindable(''), value = $bindable(''), children }: Props = $props();
 	let currentThemeStyle = $derived($theme.darkMode ? darkTheme : lightTheme);
 	const classes = 'h-auto w-full overflow-auto border-1px border-gray-300/10';
 
