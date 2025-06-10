@@ -9,6 +9,7 @@
 		align?: FlexAlign;
 		justify?: FlexJustify;
 		selected?: Option;
+		value?: string;
 		variant?: 'default' | 'dark' | 'light' | 'pink' | 'green' | 'blue' | 'yellow';
 		square?: boolean;
 		options?: Option[];
@@ -20,6 +21,7 @@
 		align = 'items-start',
 		justify = 'justify-start',
 		selected = $bindable({ label: 'Select', value: 'select' }),
+		value = $bindable(''),
 		variant = 'default',
 		square = false,
 		options = [],
@@ -31,9 +33,20 @@
 
 	function onSelect(option: Option) {
 		selected = option;
+		value = option.value;
 		toggle?.(false);
 		dispatch('selected', option);
 	}
+
+	// Sync value with selected when value changes
+	$effect(() => {
+		if (value && options.length > 0) {
+			const option = options.find(opt => opt.value === value);
+			if (option && option !== selected) {
+				selected = option;
+			}
+		}
+	});
 </script>
 
 <Dropdown {...rest} {variant} label={selected.label} >

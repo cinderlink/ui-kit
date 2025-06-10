@@ -25,7 +25,7 @@
 	<Panel variant="offset">
 		<Typography>Users List</Typography>
 		<List>
-			<ListItem data={{ id: 1, name: 'user A' }} onclick={(e) => console.log(e.detail)}>
+			<ListItem data={{ id: 1, name: 'user A' }} onclick={(e: CustomEvent) => console.log(e.detail)}>
 				<div class="mr-2">
 					<Avatar image="https://loremflickr.com/640/360" size="sm" status="online" />
 				</div>

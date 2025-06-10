@@ -6,7 +6,7 @@
 	import { slide } from 'svelte/transition';
 	import Typography from '$lib/content/Typography/Typography.svelte';
 	import './Dropdown.css';
-	import type { Size } from '$lib/unocss';
+	import type { Size } from '$lib/theme/types';
 
 	const elSizes = {
 		xs: 'p',
@@ -30,6 +30,8 @@
 		classes?: string;
 		selected?: Option;
 		el?: any;
+		options?: Option[];
+		content?: import('svelte').Snippet;
 		button?: import('svelte').Snippet<[any]>;
 		children?: import('svelte').Snippet<[any]>;
 	}
@@ -48,6 +50,8 @@
 		classes = '',
 		selected = { label: 'Select', value: 'select' },
 		el = (elSizes[size as keyof typeof elSizes] as TypographyElement) || 'p',
+		options = [],
+		content,
 		button,
 		children
 	}: Props = $props();

@@ -48,7 +48,7 @@
 			<div class="h-full">
 				<form
 					class="h-full flex items-end"
-					onsubmit={(e) => {
+					onsubmit={(e: SubmitEvent) => {
 						e.preventDefault();
 						handSubmit(renderedMarkdown);
 					}}
