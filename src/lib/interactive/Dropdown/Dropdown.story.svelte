@@ -79,13 +79,15 @@ selected={{ label: 'Select', value: '' }}
 		<Syntax
 			code={`
 <Dropdown label="custom content" width="w-full">
-	<div class="p-4" slot="content">
-		<Typography el="h4">Custom content</Typography>
-		<Typography el="p">
-			You can add custom content to the dropdown. This is useful for adding a search input or
-			other interactive elements.
-		</Typography>
-	</div>
+	{#snippet content()}
+		<div class="p-4">
+			<Typography el="h4">Custom content</Typography>
+			<Typography el="p">
+				You can add custom content to the dropdown. This is useful for adding a search input or
+				other interactive elements.
+			</Typography>
+		</div>
+	{/snippet}
 </Dropdown>
 		`}
 		/>

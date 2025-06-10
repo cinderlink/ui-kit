@@ -49,20 +49,25 @@
 
 		<Typography el="h4">Usage</Typography>
 		<Syntax
-			code={`<Button onclick={openModal}>Open Modal</Button>
+			code={`
+<script lang="ts">
+  let open = $state(false);
+</script>
+
+<Button onclick={() => (open = true)}>Open Modal</Button>
 <Modal bind:visible={open}>
-  <svelte:fragment slot="header">
+  {#snippet header()}
     <Typography el="h3">Modal Title</Typography>
-    <Button size="sm" variant="outlined" color="rose" onclick={closeModal}>
+    <Button size="sm" variant="outlined" color="rose" onclick={() => (open = false)}>
       Close
     </Button>
-  </svelte:fragment>
+  {/snippet}
 
-  <Typography el="p">Modal content</Typography>
+  <Typography el="p">Modal content (this becomes the 'children' snippet)</Typography>
 
-  <svelte:fragment slot="footer">
+  {#snippet footer()}
     <Typography el="p">Modal footer</Typography>
-  </svelte:fragment>
+  {/snippet}
 </Modal>`}
 		/>
 	</Panel>
