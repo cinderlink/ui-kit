@@ -87,99 +87,121 @@
 }
 
 /* ============ */
-/* List */
+/* List / Menu (DropdownMenu.Content) */
 /* ============ */
-.dropdown__list {
-	@apply absolute w-full max-h-200px overflow-y-auto;
-	@apply top-5px left-1/2 transform -translate-x-1/2 z-10;
-	@apply border-4px shadow-md rounded-2em;
-	@apply px-24px py-16px;
+.dropdown__menu {
+	/* Base styles from original .dropdown__menu and .dropdown__list */
+	@apply absolute z-20 user-select-none w-full; /* from .dropdown__menu */
+	@apply max-h-200px overflow-y-auto; /* from .dropdown__list */
+	@apply border-4px shadow-md rounded-2em; /* from .dropdown__list */
+	@apply px-24px py-16px; /* from .dropdown__list */
+	/* top-16 from original .dropdown__menu is handled by sideOffset prop */
+	/* positioning (left-1/2 etc) is handled by bits-ui align/side props */
 }
 
-.dropdown__list--square {
-	@apply rounded-5px;
+.dropdown__menu--square {
+	@apply rounded-5px; /* from .dropdown__list--square, overrides rounded-2em */
 }
 
-.dropdown__list li {
+/* Variant styles, merged from .dropdown__list--variant */
+.dropdown__select--light, /* Keep existing trigger styles */
+.dropdown__menu--light {
+	@apply border-purple-800 bg-purple-50 text-purple-800;
+}
+.dropdown__select--default, /* Keep existing trigger styles */
+.dropdown__menu--default {
+	@apply bg-purple-50 border-purple-900/50 text-purple-900 dark-(border-purple-50/75 bg-purple-900 text-purple-50);
+}
+.dropdown__select--dark, /* Keep existing trigger styles */
+.dropdown__menu--dark {
+	@apply border-purple-50 bg-purple-900 text-purple-50;
+}
+.dropdown__select--pink, /* Keep existing trigger styles */
+.dropdown__menu--pink {
+	@apply border-purple-700 bg-pink-500 text-purple-700;
+}
+.dropdown__select--green, /* Keep existing trigger styles */
+.dropdown__menu--green {
+	@apply border-purple-700 bg-green-500 text-purple-700;
+}
+.dropdown__select--blue, /* Keep existing trigger styles */
+.dropdown__menu--blue {
+	@apply border-purple-700 bg-blue-500 text-purple-700;
+}
+.dropdown__select--yellow, /* Keep existing trigger styles */
+.dropdown__menu--yellow {
+	@apply border-purple-700 bg-yellow-500 text-purple-700;
+}
+
+
+/* Item styles, previously targeted 'li', now '.dropdown-item' (div) */
+.dropdown__menu .dropdown-item {
 	@apply flex font-bold items-center;
 	@apply cursor-pointer;
 	@apply p-2 rounded-xl;
 }
 
-/* list:hover & list.active */
-.dropdown__list--dark li:hover {
+/* item:hover & item.active */
+.dropdown__menu--dark .dropdown-item:hover {
 	@apply bg-purple-700 text-neutral-100;
 }
-
-.dropdown__list--dark li.active {
+.dropdown__menu--dark .dropdown-item.active {
 	@apply bg-purple-700;
 }
 
-/* list:hover & list.active */
-.dropdown__list--light li:hover,
-.dropdown__list--default li:hover {
+.dropdown__menu--light .dropdown-item:hover,
+.dropdown__menu--default .dropdown-item:hover {
 	@apply bg-white text-purple-700;
 }
-
-.dropdown__list--light li.active,
-.dropdown__list--default li.active {
+.dropdown__menu--light .dropdown-item.active,
+.dropdown__menu--default .dropdown-item.active {
 	@apply bg-white;
 }
 
-.dropdown__list--default li:hover {
+.dropdown__menu--default .dropdown-item:hover {
 	@apply dark:(bg-purple-700 text-neutral-100);
 }
-
-.dropdown__list--default li.active {
+.dropdown__menu--default .dropdown-item.active {
 	@apply dark:bg-purple-700;
 }
 
-/* Pink - list:hover & list.active */
-
-.dropdown__list--pink li:hover {
+/* Pink - item:hover & item.active */
+.dropdown__menu--pink .dropdown-item:hover {
 	@apply bg-pink-100 text-purple-900;
 }
-
-.dropdown__list--pink li.active {
+.dropdown__menu--pink .dropdown-item.active {
 	@apply bg-pink-100;
 }
 
-/* Green - list:hover & list.active */
-
-.dropdown__list--green li:hover {
+/* Green - item:hover & item.active */
+.dropdown__menu--green .dropdown-item:hover {
 	@apply bg-green-100 text-purple-900;
 }
-
-.dropdown__list--green li.active {
+.dropdown__menu--green .dropdown-item.active {
 	@apply bg-green-100;
 }
 
-/* Blue - list:hover & list.active */
-
-.dropdown__list--blue li:hover {
+/* Blue - item:hover & item.active */
+.dropdown__menu--blue .dropdown-item:hover {
 	@apply bg-blue-100 text-purple-900;
 }
-
-.dropdown__list--blue li.active {
+.dropdown__menu--blue .dropdown-item.active {
 	@apply bg-blue-100;
 }
 
-/* Yellow - list:hover & list.active */
-
-.dropdown__list--yellow li:hover {
+/* Yellow - item:hover & item.active */
+.dropdown__menu--yellow .dropdown-item:hover {
 	@apply bg-yellow-100 text-purple-900;
 }
-
-.dropdown__list--yellow li.active {
+.dropdown__menu--yellow .dropdown-item.active {
 	@apply bg-yellow-100;
 }
 
 /* ============= */
-.dropdown__menu {
-	@apply absolute top-16 z-20 user-select-none w-full;
-}
+/* Positioning for .dropdown__menu is mostly handled by bits-ui now */
+/* .dropdown__menu has base styles, specific alignment comes from props */
 .dropdown__menu--left {
-	@apply left-0;
+	@apply left-0; /* This might be overridden by bits-ui positioning */
 }
 .dropdown__menu--right {
 	@apply right-0;

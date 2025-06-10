@@ -6,3 +6,4 @@ export * from './Modal';
 export * from './Select';
 export * from './Toggle';
 export * from './ImageUpload';
+export * from './SimpleForm';
