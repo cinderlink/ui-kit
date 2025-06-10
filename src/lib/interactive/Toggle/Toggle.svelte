@@ -15,7 +15,7 @@
 
 	let {
 		id,
-		size = 'md',
+		size = $bindable('md'),
 		toggled = $bindable(false),
 		disabled = false,
 		onchange,
@@ -53,7 +53,7 @@
 				{/if}
 			</div>
 			<div class="flex-1 flex items-center justify-center transition-all duration-200">
-				<div class="toggle__slider" class:toggle__slider--toggled={toggled} />
+				<div class="toggle__slider" class:toggle__slider--toggled={toggled}></div>
 			</div>
 			<div class="toggle__text toggle__text-off" class:toggle__text--visible={!toggled}>
 				{#if off}

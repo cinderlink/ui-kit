@@ -51,18 +51,18 @@
 		<Syntax
 			code={`<Button onclick={openModal}>Open Modal</Button>
 <Modal bind:visible={open}>
-  <svelte:fragment slot="header">
+  {#snippet header()}
     <Typography el="h3">Modal Title</Typography>
     <Button size="sm" variant="outlined" color="rose" onclick={closeModal}>
       Close
     </Button>
-  </svelte:fragment>
+  {/snippet}
 
   <Typography el="p">Modal content</Typography>
 
-  <svelte:fragment slot="footer">
+  {#snippet footer()}
     <Typography el="p">Modal footer</Typography>
-  </svelte:fragment>
+  {/snippet}
 </Modal>`}
 		/>
 	</Panel>

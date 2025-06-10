@@ -4,9 +4,12 @@ export const theme = $state({
 		false
 });
 
-if (typeof window !== 'undefined') {
+export function initTheme() {
+	// This should be called from within a component
 	$effect(() => {
-		window?.sessionStorage?.setItem('darkMode', theme.darkMode.toString());
+		if (typeof window !== 'undefined') {
+			window.sessionStorage.setItem('darkMode', theme.darkMode.toString());
+		}
 	});
 }
 

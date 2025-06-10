@@ -68,20 +68,20 @@
 
 	.panel.panel--default {
 		@apply bg-purple-50 text-purple-900;
-		@apply dark-(bg-purple-900 text-purple-50);
+		@apply dark:bg-purple-900 dark:text-purple-50;
 	}
 	.panel.panel--offset {
 		@apply bg-white text-purple-900;
-		@apply dark-(bg-purple-800 text-purple-50);
+		@apply dark:bg-purple-800 dark:text-purple-50;
 	}
 
 	.panel.panel--default.panel--invert {
 		@apply bg-purple-900 text-purple-50;
-		@apply dark-(bg-purple-50 text-purple-900);
+		@apply dark:bg-purple-50 dark:text-purple-900;
 	}
 
 	.panel.panel--default.panel--invert :global(a) {
-		@apply text-purple-800 dark-(text-purple-50);
+		@apply text-purple-800 dark:text-purple-50;
 	}
 
 	.panel.panel--dark {

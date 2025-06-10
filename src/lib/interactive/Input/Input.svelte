@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Emoji from '$lib/content/Emoji/Emoji.svelte';
-	import type { Size } from '$lib/unocss/types';
+	import type { Size } from '$lib/theme/types';
 	import type { Snippet } from 'svelte';
 	import Button from '../Button/Button.svelte';
 	import Toggle from '../Toggle/Toggle.svelte';

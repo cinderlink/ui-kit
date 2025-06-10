@@ -14,7 +14,8 @@
 		"test:coverage": "vitest run --coverage",
 		"lint": "eslint . --ext .svelte,.js,.ts",
 		"format": "prettier --plugin-search-dir . --write .",
-		"format:check": "prettier --plugin-search-dir . --check ."
+		"format:check": "prettier --plugin-search-dir . --check .",
+		"prepare": "husky"
 	},
 	"exports": {
 		".": {
@@ -46,6 +47,8 @@
 		"eslint": "^8.57.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^3.0.1",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.1.0",
 		"postcss": "^8.4.38",
 		"prettier": "^3.3.2",
 		"prettier-plugin-svelte": "^3.3.0",
@@ -70,5 +73,11 @@
 		"markdown-it-emoji": "^3.0.0",
 		"svelte": "^5.33.11",
 		"svelte-highlight": "^7.8.3"
+	},
+	"lint-staged": {
+		"*.{js,ts,svelte}": [
+			"npm run lint -- --fix",
+			"npm run check"
+		]
 	}
 }

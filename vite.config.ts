@@ -7,10 +7,6 @@ export default defineConfig({
 		UnoCSS(),
 		sveltekit()
 	],
-	test: {
-		include: ['src/**/*.{test,spec}.{js,ts}'],
-		exclude: ['tests/**/*']
-	},
 	build: {
 		minify: false,
 		target: 'esnext'

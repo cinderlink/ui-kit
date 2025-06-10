@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Size } from '$lib/unocss';
+	import type { Size } from '$lib/theme/types';
 	import type { Snippet } from 'svelte';
 	import { fade } from 'svelte/transition';
 
@@ -14,10 +14,10 @@
 	}
 
 	let { 
-		image = undefined,
-		name = undefined,
-		status = undefined,
-		size = 'md',
+		image = $bindable(),
+		name = $bindable(),
+		status = $bindable(),
+		size = $bindable('md'),
 		classes = '',
 		imageSlot,
 		corner

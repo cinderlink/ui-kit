@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, type Snippet } from 'svelte';
 	import Avatar from '$lib/content/Avatar/Avatar.svelte';
 	import Input from '../Input/Input.svelte';
-	import type { Size } from '$lib/unocss';
+	import type { Size } from '$lib/theme/types';
 
 	interface Props {
 		label?: string;
@@ -11,7 +11,7 @@
 		inputRef?: HTMLInputElement | undefined;
 		selected?: boolean;
 		size?: Size;
-		preview?: import('svelte').Snippet<[any]>;
+		previewSnippet?: Snippet<[any]>;
 	}
 
 	let {
@@ -21,7 +21,7 @@
 		inputRef = $bindable(undefined),
 		selected = $bindable(false),
 		size = 'md',
-		preview
+		previewSnippet
 	}: Props = $props();
 	const dispatch = createEventDispatcher();
 
@@ -46,7 +46,7 @@
 		dispatch('change', { buffer, image, selected, files });
 	}
 
-	const preview_render = $derived(preview);
+	const preview_render = $derived(previewSnippet);
 </script>
 
 <Input
@@ -57,16 +57,16 @@
 	type="file"
 	inputClasses="justify-center items-center relative"
 	bind:inputRef
-	on:change={updateImagePreview}
+	onchange={updateImagePreview}
 >
-	{#snippet preview()}
+	{#snippet previewSlot()}
 	
 			{#if preview_render}{@render preview_render({ image, })}{:else}
 				<Avatar image={image || undefined} {size} classes="bg-gray-400 dark-bg-blue-100" />
 			{/if}
 		
 	{/snippet}
-	{#snippet button()}
+	{#snippet buttonSlot({ input })}
 		<div
 			
 			class="input--file__button input--file__button--{size}"

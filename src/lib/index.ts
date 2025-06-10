@@ -7,5 +7,5 @@ export * from './layout';
 export * from './markup';
 export * from './navigation';
 export * from './theme';
-export * from './unocss';
+export { type FlexAlign, type FlexJustify, type Color, type ColorShade, type ColorAlpha, type ColorValue, type FlexDirection, type BorderRadius, ColorsEnum, Colors } from './unocss';
 export { default as Logo } from './Logo.svelte';

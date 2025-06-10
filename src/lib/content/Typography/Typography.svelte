@@ -25,28 +25,28 @@
 
 <style>
 	h1.typography {
-		@apply text-4xl;
+		@apply text-2xl font-bold;
 	}
 	h2.typography {
-		@apply text-3xl;
+		@apply text-xl font-semibold;
 	}
 	h3.typography {
-		@apply text-2xl;
+		@apply text-lg font-semibold;
 	}
 	h4.typography {
-		@apply text-xl;
+		@apply text-base font-medium;
 	}
 	h5.typography {
-		@apply text-lg;
+		@apply text-sm font-medium;
 	}
 	h6.typography {
-		@apply text-base;
+		@apply text-sm font-normal;
 	}
 	p.typography {
-		@apply text-base;
+		@apply text-sm leading-relaxed;
 	}
 	caption.typography {
-		@apply text-sm;
+		@apply text-xs text-gray-600 dark:text-gray-400;
 	}
 	strong.typography {
 		@apply font-bold;

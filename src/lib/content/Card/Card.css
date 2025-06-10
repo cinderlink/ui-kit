@@ -1,0 +1,21 @@
+.card {
+	@apply border border-gray-200 dark:border-gray-700;
+	@apply bg-white dark:bg-gray-800;
+	@apply transition-all duration-200;
+}
+
+.card:hover {
+	@apply shadow-lg;
+}
+
+.card__title {
+	@apply border-b border-gray-100 dark:border-gray-700 pb-3 mb-4;
+}
+
+.card__content {
+	@apply flex-1;
+}
+
+.card__footer {
+	@apply border-t border-gray-100 dark:border-gray-700 pt-3 mt-4;
+}

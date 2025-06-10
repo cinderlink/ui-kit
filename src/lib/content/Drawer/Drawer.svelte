@@ -47,7 +47,7 @@
 					<div
 						class="i-tabler-chevron-down text-2xl transform transition-transform duration-200"
 						class:rotate-180={collapsed}
-					/>
+					></div>
 				{/if}
 			</button>
 

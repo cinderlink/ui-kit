@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
-	import { goto } from '$app/navigation';
 	import type { NotificationType } from './types';
 	interface Props {
 		notification: NotificationType;

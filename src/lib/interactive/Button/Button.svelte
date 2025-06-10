@@ -94,16 +94,16 @@
 
 	.button--default {
 		@apply bg-purple-50 text-purple-900 border-purple-900/50;
-		@apply dark-(bg-purple-900 text-purple-50 border-purple-50/75);
+		@apply dark:bg-purple-900 dark:text-purple-50 dark:border-purple-50/75;
 	}
 	.button--default:hover:not(:disabled) {
 		@apply bg-purple-100 text-purple-800;
-		@apply dark-(bg-purple-800 text-purple-50);
+		@apply dark:bg-purple-800 dark:text-purple-50;
 	}
 	.button--default:disabled {
 		@apply opacity-60;
 		@apply bg-purple-50 text-purple-100 border-purple-100;
-		@apply dark-(bg-purple-900 text-purple-100 border-purple-100);
+		@apply dark:bg-purple-900 dark:text-purple-100 dark:border-purple-100;
 	}
 
 	.button--light {

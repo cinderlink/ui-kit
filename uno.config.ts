@@ -24,7 +24,10 @@ export default defineConfig({
 		presetTypography()
 	],
 	extractors: [extractorSvelte()],
-	transformers: [transformerDirectives(), transformerVariantGroup()],
+	transformers: [
+		transformerVariantGroup(),
+		transformerDirectives()
+	],
 	theme: {
 		colors: {
 			purple: {

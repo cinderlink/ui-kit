@@ -2,8 +2,9 @@
 	import { clickoutside } from '$lib/actions';
 	import type MarkdownIt from 'markdown-it';
 	import { onMount } from 'svelte';
-
 	import EmojiList from './EmojiList.svelte';
+	import MarkdownItLib from 'markdown-it';
+	import * as emojiModule from 'markdown-it-emoji';
 
 	interface Props {
 		onselected?: (emoji: string) => void;
@@ -13,14 +14,11 @@
 
 	let showEmojis = $state(false);
 
-	let md: MarkdownIt = $state();
+	let md: MarkdownIt | undefined = $state();
 
-	onMount(async () => {
-		const { default: markdown } = await import('markdown-it');
-		const { default: emoji } = await import('markdown-it-emoji');
-
-		md = markdown();
-		md.use(emoji);
+	onMount(() => {
+		md = new MarkdownItLib();
+		md.use(emojiModule.default);
 
 		md.renderer.rules.emoji = function (token, idx) {
 			return token[idx].content;

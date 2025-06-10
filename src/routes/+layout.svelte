@@ -25,27 +25,30 @@
 					<ThemeToggle />
 				</div>
 				<nav class="flex-1 flex flex-col gap-2">
-					<Drawer label="Guides">
+					<Drawer label="Getting Started">
 						<ul>
 							<li>
-								<a href="/guides/getting-started">Getting Started</a>
+								<a href="/guides/installation">Installation</a>
 							</li>
 							<li>
-								<a href="https://swagmi.cinderlink.com">Swagmi Docs</a>
+								<a href="/guides/quickstart">Quick Start</a>
+							</li>
+							<li>
+								<a href="/guides/examples">Examples</a>
 							</li>
 						</ul>
 					</Drawer>
 
-					<Drawer label="Customization">
+					<Drawer label="Theming">
 						<ul>
 							<li>
-								<a href="/themes/default">Default Theme</a>
+								<a href="/themes/overview">Overview</a>
 							</li>
 							<li>
-								<a href="/themes/custom">Customization</a>
+								<a href="/themes/colors">Colors</a>
 							</li>
 							<li>
-								<a href="/themes/community">Community Themes</a>
+								<a href="/themes/customization">Customization</a>
 							</li>
 						</ul>
 					</Drawer>
@@ -66,6 +69,9 @@
 							</li>
 							<li>
 								<a href="/components/navigation">Navigation</a>
+							</li>
+							<li>
+								<a href="/components/markup">Markup</a>
 							</li>
 						</ul>
 					</Drawer>
@@ -89,6 +95,7 @@
 		@apply text-md text-purple-800 dark-(text-yellow-100);
 	}
 	main {
-		@apply px-8 py-2 bg-purple-50/5 overflow-hidden;
+		@apply px-6 py-6 bg-purple-50/5 overflow-auto;
+		min-height: calc(100vh - 2rem);
 	}
 </style>

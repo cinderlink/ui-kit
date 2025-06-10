@@ -9,7 +9,7 @@
 		align?: FlexAlign;
 		justify?: FlexJustify;
 		selected?: Option;
-		value?: string;
+		value?: string | number | boolean;
 		variant?: 'default' | 'dark' | 'light' | 'pink' | 'green' | 'blue' | 'yellow';
 		square?: boolean;
 		options?: Option[];

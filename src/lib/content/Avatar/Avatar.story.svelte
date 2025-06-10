@@ -18,8 +18,8 @@
 
 	let image = $state('https://loremflickr.com/640/360');
 	let size: 'md' | 'sm' | 'lg' = $state('md');
-	let badge = $state(false);
-	let status: 'online' | 'offline' | 'busy' | 'away' | undefined = $state(undefined);
+	let badge = $state('false');
+	let status: 'online' | 'offline' | 'busy' | 'away' | undefined = $state('online');
 </script>
 
 <svelte:head>
@@ -65,8 +65,8 @@
 				label="badge"
 				bind:value={badge}
 				options={[
-					{ value: false, label: 'false' },
-					{ value: true, label: 'true' }
+					{ value: 'false', label: 'false' },
+					{ value: 'true', label: 'true' }
 				]}
 			/>
 		</Panel>

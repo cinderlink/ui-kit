@@ -2,16 +2,16 @@
 
 	import type MarkdownIt from 'markdown-it';
 	import { onMount } from 'svelte';
-	import theme from '$lib/theme/store';
+	import { theme } from '$lib/theme/store.svelte';
 	import darkTheme from 'svelte-highlight/styles/a11y-dark';
 	import lightTheme from 'svelte-highlight/styles/a11y-light';
 
 	let style = '';
-	let markdown: MarkdownIt = $state();
+	let markdown: MarkdownIt | undefined = $state();
 	onMount(async () => {
 		const { default: hljs } = await import('highlight.js');
 		const { default: md } = await import('markdown-it');
-		const { default: emoji } = await import('markdown-it-emoji');
+		const emojiModule = await import('markdown-it-emoji');
 		const { default: hljsSvelte } = await import('highlightjs-svelte');
 		const { default: hljsSolidity } = await import('highlightjs-solidity');
 		markdown = md({
@@ -26,11 +26,11 @@
 					} catch (__) {}
 				}
 
-				return `<pre class="${classes}"><code>` + markdown.utils.escapeHtml(str) + '</code></pre>';
+				return `<pre class="${classes}"><code>` + (markdown?.utils.escapeHtml(str) || str) + '</code></pre>';
 			}
 		});
 
-		markdown.use(emoji);
+		markdown.use(emojiModule.default);
 		hljsSvelte(hljs);
 		hljsSolidity(hljs);
 	});
@@ -42,7 +42,7 @@
 	}
 
 	let { renderedMarkdown = $bindable(''), value = $bindable(''), children }: Props = $props();
-	let currentThemeStyle = $derived($theme.darkMode ? darkTheme : lightTheme);
+	let currentThemeStyle = $derived(theme.darkMode ? darkTheme : lightTheme);
 	const classes = 'h-auto w-full overflow-auto border-1px border-gray-300/10';
 
 	$effect(() => {

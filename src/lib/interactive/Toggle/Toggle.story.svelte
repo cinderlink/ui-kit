@@ -61,7 +61,9 @@
 		<Typography el="h4">Usage</Typography>
 		<Syntax
 			code={`<Toggle id="1" bind:toggled bind:size disabled={disableToggle}>
-	<div slot="label">Toggle label</div>
+	{#snippet label()}
+		<div>Toggle label</div>
+	{/snippet}
 </Toggle>`}
 		/>
 	</Panel>

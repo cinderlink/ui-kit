@@ -8,25 +8,43 @@ This is the Cinderlink UI Kit (`@cinderlink/ui-kit`), a Svelte 5-based component
 
 ## Development Commands
 
+**IMPORTANT**: This project uses pnpm workspaces. Always use `pnpm` instead of `npm` to ensure workspace linking works properly.
+
 ```bash
 # Development
-npm run dev              # Start dev server on port 3002
-npm run watch            # Watch mode for package building
+pnpm dev                 # Start dev server on port 3002
+pnpm watch               # Watch mode for package building
 
 # Building
-npm run build            # Build the library package
+pnpm build               # Build the library package
 
 # Testing
-npm run test             # Run Playwright E2E tests
-npm run test:unit        # Run Vitest unit tests
-npm run test:unit:watch  # Run unit tests in watch mode
-npm run test:coverage    # Run tests with coverage
+pnpm test                # Run Playwright E2E tests
+pnpm test:unit           # Run Vitest unit tests
+pnpm test:unit:watch     # Run unit tests in watch mode
+pnpm test:coverage       # Run tests with coverage
 
 # Code Quality
-npm run check            # Type checking with svelte-check
-npm run lint             # ESLint for .svelte, .js, .ts files
-npm run format           # Format code with Prettier
-npm run format:check     # Check formatting without changes
+pnpm check               # Type checking with svelte-check
+pnpm lint                # ESLint for .svelte, .js, .ts files
+pnpm format              # Format code with Prettier
+pnpm format:check        # Check formatting without changes
+```
+
+### Long-Running Processes
+
+When starting long-running processes like the dev server, use screen or tmux for resumable sessions:
+
+```bash
+# Using screen (recommended)
+screen -S ui-kit-dev
+pnpm dev
+# Detach with Ctrl+A, D
+# Reattach with: screen -r ui-kit-dev
+
+# Using tmux (alternative)
+tmux new-session -d -s ui-kit-dev 'pnpm dev'
+# Attach with: tmux attach -t ui-kit-dev
 ```
 
 ## Architecture
@@ -86,6 +104,8 @@ ComponentName/
 ## Important Notes
 
 - **✅ COMPLETED**: Full migration from Svelte 4 to Svelte 5 runes (version bump from 0.0.29 to 0.2.0)
+- **✅ COMPLETED**: All template literal script tag issues resolved, 0 TypeScript errors
+- **CRITICAL**: Always use `pnpm` instead of `npm` - this project uses pnpm workspaces
 - All components now use Svelte 5 runes syntax (`$props()`, `$state()`, `$effect()`, Snippets API)
 - Event handlers use modern `onevent` syntax instead of `on:event`
 - Workspace linking set up with framework packages using pnpm
@@ -93,6 +113,7 @@ ComponentName/
 - When modifying components, continue using Svelte 5 runes syntax
 - The library depends on `@cinderlink/core-types` and `@cinderlink/protocol` packages (linked via workspace)
 - UnoCSS configuration includes custom extractors for Svelte files
+- For long-running processes (dev server), use screen or tmux for resumable sessions
 
 ## Svelte 5 Migration Patterns Used
 
@@ -143,3 +164,245 @@ interface Props {
   {@render children()}
 {/if}
 ```
+
+## TypeScript Integration with Svelte 5 Runes
+
+### Core TypeScript Setup
+
+1. **Component Script Setup**
+```svelte
+<script lang="ts">
+  // Always use TypeScript in components
+</script>
+```
+
+2. **tsconfig.json Requirements**
+```json
+{
+  "compilerOptions": {
+    "target": "ES2022",           // Minimum ES2022 for runes
+    "verbatimModuleSyntax": true, // Required for Svelte 5
+    "isolatedModules": true,      // Required for Svelte 5
+    "strict": true                // Enable strict type checking
+  }
+}
+```
+
+3. **File Extensions for Runes Outside Components**
+- Use `.svelte.ts` or `.svelte.js` to use runes in non-component files
+- Required for shared state management with runes
+
+### Runes Type Annotations
+
+#### $state() Typing
+```typescript
+// Explicit typing
+let count = $state<number>(0);
+let message = $state<string>('hello');
+let items = $state<string[]>([]);
+
+// Type inference (preferred when obvious)
+let count = $state(0);           // inferred as number
+let message = $state('hello');   // inferred as string
+```
+
+#### $derived() Typing
+```typescript
+let count = $state(0);
+
+// Explicit typing
+let doubled = $derived<number>(count * 2);
+
+// Type inference (preferred)
+let doubled = $derived(count * 2);           // inferred as number
+let isEven = $derived(count % 2 === 0);      // inferred as boolean
+```
+
+#### $props() Typing
+```typescript
+// Interface-based typing (recommended)
+interface Props {
+  required: string;
+  optional?: number;
+  callback?: (value: string) => void;
+  children?: Snippet;
+}
+
+let { required, optional = 42, callback, children }: Props = $props();
+
+// Inline typing (for simple cases)
+let { name, age } = $props<{ name: string; age: number }>();
+```
+
+#### $effect() Typing
+```typescript
+// Effects don't need explicit typing (void return)
+$effect(() => {
+  console.log('Effect runs');
+});
+
+// Pre-effect with cleanup
+$effect(() => {
+  const cleanup = setupSomething();
+  
+  return () => {
+    cleanup();
+  };
+});
+```
+
+#### $bindable() Typing
+```typescript
+interface Props {
+  value: string;
+}
+
+let { value = $bindable('') }: Props = $props();
+// Type is inferred from the interface
+```
+
+### Generic Components
+```typescript
+<script lang="ts" generics="T extends Record<string, any>">
+  interface Props {
+    items: T[];
+    onSelect: (item: T) => void;
+  }
+  
+  let { items, onSelect }: Props = $props();
+</script>
+```
+
+### Event Handler Typing
+```typescript
+// Use standard DOM event types
+function handleClick(event: MouseEvent) {
+  // TypeScript knows event is MouseEvent
+}
+
+function handleInput(event: Event) {
+  const target = event.target as HTMLInputElement;
+  console.log(target.value);
+}
+
+// Custom event handlers via props
+interface Props {
+  onSubmit?: (data: FormData) => void;
+  onCancel?: () => void;
+}
+```
+
+### Shared State with Runes (store.svelte.ts)
+```typescript
+// file: store.svelte.ts
+export class AppState {
+  count = $state(0);
+  user = $state<User | null>(null);
+  
+  increment() {
+    this.count++;
+  }
+  
+  setUser(user: User) {
+    this.user = user;
+  }
+}
+
+export const appState = new AppState();
+```
+
+### Component Type Utilities
+```typescript
+import type { Component, ComponentProps } from 'svelte';
+import MyComponent from './MyComponent.svelte';
+
+// Extract component prop types
+type MyComponentProps = ComponentProps<MyComponent>;
+
+// Component type for dynamic components
+let currentComponent: Component = MyComponent;
+```
+
+### Type Checking Commands
+
+#### svelte-check with Machine-Readable Output
+```bash
+# Basic machine output
+npx svelte-check --output machine
+
+# Verbose machine output (JSON format)
+npx svelte-check --output machine-verbose
+
+# Set error threshold
+npx svelte-check --threshold error
+
+# Watch mode
+npx svelte-check --watch
+
+# Ignore specific files
+npx svelte-check --ignore "src/legacy/**"
+```
+
+#### Machine Output Format
+```bash
+# Basic format
+1590680326283 ERROR "component.svelte" 1:16 "Type error message"
+
+# Verbose JSON format
+1590680326283 {"type":"ERROR","filename":"component.svelte","start":{"line":1,"character":16},"end":{"line":1,"character":23},"message":"Type error","code":2307,"source":"typescript"}
+```
+
+### Common TypeScript Issues & Solutions
+
+#### Issue: Runes not recognized
+```typescript
+// ❌ Wrong - trying to import runes
+import { $state } from 'svelte/runes';
+
+// ✅ Correct - runes are language keywords
+let count = $state(0);
+```
+
+#### Issue: Type conflicts with DOM events
+```typescript
+// ❌ Wrong - conflicting types
+function onclick(event: any) {}
+
+// ✅ Correct - proper event typing
+function onclick(event: MouseEvent) {}
+```
+
+#### Issue: Props destructuring errors
+```typescript
+// ❌ Wrong - missing interface
+let { value } = $props();
+
+// ✅ Correct - typed interface
+interface Props {
+  value: string;
+}
+let { value }: Props = $props();
+```
+
+### Migration from Svelte 4 TypeScript
+```typescript
+// Svelte 4 (legacy)
+export let value: string;
+$: doubled = value.length * 2;
+
+// Svelte 5 (runes)
+interface Props {
+  value: string;
+}
+let { value }: Props = $props();
+let doubled = $derived(value.length * 2);
+```
+
+### Development Workflow
+1. Use `svelte-check` for type validation
+2. Configure IDE with Svelte extension
+3. Enable strict TypeScript mode
+4. Use machine-readable output for CI/CD
+5. Prefer type inference over explicit typing when obvious
+6. Always type component props interfaces
+7. Use `.svelte.ts` for shared state with runes

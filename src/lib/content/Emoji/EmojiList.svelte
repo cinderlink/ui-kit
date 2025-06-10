@@ -4,6 +4,8 @@
 	import { onMount } from 'svelte';
 	import type MarkdownIt from 'markdown-it';
 	import Input from '$lib/interactive/Input/Input.svelte';
+	import MarkdownItLib from 'markdown-it';
+	import * as emojiModule from 'markdown-it-emoji';
 
 	interface Props {
 		onselected?: (emoji: string) => void;
@@ -11,14 +13,12 @@
 
 	let { onselected }: Props = $props();
 
-	let md: MarkdownIt = $state();
+	let md: MarkdownIt | undefined = $state();
 	let searchValue = $state('');
-	onMount(async () => {
-		const { default: markdown } = await import('markdown-it');
-		const { default: emoji } = await import('markdown-it-emoji');
-
-		md = markdown();
-		md.use(emoji);
+	
+	onMount(() => {
+		md = new MarkdownItLib();
+		md.use(emojiModule.default);
 
 		md.renderer.rules.emoji = function (token, idx) {
 			return token[idx].content;
