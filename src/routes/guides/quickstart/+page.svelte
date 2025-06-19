@@ -3,7 +3,6 @@
 	import Card from '$lib/content/Card/Card.svelte';
 	import Breadcrumb from '$lib/navigation/Breadcrumb/Breadcrumb.svelte';
 	import CodeEditor from '$lib/markup/CodeEditor/CodeEditor.svelte';
-	import Button from '$lib/interactive/Button/Button.svelte';
 
 	let appLayout = `<!-- App.svelte -->
 <` + `script lang="ts">
@@ -101,14 +100,15 @@
 </SidebarLayout>`;
 </script>
 
-<Breadcrumb
-	sections={[
-		{ label: 'guides', path: '/guides' },
-		{ label: 'quickstart', path: '/guides/quickstart' }
-	]}
-/>
+<div class="w-full px-8 py-8 pb-16 space-y-8">
+	<Breadcrumb
+		sections={[
+			{ label: 'guides', path: '/guides' },
+			{ label: 'quickstart', path: '/guides/quickstart' }
+		]}
+	/>
 
-<div class="max-w-4xl mx-auto space-y-6">
+	<div class="space-y-6">
 	<Typography el="h1">Quick Start</Typography>
 	<Typography el="p">
 		Build your first UI with @cinderlink/ui-kit in minutes.
@@ -201,4 +201,5 @@
 			</div>
 		</div>
 	</Card>
+	</div>
 </div>

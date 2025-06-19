@@ -1,7 +1,7 @@
 <script module lang="ts">
 	import type { StoryDef } from '$lib/ddl/stories';
 	export const story: StoryDef = {
-		group: 'content',
+		group: 'markup',
 		id: 'code',
 		title: 'Code',
 		description: 'Code component'

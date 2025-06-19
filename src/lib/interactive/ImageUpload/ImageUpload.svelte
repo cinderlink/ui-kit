@@ -11,7 +11,7 @@
 		inputRef?: HTMLInputElement | undefined;
 		selected?: boolean;
 		size?: Size;
-		previewSnippet?: Snippet<[any]>;
+		previewSnippet?: Snippet<[{ image: string | undefined }]>;
 	}
 
 	let {
@@ -66,7 +66,7 @@
 			{/if}
 		
 	{/snippet}
-	{#snippet buttonSlot({ input })}
+	{#snippet buttonSlot()}
 		<div
 			
 			class="input--file__button input--file__button--{size}"
@@ -91,7 +91,7 @@
 	{/snippet}
 </Input>
 
-<style>
+<style lang="postcss">
 	.input--file__button {
 		@apply absolute flex justify-start items-end cursor-pointer;
 		@apply bg-transparent hover-bg-purple-900/70  w-15 h-15 rounded-full;

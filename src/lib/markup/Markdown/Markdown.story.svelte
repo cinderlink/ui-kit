@@ -2,7 +2,7 @@
 	import type { StoryDef } from '$lib/ddl/stories';
 	import Typography from '$lib/content/Typography/Typography.svelte';
 	export const story: StoryDef = {
-		group: 'content',
+		group: 'markup',
 		id: 'markdown',
 		title: 'Markdown',
 		description: 'Markdown component'

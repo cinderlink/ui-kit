@@ -56,7 +56,7 @@
 	</div>
 {/if}
 
-<style>
+<style lang="postcss">
 	.emoji {
 		@apply text-3xl px-2 py-1 cursor-pointer;
 	}

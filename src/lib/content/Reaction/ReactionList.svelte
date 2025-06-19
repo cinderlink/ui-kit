@@ -26,7 +26,7 @@
 	{/each}
 </div>
 
-<style>
+<style lang="postcss">
 	.reactions-list {
 		@apply absolute right-50px -bottom-3;
 		@apply flex items-center justify-end gap-1;

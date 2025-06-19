@@ -30,7 +30,7 @@
 	</div>
 {/if}
 
-<style>
+<style lang="postcss">
 	.reaction-menu__toggle {
 		@apply absolute text-2xl text-purple-200 bg-purple-50 dark-bg-purple-800 rounded-full right-2 -bottom-3;
 		@apply border-2px border-purple-200/20 cursor-pointer z-100;

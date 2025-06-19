@@ -8,44 +8,129 @@ This is the Cinderlink UI Kit (`@cinderlink/ui-kit`), a Svelte 5-based component
 
 ## Development Commands
 
-**IMPORTANT**: This project uses pnpm workspaces. Always use `pnpm` instead of `npm` to ensure workspace linking works properly.
+**IMPORTANT**: This project uses Bun as the package manager. Always use `bun` instead of `npm` or `pnpm`.
 
 ```bash
 # Development
-pnpm dev                 # Start dev server on port 3002
-pnpm watch               # Watch mode for package building
+bun dev                  # Start dev server on port 3002
+bun run watch            # Watch mode for package building
 
 # Building
-pnpm build               # Build the library package
+bun run build            # Build the library package
 
 # Testing
-pnpm test                # Run Playwright E2E tests
-pnpm test:unit           # Run Vitest unit tests
-pnpm test:unit:watch     # Run unit tests in watch mode
-pnpm test:coverage       # Run tests with coverage
+bun test                 # Run Playwright E2E tests
+bun run test:unit        # Run Vitest unit tests
+bun run test:unit:watch  # Run unit tests in watch mode
+bun run test:coverage    # Run tests with coverage
 
 # Code Quality
-pnpm check               # Type checking with svelte-check
-pnpm lint                # ESLint for .svelte, .js, .ts files
-pnpm format              # Format code with Prettier
-pnpm format:check        # Check formatting without changes
+bun run check            # Type checking with svelte-check
+bun run lint             # Oxlint (Rust-based linter) for .svelte, .js, .ts files
+bun run format           # Format code with Prettier
+bun run format:check     # Check formatting without changes
 ```
 
-### Long-Running Processes
+### Dev Server Management
 
-When starting long-running processes like the dev server, use screen or tmux for resumable sessions:
+**IMPORTANT**: Follow these rules for managing the development server to avoid conflicts and maintain HMR functionality:
+
+#### Before Starting a Dev Server
+
+1. **Check for existing processes**:
+   ```bash
+   # Check if any dev server is already running on ports 3002-3004
+   lsof -ti:3002,3003,3004
+   ```
+
+2. **Kill existing processes if needed**:
+   ```bash
+   # Kill all processes on our dev ports
+   lsof -ti:3002,3003,3004 | xargs kill -9 2>/dev/null || true
+   ```
+
+3. **Use the dev script with proper logging**:
+   ```bash
+   # Start with visible logs in foreground (preferred for debugging)
+   bun dev
+   
+   # Or capture logs to a file
+   bun dev > dev-server.log 2>&1 &
+   echo $! > dev-server.pid
+   ```
+
+#### Managing Running Dev Server
+
+1. **Check server status**:
+   ```bash
+   # Check if server is running
+   curl -s http://localhost:3002 > /dev/null && echo "Server is running" || echo "Server is not running"
+   
+   # View logs if running in background
+   tail -f dev-server.log
+   ```
+
+2. **Proper shutdown**:
+   ```bash
+   # If you saved the PID
+   kill $(cat dev-server.pid)
+   
+   # Or find and kill by port
+   lsof -ti:3002 | xargs kill
+   ```
+
+#### Best Practices
+
+1. **Don't restart unnecessarily**: The dev server has HMR (Hot Module Replacement). File changes are automatically reflected without restart.
+
+2. **Check logs before restarting**: If something isn't working, check the terminal output or logs first:
+   ```bash
+   # If running in foreground, check the terminal
+   # If running in background with logs:
+   tail -n 50 dev-server.log
+   ```
+
+3. **Use consistent port**: Always use port 3002 for this project to avoid confusion.
+
+4. **Single instance rule**: Only run one dev server instance at a time for this project.
+
+### Long-Running Processes (Production/Testing)
+
+For long-running processes in production or extended testing, use screen or tmux:
 
 ```bash
 # Using screen (recommended)
 screen -S ui-kit-dev
-pnpm dev
+bun dev
 # Detach with Ctrl+A, D
 # Reattach with: screen -r ui-kit-dev
 
 # Using tmux (alternative)
-tmux new-session -d -s ui-kit-dev 'pnpm dev'
+tmux new-session -d -s ui-kit-dev 'bun dev'
 # Attach with: tmux attach -t ui-kit-dev
 ```
+
+## Quality Assurance Rules
+
+**CRITICAL**: These rules must be followed to maintain code quality and prevent issues:
+
+### Pre-Commit Rules
+1. **NEVER use --no-verify**: Always fix linting errors properly instead of bypassing checks
+2. **Fix errors systematically**: Address each linting error by understanding and fixing the root cause
+3. **Test before committing**: Run `bun run check` and `bun run lint` before any commit
+4. **Small, focused commits**: Make atomic commits that address specific issues
+
+### Development Approach
+1. **Read before writing**: Always read existing code to understand patterns before making changes
+2. **Follow existing conventions**: Match the codebase's style, patterns, and architecture
+3. **Verify changes work**: Test changes in the browser before proceeding
+4. **Think before acting**: Plan changes systematically instead of making rapid, careless edits
+
+### Error Handling
+1. **Understand errors fully**: Read error messages completely and understand the root cause
+2. **Fix root causes**: Don't mask errors with workarounds
+3. **Test fixes thoroughly**: Ensure fixes don't break other functionality
+4. **Document complex fixes**: Add comments explaining non-obvious solutions
 
 ## Architecture
 
@@ -105,13 +190,13 @@ ComponentName/
 
 - **✅ COMPLETED**: Full migration from Svelte 4 to Svelte 5 runes (version bump from 0.0.29 to 0.2.0)
 - **✅ COMPLETED**: All template literal script tag issues resolved, 0 TypeScript errors
-- **CRITICAL**: Always use `pnpm` instead of `npm` - this project uses pnpm workspaces
+- **CRITICAL**: Always use `bun` instead of `npm` or `pnpm`
 - All components now use Svelte 5 runes syntax (`$props()`, `$state()`, `$effect()`, Snippets API)
 - Event handlers use modern `onevent` syntax instead of `on:event`
-- Workspace linking set up with framework packages using pnpm
+- The library depends on `@cinderlink/core-types` and `@cinderlink/protocol` packages
 - Build and type checking passes successfully
 - When modifying components, continue using Svelte 5 runes syntax
-- The library depends on `@cinderlink/core-types` and `@cinderlink/protocol` packages (linked via workspace)
+- Linting now uses Oxlint (Rust-based linter) for fast performance
 - UnoCSS configuration includes custom extractors for Svelte files
 - For long-running processes (dev server), use screen or tmux for resumable sessions
 

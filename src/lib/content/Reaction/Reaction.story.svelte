@@ -46,7 +46,7 @@
 
 <Panel>
 	<Reaction id="1" {reactions} onreactionadd={reactionAdd} onreactionclick={reactionClick}>
-		<Panel variant="offset">
+		<Panel variant="surface">
 			<Typography el="p">Panel With reaction</Typography>
 		</Panel>
 	</Reaction>
@@ -54,7 +54,7 @@
 
 <Syntax
 	code={`<Reaction id="1" on:reaction={readReactions}>
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="p">Panel With reaction</Typography>
 	</Panel>
 </Reaction>

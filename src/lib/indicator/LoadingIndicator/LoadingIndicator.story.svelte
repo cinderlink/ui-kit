@@ -22,11 +22,11 @@
 <Typography>Loading</Typography>
 
 <div class="flex flex-col gap-4">
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="h3">Default</Typography>
 		<LoadingIndicator />
 	</Panel>
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="h4">Usage</Typography>
 		<Syntax code={`<LoadingIndicator />`} />
 	</Panel>

@@ -2,7 +2,7 @@
 	import type { StoryDef } from '$lib/ddl/stories';
 	import Panel from '$lib/content/Panel/Panel.svelte';
 	export const story: StoryDef = {
-		group: 'content',
+		group: 'markup',
 		id: 'syntax',
 		title: 'Syntax',
 		description: 'Syntax highlighting component'

@@ -1,3 +1,13 @@
+<script lang="ts" module>
+	import type { StoryDef } from '$lib/ddl/stories';
+	export const story: StoryDef = {
+		group: 'markup',
+		id: 'codeeditor',
+		title: 'Code Editor',
+		description: 'CodeMirror-based code editor'
+	};
+</script>
+
 <script lang="ts">
 	import CodeEditor from './CodeEditor.svelte';
 	import Card from '$lib/content/Card/Card.svelte';
@@ -11,7 +21,7 @@
 console.log(fibonacci(10));`);
 
 	let svelteCode = $state(`<` + `script lang="ts">
-  import { theme } from '$lib/theme/store.svelte';
+  import { theme } from '$lib/theme';
   
   interface Props {
     message: string;

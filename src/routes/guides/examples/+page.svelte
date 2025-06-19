@@ -11,7 +11,7 @@
 	let showModal = $state(false);
 	let searchQuery = $state('');
 
-	let dashboardExample = `<` + `script lang="ts">
+	let dashboardExample = $state(`<` + `script lang="ts">
   import { 
     Card, Typography, Avatar, Button, 
     StatusIndicator, LoadingIndicator 
@@ -49,9 +49,9 @@
       <StatusIndicator status={user.status} />
     </div>
   </div>
-</Card>`;
+</Card>`);
 
-	let formExample = `<` + `script lang="ts">
+	let formExample = $state(`<` + `script lang="ts">
   import { 
     Card, Typography, Input, Button, 
     Select, Toggle, Notification 
@@ -117,9 +117,9 @@
 
 {#if showSuccess}
   <Notification type="success" title="Settings saved successfully!" />
-{/if}`;
+{/if}`);
 
-	let dataTableExample = `<` + `script lang="ts">
+	let dataTableExample = $state(`<` + `script lang="ts">
   import { Card, Typography, Datatable, Button, Avatar } from '@cinderlink/ui-kit';
   
   let users = $state([
@@ -160,9 +160,9 @@
 <Card>
   <Typography el="h2">User Management</Typography>
   <Datatable data={users} {columns} />
-</Card>`;
+</Card>`);
 
-	let modalExample = `<` + `script lang="ts">
+	let modalExample = $state(`<` + `script lang="ts">
   import { Button, Modal, Typography, Input } from '@cinderlink/ui-kit';
   
   let showModal = $state(false);
@@ -200,7 +200,7 @@
       </Button>
     </div>
   </div>
-</Modal>`;
+</Modal>`);
 </script>
 
 <Breadcrumb
@@ -240,7 +240,7 @@
 					</div>
 				</div>
 				
-				<Button onclick={() => showModal = true} variant="default">
+				<Button onclick={() => showModal = true} variant="glass">
 					Open Modal
 				</Button>
 			</div>

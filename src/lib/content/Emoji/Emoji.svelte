@@ -54,7 +54,7 @@
 	{/if}
 </div>
 
-<style>
+<style lang="postcss">
 	.emojis__container {
 		@apply relative;
 	}

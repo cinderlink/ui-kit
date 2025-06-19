@@ -30,13 +30,13 @@
 <p>{story.description}</p>
 
 <div class="story">
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="h2">Preview</Typography>
 		<Avatar bind:image bind:size bind:status />
 	</Panel>
 
 	<div class="flex gap-2">
-		<Panel variant="offset" classes="flex flex-col gap-2 w-1/2">
+		<Panel variant="surface" classes="flex flex-col gap-2 w-1/2">
 			<Typography el="h2">Props</Typography>
 			<Input id="image" label="image" placeholder="https://..." bind:value={image} />
 			<Select
@@ -70,7 +70,7 @@
 				]}
 			/>
 		</Panel>
-		<Panel variant="offset" classes="w-1/2">
+		<Panel variant="surface" classes="w-1/2">
 			<Typography el="h2">Code</Typography>
 			<Syntax code={`<Avatar image="{image}" size="{size}" />`} />
 		</Panel>

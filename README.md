@@ -6,9 +6,11 @@ A modern Svelte 5 component library for the Cinderlink ecosystem.
 
 - **Svelte 5 Ready**: Built with Svelte 5 runes API (`$props()`, `$state()`, `$effect()`)
 - **TypeScript First**: Full TypeScript support with comprehensive type definitions
+- **Glass Morphism Design**: Beautiful glass effects with backdrop blur and transparency
 - **UnoCSS Styling**: Utility-first CSS with custom theme integration
-- **Dark Mode**: Built-in dark mode support
+- **Dark Mode**: Built-in dark mode support with automatic theme switching
 - **Modular**: Tree-shakeable components organized by category
+- **Accessible**: WCAG AA compliant with proper ARIA support
 - **Framework Integration**: Designed to work seamlessly with @cinderlink framework packages
 
 ## 📦 Installation
@@ -102,6 +104,10 @@ pnpm lint
 ```
 
 ## 📚 Documentation
+
+- **[Theme Guide](./THEME_GUIDE.md)**: Complete guide to the glass morphism design system, theming, and customization
+- **[Component Guide](./COMPONENT_GUIDE.md)**: Comprehensive guide to component usage, patterns, and best practices
+- **[CLAUDE.md](./CLAUDE.md)**: Development instructions and project architecture for contributors
 
 Visit the component stories at `http://localhost:3002` when running the dev server to see all components with examples and usage patterns.
 

@@ -12,7 +12,7 @@
 	{@render children?.()}
 </div>
 
-<style>
+<style lang="postcss">
 	.list {
 		@apply list-style-none m-0 p-0;
 	}

@@ -36,7 +36,7 @@
 	<ReactionMenu onreactionadd={onReactionAdd} />
 </div>
 
-<style>
+<style lang="postcss">
 	.reaction__container {
 		@apply relative w-full;
 	}

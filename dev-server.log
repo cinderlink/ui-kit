@@ -1,0 +1,502 @@
+
+> @cinderlink/ui-kit@1.0.0-next.0 dev /Users/aewing/Projects/cinderlink/ui-kit
+> vite dev --port 3002
+
+
+  VITE v6.3.5  ready in 550 ms
+
+  ➜  Local:   http://localhost:3002/
+  ➜  Network: use --host to expose
+  ➜  UnoCSS Inspector: http://localhost:3002/__unocss/
+12:26:15 AM [vite] (client) hmr update /src/lib/layout/SidebarLayout/SidebarLayout.css
+12:26:27 AM [vite-plugin-svelte] src/lib/navigation/Breadcrumb/Breadcrumb.svelte:12:1 Buttons and links should either contain text or have an `aria-label` or `aria-labelledby` attribute
+https://svelte.dev/e/a11y_consider_explicit_label
+12:26:27 AM [vite-plugin-svelte] src/lib/interactive/Input/Input.svelte:166:3 Self-closing HTML tags for non-void elements are ambiguous — use `<textarea ...></textarea>` rather than `<textarea ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+12:26:27 AM [vite-plugin-svelte] src/lib/interactive/Input/Input.svelte:204:6 Self-closing HTML tags for non-void elements are ambiguous — use `<div ...></div>` rather than `<div ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+12:26:27 AM [vite-plugin-svelte] src/lib/interactive/Input/Input.svelte:210:3 Self-closing HTML tags for non-void elements are ambiguous — use `<textarea ...></textarea>` rather than `<textarea ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+12:26:27 AM [vite-plugin-svelte] src/lib/interactive/Select/Select.svelte:55:5 Non-interactive element `<li>` should not be assigned mouse or keyboard event listeners
+https://svelte.dev/e/a11y_no_noninteractive_element_interactions
+12:26:27 AM [vite-plugin-svelte] src/lib/content/Notification/Notification.svelte:75:1 Unused CSS selector ".notification"
+https://svelte.dev/e/css_unused_selector
+12:26:28 AM [vite-plugin-svelte] src/lib/content/Notification/Notifications.svelte:38:4 `<div>` with a click or keypress handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+12:26:28 AM [vite-plugin-svelte] src/lib/content/Notification/NotificationsIcon.svelte:25:1 `<div>` with a click or keypress handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+12:26:28 AM [vite-plugin-svelte] src/lib/interactive/Dropdown/Dropdown.svelte:86:2 `<div>` with a click or keypress handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+12:26:28 AM [vite-plugin-svelte] src/lib/interactive/Modal/Modal.svelte:33:20 `a11y-no-static-element-interactions` is no longer valid — please use `a11y_no_static_element_interactions` instead
+https://svelte.dev/e/legacy_code
+12:26:28 AM [vite-plugin-svelte] src/lib/interactive/Modal/Modal.svelte:34:1 `<div>` with a click or keydown handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+12:26:28 AM [vite-plugin-svelte] src/lib/interactive/Modal/Modal.svelte:71:1 Unused CSS selector ".modal__content"
+https://svelte.dev/e/css_unused_selector
+12:26:28 AM [vite-plugin-svelte] src/lib/markup/Code/Code.svelte:25:2 `<div>` with a click or keypress handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+12:26:28 AM [vite-plugin-svelte] src/lib/markup/Code/Code.svelte:33:2 `<div>` with a click or keypress handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+12:26:28 AM [vite-plugin-svelte] src/lib/content/Emoji/Emoji.svelte:44:2 `<div>` with a click or keypress handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+12:26:28 AM [vite-plugin-svelte] src/lib/content/Reaction/ReactionMenu.svelte:22:0 `<div>` with a click or keypress handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+12:26:28 AM [vite-plugin-svelte] src/lib/content/Reaction/ReactionList.svelte:18:2 `<div>` with a click or keypress handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+12:26:28 AM [vite-plugin-svelte] src/lib/content/Emoji/EmojiList.svelte:50:5 `<span>` with a click or keypress handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+12:26:44 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/0.js
+12:26:44 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/1.js
+12:26:44 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/2.js
+12:26:44 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/3.js
+12:26:44 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/4.js
+12:26:44 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/5.js
+12:26:44 AM [vite] (client) page reload .svelte-kit/generated/client/app.js
+12:26:44 AM [vite] (client) page reload .svelte-kit/generated/client/matchers.js
+12:26:44 AM [vite] (ssr) page reload .svelte-kit/generated/server/internal.js
+12:26:44 AM [vite] (client) page reload .svelte-kit/generated/root.js
+12:26:44 AM [vite] (ssr) page reload .svelte-kit/generated/root.js
+12:32:07 AM [vite] (client) page reload playwright-report/index.html
+12:32:27 AM [vite] (client) hmr update /src/lib/layout/SidebarLayout/SidebarLayout.css
+12:33:44 AM [vite] (client) hmr update /src/lib/layout/SidebarLayout/SidebarLayout.css
+12:34:02 AM [vite] (client) hmr update /src/lib/layout/SidebarLayout/SidebarLayout.css
+12:35:41 AM [vite] (client) hmr update /src/lib/layout/SidebarLayout/SidebarLayout.css
+12:37:15 AM [vite] (client) hmr update /src/lib/layout/SidebarLayout/SidebarLayout.css
+12:37:41 AM [vite] (client) hmr update /src/lib/layout/SidebarLayout/SidebarLayout.css
+12:38:06 AM [vite] (client) hmr update /src/lib/layout/SidebarLayout/SidebarLayout.css
+12:42:42 AM [vite] (client) page reload playwright-report/index.html
+12:45:24 AM [vite] (client) hmr update /src/routes/components/[groupId]/[storyId]/+page.svelte?svelte&type=style&lang.css
+12:45:40 AM [vite] (client) hmr update /src/routes/components/[groupId]/[storyId]/+page.svelte?svelte&type=style&lang.css
+12:48:24 AM [vite] (client) hmr update /src/routes/+layout.svelte, /src/lib/layout/SidebarLayout/SidebarLayout.svelte, /src/lib/layout/SidebarToggle/SidebarToggle.svelte
+12:48:33 AM [vite] (client) hmr update /src/routes/+layout.svelte, /src/lib/layout/SidebarLayout/SidebarLayout.svelte, /src/lib/layout/SidebarToggle/SidebarToggle.svelte
+12:49:09 AM [vite] (client) hmr update /src/routes/+layout.svelte
+12:50:04 AM [vite] (client) hmr update /src/routes/+layout.svelte
+12:52:20 AM [vite] (client) hmr update /src/lib/content/Card/Card.svelte
+12:53:05 AM [vite] (client) hmr update /src/lib/content/Card/Card.svelte
+12:53:05 AM [vite-plugin-svelte] src/lib/content/Card/Card.svelte:40:0 noninteractive element cannot have nonnegative tabIndex value
+https://svelte.dev/e/a11y_no_noninteractive_tabindex
+12:53:52 AM [vite] (client) hmr update /src/lib/content/Card/Card.css
+12:54:37 AM [vite] (client) hmr update /src/lib/content/Card/Card.svelte
+12:54:37 AM [vite-plugin-svelte] src/lib/content/Card/Card.svelte:40:0 `<svelte:element>` with a click handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+12:55:22 AM [vite] Internal server error: src/routes/+layout.svelte:181:1 `$:` is not allowed in runes mode, use `$derived` or `$effect` instead
+https://svelte.dev/e/legacy_reactive_statement_invalid
+  Plugin: vite-plugin-svelte
+  File: src/routes/+layout.svelte:181:1
+   179 |    }
+   180 |    
+   181 |    $: filteredNavigation = filterNavigation(navigation, searchQuery);
+                                                                              ^
+   182 |  </script>
+   183 |  
+12:55:22 AM [vite] (client) Pre-transform error: src/routes/+layout.svelte:181:1 `$:` is not allowed in runes mode, use `$derived` or `$effect` instead
+https://svelte.dev/e/legacy_reactive_statement_invalid
+  Plugin: vite-plugin-svelte
+  File: src/routes/+layout.svelte:181:1
+   179 |    }
+   180 |    
+   181 |    $: filteredNavigation = filterNavigation(navigation, searchQuery);
+                                                                              ^
+   182 |  </script>
+   183 |  
+12:55:22 AM [vite] (client) Pre-transform error: src/lib/content/Card/Card.svelte:46:1 {:...} block is invalid at this position (did you forget to close the preceding element or block?)
+https://svelte.dev/e/block_invalid_continuation_placement
+  Plugin: vite-plugin-svelte
+  File: src/lib/content/Card/Card.svelte:46:1
+   44 |      {...restProps}
+   45 |    >
+   46 |  {:else}
+          ^
+   47 |    <div
+   48 |      class="card card--{variant} card--{color} {classes} {className}"
+12:55:22 AM [vite] (client) Pre-transform error: src/lib/content/Card/Card.svelte:46:1 {:...} block is invalid at this position (did you forget to close the preceding element or block?)
+https://svelte.dev/e/block_invalid_continuation_placement
+  Plugin: vite-plugin-svelte
+  File: src/lib/content/Card/Card.svelte:46:1
+   44 |      {...restProps}
+   45 |    >
+   46 |  {:else}
+          ^
+   47 |    <div
+   48 |      class="card card--{variant} card--{color} {classes} {className}"
+12:55:22 AM [vite] (client) Pre-transform error: src/lib/content/Card/Card.svelte:46:1 {:...} block is invalid at this position (did you forget to close the preceding element or block?)
+https://svelte.dev/e/block_invalid_continuation_placement
+  Plugin: vite-plugin-svelte
+  File: src/lib/content/Card/Card.svelte:46:1
+   44 |      {...restProps}
+   45 |    >
+   46 |  {:else}
+          ^
+   47 |    <div
+   48 |      class="card card--{variant} card--{color} {classes} {className}"
+12:55:22 AM [vite] (client) Pre-transform error: src/routes/+layout.svelte:181:1 `$:` is not allowed in runes mode, use `$derived` or `$effect` instead
+https://svelte.dev/e/legacy_reactive_statement_invalid
+  Plugin: vite-plugin-svelte
+  File: src/routes/+layout.svelte:181:1
+   179 |    }
+   180 |    
+   181 |    $: filteredNavigation = filterNavigation(navigation, searchQuery);
+                                                                              ^
+   182 |  </script>
+   183 |  
+12:55:22 AM [vite] Internal server error: src/routes/+layout.svelte:181:1 `$:` is not allowed in runes mode, use `$derived` or `$effect` instead
+https://svelte.dev/e/legacy_reactive_statement_invalid
+  Plugin: vite-plugin-svelte
+  File: src/routes/+layout.svelte:181:1
+   179 |    }
+   180 |    
+   181 |    $: filteredNavigation = filterNavigation(navigation, searchQuery);
+                                                                              ^
+   182 |  </script>
+   183 |  
+12:55:22 AM [vite] Internal server error: src/lib/content/Card/Card.svelte:46:1 {:...} block is invalid at this position (did you forget to close the preceding element or block?)
+https://svelte.dev/e/block_invalid_continuation_placement
+  Plugin: vite-plugin-svelte
+  File: src/lib/content/Card/Card.svelte:46:1
+   44 |      {...restProps}
+   45 |    >
+   46 |  {:else}
+          ^
+   47 |    <div
+   48 |      class="card card--{variant} card--{color} {classes} {className}"
+12:56:03 AM [vite] (client) hmr update /src/routes/+layout.svelte, /src/routes/+layout.svelte?svelte&type=style&lang.css
+12:56:35 AM [vite] (client) hmr update /src/lib/content/Card/Card.svelte
+12:56:48 AM [vite] (client) hmr update /src/lib/content/Card/Card.css
+1:04:39 AM [vite] (client) hmr update /src/lib/layout/SidebarLayout/SidebarLayout.css
+1:04:48 AM [vite] (client) hmr update /src/lib/layout/SidebarLayout/SidebarLayout.css
+1:05:50 AM [vite] (client) hmr update /src/routes/+layout.svelte, /src/routes/+layout.svelte?svelte&type=style&lang.css
+1:05:50 AM [vite-plugin-svelte] src/routes/+layout.svelte:284:1 Unused CSS selector ".search-icon"
+https://svelte.dev/e/css_unused_selector
+1:05:50 AM [vite-plugin-svelte] src/routes/+layout.svelte:290:1 Unused CSS selector ".search-input"
+https://svelte.dev/e/css_unused_selector
+1:05:50 AM [vite-plugin-svelte] src/routes/+layout.svelte:302:1 Unused CSS selector ".clear-button"
+https://svelte.dev/e/css_unused_selector
+1:06:02 AM [vite] (client) hmr update /src/routes/+layout.svelte
+1:06:02 AM [vite-plugin-svelte] src/routes/+layout.svelte:285:1 Unused CSS selector ".search-icon"
+https://svelte.dev/e/css_unused_selector
+1:06:02 AM [vite-plugin-svelte] src/routes/+layout.svelte:291:1 Unused CSS selector ".search-input"
+https://svelte.dev/e/css_unused_selector
+1:06:02 AM [vite-plugin-svelte] src/routes/+layout.svelte:303:1 Unused CSS selector ".clear-button"
+https://svelte.dev/e/css_unused_selector
+1:06:06 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/0.js
+1:06:06 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/1.js
+1:06:06 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/2.js
+1:06:06 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/2.js
+1:06:06 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/3.js
+1:06:06 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/4.js
+1:06:06 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/5.js
+1:06:06 AM [vite] (client) page reload .svelte-kit/generated/client/app.js
+1:06:06 AM [vite] (client) page reload .svelte-kit/generated/client/matchers.js
+1:06:06 AM [vite] (ssr) page reload .svelte-kit/generated/server/internal.js
+1:06:06 AM [vite] (client) page reload .svelte-kit/generated/root.js
+1:06:06 AM [vite] (ssr) page reload .svelte-kit/generated/root.js
+1:06:38 AM [vite] (client) hmr update /src/routes/+layout.svelte?svelte&type=style&lang.css
+1:07:01 AM [vite] (client) hmr update /src/lib/content/Drawer/Drawer.svelte?svelte&type=style&lang.css
+1:07:58 AM [vite] (client) hmr update /src/routes/+layout.svelte, /src/routes/+layout.svelte?svelte&type=style&lang.css
+1:07:58 AM [vite-plugin-svelte] src/routes/+layout.svelte:328:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:08:21 AM [vite-plugin-svelte] src/routes/+layout.svelte:320:1 Unused CSS selector ".nav-section-title"
+https://svelte.dev/e/css_unused_selector
+1:08:21 AM [vite-plugin-svelte] src/routes/+layout.svelte:361:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:08:21 AM [vite] (client) hmr update /src/routes/+layout.svelte?svelte&type=style&lang.css
+1:08:32 AM [vite] (client) hmr update /src/lib/content/Drawer/Drawer.svelte
+1:08:58 AM [vite-plugin-svelte] src/routes/+layout.svelte:320:1 Unused CSS selector ".nav-section-title"
+https://svelte.dev/e/css_unused_selector
+1:08:58 AM [vite-plugin-svelte] src/routes/+layout.svelte:361:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:08:58 AM [vite-plugin-svelte] src/routes/+layout.svelte:320:1 Unused CSS selector ".nav-section-title"
+https://svelte.dev/e/css_unused_selector
+1:08:58 AM [vite-plugin-svelte] src/routes/+layout.svelte:361:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:19:35 AM [vite] (client) hmr update /src/lib/interactive/Input/Input.svelte, /src/lib/interactive/Input/Input.svelte?svelte&type=style&lang.css
+1:19:35 AM [vite-plugin-svelte] src/lib/interactive/Input/Input.svelte:168:3 Self-closing HTML tags for non-void elements are ambiguous — use `<textarea ...></textarea>` rather than `<textarea ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+1:19:35 AM [vite-plugin-svelte] src/lib/interactive/Input/Input.svelte:206:6 Self-closing HTML tags for non-void elements are ambiguous — use `<div ...></div>` rather than `<div ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+1:19:35 AM [vite-plugin-svelte] src/lib/interactive/Input/Input.svelte:212:3 Self-closing HTML tags for non-void elements are ambiguous — use `<textarea ...></textarea>` rather than `<textarea ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+1:19:47 AM [vite] (client) hmr update /src/lib/interactive/Input/Input.svelte, /src/lib/interactive/Input/Input.svelte?svelte&type=style&lang.css
+1:19:47 AM [vite-plugin-svelte] src/lib/interactive/Input/Input.svelte:169:3 Self-closing HTML tags for non-void elements are ambiguous — use `<textarea ...></textarea>` rather than `<textarea ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+1:19:47 AM [vite-plugin-svelte] src/lib/interactive/Input/Input.svelte:207:6 Self-closing HTML tags for non-void elements are ambiguous — use `<div ...></div>` rather than `<div ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+1:19:47 AM [vite-plugin-svelte] src/lib/interactive/Input/Input.svelte:213:3 Self-closing HTML tags for non-void elements are ambiguous — use `<textarea ...></textarea>` rather than `<textarea ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+1:20:04 AM [vite] (client) hmr update /src/lib/interactive/Input/Input.svelte, /src/lib/interactive/Input/Input.svelte?svelte&type=style&lang.css
+1:20:04 AM [vite-plugin-svelte] src/lib/interactive/Input/Input.svelte:172:3 Self-closing HTML tags for non-void elements are ambiguous — use `<textarea ...></textarea>` rather than `<textarea ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+1:20:04 AM [vite-plugin-svelte] src/lib/interactive/Input/Input.svelte:210:6 Self-closing HTML tags for non-void elements are ambiguous — use `<div ...></div>` rather than `<div ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+1:20:04 AM [vite-plugin-svelte] src/lib/interactive/Input/Input.svelte:216:3 Self-closing HTML tags for non-void elements are ambiguous — use `<textarea ...></textarea>` rather than `<textarea ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+1:24:15 AM [vite] Internal server error: src/routes/+layout.svelte:186:24 `$derived(...)` can only be used as a variable declaration initializer, a class field declaration, or the first assignment to a class field at the top level of the constructor.
+https://svelte.dev/e/state_invalid_placement
+  Plugin: vite-plugin-svelte
+  File: src/routes/+layout.svelte:186:24
+   184 |    
+   185 |    // Track which sections have active items
+   186 |    const activeSections = $derived(() => {
+              ^
+   187 |      const active = new Set<string>();
+   188 |      navigation.forEach(section => {
+1:24:15 AM [vite] (client) Pre-transform error: src/routes/+layout.svelte:186:24 `$derived(...)` can only be used as a variable declaration initializer, a class field declaration, or the first assignment to a class field at the top level of the constructor.
+https://svelte.dev/e/state_invalid_placement
+  Plugin: vite-plugin-svelte
+  File: src/routes/+layout.svelte:186:24
+   184 |    
+   185 |    // Track which sections have active items
+   186 |    const activeSections = $derived(() => {
+              ^
+   187 |      const active = new Set<string>();
+   188 |      navigation.forEach(section => {
+1:24:15 AM [vite] (client) Pre-transform error: src/routes/+layout.svelte:186:24 `$derived(...)` can only be used as a variable declaration initializer, a class field declaration, or the first assignment to a class field at the top level of the constructor.
+https://svelte.dev/e/state_invalid_placement
+  Plugin: vite-plugin-svelte
+  File: src/routes/+layout.svelte:186:24
+   184 |    
+   185 |    // Track which sections have active items
+   186 |    const activeSections = $derived(() => {
+              ^
+   187 |      const active = new Set<string>();
+   188 |      navigation.forEach(section => {
+1:24:15 AM [vite] Internal server error: src/routes/+layout.svelte:186:24 `$derived(...)` can only be used as a variable declaration initializer, a class field declaration, or the first assignment to a class field at the top level of the constructor.
+https://svelte.dev/e/state_invalid_placement
+  Plugin: vite-plugin-svelte
+  File: src/routes/+layout.svelte:186:24
+   184 |    
+   185 |    // Track which sections have active items
+   186 |    const activeSections = $derived(() => {
+              ^
+   187 |      const active = new Set<string>();
+   188 |      navigation.forEach(section => {
+1:24:28 AM [vite] (client) hmr update /src/routes/+layout.svelte, /src/routes/+layout.svelte?svelte&type=style&lang.css
+1:24:28 AM [vite-plugin-svelte] src/routes/+layout.svelte:347:1 Unused CSS selector ".nav-section-title"
+https://svelte.dev/e/css_unused_selector
+1:24:28 AM [vite-plugin-svelte] src/routes/+layout.svelte:394:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:24:28 AM [vite-plugin-svelte] src/routes/+layout.svelte:347:1 Unused CSS selector ".nav-section-title"
+https://svelte.dev/e/css_unused_selector
+1:24:28 AM [vite-plugin-svelte] src/routes/+layout.svelte:394:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:24:34 AM [vite] (client) hmr update /src/routes/+layout.svelte
+1:24:34 AM [vite-plugin-svelte] src/routes/+layout.svelte:347:1 Unused CSS selector ".nav-section-title"
+https://svelte.dev/e/css_unused_selector
+1:24:34 AM [vite-plugin-svelte] src/routes/+layout.svelte:394:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:24:54 AM [vite] (client) hmr update /src/lib/layout/SidebarLayout/SidebarLayout.svelte
+1:25:24 AM [vite] (client) hmr update /src/lib/layout/SidebarLayout/SidebarLayout.css
+1:25:35 AM [vite] (client) hmr update /src/lib/layout/SidebarLayout/SidebarLayout.css
+1:26:21 AM [vite] (client) hmr update /src/lib/navigation/Breadcrumb/Breadcrumb.svelte
+1:26:21 AM [vite-plugin-svelte] src/lib/navigation/Breadcrumb/Breadcrumb.svelte:14:2 Buttons and links should either contain text or have an `aria-label` or `aria-labelledby` attribute
+https://svelte.dev/e/a11y_consider_explicit_label
+1:26:30 AM [vite-plugin-svelte] src/lib/navigation/Breadcrumb/Breadcrumb.svelte:14:2 Buttons and links should either contain text or have an `aria-label` or `aria-labelledby` attribute
+https://svelte.dev/e/a11y_consider_explicit_label
+1:26:30 AM [vite] (client) hmr update /src/lib/navigation/Breadcrumb/Breadcrumb.svelte?svelte&type=style&lang.css
+1:26:38 AM [vite] (client) hmr update /src/routes/+layout.svelte
+1:26:38 AM [vite-plugin-svelte] src/routes/+layout.svelte:346:1 Unused CSS selector ".nav-section-title"
+https://svelte.dev/e/css_unused_selector
+1:26:38 AM [vite-plugin-svelte] src/routes/+layout.svelte:393:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:26:52 AM [vite] (client) hmr update /src/routes/components/[groupId]/[storyId]/+page.svelte
+1:26:52 AM [vite-plugin-svelte] src/lib/navigation/Breadcrumb/Breadcrumb.svelte:14:2 Buttons and links should either contain text or have an `aria-label` or `aria-labelledby` attribute
+https://svelte.dev/e/a11y_consider_explicit_label
+1:26:52 AM [vite-plugin-svelte] src/lib/navigation/Breadcrumb/Breadcrumb.svelte:14:2 Buttons and links should either contain text or have an `aria-label` or `aria-labelledby` attribute
+https://svelte.dev/e/a11y_consider_explicit_label
+1:26:58 AM [vite] (client) hmr update /src/lib/navigation/Breadcrumb/Breadcrumb.svelte
+1:27:18 AM [vite] Internal server error: ENFILE: file table overflow, open '/Users/aewing/Projects/cinderlink/ui-kit/.svelte-kit/generated/client/nodes/3.js'
+      at async open (node:internal/fs/promises:633:25)
+      at async Object.readFile (node:internal/fs/promises:1237:14)
+      at async loadAndTransform (file:///Users/aewing/Projects/cinderlink/ui-kit/node_modules/.pnpm/vite@6.3.5_jiti@2.4.2_yaml@2.8.0/node_modules/vite/dist/node/chunks/dep-DBxKXgDP.js:35677:16)
+      at async viteTransformMiddleware (file:///Users/aewing/Projects/cinderlink/ui-kit/node_modules/.pnpm/vite@6.3.5_jiti@2.4.2_yaml@2.8.0/node_modules/vite/dist/node/chunks/dep-DBxKXgDP.js:37250:24)
+Sourcemap for "/Users/aewing/Projects/cinderlink/ui-kit/src/routes/guides/installation/+page.svelte" points to missing source files
+Not found: /test-panel
+Not found: /test-panel
+Not found: /totally-invalid-route
+Not found: /test-panel
+Not found: /test-panel
+1:31:16 AM [vite] (client) hmr update /src/lib/layout/SidebarLayout/SidebarLayout.css
+1:41:34 AM [vite] (client) hmr update /src/routes/components/[groupId]/[storyId]/+page.svelte
+1:41:40 AM [vite] (client) hmr update /src/routes/components/[groupId]/[storyId]/+page.svelte?svelte&type=style&lang.css
+1:41:51 AM [vite] (client) hmr update /src/routes/+page.svelte
+1:42:04 AM [vite] (client) hmr update /src/routes/+page.svelte?svelte&type=style&lang.css
+1:42:26 AM [vite-plugin-svelte] src/routes/+layout.svelte:346:1 Unused CSS selector ".nav-section-title"
+https://svelte.dev/e/css_unused_selector
+1:42:26 AM [vite-plugin-svelte] src/routes/+layout.svelte:393:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:42:26 AM [vite] (client) hmr update /src/routes/+layout.svelte?svelte&type=style&lang.css
+1:42:50 AM [vite] (client) hmr update /src/lib/theme/ThemeToggle.svelte?svelte&type=style&lang.css
+1:43:06 AM [vite-plugin-svelte] src/routes/+layout.svelte:346:1 Unused CSS selector ".nav-section-title"
+https://svelte.dev/e/css_unused_selector
+1:43:06 AM [vite-plugin-svelte] src/routes/+layout.svelte:393:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:43:06 AM [vite-plugin-svelte] src/routes/+layout.svelte:346:1 Unused CSS selector ".nav-section-title"
+https://svelte.dev/e/css_unused_selector
+1:43:06 AM [vite-plugin-svelte] src/routes/+layout.svelte:393:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:43:07 AM [vite-plugin-svelte] src/routes/+layout.svelte:346:1 Unused CSS selector ".nav-section-title"
+https://svelte.dev/e/css_unused_selector
+1:43:07 AM [vite-plugin-svelte] src/routes/+layout.svelte:393:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:43:14 AM [vite-plugin-svelte] src/routes/+layout.svelte:346:1 Unused CSS selector ".nav-section-title"
+https://svelte.dev/e/css_unused_selector
+1:43:14 AM [vite-plugin-svelte] src/routes/+layout.svelte:393:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:43:14 AM [vite] (client) hmr update /src/routes/+layout.svelte?svelte&type=style&lang.css
+1:43:29 AM [vite-plugin-svelte] src/routes/+layout.svelte:393:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:43:29 AM [vite] (client) hmr update /src/routes/+layout.svelte?svelte&type=style&lang.css
+1:44:02 AM [vite] (client) hmr update /src/lib/layout/SidebarLayout/SidebarLayout.css
+1:44:09 AM [vite] (client) hmr update /src/lib/layout/SidebarLayout/SidebarLayout.css
+1:44:18 AM [vite-plugin-svelte] src/routes/+layout.svelte:394:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:44:18 AM [vite] (client) hmr update /src/routes/+layout.svelte?svelte&type=style&lang.css
+1:44:28 AM [vite-plugin-svelte] src/routes/+layout.svelte:394:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:44:28 AM [vite] (client) hmr update /src/routes/+layout.svelte?svelte&type=style&lang.css
+1:45:59 AM [vite-plugin-svelte] src/routes/+layout.svelte:394:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:45:59 AM [vite-plugin-svelte] src/routes/+layout.svelte:394:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:46:56 AM [vite] (client) hmr update /src/app.css
+1:47:05 AM [vite] (client) hmr update /src/app.css
+1:47:15 AM [vite] (client) hmr update /src/app.css
+1:51:40 AM [vite] (client) hmr update /src/routes/+layout.svelte
+1:51:40 AM [vite-plugin-svelte] src/routes/+layout.svelte:394:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:51:48 AM [vite-plugin-svelte] src/routes/+layout.svelte:395:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:51:48 AM [vite] (client) hmr update /src/routes/+layout.svelte?svelte&type=style&lang.css
+1:52:50 AM [vite] (client) hmr update /src/lib/interactive/Button/Button.svelte?svelte&type=style&lang.css
+1:53:10 AM [vite-plugin-svelte] src/routes/+layout.svelte:395:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:53:10 AM [vite] (client) hmr update /src/routes/+layout.svelte?svelte&type=style&lang.css
+1:53:22 AM [vite-plugin-svelte] src/routes/+layout.svelte:397:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:53:22 AM [vite] (client) hmr update /src/routes/+layout.svelte?svelte&type=style&lang.css
+1:54:00 AM [vite] (client) hmr update /src/routes/+layout.svelte
+1:54:00 AM [vite-plugin-svelte] src/routes/+layout.svelte:400:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:54:50 AM [vite] (client) hmr update /src/lib/layout/SidebarLayout/SidebarLayout.svelte
+1:55:21 AM [vite-plugin-svelte] src/routes/+layout.svelte:400:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:55:56 AM [vite] (client) hmr update /src/lib/markup/Syntax/Syntax.svelte, /src/lib/markup/Syntax/Syntax.svelte?svelte&type=style&lang.css
+1:55:56 AM [vite-plugin-svelte] src/lib/markup/Syntax/Syntax.svelte:50:1 Unused CSS selector "pre"
+https://svelte.dev/e/css_unused_selector
+1:55:56 AM [vite-plugin-svelte] src/lib/markup/Syntax/Syntax.svelte:53:1 Unused CSS selector "pre.dark"
+https://svelte.dev/e/css_unused_selector
+1:55:57 AM [vite] (client) ✨ new dependencies optimized: svelte-highlight, svelte-highlight/languages
+1:55:57 AM [vite] (client) ✨ optimized dependencies changed. reloading
+1:55:57 AM [vite-plugin-svelte] src/routes/+layout.svelte:400:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:55:57 AM [vite-plugin-svelte] src/lib/interactive/Input/Input.svelte:172:3 Self-closing HTML tags for non-void elements are ambiguous — use `<textarea ...></textarea>` rather than `<textarea ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+1:55:57 AM [vite-plugin-svelte] src/lib/interactive/Input/Input.svelte:210:6 Self-closing HTML tags for non-void elements are ambiguous — use `<div ...></div>` rather than `<div ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+1:55:57 AM [vite-plugin-svelte] src/lib/interactive/Input/Input.svelte:216:3 Self-closing HTML tags for non-void elements are ambiguous — use `<textarea ...></textarea>` rather than `<textarea ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+1:55:57 AM [vite-plugin-svelte] src/routes/+layout.svelte:400:1 Unused CSS selector ".nav-item-group"
+https://svelte.dev/e/css_unused_selector
+1:55:57 AM [vite-plugin-svelte] src/lib/content/Emoji/Emoji.svelte:44:2 `<div>` with a click or keypress handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+1:55:57 AM [vite-plugin-svelte] src/lib/content/Emoji/EmojiList.svelte:50:5 `<span>` with a click or keypress handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+1:55:57 AM [vite-plugin-svelte] src/lib/markup/Syntax/Syntax.svelte:50:1 Unused CSS selector "pre"
+https://svelte.dev/e/css_unused_selector
+1:55:57 AM [vite-plugin-svelte] src/lib/markup/Syntax/Syntax.svelte:53:1 Unused CSS selector "pre.dark"
+https://svelte.dev/e/css_unused_selector
+1:55:57 AM [vite-plugin-svelte] src/lib/interactive/Select/Select.svelte:55:5 Non-interactive element `<li>` should not be assigned mouse or keyboard event listeners
+https://svelte.dev/e/a11y_no_noninteractive_element_interactions
+1:55:57 AM [vite-plugin-svelte] src/lib/content/Notification/Notifications.svelte:38:4 `<div>` with a click or keypress handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+1:55:57 AM [vite-plugin-svelte] src/lib/content/Notification/Notification.svelte:75:1 Unused CSS selector ".notification"
+https://svelte.dev/e/css_unused_selector
+1:55:57 AM [vite-plugin-svelte] src/lib/content/Notification/NotificationsIcon.svelte:25:1 `<div>` with a click or keypress handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+1:55:57 AM [vite-plugin-svelte] src/lib/interactive/Dropdown/Dropdown.svelte:86:2 `<div>` with a click or keypress handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+1:55:57 AM [vite-plugin-svelte] src/lib/interactive/Modal/Modal.svelte:33:20 `a11y-no-static-element-interactions` is no longer valid — please use `a11y_no_static_element_interactions` instead
+https://svelte.dev/e/legacy_code
+1:55:57 AM [vite-plugin-svelte] src/lib/interactive/Modal/Modal.svelte:34:1 `<div>` with a click or keydown handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+1:55:57 AM [vite-plugin-svelte] src/lib/interactive/Modal/Modal.svelte:71:1 Unused CSS selector ".modal__content"
+https://svelte.dev/e/css_unused_selector
+1:55:57 AM [vite-plugin-svelte] src/lib/markup/Code/Code.svelte:25:2 `<div>` with a click or keypress handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+1:55:57 AM [vite-plugin-svelte] src/lib/markup/Code/Code.svelte:33:2 `<div>` with a click or keypress handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+1:55:57 AM [vite-plugin-svelte] src/lib/content/Reaction/ReactionList.svelte:18:2 `<div>` with a click or keypress handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+1:55:57 AM [vite-plugin-svelte] src/lib/content/Reaction/ReactionMenu.svelte:22:0 `<div>` with a click or keypress handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+1:56:21 AM [vite] (client) hmr update /src/lib/markup/Syntax/Syntax.svelte?svelte&type=style&lang.css
+1:58:14 AM [vite] (client) hmr update /src/routes/+layout.svelte?svelte&type=style&lang.css
+1:58:23 AM [vite-plugin-svelte] src/lib/interactive/Input/Input.svelte:210:6 Self-closing HTML tags for non-void elements are ambiguous — use `<div ...></div>` rather than `<div ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+1:58:23 AM [vite-plugin-svelte] src/lib/interactive/Input/Input.svelte:216:3 Self-closing HTML tags for non-void elements are ambiguous — use `<textarea ...></textarea>` rather than `<textarea ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+1:58:23 AM [vite] (client) hmr update /src/lib/interactive/Input/Input.svelte?svelte&type=style&lang.css
+1:58:23 AM [vite-plugin-svelte] src/lib/interactive/Input/Input.svelte:210:6 Self-closing HTML tags for non-void elements are ambiguous — use `<div ...></div>` rather than `<div ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+1:58:23 AM [vite-plugin-svelte] src/lib/interactive/Input/Input.svelte:216:3 Self-closing HTML tags for non-void elements are ambiguous — use `<textarea ...></textarea>` rather than `<textarea ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+1:58:32 AM [vite-plugin-svelte] src/lib/interactive/Input/Input.svelte:216:3 Self-closing HTML tags for non-void elements are ambiguous — use `<textarea ...></textarea>` rather than `<textarea ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+1:58:32 AM [vite] (client) hmr update /src/lib/interactive/Input/Input.svelte?svelte&type=style&lang.css
+1:58:33 AM [vite-plugin-svelte] src/lib/interactive/Input/Input.svelte:216:3 Self-closing HTML tags for non-void elements are ambiguous — use `<textarea ...></textarea>` rather than `<textarea ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+1:58:46 AM [vite] (client) hmr update /src/lib/interactive/Input/Input.svelte?svelte&type=style&lang.css
+1:59:15 AM [vite] (client) hmr update /src/lib/interactive/Dropdown/Dropdown.svelte
+1:59:26 AM [vite] (client) hmr update /src/lib/interactive/Modal/Modal.svelte
+1:59:26 AM [vite-plugin-svelte] src/lib/interactive/Modal/Modal.svelte:33:1 Elements with the 'dialog' interactive role must have a tabindex value
+https://svelte.dev/e/a11y_interactive_supports_focus
+1:59:26 AM [vite-plugin-svelte] src/lib/interactive/Modal/Modal.svelte:72:1 Unused CSS selector ".modal__content"
+https://svelte.dev/e/css_unused_selector
+1:59:37 AM [vite] (client) hmr update /src/lib/interactive/Modal/Modal.svelte
+1:59:37 AM [vite-plugin-svelte] src/lib/interactive/Modal/Modal.svelte:73:1 Unused CSS selector ".modal__content"
+https://svelte.dev/e/css_unused_selector
+1:59:44 AM [vite] (client) hmr update /src/lib/interactive/Select/Select.svelte
+2:00:06 AM [vite] (client) hmr update /src/lib/interactive/Modal/Modal.svelte?svelte&type=style&lang.css
+2:00:20 AM [vite] (client) hmr update /src/lib/content/Notification/Notification.svelte?svelte&type=style&lang.css
+2:00:37 AM [vite] (client) hmr update /src/lib/markup/Code/Code.svelte
+2:00:46 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/0.js
+2:00:46 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/1.js
+2:00:46 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/2.js
+2:00:46 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/3.js
+2:00:46 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/4.js
+2:00:46 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/5.js
+2:00:46 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/6.js
+2:00:46 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/7.js
+2:00:46 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/8.js
+2:00:46 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/10.js
+2:00:46 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/11.js
+2:00:46 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/12.js
+2:00:46 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/13.js
+2:00:46 AM [vite] (client) page reload .svelte-kit/generated/client/app.js
+2:00:46 AM [vite] (client) page reload .svelte-kit/generated/client/matchers.js
+2:00:46 AM [vite] (ssr) page reload .svelte-kit/generated/server/internal.js
+2:00:46 AM [vite] (client) page reload .svelte-kit/generated/root.js
+2:00:46 AM [vite] (ssr) page reload .svelte-kit/generated/root.js
+2:01:12 AM [vite] (client) hmr update /src/routes/+layout.svelte
+2:01:16 AM [vite] (client) hmr update /src/routes/+layout.svelte
+2:01:22 AM [vite] (client) hmr update /src/routes/+layout.svelte
+2:01:34 AM [vite] (client) hmr update /src/routes/+layout.svelte, /src/lib/layout/SidebarLayout/SidebarLayout.svelte, /src/lib/layout/SidebarToggle/SidebarToggle.svelte
+2:16:38 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/0.js
+2:16:38 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/1.js
+2:16:38 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/2.js
+2:16:38 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/3.js
+2:16:38 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/4.js
+2:16:38 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/5.js
+2:16:39 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/6.js
+2:16:39 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/7.js
+2:16:39 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/8.js
+2:16:39 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/10.js
+2:16:39 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/11.js
+2:16:39 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/12.js
+2:16:39 AM [vite] (client) page reload .svelte-kit/generated/client/nodes/13.js
+2:16:39 AM [vite] (client) page reload .svelte-kit/generated/client/app.js
+2:16:39 AM [vite] (client) page reload .svelte-kit/generated/client/matchers.js
+2:16:39 AM [vite] (ssr) page reload .svelte-kit/generated/server/internal.js
+2:16:39 AM [vite] (client) page reload .svelte-kit/generated/root.js
+2:16:39 AM [vite] (ssr) page reload .svelte-kit/generated/root.js
+ ELIFECYCLE  Command failed with exit code 143.

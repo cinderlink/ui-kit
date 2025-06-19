@@ -1,23 +1,15 @@
 <script lang="ts">
 
 	import './Theme.css';
-	import { theme, initTheme } from './store.svelte';
+	import { theme } from '$lib/theme';
 	interface Props {
 		children?: import('svelte').Snippet;
 	}
 
 	let { children }: Props = $props();
 
-	// Initialize theme persistence
-	initTheme();
-
-	$effect(() => {
-		if (theme.darkMode && typeof document !== 'undefined') {
-			document?.body.classList.add('dark');
-		} else if (typeof document !== 'undefined') {
-			document?.body.classList.remove('dark');
-		}
-	});
+	// Initialize theme reactive effects in component scope
+	theme.init();
 </script>
 
 <div id="theme">

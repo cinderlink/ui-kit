@@ -4,6 +4,7 @@
 		el?: TypographyElement;
 		margin?: string;
 		classes?: string;
+		class?: string;
 		children?: import('svelte').Snippet;
 		onclick?: (event: MouseEvent) => void;
 		onkeypress?: (event: KeyboardEvent) => void;
@@ -13,17 +14,19 @@
 		el = 'h1',
 		margin = 'mb-4',
 		classes = '',
+		class: className = '',
 		children,
 		onclick,
 		onkeypress
 	}: Props = $props();
 </script>
 
-<svelte:element this={el} class="typography {classes} {margin}" {onclick} {onkeypress}>
+<!-- svelte:element is the correct syntax for dynamic HTML elements in Svelte 5 -->
+<svelte:element this={el} class="typography {classes} {className} {margin}" {onclick} {onkeypress} role={onclick || onkeypress ? 'button' : undefined}>
 	{@render children?.()}
 </svelte:element>
 
-<style>
+<style lang="postcss">
 	h1.typography {
 		@apply text-2xl font-bold;
 	}

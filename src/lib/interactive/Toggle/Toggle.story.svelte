@@ -25,7 +25,7 @@
 </svelte:head>
 
 <div class="story">
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Toggle id="1" bind:toggled bind:size disabled={disableToggle}>
 			{#snippet label()}
 						<div >Toggle label</div>
@@ -33,7 +33,7 @@
 		</Toggle>
 	</Panel>
 	<br />
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<div class="grid grid-cols-3 items-center gap-2">
 			<Typography el="p">Status: {toggled ? 'On' : 'Off (default)'}</Typography>
 			<Toggle id="2" bind:toggled={disableToggle}>
@@ -57,7 +57,7 @@
 	</Panel>
 
 	<br />
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="h4">Usage</Typography>
 		<Syntax
 			code={`<Toggle id="1" bind:toggled bind:size disabled={disableToggle}>

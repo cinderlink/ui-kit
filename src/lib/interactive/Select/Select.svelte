@@ -13,7 +13,6 @@
 		variant?: 'default' | 'dark' | 'light' | 'pink' | 'green' | 'blue' | 'yellow';
 		square?: boolean;
 		options?: Option[];
-		toggle?: ((value?: boolean) => void) | undefined;
 		[key: string]: any
 	}
 
@@ -25,13 +24,12 @@
 		variant = 'default',
 		square = false,
 		options = [],
-		toggle = undefined,
 		...rest
 	}: Props = $props();
 
 	const dispatch = createEventDispatcher();
 
-	function onSelect(option: Option) {
+	function onSelect(option: Option, toggle?: (value?: boolean) => void) {
 		selected = option;
 		value = option.value;
 		toggle?.(false);
@@ -49,15 +47,18 @@
 	});
 </script>
 
-<Dropdown {...rest} {variant} label={selected.label} >
+<Dropdown {...rest} {variant} {square} label={selected.label} >
 	{#snippet children({ toggle })}
 		{#if options.length > 0}
 			<ul class="dropdown__list dropdown__list--{variant}" class:dropdown__list--square={square}>
 				{#each options as option}
 					<li
 						class="{align} {justify}"
-						onclick={() => onSelect(option)}
-						onkeypress={() => onSelect(option)}
+						role="option"
+						tabindex="0"
+						aria-selected={option.value === selected.value}
+						onclick={() => onSelect(option, toggle)}
+						onkeypress={() => onSelect(option, toggle)}
 						class:active={option.value === selected.value}
 					>
 						{#if option.icon}

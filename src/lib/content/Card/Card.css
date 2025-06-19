@@ -1,21 +1,152 @@
+/* Base Card Styles */
 .card {
-	@apply border border-gray-200 dark:border-gray-700;
-	@apply bg-white dark:bg-gray-800;
-	@apply transition-all duration-200;
+	@apply relative p-6 rounded-2xl;
+	@apply transition-all duration-300;
+	overflow: visible;
 }
 
-.card:hover {
+/* Default variant - Glass effect */
+.card--default {
+	background: var(--glass-bg);
+	backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+	-webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+	border: var(--glass-border);
+	box-shadow: var(--glass-shadow);
+}
+
+.card--default.card--interactive:hover {
+	transform: translateY(-2px);
+	box-shadow: var(--glass-shadow-hover);
+}
+
+/* Outlined variant */
+.card--outlined {
+	@apply bg-transparent;
+	@apply border-2;
+	backdrop-filter: none;
+}
+
+.card--outlined.card--neutral {
+	@apply border-gray-300 dark:border-gray-600;
+}
+
+.card--outlined.card--purple {
+	@apply border-purple-300 dark:border-purple-600;
+	@apply hover:border-purple-400 dark:hover:border-purple-500;
+}
+
+.card--outlined.card--green {
+	@apply border-green-300 dark:border-green-600;
+	@apply hover:border-green-400 dark:hover:border-green-500;
+}
+
+.card--outlined.card--blue {
+	@apply border-blue-300 dark:border-blue-600;
+	@apply hover:border-blue-400 dark:hover:border-blue-500;
+}
+
+.card--outlined.card--interactive:hover {
 	@apply shadow-lg;
+	transform: translateY(-1px);
 }
 
+/* Secondary variant - Solid with subtle background */
+.card--secondary {
+	@apply border border-transparent;
+}
+
+.card--secondary.card--neutral {
+	@apply bg-gray-100 dark:bg-gray-800;
+	@apply text-gray-900 dark:text-gray-100;
+}
+
+.card--secondary.card--purple {
+	@apply bg-purple-100 dark:bg-purple-900/30;
+	@apply text-purple-900 dark:text-purple-100;
+	@apply border-purple-200 dark:border-purple-800/50;
+}
+
+.card--secondary.card--green {
+	@apply bg-green-100 dark:bg-green-900/30;
+	@apply text-green-900 dark:text-green-100;
+	@apply border-green-200 dark:border-green-800/50;
+}
+
+.card--secondary.card--blue {
+	@apply bg-blue-100 dark:bg-blue-900/30;
+	@apply text-blue-900 dark:text-blue-100;
+	@apply border-blue-200 dark:border-blue-800/50;
+}
+
+.card--secondary.card--interactive:hover {
+	@apply shadow-md;
+	transform: translateY(-1px);
+}
+
+/* Interactive state */
+.card--interactive {
+	@apply cursor-pointer;
+}
+
+/* Button reset for card buttons */
+button.card {
+	@apply w-full text-left;
+	@apply border-none outline-none;
+	font: inherit;
+	color: inherit;
+}
+
+/* Link handling */
+.card__link {
+	@apply block text-inherit no-underline;
+}
+
+/* Title styling */
 .card__title {
-	@apply border-b border-gray-100 dark:border-gray-700 pb-3 mb-4;
+	@apply border-b border-gray-200 dark:border-gray-700 pb-3 mb-4;
+	@apply text-lg font-semibold;
 }
 
+.card--outlined .card__title,
+.card--secondary .card__title {
+	@apply border-opacity-50;
+}
+
+/* Content */
 .card__content {
 	@apply flex-1;
+	@apply text-gray-700 dark:text-gray-300;
 }
 
+/* Footer */
 .card__footer {
-	@apply border-t border-gray-100 dark:border-gray-700 pt-3 mt-4;
+	@apply border-t border-gray-200 dark:border-gray-700 pt-3 mt-4;
+	@apply text-sm text-gray-600 dark:text-gray-400;
+}
+
+.card--outlined .card__footer,
+.card--secondary .card__footer {
+	@apply border-opacity-50;
+}
+
+/* Subtle top highlight for glass effect */
+.card--default::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 1px;
+	background: linear-gradient(90deg, 
+		transparent, 
+		rgba(255, 255, 255, 0.3), 
+		transparent
+	);
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	border-radius: inherit;
+}
+
+.card--default:hover::before {
+	opacity: 1;
 }

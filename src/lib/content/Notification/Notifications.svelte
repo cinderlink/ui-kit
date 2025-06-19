@@ -66,7 +66,7 @@
 	</div>
 {/if}
 
-<style>
+<style lang="postcss">
 	.notifications__header {
 		@apply flex justify-between items-center font-bold;
 		@apply px-1;

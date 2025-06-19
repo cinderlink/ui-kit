@@ -1,0 +1,101 @@
+name: Performance Monitoring
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v4
+
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v1
+      with:
+        bun-version: latest
+
+    - name: Install dependencies
+      run: bun install
+
+    - name: Build application
+      run: bun run build
+
+    - name: Serve application
+      run: |
+        bunx serve -l 3000 .svelte-kit/output/client &
+        sleep 5
+      
+    - name: Run Lighthouse CI
+      uses: treosh/lighthouse-ci-action@v10
+      with:
+        urls: |
+          http://localhost:3000
+          http://localhost:3000/components
+          http://localhost:3000/guides/quickstart
+        budgetPath: ./lighthouse-budget.json
+        uploadArtifacts: true
+        temporaryPublicStorage: true
+
+  bundle-size:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v4
+
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v1
+      with:
+        bun-version: latest
+
+    - name: Install dependencies
+      run: bun install
+
+    - name: Build package
+      run: bun run build
+
+    - name: Check bundle size
+      run: |
+        echo "Bundle size report:"
+        find dist -name "*.js" -exec du -h {} + | sort -h
+        
+        # Calculate total size
+        total_size=$(find dist -name "*.js" -exec du -c {} + | tail -1 | awk '{print $1}')
+        echo "Total JS bundle size: ${total_size}K"
+        
+        # Fail if bundle is too large (e.g., > 500KB)
+        if [ "$total_size" -gt 500 ]; then
+          echo "Bundle size exceeds limit!"
+          exit 1
+        fi
+
+    - name: Comment PR with bundle size
+      uses: actions/github-script@v6
+      if: github.event_name == 'pull_request'
+      with:
+        script: |
+          const fs = require('fs');
+          const { execSync } = require('child_process');
+          
+          const bundleInfo = execSync('find dist -name "*.js" -exec du -h {} +').toString();
+          const totalSize = execSync('find dist -name "*.js" -exec du -c {} + | tail -1').toString();
+          
+          const comment = `## 📦 Bundle Size Report
+          
+          \`\`\`
+          ${bundleInfo}
+          ${totalSize}
+          \`\`\`
+          `;
+          
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: comment
+          });

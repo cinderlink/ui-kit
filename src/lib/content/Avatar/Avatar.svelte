@@ -38,7 +38,7 @@
 	{/if}
 </div>
 
-<style>
+<style lang="postcss">
 	.avatar {
 		@apply rounded-full block relative shadow;
 		@apply hover-(scale-102 rotate-1 shadow-lg) transition-transform duration-300 transform-gpu;

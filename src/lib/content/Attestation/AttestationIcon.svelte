@@ -25,7 +25,7 @@
 	</div>
 </div>
 
-<style>
+<style lang="postcss">
 	.attestation-icon {
 		@apply flex items-center justify-center;
 	}

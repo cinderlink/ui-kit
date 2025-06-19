@@ -7,7 +7,8 @@
 		children?: import('svelte').Snippet;
 	}
 
-	let { progress = 0, size = "md", children }: Props = $props();
+	// Make progress bindable so story can use bind:progress
+	let { progress = $bindable(0), size = "md", children }: Props = $props();
 </script>
 
 <div class="progress__bar progress__bar--{size}">
@@ -17,7 +18,7 @@
 	</div>
 </div>
 
-<style>
+<style lang="postcss">
 	.progress__bar {
 		@apply relative w-full bg-purple-800 rounded;
 	}

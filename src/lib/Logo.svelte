@@ -16,7 +16,7 @@
 	viewBox="0 0 65 64"
 	fill="none"
 	xmlns="http://www.w3.org/2000/svg"
-	class="overflow-visible"
+	class="overflow-visible logo-float"
 	class:dark={dark}
 >
 	{#if !animateState}
@@ -63,7 +63,7 @@
 	{/if}
 </svg>
 
-<style>
+<style lang="postcss">
 	.shape-1 {
 		@apply fill-purple-600 dark-(fill-green-500);
 	}
@@ -84,5 +84,18 @@
 	}
 	.shape-7 {
 		@apply fill-purple-600/80 dark-(fill-blue-500);
+	}
+	
+	.logo-float {
+		animation: gentle-float 4s ease-in-out infinite;
+	}
+	
+	@keyframes gentle-float {
+		0%, 100% { 
+			transform: translateY(0px) rotate(0deg);
+		}
+		50% { 
+			transform: translateY(-3px) rotate(1deg);
+		}
 	}
 </style>

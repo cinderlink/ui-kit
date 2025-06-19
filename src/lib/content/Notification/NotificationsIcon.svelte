@@ -27,7 +27,7 @@
 	{@render children?.({ toggle, })}
 </div>
 
-<style>
+<style lang="postcss">
 	.notifications-icon {
 		@apply relative inline-block;
 	}

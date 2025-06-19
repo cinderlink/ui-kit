@@ -19,10 +19,10 @@
 	<title>Input - Interactive Components - @cinderlink/ui-kit</title>
 </svelte:head>
 
-<Typography>Input</Typography>
+<Typography el="h2">Input</Typography>
 
 <div class="story">
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="h3">Text Input</Typography>
 		<Input id="example_text" type="text" placeholder="Text input" />
 		<Typography el="h4">Usage</Typography>
@@ -31,7 +31,7 @@
 			code={`<Input id="example_text" type="text" placeholder="Text Input" />`}
 		/>
 	</Panel>
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="h3">With Label</Typography>
 		<Input id="example_label" type="text" label="Label" placeholder="Text input" />
 		<Typography el="h4">Usage</Typography>
@@ -39,7 +39,7 @@
 			code={`<Input id="example_label" label="Label" type="text" placeholder="Text Input" />`}
 		/>
 	</Panel>
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="h3">Custom Width</Typography>
 		<Input id="example_width" width="w-full" type="text" label="Label" placeholder="Text input" />
 		<Typography el="h4">Usage</Typography>
@@ -47,7 +47,7 @@
 			code={`<Input id="example_width" width="w-full" label="Label" type="text" placeholder="Text Input" />`}
 		/>
 	</Panel>
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="h3">Prepend & Append</Typography>
 		<Input id="example_attach" type="text" label="Label" placeholder="Text input">
 			{#snippet prepend()}
@@ -65,7 +65,7 @@
 </Input>`}
 		/>
 	</Panel>
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="h3">Errors</Typography>
 		<Input
 			id="example_error"
@@ -78,19 +78,19 @@
 			code={`<Input id="example_error" type="text" placeholder="Text input" error="An example error message" />`}
 		/>
 	</Panel>
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="h3">Password Input</Typography>
 		<Input id="example_password" type="password" placeholder="Password" />
 		<Typography el="h4">Usage</Typography>
 		<Syntax code={`<Input id="example_password" type="password" placeholder="Password" />`} />
 	</Panel>
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="h3">E-mail Input</Typography>
 		<Input id="example_email" type="email" placeholder="E-mail" />
 		<Typography el="h4">Usage</Typography>
 		<Syntax code={`<Input id="example_email" type="email" placeholder="E-mail" />`} />
 	</Panel>
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="h3">Number Input</Typography>
 		<Input id="example_number" type="number" placeholder="Number" />
 		<Typography el="h4">Usage</Typography>

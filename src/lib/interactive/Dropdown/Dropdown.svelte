@@ -86,6 +86,11 @@
 		<div
 			class="dropdown__select dropdown__select--{variant}"
 			class:dropdown__select--square={square}
+			data-testid="dropdown-trigger"
+			role="button"
+			tabindex="0"
+			aria-haspopup="listbox"
+			aria-expanded={toggled}
 			onclick={() => onToggle(!toggled)}
 			onkeypress={onKeyPress}
 		>

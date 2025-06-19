@@ -8,15 +8,14 @@
 	import { languages } from '@codemirror/language-data';
 	import { LanguageDescription } from '@codemirror/language';
 	import { EditorView, keymap, placeholder as cmPlaceholder } from '@codemirror/view';
-	import { tokyoNightStorm } from '@uiw/codemirror-theme-tokyo-night-storm';
-	import { tokyoNightDay } from '@uiw/codemirror-theme-tokyo-night-day';
+	import { createLightTheme, createDarkTheme } from './themes';
 	import { autocompletion } from '@codemirror/autocomplete';
 	import { defaultKeymap } from '@codemirror/commands';
 	import { Compartment, EditorState, type Extension } from '@codemirror/state';
 	import { history, historyKeymap } from '@codemirror/commands';
 	import Button from '$lib/interactive/Button/Button.svelte';
 	import { onDestroy, onMount, untrack } from 'svelte';
-	import { theme } from '$lib/theme/store.svelte';
+	import { theme } from '$lib/theme';
 
 	type SupportedLanguage =
 		| 'json'
@@ -33,8 +32,8 @@
 		readOnly = false,
 		canCopy = true,
 		language = 'auto' as SupportedLanguage,
-		lightTheme = tokyoNightDay,
-		darkTheme = tokyoNightStorm,
+		lightTheme = createLightTheme(),
+		darkTheme = createDarkTheme(),
 		placeholder = '/* your code here */',
 		// Add aria-invalid prop for styling
 		'aria-invalid': ariaInvalid = false,
@@ -203,7 +202,7 @@
 <!-- Use the bound code value for the hidden input -->
 <input type="hidden" value={code} {...rest} />
 
-<style>
+<style lang="postcss">
 	.code__container {
 		@apply relative flex h-full w-full flex-1;
 	}

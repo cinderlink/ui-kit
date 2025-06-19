@@ -8,7 +8,7 @@
 		id: string;
 		label?: string;
 		width?: string;
-		component?: ConstructorOfATypedSvelteComponent;
+		component?: any; // Component constructor type
 		props?: Record<string, unknown>;
 		transform?: (value: unknown) => unknown;
 	}[];
@@ -18,17 +18,16 @@
 		id: key
 	})) }: Props = $props();
 
-	const validate = (value: unknown, schema: SchemaObject) => {
-		const ajv = new Ajv();
-		const validate = ajv.compile(schema);
-		const valid = validate(value);
-		if (!valid) {
-			console.error(validate.errors);
-		}
-		return valid;
-	};
-
-	let valid: boolean;
+	// Validation function (currently unused)
+	// const validate = (value: unknown, schema: SchemaObject) => {
+	// 	const ajv = new Ajv();
+	// 	const validate = ajv.compile(schema);
+	// 	const valid = validate(value);
+	// 	if (!valid) {
+	// 		console.error(validate.errors);
+	// 	}
+	// 	return valid;
+	// };
 
 	let columnString = $state('');
 	let defaultWidthPct = $state(0);
@@ -78,7 +77,7 @@
 	{/each}
 </div>
 
-<style>
+<style lang="postcss">
 	.datatable {
 		@apply grid border-collapse min-w-full;
 	}

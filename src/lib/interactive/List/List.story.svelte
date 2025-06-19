@@ -22,7 +22,7 @@
 </svelte:head>
 
 <div class="story">
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography>Users List</Typography>
 		<List>
 			<ListItem data={{ id: 1, name: 'user A' }} onclick={(e: CustomEvent) => console.log(e.detail)}>
@@ -50,7 +50,7 @@
 		</List>
 	</Panel>
 
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography>Items List</Typography>
 		<List>
 			<ListItem>
@@ -80,7 +80,7 @@
 		</List>
 	</Panel>
 
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="h4">Usage</Typography>
 		<hr />
 		<Typography el="h6">Users List</Typography>

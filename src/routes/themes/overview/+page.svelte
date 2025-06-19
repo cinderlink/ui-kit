@@ -5,7 +5,7 @@
 	import CodeEditor from '$lib/markup/CodeEditor/CodeEditor.svelte';
 	import Button from '$lib/interactive/Button/Button.svelte';
 	import ThemeToggle from '$lib/theme/ThemeToggle.svelte';
-	import { theme } from '$lib/theme/store.svelte';
+	import { theme } from '$lib/theme';
 
 	let themeUsage = `<` + `script lang="ts">
   import { Theme, ThemeToggle } from '@cinderlink/ui-kit';
@@ -92,9 +92,9 @@ html.dark .bg-white.dark\\:bg-gray-900 {
 		
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 			<div class="space-y-3">
-				<Button variant="default">Primary Button</Button>
+				<Button variant="glass">Primary Button</Button>
 				<Button variant="outlined">Outlined Button</Button>
-				<Button variant="dark">Dark Button</Button>
+				<Button variant="frosted">Frosted Button</Button>
 			</div>
 			
 			<div class="bg-purple-50 dark:bg-purple-900 p-4 rounded-lg transition-colors">

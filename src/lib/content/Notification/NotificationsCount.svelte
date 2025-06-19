@@ -20,7 +20,7 @@
 	</div>
 {/if}
 
-<style>
+<style lang="postcss">
 	.notifications-count {
 		@apply flex justify-center items-center shadow-md border-1px border-purple-200/20;
 		@apply text-xs font-bold text-purple-50 bg-purple-500 rounded-full px-1;

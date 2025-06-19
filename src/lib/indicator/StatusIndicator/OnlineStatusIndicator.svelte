@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Typography from '$lib/content/Typography/Typography.svelte';
-	import type { TypographyElement } from '$lib/content/Typography/types';
 	import type { Size, Status } from '$lib/theme/types';
 	import StatusIndicator from './StatusIndicator.svelte';
 
@@ -34,7 +32,7 @@
 	</span>
 </div>
 
-<style>
+<style lang="postcss">
 	.indicator__online {
 		@apply inline-flex flex-row items-center gap-2;
 	}

@@ -25,6 +25,9 @@
 		<div
 			class="i-tabler-copy code__icon"
 			class:code__copied={copied}
+			role="button"
+			tabindex="0"
+			aria-label="Copy code"
 			onclick={copyCode}
 			onkeypress={copyCode}
 		></div>
@@ -33,13 +36,16 @@
 		<div
 			class="i-tabler-copy code__icon"
 			class:code__copied={copied}
+			role="button"
+			tabindex="0"
+			aria-label="Copy code"
 			onclick={copyCode}
 			onkeypress={copyCode}
 		></div>
 	{/if}
 </div>
 
-<style>
+<style lang="postcss">
 	.code {
 		@apply relative;
 	}

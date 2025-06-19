@@ -12,7 +12,7 @@ export default defineConfig({
 		target: 'esnext'
 	},
 	optimizeDeps: {
-		exclude: ['unocss', 'uno.css'],
+		exclude: ['unocss', 'uno.css', 'fsevents'],
 		esbuildOptions: {
 			target: 'esnext'
 		}

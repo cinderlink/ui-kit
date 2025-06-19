@@ -25,9 +25,9 @@
 <Typography>Modal</Typography>
 
 <div class="story">
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="h4">Example</Typography>
-		<Button onclick={() => (open = true)}>Open Modal</Button>
+		<Button onclick={() => (open = true)} data-testid="open-modal-button">Open Modal</Button>
 		<Modal bind:visible={open}>
 			{#snippet header()}
 					

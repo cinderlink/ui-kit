@@ -3,6 +3,7 @@
 	import Card from '$lib/content/Card/Card.svelte';
 	import Breadcrumb from '$lib/navigation/Breadcrumb/Breadcrumb.svelte';
 	import CodeEditor from '$lib/markup/CodeEditor/CodeEditor.svelte';
+	import PageContainer from '$lib/layout/PageContainer/PageContainer.svelte';
 
 	let pnpmInstall = `pnpm add @cinderlink/ui-kit`;
 	let npmInstall = `npm install @cinderlink/ui-kit`;
@@ -50,14 +51,14 @@ export default defineConfig({
 });`;
 </script>
 
-<Breadcrumb
-	sections={[
-		{ label: 'guides', path: '/guides' },
-		{ label: 'installation', path: '/guides/installation' }
-	]}
-/>
+<PageContainer>
+	<Breadcrumb
+		sections={[
+			{ label: 'guides', path: '/guides' },
+			{ label: 'installation', path: '/guides/installation' }
+		]}
+	/>
 
-<div class="max-w-4xl mx-auto space-y-6">
 	<Typography el="h1">Installation</Typography>
 	<Typography el="p">
 		Get started with @cinderlink/ui-kit in your Svelte 5 project.
@@ -142,4 +143,4 @@ export default defineConfig({
 			<li>• <a href="/themes/overview" class="text-purple-600 hover:text-purple-800">Theming System</a></li>
 		</ul>
 	</Card>
-</div>
+</PageContainer>

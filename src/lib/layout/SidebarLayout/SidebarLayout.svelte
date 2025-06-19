@@ -1,62 +1,94 @@
-<!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot (sidebar to sidebar_1) making the component unusable -->
 <script lang="ts">
-	import Toggle from '$lib/interactive/Toggle/Toggle.svelte';
-	import { theme } from '$lib/theme/store.svelte';
-	import { sidebar } from './store';
+	import { sidebarStore } from './store.svelte';
+	import { SidebarToggle } from '../SidebarToggle';
 	import './SidebarLayout.css';
+	import type { Snippet } from 'svelte';
 
 	interface Props {
 		autoCloseOnNavigate?: boolean;
 		onNavigate?: () => void;
-		children?: import('svelte').Snippet;
-		sidebar?: import('svelte').Snippet;
+		children?: Snippet;
+		sidebar?: Snippet;
 	}
 
 	let { 
-		autoCloseOnNavigate = false, 
+		autoCloseOnNavigate = true, 
 		onNavigate,
 		children,
 		sidebar: sidebarSlot
 	}: Props = $props();
 
-	// Optional SvelteKit integration - only if available
+	// Handle navigation auto-close
 	$effect(() => {
 		if (autoCloseOnNavigate && typeof window !== 'undefined') {
 			const handleNavigation = () => {
-				$sidebar.toggled = false;
+				sidebarStore.closeOnNavigation();
 				onNavigate?.();
 			};
 			
-			// Listen for navigation changes (popstate works with most routers)
+			// Listen for navigation changes
 			window.addEventListener('popstate', handleNavigation);
-			return () => window.removeEventListener('popstate', handleNavigation);
+			
+			return () => {
+				window.removeEventListener('popstate', handleNavigation);
+			};
+		}
+	});
+	
+	// Handle escape key to close sidebar
+	$effect(() => {
+		if (typeof window !== 'undefined') {
+			const handleKeydown = (e: KeyboardEvent) => {
+				if (e.key === 'Escape' && sidebarStore.isOpen && sidebarStore.isMobile) {
+					sidebarStore.close();
+				}
+			};
+			
+			window.addEventListener('keydown', handleKeydown);
+			return () => window.removeEventListener('keydown', handleKeydown);
 		}
 	});
 </script>
 
 <div class="layout layout--sidebar">
-	<aside class="layout__sidebar" class:layout__sidebar--toggled={$sidebar.toggled}>
+	<!-- Mobile backdrop -->
+	{#if sidebarStore.isMobile && sidebarStore.isOpen}
+		<button 
+			class="layout__backdrop"
+			onclick={() => sidebarStore.close()}
+			aria-label="Close sidebar"
+		></button>
+	{/if}
+	
+	<aside 
+		class="layout__sidebar" 
+		class:layout__sidebar--open={sidebarStore.isOpen}
+		class:layout__sidebar--mobile={sidebarStore.isMobile}
+		class:layout__sidebar--locked={sidebarStore.isLocked && !sidebarStore.isMobile}
+		aria-hidden={!sidebarStore.isOpen}
+	>
+		<!-- Toggle button in top right when sidebar is open -->
+		{#if sidebarStore.isOpen}
+			<div class="layout__sidebar-toggle">
+				<SidebarToggle />
+			</div>
+		{/if}
 		{#if sidebarSlot}
 			{@render sidebarSlot()}
 		{/if}
-		<div class="align-self-end">
-			<Toggle id="theme-toggle" bind:toggled={theme.darkMode}>
-				{#snippet off()}
-					<div class="px-4">
-						<div class="i-tabler-sun text-yellow-200"></div>
-					</div>
-				{/snippet}
-				{#snippet on()}
-					<div class="px-4">
-						<div class="i-tabler-moon text-purple-50"></div>
-					</div>
-				{/snippet}
-			</Toggle>
-		</div>
 	</aside>
+	
 	<div class="layout__page">
-		{#if children}
-			{@render children()}
+		<!-- Toggle button positioned at the top-left of the page content when sidebar is closed -->
+		{#if !sidebarStore.isOpen}
+			<div class="layout__toggle-container">
+				<SidebarToggle />
+			</div>
 		{/if}
+		<div class="layout__content">
+			{#if children}
+				{@render children()}
+			{/if}
+		</div>
 	</div>
 </div>

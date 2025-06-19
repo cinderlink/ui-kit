@@ -20,7 +20,7 @@
 	{@render children?.()}
 </div>
 
-<style>
+<style lang="postcss">
 	.status-indicator {
 		@apply inline-flex items-center justify-center rounded-full;
 	}
