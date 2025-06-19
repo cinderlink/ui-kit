@@ -151,7 +151,7 @@
 	$effect(() => {
 		// switch theme for dark & light mode
 		if (!editor || !themeConfig) return;
-		
+
 		editor.dispatch({
 			effects: themeConfig.reconfigure(theme.darkMode ? darkTheme : lightTheme)
 		});

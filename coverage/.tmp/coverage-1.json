@@ -1,1 +1,23 @@
-{"result":[{"scriptId":"1126","url":"file:///Users/aewing/Projects/cinderlink/ui-kit/src/setupTests.ts","functions":[{"functionName":"","ranges":[{"startOffset":0,"endOffset":866,"count":1}],"isBlockCoverage":true},{"functionName":"","ranges":[{"startOffset":13,"endOffset":866,"count":1},{"startOffset":350,"endOffset":865,"count":0}],"isBlockCoverage":true}]}]}
+{
+	"result": [
+		{
+			"scriptId": "1126",
+			"url": "file:///Users/aewing/Projects/cinderlink/ui-kit/src/setupTests.ts",
+			"functions": [
+				{
+					"functionName": "",
+					"ranges": [{ "startOffset": 0, "endOffset": 866, "count": 1 }],
+					"isBlockCoverage": true
+				},
+				{
+					"functionName": "",
+					"ranges": [
+						{ "startOffset": 13, "endOffset": 866, "count": 1 },
+						{ "startOffset": 350, "endOffset": 865, "count": 0 }
+					],
+					"isBlockCoverage": true
+				}
+			]
+		}
+	]
+}

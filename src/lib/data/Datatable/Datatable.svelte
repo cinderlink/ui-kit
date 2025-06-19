@@ -1,22 +1,25 @@
 <script lang="ts">
-
 	import { type SchemaObject, default as Ajv } from 'ajv';
 	interface Props {
 		data: Record<string, unknown>[];
 		schema: SchemaObject;
 		columns?: {
-		id: string;
-		label?: string;
-		width?: string;
-		component?: any; // Component constructor type
-		props?: Record<string, unknown>;
-		transform?: (value: unknown) => unknown;
-	}[];
+			id: string;
+			label?: string;
+			width?: string;
+			component?: any; // Component constructor type
+			props?: Record<string, unknown>;
+			transform?: (value: unknown) => unknown;
+		}[];
 	}
 
-	let { data, schema, columns = Object.keys(schema.properties).map((key) => ({
-		id: key
-	})) }: Props = $props();
+	let {
+		data,
+		schema,
+		columns = Object.keys(schema.properties).map((key) => ({
+			id: key
+		}))
+	}: Props = $props();
 
 	// Validation function (currently unused)
 	// const validate = (value: unknown, schema: SchemaObject) => {
@@ -60,11 +63,7 @@
 				{#each columns as column}
 					<div class="datatable__cell">
 						{#if column.component}
-							<column.component
-								record={row}
-								{...column.props || {}}
-								on:refresh
-							/>
+							<column.component record={row} {...column.props || {}} on:refresh />
 						{:else}
 							{column.transform
 								? column.transform(row[column.id])

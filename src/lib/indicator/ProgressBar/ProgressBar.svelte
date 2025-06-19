@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Size } from "$lib/unocss";
+	import type { Size } from '$lib/unocss';
 
 	interface Props {
 		progress?: number;
@@ -8,7 +8,7 @@
 	}
 
 	// Make progress bindable so story can use bind:progress
-	let { progress = $bindable(0), size = "md", children }: Props = $props();
+	let { progress = $bindable(0), size = 'md', children }: Props = $props();
 </script>
 
 <div class="progress__bar progress__bar--{size}">
@@ -35,19 +35,24 @@
 		@apply text-white text-shadow mb-0;
 	}
 
-	.progress__bar--sm, .progress__bar--sm .progress__content {
+	.progress__bar--sm,
+	.progress__bar--sm .progress__content {
 		@apply h-6;
 	}
-	.progress__bar--md, .progress__bar--md .progress__content {
+	.progress__bar--md,
+	.progress__bar--md .progress__content {
 		@apply h-8;
 	}
-	.progress__bar--lg, .progress__bar--lg .progress__content {
+	.progress__bar--lg,
+	.progress__bar--lg .progress__content {
 		@apply h-10;
 	}
-	.progress__bar--xl, .progress__bar--xl .progress__content {
+	.progress__bar--xl,
+	.progress__bar--xl .progress__content {
 		@apply h-12;
 	}
-	.progress__bar--2xl, .progress__bar--2xl .progress__content {
+	.progress__bar--2xl,
+	.progress__bar--2xl .progress__content {
 		@apply h-16;
 	}
 </style>

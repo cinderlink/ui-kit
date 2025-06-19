@@ -43,8 +43,10 @@ export default defineConfig({
   }
 });`;
 
-	let componentTheme = `// components/CustomButton.svelte
-<` + `script lang="ts">
+	let componentTheme =
+		`// components/CustomButton.svelte
+<` +
+		`script lang="ts">
   interface Props {
     variant?: 'primary' | 'secondary' | 'accent';
     children?: import('svelte').Snippet;
@@ -64,7 +66,8 @@ export default defineConfig({
         return 'bg-gray-500 hover:bg-gray-600 text-white';
     }
   });
-<` + `/script>
+<` +
+		`/script>
 
 <button class="px-4 py-2 rounded-lg transition-colors {classes}">
   {@render children?.()}
@@ -228,7 +231,8 @@ export default defineConfig({
 <div class="max-w-4xl mx-auto space-y-6">
 	<Typography el="h1">Theme Customization</Typography>
 	<Typography el="p">
-		Learn how to customize and extend the @cinderlink/ui-kit theme system to match your brand and design requirements.
+		Learn how to customize and extend the @cinderlink/ui-kit theme system to match your brand and
+		design requirements.
 	</Typography>
 
 	<!-- Basic Customization -->
@@ -301,24 +305,27 @@ export default defineConfig({
 			<div>
 				<Typography el="h4" classes="mb-2">Design Tokens</Typography>
 				<Typography el="p">
-					Define your design system as tokens (colors, spacing, typography) before implementing components.
+					Define your design system as tokens (colors, spacing, typography) before implementing
+					components.
 				</Typography>
 			</div>
-			
+
 			<div>
 				<Typography el="h4" classes="mb-2">Consistent Naming</Typography>
 				<Typography el="p">
-					Use semantic names (primary, secondary, accent) rather than color names (blue, red) for better maintainability.
+					Use semantic names (primary, secondary, accent) rather than color names (blue, red) for
+					better maintainability.
 				</Typography>
 			</div>
-			
+
 			<div>
 				<Typography el="h4" classes="mb-2">Dark Mode First</Typography>
 				<Typography el="p">
-					Design for both light and dark modes from the beginning to ensure proper contrast and usability.
+					Design for both light and dark modes from the beginning to ensure proper contrast and
+					usability.
 				</Typography>
 			</div>
-			
+
 			<div>
 				<Typography el="h4" classes="mb-2">Progressive Enhancement</Typography>
 				<Typography el="p">
@@ -331,12 +338,12 @@ export default defineConfig({
 	<!-- Examples -->
 	<Card>
 		<Typography el="h2" classes="mb-3">Theme Examples</Typography>
-		<Typography el="p" classes="mb-4">
-			See different theme configurations in action:
-		</Typography>
-		
+		<Typography el="p" classes="mb-4">See different theme configurations in action:</Typography>
+
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-			<div class="bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 p-6 rounded-lg border">
+			<div
+				class="bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 p-6 rounded-lg border"
+			>
 				<Typography el="h4" classes="mb-2">Corporate Theme</Typography>
 				<Typography el="p" classes="mb-3">Professional blue and gray palette</Typography>
 				<div class="flex gap-2">
@@ -345,8 +352,10 @@ export default defineConfig({
 					<div class="w-6 h-6 bg-blue-100 rounded"></div>
 				</div>
 			</div>
-			
-			<div class="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 p-6 rounded-lg border">
+
+			<div
+				class="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 p-6 rounded-lg border"
+			>
 				<Typography el="h4" classes="mb-2">Nature Theme</Typography>
 				<Typography el="p" classes="mb-3">Earth tones and green accents</Typography>
 				<div class="flex gap-2">
@@ -355,8 +364,10 @@ export default defineConfig({
 					<div class="w-6 h-6 bg-stone-500 rounded"></div>
 				</div>
 			</div>
-			
-			<div class="bg-gradient-to-br from-rose-50 to-pink-50 dark:from-rose-900/20 dark:to-pink-900/20 p-6 rounded-lg border">
+
+			<div
+				class="bg-gradient-to-br from-rose-50 to-pink-50 dark:from-rose-900/20 dark:to-pink-900/20 p-6 rounded-lg border"
+			>
 				<Typography el="h4" classes="mb-2">Creative Theme</Typography>
 				<Typography el="p" classes="mb-3">Vibrant and playful colors</Typography>
 				<div class="flex gap-2">
@@ -365,8 +376,10 @@ export default defineConfig({
 					<div class="w-6 h-6 bg-orange-500 rounded"></div>
 				</div>
 			</div>
-			
-			<div class="bg-gradient-to-br from-slate-50 to-zinc-50 dark:from-slate-900/20 dark:to-zinc-900/20 p-6 rounded-lg border">
+
+			<div
+				class="bg-gradient-to-br from-slate-50 to-zinc-50 dark:from-slate-900/20 dark:to-zinc-900/20 p-6 rounded-lg border"
+			>
 				<Typography el="h4" classes="mb-2">Minimal Theme</Typography>
 				<Typography el="p" classes="mb-3">Clean monochrome design</Typography>
 				<div class="flex gap-2">
@@ -385,18 +398,50 @@ export default defineConfig({
 			<div class="space-y-2">
 				<Typography el="h4">Documentation</Typography>
 				<ul class="space-y-1 text-sm">
-					<li>• <a href="https://unocss.dev/config/theme" class="text-purple-600 hover:text-purple-800" target="_blank">UnoCSS Theme Config</a></li>
-					<li>• <a href="https://unocss.dev/presets/uno" class="text-purple-600 hover:text-purple-800" target="_blank">UnoCSS Presets</a></li>
-					<li>• <a href="/themes/overview" class="text-purple-600 hover:text-purple-800">Theme Overview</a></li>
+					<li>
+						• <a
+							href="https://unocss.dev/config/theme"
+							class="text-purple-600 hover:text-purple-800"
+							target="_blank">UnoCSS Theme Config</a
+						>
+					</li>
+					<li>
+						• <a
+							href="https://unocss.dev/presets/uno"
+							class="text-purple-600 hover:text-purple-800"
+							target="_blank">UnoCSS Presets</a
+						>
+					</li>
+					<li>
+						• <a href="/themes/overview" class="text-purple-600 hover:text-purple-800"
+							>Theme Overview</a
+						>
+					</li>
 				</ul>
 			</div>
-			
+
 			<div class="space-y-2">
 				<Typography el="h4">Tools</Typography>
 				<ul class="space-y-1 text-sm">
-					<li>• <a href="https://tailwindcss.com/docs/customizing-colors" class="text-purple-600 hover:text-purple-800" target="_blank">Color Palette Generator</a></li>
-					<li>• <a href="https://www.figma.com" class="text-purple-600 hover:text-purple-800" target="_blank">Design System Tools</a></li>
-					<li>• <a href="/guides/examples" class="text-purple-600 hover:text-purple-800">Live Examples</a></li>
+					<li>
+						• <a
+							href="https://tailwindcss.com/docs/customizing-colors"
+							class="text-purple-600 hover:text-purple-800"
+							target="_blank">Color Palette Generator</a
+						>
+					</li>
+					<li>
+						• <a
+							href="https://www.figma.com"
+							class="text-purple-600 hover:text-purple-800"
+							target="_blank">Design System Tools</a
+						>
+					</li>
+					<li>
+						• <a href="/guides/examples" class="text-purple-600 hover:text-purple-800"
+							>Live Examples</a
+						>
+					</li>
 				</ul>
 			</div>
 		</div>

@@ -35,7 +35,13 @@
 				{#if header}{@render header()}{:else}
 					<span>Notifications title</span>
 				{/if}
-				<div class="notifications__dismiss" role="button" tabindex="0" onclick={dismissAll} onkeypress={dismissAll}>
+				<div
+					class="notifications__dismiss"
+					role="button"
+					tabindex="0"
+					onclick={dismissAll}
+					onkeypress={dismissAll}
+				>
 					Dismiss all
 				</div>
 			</div>

@@ -8,7 +8,7 @@
 		el?: any;
 		size?: Size;
 		flex?: string;
-		variant?: 
+		variant?:
 			| 'glass' // Default glass
 			| 'frosted' // Frosted glass
 			| 'purple'
@@ -24,7 +24,7 @@
 		rounded?: string;
 		classes?: string;
 		invert?: boolean;
-		transition?: FadeParams & { enable?: boolean } | undefined;
+		transition?: (FadeParams & { enable?: boolean }) | undefined;
 		children?: Snippet;
 		onclick?: (event: MouseEvent) => void;
 		[key: string]: any;
@@ -50,7 +50,8 @@
 	const smart = (node: Element, args: any) => args?.enable && fade(node, args);
 </script>
 
-<svelte:element this={el}
+<svelte:element
+	this={el}
 	{onclick}
 	in:smart={transition}
 	class="panel panel--{variant} panel--depth-{depth} panel--{size} {classes} {flex} {rounded}"
@@ -70,7 +71,7 @@
 		isolation: isolate;
 		transform-style: preserve-3d;
 		transform: translateZ(0);
-		
+
 		/* Pure glass base */
 		background: var(--glass-bg);
 		backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
@@ -78,7 +79,7 @@
 		border: var(--glass-border);
 		box-shadow: var(--glass-shadow);
 	}
-	
+
 	/* Smooth gradient overlay */
 	.panel::before {
 		content: '';
@@ -86,13 +87,9 @@
 		inset: -1px;
 		border-radius: inherit;
 		padding: 1px;
-		background: linear-gradient(
-			to bottom right,
-			rgba(255, 255, 255, 0.2),
-			transparent 40%
-		);
-		-webkit-mask: 
-			linear-gradient(#fff 0 0) content-box, 
+		background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.2), transparent 40%);
+		-webkit-mask:
+			linear-gradient(#fff 0 0) content-box,
 			linear-gradient(#fff 0 0);
 		-webkit-mask-composite: xor;
 		mask-composite: exclude;
@@ -109,7 +106,7 @@
 	/* Depth variants */
 	.panel--depth-1 {
 		backdrop-filter: blur(8px) saturate(1.3);
-		box-shadow: 
+		box-shadow:
 			0 4px 16px 0 rgba(31, 38, 135, 0.1),
 			inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 	}
@@ -120,7 +117,7 @@
 
 	.panel--depth-3 {
 		backdrop-filter: blur(24px) saturate(1.6);
-		box-shadow: 
+		box-shadow:
 			0 12px 40px 0 rgba(31, 38, 135, 0.2),
 			inset 0 0 0 1px rgba(255, 255, 255, 0.12),
 			inset 0 -2px 12px 0 rgba(0, 0, 0, 0.12);
@@ -128,7 +125,7 @@
 
 	.panel--depth-4 {
 		backdrop-filter: blur(32px) saturate(1.8);
-		box-shadow: 
+		box-shadow:
 			0 16px 48px 0 rgba(31, 38, 135, 0.25),
 			inset 0 0 0 1px rgba(255, 255, 255, 0.15),
 			inset 0 -2px 16px 0 rgba(0, 0, 0, 0.15);
@@ -136,7 +133,7 @@
 
 	.panel--depth-5 {
 		backdrop-filter: blur(40px) saturate(2);
-		box-shadow: 
+		box-shadow:
 			0 20px 56px 0 rgba(31, 38, 135, 0.3),
 			inset 0 0 0 1px rgba(255, 255, 255, 0.18),
 			inset 0 -2px 20px 0 rgba(0, 0, 0, 0.18);
@@ -153,7 +150,7 @@
 		background: var(--glass-bg-surface);
 		backdrop-filter: blur(var(--glass-blur-light)) saturate(1.2);
 		border: var(--glass-border-light);
-		box-shadow: 
+		box-shadow:
 			0 4px 16px 0 rgba(31, 38, 135, 0.08),
 			inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 	}
@@ -167,7 +164,7 @@
 		);
 		backdrop-filter: blur(24px) saturate(1.8);
 		border-color: rgba(255, 255, 255, 0.2);
-		box-shadow: 
+		box-shadow:
 			0 24px 64px 0 rgba(31, 38, 135, 0.3),
 			inset 0 0 0 1px rgba(255, 255, 255, 0.15),
 			inset 0 -2px 16px 0 rgba(0, 0, 0, 0.15);
@@ -175,56 +172,32 @@
 
 	/* Tinted variants - subtle glass with hint of color */
 	.panel--purple {
-		background: linear-gradient(
-			135deg,
-			rgba(147, 51, 234, 0.03) 0%,
-			rgba(147, 51, 234, 0.01) 100%
-		);
+		background: linear-gradient(135deg, rgba(147, 51, 234, 0.03) 0%, rgba(147, 51, 234, 0.01) 100%);
 		border-color: rgba(147, 51, 234, 0.1);
 	}
 
 	.panel--pink {
-		background: linear-gradient(
-			135deg,
-			rgba(236, 72, 153, 0.03) 0%,
-			rgba(236, 72, 153, 0.01) 100%
-		);
+		background: linear-gradient(135deg, rgba(236, 72, 153, 0.03) 0%, rgba(236, 72, 153, 0.01) 100%);
 		border-color: rgba(236, 72, 153, 0.1);
 	}
 
 	.panel--green {
-		background: linear-gradient(
-			135deg,
-			rgba(34, 197, 94, 0.03) 0%,
-			rgba(34, 197, 94, 0.01) 100%
-		);
+		background: linear-gradient(135deg, rgba(34, 197, 94, 0.03) 0%, rgba(34, 197, 94, 0.01) 100%);
 		border-color: rgba(34, 197, 94, 0.1);
 	}
 
 	.panel--blue {
-		background: linear-gradient(
-			135deg,
-			rgba(59, 130, 246, 0.03) 0%,
-			rgba(59, 130, 246, 0.01) 100%
-		);
+		background: linear-gradient(135deg, rgba(59, 130, 246, 0.03) 0%, rgba(59, 130, 246, 0.01) 100%);
 		border-color: rgba(59, 130, 246, 0.1);
 	}
 
 	.panel--yellow {
-		background: linear-gradient(
-			135deg,
-			rgba(245, 158, 11, 0.03) 0%,
-			rgba(245, 158, 11, 0.01) 100%
-		);
+		background: linear-gradient(135deg, rgba(245, 158, 11, 0.03) 0%, rgba(245, 158, 11, 0.01) 100%);
 		border-color: rgba(245, 158, 11, 0.1);
 	}
 
 	.panel--red {
-		background: linear-gradient(
-			135deg,
-			rgba(239, 68, 68, 0.03) 0%,
-			rgba(239, 68, 68, 0.01) 100%
-		);
+		background: linear-gradient(135deg, rgba(239, 68, 68, 0.03) 0%, rgba(239, 68, 68, 0.01) 100%);
 		border-color: rgba(239, 68, 68, 0.1);
 	}
 
@@ -265,29 +238,17 @@
 	}
 
 	:global(.dark) .panel--green {
-		background: linear-gradient(
-			135deg,
-			rgba(74, 222, 128, 0.06) 0%,
-			rgba(74, 222, 128, 0.02) 100%
-		);
+		background: linear-gradient(135deg, rgba(74, 222, 128, 0.06) 0%, rgba(74, 222, 128, 0.02) 100%);
 		border-color: rgba(74, 222, 128, 0.15);
 	}
 
 	:global(.dark) .panel--blue {
-		background: linear-gradient(
-			135deg,
-			rgba(96, 165, 250, 0.06) 0%,
-			rgba(96, 165, 250, 0.02) 100%
-		);
+		background: linear-gradient(135deg, rgba(96, 165, 250, 0.06) 0%, rgba(96, 165, 250, 0.02) 100%);
 		border-color: rgba(96, 165, 250, 0.15);
 	}
 
 	:global(.dark) .panel--yellow {
-		background: linear-gradient(
-			135deg,
-			rgba(251, 191, 36, 0.06) 0%,
-			rgba(251, 191, 36, 0.02) 100%
-		);
+		background: linear-gradient(135deg, rgba(251, 191, 36, 0.06) 0%, rgba(251, 191, 36, 0.02) 100%);
 		border-color: rgba(251, 191, 36, 0.15);
 	}
 

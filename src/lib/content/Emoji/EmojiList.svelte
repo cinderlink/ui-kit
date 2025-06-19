@@ -49,7 +49,13 @@
 			/>
 			<div class="list__container">
 				{#each filtered as key}
-					<span class="emoji emoji__{key}" role="button" tabindex="0" onclick={onClick} onkeypress={onClick}>
+					<span
+						class="emoji emoji__{key}"
+						role="button"
+						tabindex="0"
+						onclick={onClick}
+						onkeypress={onClick}
+					>
 						{@html md.render(`:${key}:`)}
 					</span>
 				{/each}

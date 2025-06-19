@@ -11,7 +11,9 @@
 	let showModal = $state(false);
 	let searchQuery = $state('');
 
-	let dashboardExample = $state(`<` + `script lang="ts">
+	let dashboardExample = $state(
+		`<` +
+			`script lang="ts">
   import { 
     Card, Typography, Avatar, Button, 
     StatusIndicator, LoadingIndicator 
@@ -29,7 +31,8 @@
     { label: 'Active Sessions', value: '89' },
     { label: 'Revenue', value: '$12,345' }
   ]);
-<` + `/script>
+<` +
+			`/script>
 
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
   {#each stats as stat}
@@ -49,9 +52,12 @@
       <StatusIndicator status={user.status} />
     </div>
   </div>
-</Card>`);
+</Card>`
+	);
 
-	let formExample = $state(`<` + `script lang="ts">
+	let formExample = $state(
+		`<` +
+			`script lang="ts">
   import { 
     Card, Typography, Input, Button, 
     Select, Toggle, Notification 
@@ -71,7 +77,8 @@
     showSuccess = true;
     setTimeout(() => showSuccess = false, 3000);
   }
-<` + `/script>
+<` +
+			`/script>
 
 <Card>
   <Typography el="h2">User Settings</Typography>
@@ -117,9 +124,12 @@
 
 {#if showSuccess}
   <Notification type="success" title="Settings saved successfully!" />
-{/if}`);
+{/if}`
+	);
 
-	let dataTableExample = $state(`<` + `script lang="ts">
+	let dataTableExample = $state(
+		`<` +
+			`script lang="ts">
   import { Card, Typography, Datatable, Button, Avatar } from '@cinderlink/ui-kit';
   
   let users = $state([
@@ -155,14 +165,18 @@
       \`
     }
   ];
-<` + `/script>
+<` +
+			`/script>
 
 <Card>
   <Typography el="h2">User Management</Typography>
   <Datatable data={users} {columns} />
-</Card>`);
+</Card>`
+	);
 
-	let modalExample = $state(`<` + `script lang="ts">
+	let modalExample = $state(
+		`<` +
+			`script lang="ts">
   import { Button, Modal, Typography, Input } from '@cinderlink/ui-kit';
   
   let showModal = $state(false);
@@ -173,7 +187,8 @@
     showModal = false;
     username = '';
   }
-<` + `/script>
+<` +
+			`/script>
 
 <Button onclick={() => showModal = true}>
   Create New User
@@ -200,7 +215,8 @@
       </Button>
     </div>
   </div>
-</Modal>`);
+</Modal>`
+	);
 </script>
 
 <Breadcrumb
@@ -219,19 +235,17 @@
 	<!-- Live Demo Section -->
 	<Card>
 		<Typography el="h2" classes="mb-4">Interactive Demo</Typography>
-		<Typography el="p" classes="mb-4">
-			Try out some components right here:
-		</Typography>
-		
+		<Typography el="p" classes="mb-4">Try out some components right here:</Typography>
+
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 			<div class="space-y-4">
-				<Input 
-					id="demo-search" 
-					label="Search" 
+				<Input
+					id="demo-search"
+					label="Search"
 					bind:value={searchQuery}
-					placeholder="Type something..." 
+					placeholder="Type something..."
 				/>
-				
+
 				<div class="flex items-center gap-4">
 					<Avatar size="md" />
 					<div>
@@ -239,12 +253,10 @@
 						<Typography el="p">user@example.com</Typography>
 					</div>
 				</div>
-				
-				<Button onclick={() => showModal = true} variant="glass">
-					Open Modal
-				</Button>
+
+				<Button onclick={() => (showModal = true)} variant="glass">Open Modal</Button>
 			</div>
-			
+
 			<div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
 				<Typography el="h4" classes="mb-2">Search Query:</Typography>
 				<Typography el="p">{searchQuery || 'No input yet'}</Typography>
@@ -256,14 +268,14 @@
 		{#snippet header()}
 			<Typography el="h3">Demo Modal</Typography>
 		{/snippet}
-		
+
 		<Typography el="p" classes="mb-4">
 			This is a demo modal built with the @cinderlink/ui-kit Modal component.
 		</Typography>
-		
+
 		{#snippet footer()}
 			<div class="flex justify-end">
-				<Button onclick={() => showModal = false}>Close</Button>
+				<Button onclick={() => (showModal = false)}>Close</Button>
 			</div>
 		{/snippet}
 	</Modal>
@@ -306,25 +318,47 @@
 
 	<Card>
 		<Typography el="h2" classes="mb-3">More Examples</Typography>
-		<Typography el="p" classes="mb-3">
-			Explore more examples and patterns:
-		</Typography>
+		<Typography el="p" classes="mb-3">Explore more examples and patterns:</Typography>
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 			<div class="space-y-2">
 				<Typography el="h4">Component Examples</Typography>
 				<ul class="space-y-1 text-sm">
-					<li>• <a href="/components/content" class="text-purple-600 hover:text-purple-800">Content Components</a></li>
-					<li>• <a href="/components/interactive" class="text-purple-600 hover:text-purple-800">Interactive Components</a></li>
-					<li>• <a href="/components/layout" class="text-purple-600 hover:text-purple-800">Layout Components</a></li>
+					<li>
+						• <a href="/components/content" class="text-purple-600 hover:text-purple-800"
+							>Content Components</a
+						>
+					</li>
+					<li>
+						• <a href="/components/interactive" class="text-purple-600 hover:text-purple-800"
+							>Interactive Components</a
+						>
+					</li>
+					<li>
+						• <a href="/components/layout" class="text-purple-600 hover:text-purple-800"
+							>Layout Components</a
+						>
+					</li>
 				</ul>
 			</div>
-			
+
 			<div class="space-y-2">
 				<Typography el="h4">Advanced Topics</Typography>
 				<ul class="space-y-1 text-sm">
-					<li>• <a href="/themes/customization" class="text-purple-600 hover:text-purple-800">Custom Theming</a></li>
-					<li>• <a href="/guides/installation" class="text-purple-600 hover:text-purple-800">Installation Guide</a></li>
-					<li>• <a href="/guides/quickstart" class="text-purple-600 hover:text-purple-800">Quick Start</a></li>
+					<li>
+						• <a href="/themes/customization" class="text-purple-600 hover:text-purple-800"
+							>Custom Theming</a
+						>
+					</li>
+					<li>
+						• <a href="/guides/installation" class="text-purple-600 hover:text-purple-800"
+							>Installation Guide</a
+						>
+					</li>
+					<li>
+						• <a href="/guides/quickstart" class="text-purple-600 hover:text-purple-800"
+							>Quick Start</a
+						>
+					</li>
 				</ul>
 			</div>
 		</div>

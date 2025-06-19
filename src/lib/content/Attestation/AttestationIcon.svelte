@@ -8,12 +8,7 @@
 		title?: string;
 	}
 
-	let {
-		icon = 'i-tabler-eye-off',
-		count = 0,
-		color = 'purple',
-		title = ''
-	}: Props = $props();
+	let { icon = 'i-tabler-eye-off', count = 0, color = 'purple', title = '' }: Props = $props();
 </script>
 
 <div class="attestation-icon">

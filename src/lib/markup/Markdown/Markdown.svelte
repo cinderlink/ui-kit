@@ -1,5 +1,4 @@
 <script lang="ts">
-
 	import type MarkdownIt from 'markdown-it';
 	import { onMount } from 'svelte';
 	import { theme } from '$lib/theme';
@@ -23,11 +22,15 @@
 							'</code></pre></div>'
 						);
 					} catch {
-					// Ignore highlighting errors
-				}
+						// Ignore highlighting errors
+					}
 				}
 
-				return `<pre class="${classes}"><code>` + (markdown?.utils.escapeHtml(str) || str) + '</code></pre>';
+				return (
+					`<pre class="${classes}"><code>` +
+					(markdown?.utils.escapeHtml(str) || str) +
+					'</code></pre>'
+				);
 			}
 		});
 
@@ -58,6 +61,6 @@
 	</style>
 </svelte:head>
 
-{#if children}{@render children({ renderedMarkdown, })}{:else}
+{#if children}{@render children({ renderedMarkdown })}{:else}
 	{@html renderedMarkdown}
 {/if}

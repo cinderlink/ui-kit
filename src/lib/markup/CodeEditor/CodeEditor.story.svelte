@@ -20,7 +20,9 @@
 
 console.log(fibonacci(10));`);
 
-	let svelteCode = $state(`<` + `script lang="ts">
+	let svelteCode = $state(
+		`<` +
+			`script lang="ts">
   import { theme } from '$lib/theme';
   
   interface Props {
@@ -31,12 +33,14 @@ console.log(fibonacci(10));`);
   let { message, count = 0 }: Props = $props();
   
   let doubled = $derived(count * 2);
-<` + `/script>
+<` +
+			`/script>
 
 <div class="p-4 rounded-lg bg-purple-50 dark:bg-purple-900">
   <h1>{message}</h1>
   <p>Count: {count}, Doubled: {doubled}</p>
-</div>`);
+</div>`
+	);
 
 	let jsonCode = $state(`{
   "name": "@cinderlink/ui-kit",
@@ -86,7 +90,8 @@ console.log(greeting);
 <div class="flex flex-col gap-6 p-6">
 	<Typography el="h1">CodeEditor Component</Typography>
 	<Typography el="p">
-		A modern code editor built with CodeMirror 6, featuring syntax highlighting, themes, and advanced editing capabilities.
+		A modern code editor built with CodeMirror 6, featuring syntax highlighting, themes, and
+		advanced editing capabilities.
 	</Typography>
 
 	<div class="grid gap-6">
@@ -134,9 +139,9 @@ console.log(greeting);
 		<Card>
 			<Typography el="h3" classes="mb-4">Read-only Editor</Typography>
 			<div class="h-100px">
-				<CodeEditor 
-					code={readOnlyCode} 
-					language="javascript" 
+				<CodeEditor
+					code={readOnlyCode}
+					language="javascript"
 					readOnly={true}
 					placeholder="This is read-only"
 				/>
@@ -147,11 +152,7 @@ console.log(greeting);
 		<Card>
 			<Typography el="h3" classes="mb-4">Without Copy Button</Typography>
 			<div class="h-100px">
-				<CodeEditor 
-					code="const noCopy = true;" 
-					language="javascript" 
-					canCopy={false}
-				/>
+				<CodeEditor code="const noCopy = true;" language="javascript" canCopy={false} />
 			</div>
 		</Card>
 
@@ -159,11 +160,7 @@ console.log(greeting);
 		<Card>
 			<Typography el="h3" classes="mb-4">Error State</Typography>
 			<div class="h-100px">
-				<CodeEditor 
-					code="invalid json syntax" 
-					language="json" 
-					aria-invalid={true}
-				/>
+				<CodeEditor code="invalid json syntax" language="json" aria-invalid={true} />
 			</div>
 		</Card>
 	</div>

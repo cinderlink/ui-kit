@@ -178,7 +178,8 @@ export default defineConfig({
 <div class="max-w-6xl mx-auto space-y-6">
 	<Typography el="h1">Color System</Typography>
 	<Typography el="p">
-		A comprehensive color palette designed for accessibility, readability, and visual harmony across light and dark themes.
+		A comprehensive color palette designed for accessibility, readability, and visual harmony across
+		light and dark themes.
 	</Typography>
 
 	<!-- Color Palettes -->
@@ -186,11 +187,13 @@ export default defineConfig({
 		<Card>
 			<Typography el="h2" classes="mb-2">{palette.name}</Typography>
 			<Typography el="p" classes="mb-4">{palette.description}</Typography>
-			
+
 			<div class="grid grid-cols-5 md:grid-cols-10 gap-2">
 				{#each palette.shades as shade}
 					<div class="text-center">
-						<div class="{shade.class} w-full h-12 rounded-lg border border-gray-200 dark:border-gray-700 mb-2"></div>
+						<div
+							class="{shade.class} w-full h-12 rounded-lg border border-gray-200 dark:border-gray-700 mb-2"
+						></div>
 						<Typography el="caption" classes="block">{shade.name}</Typography>
 						<Typography el="caption" classes="block text-xs opacity-75">{shade.value}</Typography>
 					</div>
@@ -202,41 +205,53 @@ export default defineConfig({
 	<!-- Usage Examples -->
 	<Card>
 		<Typography el="h2" classes="mb-3">Usage Examples</Typography>
-		<Typography el="p" classes="mb-4">
-			How to use colors in your components:
-		</Typography>
+		<Typography el="p" classes="mb-4">How to use colors in your components:</Typography>
 		<CodeEditor bind:code={colorUsage} language="svelte" readOnly />
 	</Card>
 
 	<!-- Semantic Colors -->
 	<Card>
 		<Typography el="h2" classes="mb-3">Semantic Colors</Typography>
-		<Typography el="p" classes="mb-4">
-			Use colors to convey meaning and state:
-		</Typography>
-		
+		<Typography el="p" classes="mb-4">Use colors to convey meaning and state:</Typography>
+
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-			<div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 p-4 rounded-lg">
+			<div
+				class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 p-4 rounded-lg"
+			>
 				<Typography el="h4" classes="text-green-800 dark:text-green-300 mb-1">Success</Typography>
-				<Typography el="p" classes="text-green-700 dark:text-green-400">Green for positive outcomes</Typography>
+				<Typography el="p" classes="text-green-700 dark:text-green-400"
+					>Green for positive outcomes</Typography
+				>
 			</div>
-			
-			<div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700 p-4 rounded-lg">
+
+			<div
+				class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700 p-4 rounded-lg"
+			>
 				<Typography el="h4" classes="text-yellow-800 dark:text-yellow-300 mb-1">Warning</Typography>
-				<Typography el="p" classes="text-yellow-700 dark:text-yellow-400">Yellow for caution</Typography>
+				<Typography el="p" classes="text-yellow-700 dark:text-yellow-400"
+					>Yellow for caution</Typography
+				>
 			</div>
-			
-			<div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 p-4 rounded-lg">
+
+			<div
+				class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 p-4 rounded-lg"
+			>
 				<Typography el="h4" classes="text-red-800 dark:text-red-300 mb-1">Error</Typography>
-				<Typography el="p" classes="text-red-700 dark:text-red-400">Red for errors and dangers</Typography>
+				<Typography el="p" classes="text-red-700 dark:text-red-400"
+					>Red for errors and dangers</Typography
+				>
 			</div>
-			
-			<div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 p-4 rounded-lg">
+
+			<div
+				class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 p-4 rounded-lg"
+			>
 				<Typography el="h4" classes="text-blue-800 dark:text-blue-300 mb-1">Information</Typography>
-				<Typography el="p" classes="text-blue-700 dark:text-blue-400">Blue for neutral information</Typography>
+				<Typography el="p" classes="text-blue-700 dark:text-blue-400"
+					>Blue for neutral information</Typography
+				>
 			</div>
 		</div>
-		
+
 		<CodeEditor bind:code={semanticColors} language="html" readOnly />
 	</Card>
 
@@ -246,7 +261,7 @@ export default defineConfig({
 		<Typography el="p" classes="mb-4">
 			Colors automatically adapt for optimal contrast and readability:
 		</Typography>
-		
+
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 			<div class="space-y-3">
 				<Typography el="h4">Light Mode</Typography>
@@ -259,7 +274,7 @@ export default defineConfig({
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="space-y-3">
 				<Typography el="h4">Dark Mode</Typography>
 				<div class="bg-gray-900 border border-gray-700 p-4 rounded-lg">
@@ -277,9 +292,7 @@ export default defineConfig({
 	<!-- Customization -->
 	<Card>
 		<Typography el="h2" classes="mb-3">Custom Colors</Typography>
-		<Typography el="p" classes="mb-4">
-			Extend or override the default color palette:
-		</Typography>
+		<Typography el="p" classes="mb-4">Extend or override the default color palette:</Typography>
 		<CodeEditor bind:code={customColors} language="javascript" readOnly />
 	</Card>
 
@@ -289,17 +302,23 @@ export default defineConfig({
 		<div class="space-y-3">
 			<div>
 				<Typography el="h4" classes="mb-1">Contrast Ratios</Typography>
-				<Typography el="p">All color combinations meet WCAG AA standards for contrast (4.5:1 minimum)</Typography>
+				<Typography el="p"
+					>All color combinations meet WCAG AA standards for contrast (4.5:1 minimum)</Typography
+				>
 			</div>
-			
+
 			<div>
 				<Typography el="h4" classes="mb-1">Color Blindness</Typography>
-				<Typography el="p">Colors are chosen to be distinguishable for users with color vision deficiencies</Typography>
+				<Typography el="p"
+					>Colors are chosen to be distinguishable for users with color vision deficiencies</Typography
+				>
 			</div>
-			
+
 			<div>
 				<Typography el="h4" classes="mb-1">Semantic Usage</Typography>
-				<Typography el="p">Never rely solely on color to convey information - always provide additional context</Typography>
+				<Typography el="p"
+					>Never rely solely on color to convey information - always provide additional context</Typography
+				>
 			</div>
 		</div>
 	</Card>
@@ -311,16 +330,32 @@ export default defineConfig({
 			<div class="space-y-2">
 				<Typography el="h4">Customize Your Theme</Typography>
 				<ul class="space-y-1 text-sm">
-					<li>• <a href="/themes/customization" class="text-purple-600 hover:text-purple-800">Theme Customization</a></li>
-					<li>• <a href="/themes/overview" class="text-purple-600 hover:text-purple-800">Theming Overview</a></li>
+					<li>
+						• <a href="/themes/customization" class="text-purple-600 hover:text-purple-800"
+							>Theme Customization</a
+						>
+					</li>
+					<li>
+						• <a href="/themes/overview" class="text-purple-600 hover:text-purple-800"
+							>Theming Overview</a
+						>
+					</li>
 				</ul>
 			</div>
-			
+
 			<div class="space-y-2">
 				<Typography el="h4">See In Action</Typography>
 				<ul class="space-y-1 text-sm">
-					<li>• <a href="/components/content" class="text-purple-600 hover:text-purple-800">Component Examples</a></li>
-					<li>• <a href="/guides/examples" class="text-purple-600 hover:text-purple-800">Live Examples</a></li>
+					<li>
+						• <a href="/components/content" class="text-purple-600 hover:text-purple-800"
+							>Component Examples</a
+						>
+					</li>
+					<li>
+						• <a href="/guides/examples" class="text-purple-600 hover:text-purple-800"
+							>Live Examples</a
+						>
+					</li>
 				</ul>
 			</div>
 		</div>

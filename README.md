@@ -30,31 +30,33 @@ yarn add @cinderlink/ui-kit
 
 ```svelte
 <script>
-  import { Button, Card, Typography } from '@cinderlink/ui-kit';
-  
-  let count = $state(0);
+	import { Button, Card, Typography } from '@cinderlink/ui-kit';
+
+	let count = $state(0);
 </script>
 
 <Card>
-  {#snippet titleSlot()}
-    <Typography el="h2">Counter Example</Typography>
-  {/snippet}
-  
-  <Typography>Count: {count}</Typography>
-  <Button onclick={() => count++}>Increment</Button>
+	{#snippet titleSlot()}
+		<Typography el="h2">Counter Example</Typography>
+	{/snippet}
+
+	<Typography>Count: {count}</Typography>
+	<Button onclick={() => count++}>Increment</Button>
 </Card>
 ```
 
 ## 🏗️ Component Categories
 
 ### Content Components
+
 - **Avatar** - User avatars with status indicators
 - **Card** - Flexible content containers
 - **Typography** - Text styling and hierarchy
 - **Notification** - Toast and alert components
 - **Panel** - Layout panels and surfaces
 
-### Interactive Components  
+### Interactive Components
+
 - **Button** - Buttons with various styles and states
 - **Input** - Form inputs with validation
 - **Modal** - Dialog and overlay components
@@ -62,10 +64,12 @@ yarn add @cinderlink/ui-kit
 - **Toggle** - Switch and checkbox components
 
 ### Layout Components
+
 - **Sidebar** - Navigation sidebars
 - **CenteredPanelLayout** - Centered content layouts
 
 ### Indicator Components
+
 - **LoadingIndicator** - Loading spinners and progress
 - **StatusIndicator** - Status badges and indicators
 
@@ -75,7 +79,7 @@ The UI kit includes built-in theme support with UnoCSS:
 
 ```svelte
 <script>
-  import { ThemeToggle } from '@cinderlink/ui-kit';
+	import { ThemeToggle } from '@cinderlink/ui-kit';
 </script>
 
 <ThemeToggle />

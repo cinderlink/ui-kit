@@ -1,10 +1,5 @@
 <script lang="ts">
-	import type {
-		BorderRadius,
-		FlexAlign,
-		FlexDirection,
-		FlexJustify
-	} from '$lib/unocss/types';
+	import type { BorderRadius, FlexAlign, FlexDirection, FlexJustify } from '$lib/unocss/types';
 	import type { Size } from '$lib/theme/types';
 	import type { Snippet } from 'svelte';
 
@@ -19,7 +14,7 @@
 		gap?: `gap-${string}`;
 		size?: Size | 'slim';
 		type?: 'button' | 'submit' | 'reset';
-		variant?: 
+		variant?:
 			| 'glass' // Default glass style
 			| 'frosted' // Frosted glass
 			| 'purple'
@@ -89,25 +84,21 @@
 		isolation: isolate;
 		transform-style: preserve-3d;
 		transform: translateZ(0);
-		
+
 		/* Enhanced glass base for better readability */
-		background: linear-gradient(
-			135deg,
-			rgba(255, 255, 255, 0.2) 0%,
-			rgba(255, 255, 255, 0.1) 100%
-		);
+		background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
 		backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
 		-webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
 		border: 1px solid rgba(255, 255, 255, 0.3);
-		box-shadow: 
+		box-shadow:
 			var(--glass-shadow),
 			inset 0 1px 0 rgba(255, 255, 255, 0.4);
-		
+
 		/* Better text contrast */
 		color: rgba(0, 0, 0, 0.8);
 		text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
 	}
-	
+
 	/* Dark mode adjustments */
 	:global(.dark) .button {
 		background: linear-gradient(
@@ -127,20 +118,16 @@
 		inset: -1px;
 		border-radius: inherit;
 		padding: 1px;
-		background: linear-gradient(
-			to bottom right,
-			rgba(255, 255, 255, 0.3),
-			transparent 40%
-		);
-		-webkit-mask: 
-			linear-gradient(#fff 0 0) content-box, 
+		background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.3), transparent 40%);
+		-webkit-mask:
+			linear-gradient(#fff 0 0) content-box,
 			linear-gradient(#fff 0 0);
 		-webkit-mask-composite: xor;
 		mask-composite: exclude;
 		pointer-events: none;
 		opacity: 0.5;
 	}
-	
+
 	/* Glass refraction layer - subtle sweep on hover */
 	.button::after {
 		content: '';
@@ -198,61 +185,37 @@
 
 	/* Tinted variants - subtle glass with hint of color */
 	.button--purple {
-		background: linear-gradient(
-			135deg,
-			rgba(147, 51, 234, 0.05) 0%,
-			rgba(147, 51, 234, 0.02) 100%
-		);
+		background: linear-gradient(135deg, rgba(147, 51, 234, 0.05) 0%, rgba(147, 51, 234, 0.02) 100%);
 		border-color: rgba(147, 51, 234, 0.15);
 		color: rgba(88, 28, 135, 0.9);
 	}
 
 	.button--pink {
-		background: linear-gradient(
-			135deg,
-			rgba(236, 72, 153, 0.05) 0%,
-			rgba(236, 72, 153, 0.02) 100%
-		);
+		background: linear-gradient(135deg, rgba(236, 72, 153, 0.05) 0%, rgba(236, 72, 153, 0.02) 100%);
 		border-color: rgba(236, 72, 153, 0.15);
 		color: rgba(157, 23, 77, 0.9);
 	}
 
 	.button--green {
-		background: linear-gradient(
-			135deg,
-			rgba(34, 197, 94, 0.05) 0%,
-			rgba(34, 197, 94, 0.02) 100%
-		);
+		background: linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(34, 197, 94, 0.02) 100%);
 		border-color: rgba(34, 197, 94, 0.15);
 		color: rgba(20, 83, 45, 0.9);
 	}
 
 	.button--blue {
-		background: linear-gradient(
-			135deg,
-			rgba(59, 130, 246, 0.05) 0%,
-			rgba(59, 130, 246, 0.02) 100%
-		);
+		background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%);
 		border-color: rgba(59, 130, 246, 0.15);
 		color: rgba(30, 58, 138, 0.9);
 	}
 
 	.button--yellow {
-		background: linear-gradient(
-			135deg,
-			rgba(245, 158, 11, 0.05) 0%,
-			rgba(245, 158, 11, 0.02) 100%
-		);
+		background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(245, 158, 11, 0.02) 100%);
 		border-color: rgba(245, 158, 11, 0.15);
 		color: rgba(120, 53, 15, 0.9);
 	}
 
 	.button--red {
-		background: linear-gradient(
-			135deg,
-			rgba(239, 68, 68, 0.05) 0%,
-			rgba(239, 68, 68, 0.02) 100%
-		);
+		background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(239, 68, 68, 0.02) 100%);
 		border-color: rgba(239, 68, 68, 0.15);
 		color: rgba(127, 29, 29, 0.9);
 	}
@@ -281,7 +244,7 @@
 	.button--ghost:hover:not(:disabled) {
 		background: rgba(255, 255, 255, 0.05);
 		backdrop-filter: blur(10px);
-		box-shadow: 
+		box-shadow:
 			0 8px 32px 0 rgba(31, 38, 135, 0.1),
 			inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 	}
@@ -322,31 +285,19 @@
 	}
 
 	:global(.dark) .button--green {
-		background: linear-gradient(
-			135deg,
-			rgba(74, 222, 128, 0.08) 0%,
-			rgba(74, 222, 128, 0.03) 100%
-		);
+		background: linear-gradient(135deg, rgba(74, 222, 128, 0.08) 0%, rgba(74, 222, 128, 0.03) 100%);
 		border-color: rgba(74, 222, 128, 0.2);
 		color: rgba(187, 247, 208, 0.9);
 	}
 
 	:global(.dark) .button--blue {
-		background: linear-gradient(
-			135deg,
-			rgba(96, 165, 250, 0.08) 0%,
-			rgba(96, 165, 250, 0.03) 100%
-		);
+		background: linear-gradient(135deg, rgba(96, 165, 250, 0.08) 0%, rgba(96, 165, 250, 0.03) 100%);
 		border-color: rgba(96, 165, 250, 0.2);
 		color: rgba(191, 219, 254, 0.9);
 	}
 
 	:global(.dark) .button--yellow {
-		background: linear-gradient(
-			135deg,
-			rgba(251, 191, 36, 0.08) 0%,
-			rgba(251, 191, 36, 0.03) 100%
-		);
+		background: linear-gradient(135deg, rgba(251, 191, 36, 0.08) 0%, rgba(251, 191, 36, 0.03) 100%);
 		border-color: rgba(251, 191, 36, 0.2);
 		color: rgba(254, 240, 138, 0.9);
 	}

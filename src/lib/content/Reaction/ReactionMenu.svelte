@@ -19,7 +19,13 @@
 	}
 </script>
 
-<div class="reaction-menu__toggle" role="button" tabindex="0" onclick={toggleEmojis} onkeypress={toggleEmojis}>
+<div
+	class="reaction-menu__toggle"
+	role="button"
+	tabindex="0"
+	onclick={toggleEmojis}
+	onkeypress={toggleEmojis}
+>
 	<div class="i-tabler-mood-smile-filled"></div>
 </div>
 {#if showEmojis}

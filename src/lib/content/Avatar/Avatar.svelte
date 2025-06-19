@@ -13,7 +13,7 @@
 		corner?: Snippet;
 	}
 
-	let { 
+	let {
 		image = $bindable(),
 		name = $bindable(),
 		status = $bindable(),

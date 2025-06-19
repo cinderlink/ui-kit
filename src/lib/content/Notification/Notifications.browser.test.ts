@@ -39,13 +39,13 @@ describe('Notifications component', () => {
 
 	test('renders notifications container', async () => {
 		const { container } = render(Notifications, {
-				notifications: mockNotifications
-			});
-		
+			notifications: mockNotifications
+		});
+
 		// Should render notifications container
 		const notificationsContainer = container.querySelector('.notifications');
 		expect(notificationsContainer).toBeTruthy();
-		
+
 		// Should render only non-dismissed notifications
 		const notifications = container.querySelectorAll('.notification');
 		expect(notifications.length).toBe(2);
@@ -53,9 +53,9 @@ describe('Notifications component', () => {
 
 	test('renders with custom header', async () => {
 		const { container } = render(Notifications, {
-				notifications: mockNotifications
-			});
-		
+			notifications: mockNotifications
+		});
+
 		// Check that header area exists
 		const header = container.querySelector('.notifications__header');
 		expect(header).toBeTruthy();
@@ -63,18 +63,18 @@ describe('Notifications component', () => {
 
 	test('renders default header when none provided', async () => {
 		const screen = render(Notifications, {
-				notifications: mockNotifications
-			});
-		
+			notifications: mockNotifications
+		});
+
 		const defaultHeader = await screen.getByText('Notifications title');
 		await expect.element(defaultHeader).toBeInTheDocument();
 	});
 
 	test('renders dismiss all button', async () => {
 		const screen = render(Notifications, {
-				notifications: mockNotifications
-			});
-		
+			notifications: mockNotifications
+		});
+
 		const dismissAllButton = await screen.getByText('Dismiss all');
 		await expect.element(dismissAllButton).toBeInTheDocument();
 	});
@@ -82,13 +82,13 @@ describe('Notifications component', () => {
 	test('handles dismiss all callback', async () => {
 		const handleDismissAll = vi.fn();
 		const screen = render(Notifications, {
-				notifications: mockNotifications,
-				ondismissedAll: handleDismissAll
-			});
-		
+			notifications: mockNotifications,
+			ondismissedAll: handleDismissAll
+		});
+
 		const dismissAllButton = await screen.getByText('Dismiss all');
 		await dismissAllButton.click();
-		
+
 		expect(handleDismissAll).toHaveBeenCalledTimes(1);
 		expect(handleDismissAll).toHaveBeenCalledWith(mockNotifications);
 	});
@@ -96,17 +96,17 @@ describe('Notifications component', () => {
 	test('handles individual notification dismiss', async () => {
 		const handleDismiss = vi.fn();
 		const { container } = render(Notifications, {
-				notifications: mockNotifications,
-				ondismiss: handleDismiss
-			});
-		
+			notifications: mockNotifications,
+			ondismiss: handleDismiss
+		});
+
 		// Find first dismiss button
 		const dismissButtons = container.querySelectorAll('[aria-label="Dismiss notification"]');
 		expect(dismissButtons.length).toBe(2);
-		
+
 		// Click first dismiss button
 		(dismissButtons[0] as HTMLElement).click();
-		
+
 		expect(handleDismiss).toHaveBeenCalledTimes(1);
 		expect(handleDismiss).toHaveBeenCalledWith('test-1');
 	});
@@ -120,28 +120,28 @@ describe('Notifications component', () => {
 				link: 'https://example.com'
 			}
 		];
-		
+
 		const { container } = render(Notifications, {
-				notifications: notificationsWithLink,
-				ongoToLink: handleGoToLink
-			});
-		
+			notifications: notificationsWithLink,
+			ongoToLink: handleGoToLink
+		});
+
 		// Find link button
 		const linkButton = container.querySelector('[aria-label="Go to link"]') as HTMLElement;
 		expect(linkButton).toBeTruthy();
 		linkButton.click();
-		
+
 		expect(handleGoToLink).toHaveBeenCalledTimes(1);
 		expect(handleGoToLink).toHaveBeenCalledWith(notificationsWithLink[1]);
 	});
 
 	test('does not render when all notifications are dismissed', async () => {
-		const allDismissed = mockNotifications.map(n => ({ ...n, dismissed: true }));
-		
+		const allDismissed = mockNotifications.map((n) => ({ ...n, dismissed: true }));
+
 		const { container } = render(Notifications, {
-				notifications: allDismissed
-			});
-		
+			notifications: allDismissed
+		});
+
 		// Should not render anything
 		const notificationsContainer = container.querySelector('.notifications');
 		expect(notificationsContainer).toBeFalsy();
@@ -149,9 +149,9 @@ describe('Notifications component', () => {
 
 	test('does not render with empty notifications array', async () => {
 		const { container } = render(Notifications, {
-				notifications: []
-			});
-		
+			notifications: []
+		});
+
 		// Should not render anything
 		const notificationsContainer = container.querySelector('.notifications');
 		expect(notificationsContainer).toBeFalsy();
@@ -159,17 +159,17 @@ describe('Notifications component', () => {
 
 	test('renders notification details correctly', async () => {
 		const { container } = render(Notifications, {
-				notifications: mockNotifications
-			});
-		
+			notifications: mockNotifications
+		});
+
 		// Check notification content exists
 		const notificationBodies = container.querySelectorAll('.notification__body');
 		expect(notificationBodies.length).toBe(2);
-		
+
 		// Check that titles are rendered
 		const titles = container.querySelectorAll('.font-bold');
 		expect(titles.length).toBeGreaterThan(0);
-		
+
 		// Verify some content is rendered
 		const content = container.textContent || '';
 		expect(content).toContain('notification');
@@ -177,23 +177,23 @@ describe('Notifications component', () => {
 
 	test('formats notification dates', async () => {
 		const { container } = render(Notifications, {
-				notifications: mockNotifications
-			});
-		
+			notifications: mockNotifications
+		});
+
 		// Should have date formatting in footer
 		const footers = container.querySelectorAll('.notification__footer');
 		expect(footers.length).toBeGreaterThan(0);
-		
+
 		// Check that dates are formatted
 		const dateRegex = /\w{3} \w{3} \d{2} \d{4}/; // e.g., "Mon Jan 01 2024"
 		let hasFormattedDate = false;
-		
-		footers.forEach(footer => {
+
+		footers.forEach((footer) => {
 			if (dateRegex.test(footer.textContent || '')) {
 				hasFormattedDate = true;
 			}
 		});
-		
+
 		expect(hasFormattedDate).toBe(true);
 	});
 });

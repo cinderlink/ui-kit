@@ -17,7 +17,13 @@
 </script>
 
 <div class="notifications-icon">
-	<div class="notifications-icon__icon {icon}" role="button" tabindex="0" onclick={onToggle} onkeypress={onToggle}></div>
+	<div
+		class="notifications-icon__icon {icon}"
+		role="button"
+		tabindex="0"
+		onclick={onToggle}
+		onkeypress={onToggle}
+	></div>
 	<NotificationsCount {count} />
 	{@render children?.({ toggle })}
 </div>

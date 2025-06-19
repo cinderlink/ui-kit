@@ -93,20 +93,16 @@
 		<Typography el="h3">Notification</Typography>
 		<Notification {notification}>
 			{#snippet header()}
-					
-					<span class="font-bold">{notification.title}</span>
-				
-					{/snippet}
+				<span class="font-bold">{notification.title}</span>
+			{/snippet}
 
 			<p>
 				{notification.body}
 			</p>
 
 			{#snippet footer()}
-					
-					<span class="text-xs">{new Date(notification.createdAt).toDateString()}</span>
-				
-					{/snippet}
+				<span class="text-xs">{new Date(notification.createdAt).toDateString()}</span>
+			{/snippet}
 		</Notification>
 		<hr class="my-4" />
 		<Typography el="h3">Usage</Typography>

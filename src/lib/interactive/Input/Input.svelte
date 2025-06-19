@@ -10,7 +10,7 @@
 		name?: string | undefined;
 		label?: string | undefined;
 		error?: string | undefined;
-		type?: 
+		type?:
 			| 'text'
 			| 'password'
 			| 'number'
@@ -91,7 +91,9 @@
 		errorSlot
 	}: Props = $props();
 
-	let computedPreviewClasses = $derived(preview ? 'flex-col gap-2 items-center justify-center' : previewClasses);
+	let computedPreviewClasses = $derived(
+		preview ? 'flex-col gap-2 items-center justify-center' : previewClasses
+	);
 	let empty = $derived(value === '');
 </script>
 
@@ -153,7 +155,7 @@
 				{name}
 				{disabled}
 				{autocomplete}
-				type={type}
+				{type}
 				{onfocus}
 				{onblur}
 				bind:value
@@ -303,20 +305,12 @@
 
 	.input--default:not(.input--file) .input__wrapper {
 		/* Glass with subtle tint */
-		background: linear-gradient(
-			135deg,
-			rgba(147, 51, 234, 0.03) 0%,
-			rgba(147, 51, 234, 0.01) 100%
-		);
+		background: linear-gradient(135deg, rgba(147, 51, 234, 0.03) 0%, rgba(147, 51, 234, 0.01) 100%);
 		@apply text-purple-900 dark:text-purple-50;
 	}
 	.input--inverted:not(.input--file) .input__wrapper {
 		/* Darker glass variant */
-		background: linear-gradient(
-			135deg,
-			rgba(147, 51, 234, 0.08) 0%,
-			rgba(147, 51, 234, 0.04) 100%
-		);
+		background: linear-gradient(135deg, rgba(147, 51, 234, 0.08) 0%, rgba(147, 51, 234, 0.04) 100%);
 		@apply text-purple-50;
 	}
 
@@ -329,7 +323,7 @@
 		box-shadow: var(--glass-shadow-hover);
 		border-color: rgba(147, 51, 234, 0.3);
 	}
-	
+
 	/* Dark mode adjustments */
 	:global(.dark) .input__wrapper {
 		/* Inherit glass variables which adjust for dark mode */

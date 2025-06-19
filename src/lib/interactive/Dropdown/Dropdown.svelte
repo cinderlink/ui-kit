@@ -94,7 +94,7 @@
 			onclick={() => onToggle(!toggled)}
 			onkeypress={onKeyPress}
 		>
-			{#if button}{@render button({ toggle: onToggle, })}{:else}
+			{#if button}{@render button({ toggle: onToggle })}{:else}
 				<div class="dropdown__selected">{type === 'select' ? selected.label : label}</div>
 				<div class="dropdown__icon {icon}" class:dropdown__icon--rotate={toggled}></div>
 			{/if}
@@ -104,7 +104,7 @@
 				transition:slide={{ duration: 200 }}
 				class="dropdown__menu dropdown__menu--{align} {size}"
 			>
-				{@render children?.({ toggle: onToggle, })}
+				{@render children?.({ toggle: onToggle })}
 			</div>
 		{/if}
 	</div>

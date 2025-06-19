@@ -11,12 +11,7 @@
 		sidebar?: Snippet;
 	}
 
-	let { 
-		autoCloseOnNavigate = true, 
-		onNavigate,
-		children,
-		sidebar: sidebarSlot
-	}: Props = $props();
+	let { autoCloseOnNavigate = true, onNavigate, children, sidebar: sidebarSlot }: Props = $props();
 
 	// Handle navigation auto-close
 	$effect(() => {
@@ -25,16 +20,16 @@
 				sidebarStore.closeOnNavigation();
 				onNavigate?.();
 			};
-			
+
 			// Listen for navigation changes
 			window.addEventListener('popstate', handleNavigation);
-			
+
 			return () => {
 				window.removeEventListener('popstate', handleNavigation);
 			};
 		}
 	});
-	
+
 	// Handle escape key to close sidebar
 	$effect(() => {
 		if (typeof window !== 'undefined') {
@@ -43,7 +38,7 @@
 					sidebarStore.close();
 				}
 			};
-			
+
 			window.addEventListener('keydown', handleKeydown);
 			return () => window.removeEventListener('keydown', handleKeydown);
 		}
@@ -53,15 +48,12 @@
 <div class="layout layout--sidebar">
 	<!-- Mobile backdrop -->
 	{#if sidebarStore.isMobile && sidebarStore.isOpen}
-		<button 
-			class="layout__backdrop"
-			onclick={() => sidebarStore.close()}
-			aria-label="Close sidebar"
+		<button class="layout__backdrop" onclick={() => sidebarStore.close()} aria-label="Close sidebar"
 		></button>
 	{/if}
-	
-	<aside 
-		class="layout__sidebar" 
+
+	<aside
+		class="layout__sidebar"
 		class:layout__sidebar--open={sidebarStore.isOpen}
 		class:layout__sidebar--mobile={sidebarStore.isMobile}
 		class:layout__sidebar--locked={sidebarStore.isLocked && !sidebarStore.isMobile}
@@ -77,7 +69,7 @@
 			{@render sidebarSlot()}
 		{/if}
 	</aside>
-	
+
 	<div class="layout__page">
 		<!-- Toggle button positioned at the top-left of the page content when sidebar is closed -->
 		{#if !sidebarStore.isOpen}

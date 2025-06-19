@@ -10,7 +10,6 @@
 </script>
 
 <script lang="ts">
-
 	import Emoji from '$lib/content/Emoji/Emoji.svelte';
 	import Markdown from '$lib/markup/Markdown/Markdown.svelte';
 	import Panel from '$lib/content/Panel/Panel.svelte';
@@ -34,9 +33,9 @@
 
 <Typography>{story.title}</Typography>
 <div class="story h-full">
-	<Markdown bind:value >
+	<Markdown bind:value>
 		{#snippet children({ renderedMarkdown })}
-				<Panel>
+			<Panel>
 				<List>
 					{#each list as item}
 						<ListItem variant="square" classes="flex-col items-start justify-start">
@@ -58,6 +57,6 @@
 					<Button type="submit">Submit</Button>
 				</form>
 			</div>
-					{/snippet}
-		</Markdown>
+		{/snippet}
+	</Markdown>
 </div>

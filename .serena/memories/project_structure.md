@@ -1,6 +1,7 @@
 # Cinderlink UI Kit - Project Structure
 
 ## Root Structure
+
 ```
 /
 ├── src/
@@ -17,6 +18,7 @@
 ```
 
 ## Component Library Structure (`src/lib/`)
+
 ```
 lib/
 ├── content/            # UI content components
@@ -64,6 +66,7 @@ lib/
 ```
 
 ## Documentation Site (`src/routes/`)
+
 ```
 routes/
 ├── +layout.svelte      # App layout
@@ -81,6 +84,7 @@ routes/
 ```
 
 ## Test Structure
+
 ```
 tests/
 ├── components/         # Component-specific tests
@@ -91,6 +95,7 @@ tests/
 ```
 
 ## Configuration Files
+
 - `svelte.config.js` - SvelteKit configuration
 - `vite.config.ts` - Vite build configuration
 - `vitest.config.ts` - Vitest test configuration

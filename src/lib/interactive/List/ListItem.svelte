@@ -8,10 +8,10 @@
 		el?: any;
 		interactive?: boolean;
 		style?: string;
-		transition?: FadeParams & { enable?: boolean } | undefined;
+		transition?: (FadeParams & { enable?: boolean }) | undefined;
 		classes?: string;
 		children?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let {

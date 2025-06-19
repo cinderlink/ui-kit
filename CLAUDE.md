@@ -38,22 +38,25 @@ bun run format:check     # Check formatting without changes
 #### Before Starting a Dev Server
 
 1. **Check for existing processes**:
+
    ```bash
    # Check if any dev server is already running on ports 3002-3004
    lsof -ti:3002,3003,3004
    ```
 
 2. **Kill existing processes if needed**:
+
    ```bash
    # Kill all processes on our dev ports
    lsof -ti:3002,3003,3004 | xargs kill -9 2>/dev/null || true
    ```
 
 3. **Use the dev script with proper logging**:
+
    ```bash
    # Start with visible logs in foreground (preferred for debugging)
    bun dev
-   
+
    # Or capture logs to a file
    bun dev > dev-server.log 2>&1 &
    echo $! > dev-server.pid
@@ -62,19 +65,21 @@ bun run format:check     # Check formatting without changes
 #### Managing Running Dev Server
 
 1. **Check server status**:
+
    ```bash
    # Check if server is running
    curl -s http://localhost:3002 > /dev/null && echo "Server is running" || echo "Server is not running"
-   
+
    # View logs if running in background
    tail -f dev-server.log
    ```
 
 2. **Proper shutdown**:
+
    ```bash
    # If you saved the PID
    kill $(cat dev-server.pid)
-   
+
    # Or find and kill by port
    lsof -ti:3002 | xargs kill
    ```
@@ -84,6 +89,7 @@ bun run format:check     # Check formatting without changes
 1. **Don't restart unnecessarily**: The dev server has HMR (Hot Module Replacement). File changes are automatically reflected without restart.
 
 2. **Check logs before restarting**: If something isn't working, check the terminal output or logs first:
+
    ```bash
    # If running in foreground, check the terminal
    # If running in background with logs:
@@ -115,18 +121,21 @@ tmux new-session -d -s ui-kit-dev 'bun dev'
 **CRITICAL**: These rules must be followed to maintain code quality and prevent issues:
 
 ### Pre-Commit Rules
+
 1. **NEVER use --no-verify**: Always fix linting errors properly instead of bypassing checks
 2. **Fix errors systematically**: Address each linting error by understanding and fixing the root cause
 3. **Test before committing**: Run `bun run check` and `bun run lint` before any commit
 4. **Small, focused commits**: Make atomic commits that address specific issues
 
 ### Development Approach
+
 1. **Read before writing**: Always read existing code to understand patterns before making changes
 2. **Follow existing conventions**: Match the codebase's style, patterns, and architecture
 3. **Verify changes work**: Test changes in the browser before proceeding
 4. **Think before acting**: Plan changes systematically instead of making rapid, careless edits
 
 ### Error Handling
+
 1. **Understand errors fully**: Read error messages completely and understand the root cause
 2. **Fix root causes**: Don't mask errors with workarounds
 3. **Test fixes thoroughly**: Ensure fixes don't break other functionality
@@ -135,7 +144,9 @@ tmux new-session -d -s ui-kit-dev 'bun dev'
 ## Architecture
 
 ### Component Organization
+
 Components are organized by category in `src/lib/`:
+
 - `/content` - UI content components (Avatar, Card, Typography, Notification, etc.)
 - `/interactive` - Interactive components (Button, Dropdown, Modal, Input, etc.)
 - `/indicator` - Status and loading indicators
@@ -146,7 +157,9 @@ Components are organized by category in `src/lib/`:
 - `/theme` - Theme management and dark mode support
 
 ### Component Structure Pattern
+
 Each component follows this structure:
+
 ```
 ComponentName/
 ├── ComponentName.svelte       # Main component using Svelte 5 runes
@@ -158,6 +171,7 @@ ComponentName/
 ### Key Architectural Decisions
 
 1. **Svelte 5 Runes**: All components use the new runes API:
+
    - `$props()` for component properties
    - `$state()` for reactive state
    - `$effect()` for side effects
@@ -203,12 +217,13 @@ ComponentName/
 ## Svelte 5 Migration Patterns Used
 
 ### Props and State
+
 ```typescript
 // Props declaration
 interface Props {
-  value?: string;
-  disabled?: boolean;
-  children?: Snippet;
+	value?: string;
+	disabled?: boolean;
+	children?: Snippet;
 }
 
 let { value = '', disabled = false, children }: Props = $props();
@@ -216,7 +231,7 @@ let { value = '', disabled = false, children }: Props = $props();
 // Reactive state
 let count = $state(0);
 
-// Derived values  
+// Derived values
 let doubled = $derived(count * 2);
 
 // Bindable props
@@ -224,6 +239,7 @@ let checked = $bindable(false);
 ```
 
 ### Event Handlers
+
 ```svelte
 <!-- Modern Svelte 5 syntax -->
 <button onclick={handleClick}>Click me</button>
@@ -233,6 +249,7 @@ let checked = $bindable(false);
 ```
 
 ### Snippets (replaces slots)
+
 ```svelte
 <!-- Define snippet prop -->
 interface Props {
@@ -255,31 +272,35 @@ interface Props {
 ### Core TypeScript Setup
 
 1. **Component Script Setup**
+
 ```svelte
 <script lang="ts">
-  // Always use TypeScript in components
+	// Always use TypeScript in components
 </script>
 ```
 
 2. **tsconfig.json Requirements**
+
 ```json
 {
-  "compilerOptions": {
-    "target": "ES2022",           // Minimum ES2022 for runes
-    "verbatimModuleSyntax": true, // Required for Svelte 5
-    "isolatedModules": true,      // Required for Svelte 5
-    "strict": true                // Enable strict type checking
-  }
+	"compilerOptions": {
+		"target": "ES2022", // Minimum ES2022 for runes
+		"verbatimModuleSyntax": true, // Required for Svelte 5
+		"isolatedModules": true, // Required for Svelte 5
+		"strict": true // Enable strict type checking
+	}
 }
 ```
 
 3. **File Extensions for Runes Outside Components**
+
 - Use `.svelte.ts` or `.svelte.js` to use runes in non-component files
 - Required for shared state management with runes
 
 ### Runes Type Annotations
 
 #### $state() Typing
+
 ```typescript
 // Explicit typing
 let count = $state<number>(0);
@@ -287,11 +308,12 @@ let message = $state<string>('hello');
 let items = $state<string[]>([]);
 
 // Type inference (preferred when obvious)
-let count = $state(0);           // inferred as number
-let message = $state('hello');   // inferred as string
+let count = $state(0); // inferred as number
+let message = $state('hello'); // inferred as string
 ```
 
 #### $derived() Typing
+
 ```typescript
 let count = $state(0);
 
@@ -299,18 +321,19 @@ let count = $state(0);
 let doubled = $derived<number>(count * 2);
 
 // Type inference (preferred)
-let doubled = $derived(count * 2);           // inferred as number
-let isEven = $derived(count % 2 === 0);      // inferred as boolean
+let doubled = $derived(count * 2); // inferred as number
+let isEven = $derived(count % 2 === 0); // inferred as boolean
 ```
 
 #### $props() Typing
+
 ```typescript
 // Interface-based typing (recommended)
 interface Props {
-  required: string;
-  optional?: number;
-  callback?: (value: string) => void;
-  children?: Snippet;
+	required: string;
+	optional?: number;
+	callback?: (value: string) => void;
+	children?: Snippet;
 }
 
 let { required, optional = 42, callback, children }: Props = $props();
@@ -320,26 +343,28 @@ let { name, age } = $props<{ name: string; age: number }>();
 ```
 
 #### $effect() Typing
+
 ```typescript
 // Effects don't need explicit typing (void return)
 $effect(() => {
-  console.log('Effect runs');
+	console.log('Effect runs');
 });
 
 // Pre-effect with cleanup
 $effect(() => {
-  const cleanup = setupSomething();
-  
-  return () => {
-    cleanup();
-  };
+	const cleanup = setupSomething();
+
+	return () => {
+		cleanup();
+	};
 });
 ```
 
 #### $bindable() Typing
+
 ```typescript
 interface Props {
-  value: string;
+	value: string;
 }
 
 let { value = $bindable('') }: Props = $props();
@@ -347,56 +372,60 @@ let { value = $bindable('') }: Props = $props();
 ```
 
 ### Generic Components
+
 ```typescript
 <script lang="ts" generics="T extends Record<string, any>">
   interface Props {
     items: T[];
     onSelect: (item: T) => void;
   }
-  
+
   let { items, onSelect }: Props = $props();
 </script>
 ```
 
 ### Event Handler Typing
+
 ```typescript
 // Use standard DOM event types
 function handleClick(event: MouseEvent) {
-  // TypeScript knows event is MouseEvent
+	// TypeScript knows event is MouseEvent
 }
 
 function handleInput(event: Event) {
-  const target = event.target as HTMLInputElement;
-  console.log(target.value);
+	const target = event.target as HTMLInputElement;
+	console.log(target.value);
 }
 
 // Custom event handlers via props
 interface Props {
-  onSubmit?: (data: FormData) => void;
-  onCancel?: () => void;
+	onSubmit?: (data: FormData) => void;
+	onCancel?: () => void;
 }
 ```
 
 ### Shared State with Runes (store.svelte.ts)
+
 ```typescript
 // file: store.svelte.ts
 export class AppState {
-  count = $state(0);
-  user = $state<User | null>(null);
-  
-  increment() {
-    this.count++;
-  }
-  
-  setUser(user: User) {
-    this.user = user;
-  }
+	count = $state(0);
+	user = $state<User | null>(null);
+
+	increment() {
+		this.count++;
+	}
+
+	setUser(user: User) {
+		this.user = user;
+	}
 }
 
 export const appState = new AppState();
 ```
 
 ### Component Type Utilities
+
 ```typescript
 import type { Component, ComponentProps } from 'svelte';
 import MyComponent from './MyComponent.svelte';
@@ -411,6 +440,7 @@ let currentComponent: Component = MyComponent;
 ### Type Checking Commands
 
 #### svelte-check with Machine-Readable Output
+
 ```bash
 # Basic machine output
 npx svelte-check --output machine
@@ -429,6 +459,7 @@ npx svelte-check --ignore "src/legacy/**"
 ```
 
 #### Machine Output Format
+
 ```bash
 # Basic format
 1590680326283 ERROR "component.svelte" 1:16 "Type error message"
@@ -440,6 +471,7 @@ npx svelte-check --ignore "src/legacy/**"
 ### Common TypeScript Issues & Solutions
 
 #### Issue: Runes not recognized
+
 ```typescript
 // ❌ Wrong - trying to import runes
 import { $state } from 'svelte/runes';
@@ -449,6 +481,7 @@ let count = $state(0);
 ```
 
 #### Issue: Type conflicts with DOM events
+
 ```typescript
 // ❌ Wrong - conflicting types
 function onclick(event: any) {}
@@ -458,18 +491,20 @@ function onclick(event: MouseEvent) {}
 ```
 
 #### Issue: Props destructuring errors
+
 ```typescript
 // ❌ Wrong - missing interface
 let { value } = $props();
 
 // ✅ Correct - typed interface
 interface Props {
-  value: string;
+	value: string;
 }
 let { value }: Props = $props();
 ```
 
 ### Migration from Svelte 4 TypeScript
+
 ```typescript
 // Svelte 4 (legacy)
 export let value: string;
@@ -477,13 +512,14 @@ $: doubled = value.length * 2;
 
 // Svelte 5 (runes)
 interface Props {
-  value: string;
+	value: string;
 }
 let { value }: Props = $props();
 let doubled = $derived(value.length * 2);
 ```
 
 ### Development Workflow
+
 1. Use `svelte-check` for type validation
 2. Configure IDE with Svelte extension
 3. Enable strict TypeScript mode

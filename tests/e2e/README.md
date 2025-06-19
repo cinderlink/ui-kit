@@ -5,21 +5,25 @@ This directory contains end-to-end tests using Playwright that test complete use
 ## Test Categories
 
 ### 1. User Journey Tests (`navigation.e2e.ts`)
+
 - Complete user flows through the application
 - Multi-page interactions
 - State persistence across pages
 
 ### 2. Visual Regression Tests (`visual-regression.e2e.ts`)
+
 - Cross-browser visual consistency
 - Responsive design validation
 - Theme switching visual tests
 
 ### 3. Performance Tests (`performance.e2e.ts`)
+
 - Page load performance
 - Memory leak detection
 - Bundle size validation
 
 ### 4. Accessibility Tests (`accessibility.e2e.ts`)
+
 - WCAG compliance
 - Keyboard navigation
 - Screen reader compatibility
@@ -49,6 +53,7 @@ bunx playwright test --debug
 ## Writing E2E Tests
 
 E2E tests should focus on:
+
 - Real user scenarios
 - Cross-browser compatibility
 - Integration with external services
@@ -56,17 +61,19 @@ E2E tests should focus on:
 - Accessibility compliance
 
 Example:
+
 ```typescript
 test('user completes onboarding flow', async ({ page }) => {
-  // Test complete user journey
-  await page.goto('/onboarding');
-  // ... multi-step flow
+	// Test complete user journey
+	await page.goto('/onboarding');
+	// ... multi-step flow
 });
 ```
 
 ## CI/CD Integration
 
 E2E tests run on:
+
 - Pull requests (smoke tests)
 - Pre-deployment (full suite)
 - Post-deployment (validation)

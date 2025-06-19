@@ -5,11 +5,11 @@ import StatusIndicator from './StatusIndicator.svelte';
 describe('StatusIndicator component', () => {
 	test('renders with default props', async () => {
 		const { container } = render(StatusIndicator);
-		
+
 		// Should render status indicator
 		const indicator = container.querySelector('.status-indicator');
 		expect(indicator).toBeTruthy();
-		
+
 		// Should have default status and size
 		expect(indicator?.classList.contains('status-indicator--info')).toBe(true);
 		expect(indicator?.classList.contains('status-indicator--xs')).toBe(true);
@@ -17,10 +17,10 @@ describe('StatusIndicator component', () => {
 
 	test('renders with different status types', async () => {
 		const statuses = ['success', 'warning', 'error', 'info', 'neutral'] as const;
-		
+
 		for (const status of statuses) {
 			const { container } = render(StatusIndicator, { status });
-			
+
 			const indicator = container.querySelector('.status-indicator');
 			expect(indicator?.classList.contains(`status-indicator--${status}`)).toBe(true);
 		}
@@ -28,10 +28,10 @@ describe('StatusIndicator component', () => {
 
 	test('renders with different sizes', async () => {
 		const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
-		
+
 		for (const size of sizes) {
 			const { container } = render(StatusIndicator, { size });
-			
+
 			const indicator = container.querySelector('.status-indicator');
 			expect(indicator?.classList.contains(`status-indicator--${size}`)).toBe(true);
 		}
@@ -39,9 +39,9 @@ describe('StatusIndicator component', () => {
 
 	test('applies custom classes', async () => {
 		const { container } = render(StatusIndicator, {
-				classes: 'custom-indicator animate-pulse'
-			});
-		
+			classes: 'custom-indicator animate-pulse'
+		});
+
 		const indicator = container.querySelector('.status-indicator');
 		expect(indicator?.classList.contains('custom-indicator')).toBe(true);
 		expect(indicator?.classList.contains('animate-pulse')).toBe(true);
@@ -49,20 +49,20 @@ describe('StatusIndicator component', () => {
 
 	test('renders with children snippet', async () => {
 		const { container } = render(StatusIndicator);
-		
+
 		// Component should render even without children
 		const indicator = container.querySelector('.status-indicator');
 		expect(indicator).toBeTruthy();
-		
+
 		// Note: Testing actual snippet content is complex in Vitest browser mode
 	});
 
 	test('combines status and size correctly', async () => {
 		const { container } = render(StatusIndicator, {
-				status: 'success',
-				size: 'lg'
-			});
-		
+			status: 'success',
+			size: 'lg'
+		});
+
 		const indicator = container.querySelector('.status-indicator');
 		expect(indicator?.classList.contains('status-indicator--success')).toBe(true);
 		expect(indicator?.classList.contains('status-indicator--lg')).toBe(true);
@@ -70,10 +70,10 @@ describe('StatusIndicator component', () => {
 
 	test('renders inline-flex container', async () => {
 		const { container } = render(StatusIndicator);
-		
+
 		const indicator = container.querySelector('.status-indicator');
 		expect(indicator).toBeTruthy();
-		
+
 		// Should be a div with status indicator classes
 		expect(indicator?.tagName).toBe('DIV');
 	});
@@ -87,10 +87,10 @@ describe('StatusIndicator component', () => {
 			info: 'blue',
 			neutral: 'gray'
 		};
-		
+
 		for (const [status] of Object.entries(statusColors)) {
 			const { container } = render(StatusIndicator, { status: status as any });
-			
+
 			const indicator = container.querySelector('.status-indicator');
 			expect(indicator?.classList.contains(`status-indicator--${status}`)).toBe(true);
 		}

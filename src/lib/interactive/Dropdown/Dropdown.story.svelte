@@ -26,11 +26,11 @@
 		<Typography el="h3">Customize</Typography>
 		<Toggle id="toggle-dropdown" bind:toggled={square}>
 			{#snippet on()}
-						Square
-					{/snippet}
+				Square
+			{/snippet}
 			{#snippet off()}
-						Rounded - Default
-					{/snippet}
+				Rounded - Default
+			{/snippet}
 		</Toggle>
 	</Panel>
 	<Panel variant="surface">

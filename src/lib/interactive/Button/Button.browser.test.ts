@@ -5,7 +5,7 @@ import Button from './Button.svelte';
 describe('Button component (Browser Tests)', () => {
 	test('renders button with text', async () => {
 		const screen = render(Button);
-		
+
 		// vitest-browser-svelte provides a simple API for rendering
 		// We'll wait for better Svelte 5 snippet support
 		const button = await screen.getByRole('button');
@@ -15,12 +15,14 @@ describe('Button component (Browser Tests)', () => {
 	test('handles click events', async () => {
 		let clicked = false;
 		const screen = render(Button, {
-			onclick: () => { clicked = true; }
+			onclick: () => {
+				clicked = true;
+			}
 		});
-		
+
 		const button = await screen.getByRole('button');
 		await button.click();
-		
+
 		// Check that our click handler was called
 		expect(clicked).toBe(true);
 	});
@@ -30,7 +32,7 @@ describe('Button component (Browser Tests)', () => {
 			variant: 'purple',
 			size: 'lg'
 		});
-		
+
 		const button = await screen.getByRole('button');
 		await expect.element(button).toHaveClass('button--purple');
 		await expect.element(button).toHaveClass('button--lg');
@@ -40,7 +42,7 @@ describe('Button component (Browser Tests)', () => {
 		const screen = render(Button, {
 			disabled: true
 		});
-		
+
 		const button = await screen.getByRole('button');
 		await expect.element(button).toBeDisabled();
 	});

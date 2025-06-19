@@ -18,8 +18,8 @@
 		"test:browser:ui": "vitest --config vitest.browser.config.ts --ui",
 		"test:coverage": "vitest run --coverage",
 		"lint": "oxlint",
-		"format": "prettier --plugin-search-dir . --write .",
-		"format:check": "prettier --plugin-search-dir . --check .",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
 		"prepare": "husky"
 	},
 	"exports": {

@@ -4,7 +4,6 @@
 	import Dropdown from '../Dropdown/Dropdown.svelte';
 	import type { Option } from '../Dropdown/types';
 
-
 	interface Props {
 		align?: FlexAlign;
 		justify?: FlexJustify;
@@ -13,7 +12,7 @@
 		variant?: 'default' | 'dark' | 'light' | 'pink' | 'green' | 'blue' | 'yellow';
 		square?: boolean;
 		options?: Option[];
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let {
@@ -39,7 +38,7 @@
 	// Sync value with selected when value changes
 	$effect(() => {
 		if (value && options.length > 0) {
-			const option = options.find(opt => opt.value === value);
+			const option = options.find((opt) => opt.value === value);
 			if (option && option !== selected) {
 				selected = option;
 			}
@@ -47,7 +46,7 @@
 	});
 </script>
 
-<Dropdown {...rest} {variant} {square} label={selected.label} >
+<Dropdown {...rest} {variant} {square} label={selected.label}>
 	{#snippet children({ toggle })}
 		{#if options.length > 0}
 			<ul class="dropdown__list dropdown__list--{variant}" class:dropdown__list--square={square}>

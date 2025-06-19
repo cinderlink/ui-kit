@@ -109,7 +109,7 @@
 		@apply bg-white shadow-lg border border-gray-300;
 		@apply transform translate-x-0 left-1;
 	}
-	
+
 	.toggle__slider--toggled {
 		@apply transform translate-x-16 bg-white;
 	}
@@ -117,7 +117,7 @@
 	.toggle__input:checked + .toggle__slider-container {
 		@apply bg-purple-500 dark-(bg-purple-600);
 	}
-	
+
 	.toggle__input:checked + .toggle__slider-container .toggle__text-off {
 		@apply text-purple-200;
 	}

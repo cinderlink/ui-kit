@@ -60,14 +60,13 @@ export default defineConfig({
 	/>
 
 	<Typography el="h1">Installation</Typography>
-	<Typography el="p">
-		Get started with @cinderlink/ui-kit in your Svelte 5 project.
-	</Typography>
+	<Typography el="p">Get started with @cinderlink/ui-kit in your Svelte 5 project.</Typography>
 
 	<Card>
 		<Typography el="h2" classes="mb-3">Package Installation</Typography>
 		<Typography el="p" classes="mb-4">
-			Install the UI kit using your package manager. We recommend pnpm for the best workspace support:
+			Install the UI kit using your package manager. We recommend pnpm for the best workspace
+			support:
 		</Typography>
 
 		<div class="space-y-4">
@@ -90,9 +89,7 @@ export default defineConfig({
 
 	<Card>
 		<Typography el="h2" classes="mb-3">Requirements</Typography>
-		<Typography el="p" classes="mb-3">
-			The UI kit requires the following dependencies:
-		</Typography>
+		<Typography el="p" classes="mb-3">The UI kit requires the following dependencies:</Typography>
 		<ul class="space-y-2 text-sm">
 			<li>• Svelte 5.x</li>
 			<li>• UnoCSS (for styling)</li>
@@ -126,21 +123,28 @@ export default defineConfig({
 
 	<Card>
 		<Typography el="h2" classes="mb-3">Basic Usage</Typography>
-		<Typography el="p" classes="mb-4">
-			Import and use components in your Svelte files:
-		</Typography>
+		<Typography el="p" classes="mb-4">Import and use components in your Svelte files:</Typography>
 		<CodeEditor bind:code={basicUsage} language="svelte" readOnly />
 	</Card>
 
 	<Card>
 		<Typography el="h2" classes="mb-3">Next Steps</Typography>
-		<Typography el="p" classes="mb-3">
-			Now that you have the UI kit installed, explore:
-		</Typography>
+		<Typography el="p" classes="mb-3">Now that you have the UI kit installed, explore:</Typography>
 		<ul class="space-y-2 text-sm">
-			<li>• <a href="/guides/quickstart" class="text-purple-600 hover:text-purple-800">Quick Start Guide</a></li>
-			<li>• <a href="/components/content" class="text-purple-600 hover:text-purple-800">Component Library</a></li>
-			<li>• <a href="/themes/overview" class="text-purple-600 hover:text-purple-800">Theming System</a></li>
+			<li>
+				• <a href="/guides/quickstart" class="text-purple-600 hover:text-purple-800"
+					>Quick Start Guide</a
+				>
+			</li>
+			<li>
+				• <a href="/components/content" class="text-purple-600 hover:text-purple-800"
+					>Component Library</a
+				>
+			</li>
+			<li>
+				• <a href="/themes/overview" class="text-purple-600 hover:text-purple-800">Theming System</a
+				>
+			</li>
 		</ul>
 	</Card>
 </PageContainer>

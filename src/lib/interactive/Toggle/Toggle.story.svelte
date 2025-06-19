@@ -28,8 +28,8 @@
 	<Panel variant="surface">
 		<Toggle id="1" bind:toggled bind:size disabled={disableToggle}>
 			{#snippet label()}
-						<div >Toggle label</div>
-					{/snippet}
+				<div>Toggle label</div>
+			{/snippet}
 		</Toggle>
 	</Panel>
 	<br />
@@ -38,8 +38,8 @@
 			<Typography el="p">Status: {toggled ? 'On' : 'Off (default)'}</Typography>
 			<Toggle id="2" bind:toggled={disableToggle}>
 				{#snippet label()}
-								<div >Disable</div>
-							{/snippet}
+					<div>Disable</div>
+				{/snippet}
 			</Toggle>
 			<Select
 				label="Size"

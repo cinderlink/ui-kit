@@ -1,5 +1,4 @@
 <script lang="ts">
-
 	import './Theme.css';
 	import { theme } from '$lib/theme';
 	interface Props {

@@ -90,7 +90,9 @@ export function getAverageImageColor(img: HTMLImageElement): { r: number; g: num
 
 	const imageData = ctx.getImageData(0, 0, 32, 32);
 	const data = imageData.data;
-	let r = 0, g = 0, b = 0;
+	let r = 0,
+		g = 0,
+		b = 0;
 
 	for (let i = 0; i < data.length; i += 4) {
 		r += data[i];
@@ -135,7 +137,7 @@ export function getGlassRecommendations(backgroundLuminance: number): {
 			shadowIntensity: 0.8
 		};
 	}
-	
+
 	// Dark backgrounds (0.1-0.3)
 	if (backgroundLuminance < 0.3) {
 		return {
@@ -145,7 +147,7 @@ export function getGlassRecommendations(backgroundLuminance: number): {
 			shadowIntensity: 0.6
 		};
 	}
-	
+
 	// Medium backgrounds (0.3-0.7)
 	if (backgroundLuminance < 0.7) {
 		return {
@@ -155,7 +157,7 @@ export function getGlassRecommendations(backgroundLuminance: number): {
 			shadowIntensity: 0.4
 		};
 	}
-	
+
 	// Light backgrounds (0.7-0.9)
 	if (backgroundLuminance < 0.9) {
 		return {
@@ -165,7 +167,7 @@ export function getGlassRecommendations(backgroundLuminance: number): {
 			shadowIntensity: 0.3
 		};
 	}
-	
+
 	// Very light backgrounds (0.9-1.0)
 	return {
 		variant: 'surface',
@@ -183,7 +185,7 @@ export function getGlassRecommendations(backgroundLuminance: number): {
 export function generateContrastVariables(backgroundLuminance: number): Record<string, string> {
 	const recommendations = getGlassRecommendations(backgroundLuminance);
 	const isDark = getBackgroundType(backgroundLuminance) === 'dark';
-	
+
 	return {
 		'--glass-bg-opacity': String(0.1 * recommendations.opacityMultiplier),
 		'--glass-border-opacity': String(recommendations.borderOpacity),

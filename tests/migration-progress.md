@@ -3,6 +3,7 @@
 ## Completed Component Migrations
 
 ### ✅ Button Component
+
 - **Button.browser.test.ts**: 4 tests passing
   - Basic rendering
   - Click events
@@ -14,6 +15,7 @@
   - Button variants
 
 ### ✅ Card Component
+
 - **Card.browser.test.ts**: 5 tests passing
   - Default rendering
   - Title rendering
@@ -27,6 +29,7 @@
   - Usage examples
 
 ### ✅ Avatar Component
+
 - **Avatar.browser.test.ts**: 6 tests passing
   - Default rendering
   - Image and name props
@@ -41,6 +44,7 @@
   - Status display
 
 ### ✅ Modal Component
+
 - **Modal.browser.test.ts**: 6 tests passing
   - Closed by default
   - Opens with visible prop
@@ -58,6 +62,7 @@
 ## Migration Patterns Established
 
 ### Component Test Pattern
+
 ```typescript
 // 1. Use container.querySelector for class-based selection
 const { container } = render(Component);
@@ -74,6 +79,7 @@ expect(element?.classList.contains('variant-class')).toBe(true);
 ```
 
 ### Story Test Pattern
+
 ```typescript
 // 1. Test basic page structure
 const heading = await screen.getByRole('heading', { level: 1 });
@@ -83,7 +89,7 @@ const elements = container.querySelectorAll('.selector');
 expect(elements.length).toBe(expectedCount);
 
 // 3. Use container for counting/filtering
-const count = Array.from(elements).filter(e => condition).length;
+const count = Array.from(elements).filter((e) => condition).length;
 
 // 4. Keep tests simple and focused on structure
 ```
@@ -91,6 +97,7 @@ const count = Array.from(elements).filter(e => condition).length;
 ## Next Components to Migrate
 
 Priority order based on test complexity:
+
 1. Avatar - Simple display component
 2. Modal - Interactive with open/close states
 3. Dropdown - Complex interaction patterns

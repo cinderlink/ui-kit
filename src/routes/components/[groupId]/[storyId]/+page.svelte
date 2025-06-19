@@ -29,8 +29,12 @@
 		</div>
 	{:else}
 		<div class="error-panel">
-			<Typography el="h2" class="text-red-900 dark:text-red-100 mb-4 font-semibold">404 - Component Story Not Found</Typography>
-			<p class="text-red-800 dark:text-red-200">Component story not found: <strong>{page.params.groupId}/{page.params.storyId}</strong></p>
+			<Typography el="h2" class="text-red-900 dark:text-red-100 mb-4 font-semibold"
+				>404 - Component Story Not Found</Typography
+			>
+			<p class="text-red-800 dark:text-red-200">
+				Component story not found: <strong>{page.params.groupId}/{page.params.storyId}</strong>
+			</p>
 		</div>
 	{/if}
 </div>
@@ -50,28 +54,30 @@
 		box-shadow: var(--glass-shadow);
 		min-height: 400px;
 	}
-	
+
 	.error-panel {
 		@apply p-8 rounded-2xl backdrop-blur-lg;
 		@apply border border-red-200/50 dark:border-red-500/30;
-		background: linear-gradient(135deg, 
-			rgba(254, 226, 226, 0.6), 
+		background: linear-gradient(
+			135deg,
+			rgba(254, 226, 226, 0.6),
 			rgba(254, 226, 226, 0.3),
 			rgba(239, 68, 68, 0.05)
 		);
 		backdrop-filter: blur(16px);
-		box-shadow: 
+		box-shadow:
 			0 4px 16px rgba(239, 68, 68, 0.1),
 			inset 0 1px 0 rgba(255, 255, 255, 0.3);
 	}
-	
+
 	:global(.dark) .error-panel {
-		background: linear-gradient(135deg, 
-			rgba(127, 29, 29, 0.3), 
+		background: linear-gradient(
+			135deg,
+			rgba(127, 29, 29, 0.3),
 			rgba(127, 29, 29, 0.2),
 			rgba(239, 68, 68, 0.1)
 		);
-		box-shadow: 
+		box-shadow:
 			0 4px 16px rgba(239, 68, 68, 0.2),
 			inset 0 1px 0 rgba(255, 255, 255, 0.1);
 	}

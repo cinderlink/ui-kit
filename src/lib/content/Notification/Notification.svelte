@@ -2,7 +2,7 @@
 	import { fly } from 'svelte/transition';
 	import type { NotificationType } from './types';
 	import Panel from '$lib/content/Panel/Panel.svelte';
-	
+
 	interface Props {
 		notification: NotificationType;
 		classes?: string;
@@ -34,8 +34,8 @@
 </script>
 
 {#if !notification.dismissed}
-	<Panel 
-		variant="surface" 
+	<Panel
+		variant="surface"
 		depth={2}
 		size="sm"
 		transition={{ enable: true, duration: 300 }}
@@ -43,11 +43,7 @@
 	>
 		<div class="notification__header">
 			{@render header?.()}
-			<button 
-				class="notification__close" 
-				onclick={onDismiss}
-				aria-label="Dismiss notification"
-			>
+			<button class="notification__close" onclick={onDismiss} aria-label="Dismiss notification">
 				<i class="icon i-tabler-x"></i>
 			</button>
 		</div>
@@ -58,11 +54,7 @@
 			<div class="notification__footer">
 				{@render footer?.()}
 				{#if notification.link}
-					<button 
-						class="notification__link" 
-						onclick={goToLink}
-						aria-label="Go to link"
-					>
+					<button class="notification__link" onclick={goToLink} aria-label="Go to link">
 						<i class="icon i-tabler-external-link"></i>
 					</button>
 				{/if}
@@ -75,19 +67,19 @@
 	:global(.notification) {
 		@apply w-full overflow-hidden;
 	}
-	
+
 	.notification__header {
 		@apply flex justify-between items-center mb-2;
 		@apply text-sm font-semibold;
 		@apply text-gray-700 dark:text-gray-300;
 	}
-	
+
 	.notification__body {
 		@apply flex-1;
 		@apply text-sm;
 		@apply text-gray-600 dark:text-gray-400;
 	}
-	
+
 	.notification__footer {
 		@apply flex justify-between items-center mt-3 pt-3;
 		@apply border-t border-gray-200 dark:border-gray-700;

@@ -42,30 +42,30 @@
 		box-shadow: var(--glass-shadow);
 		transition: var(--glass-transition);
 	}
-	
+
 	.breadcrumb__nav {
 		@apply flex flex-row items-center gap-2;
 	}
-	
+
 	.breadcrumb__actions {
 		@apply flex items-center gap-2;
 	}
-	
+
 	.breadcrumb:hover {
 		box-shadow: var(--glass-shadow-hover);
 		border-color: rgba(147, 51, 234, 0.2);
 	}
-	
+
 	.breadcrumb__separator {
 		@apply text-purple-600/60 dark:text-purple-300/60 mx-1;
 	}
-	
+
 	.breadcrumb__link {
 		@apply text-purple-600 dark:text-purple-200 font-medium;
 		@apply px-2 py-1 rounded-lg transition-all duration-200 ease-out;
 		@apply hover:bg-purple-100/50 dark:hover:bg-purple-800/30;
 	}
-	
+
 	.breadcrumb__link--active {
 		@apply text-purple-800 dark:text-purple-100 font-semibold;
 		@apply bg-purple-100/70 dark:bg-purple-800/50;

@@ -22,7 +22,13 @@
 </script>
 
 <!-- svelte:element is the correct syntax for dynamic HTML elements in Svelte 5 -->
-<svelte:element this={el} class="typography {classes} {className} {margin}" {onclick} {onkeypress} role={onclick || onkeypress ? 'button' : undefined}>
+<svelte:element
+	this={el}
+	class="typography {classes} {className} {margin}"
+	{onclick}
+	{onkeypress}
+	role={onclick || onkeypress ? 'button' : undefined}
+>
 	{@render children?.()}
 </svelte:element>
 

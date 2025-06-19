@@ -137,11 +137,7 @@ button.card {
 	left: 0;
 	right: 0;
 	height: 1px;
-	background: linear-gradient(90deg, 
-		transparent, 
-		rgba(255, 255, 255, 0.3), 
-		transparent
-	);
+	background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
 	opacity: 0;
 	transition: opacity 0.3s ease;
 	border-radius: inherit;

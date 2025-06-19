@@ -13,12 +13,13 @@ As of early 2025, testing Svelte 5 components is still evolving. The traditional
 ## Current Approaches
 
 ### 1. Unit Tests for Logic
+
 Extract business logic into separate functions and test those directly:
 
 ```typescript
 // utils/calculations.ts
 export function calculateTotal(items: Item[]) {
-  return items.reduce((sum, item) => sum + item.price, 0);
+	return items.reduce((sum, item) => sum + item.price, 0);
 }
 
 // utils/calculations.test.ts
@@ -26,32 +27,34 @@ import { describe, it, expect } from 'vitest';
 import { calculateTotal } from './calculations';
 
 describe('calculateTotal', () => {
-  it('sums item prices', () => {
-    expect(calculateTotal([{ price: 10 }, { price: 20 }])).toBe(30);
-  });
+	it('sums item prices', () => {
+		expect(calculateTotal([{ price: 10 }, { price: 20 }])).toBe(30);
+	});
 });
 ```
 
 ### 2. E2E Tests with Playwright
+
 For component behavior testing, use Playwright E2E tests:
 
 ```typescript
 import { test, expect } from '@playwright/test';
 
 test('button click increments counter', async ({ page }) => {
-  await page.goto('/components/interactive/button');
-  await page.click('button:has-text("Increment")');
-  await expect(page.locator('text=Count: 1')).toBeVisible();
+	await page.goto('/components/interactive/button');
+	await page.click('button:has-text("Increment")');
+	await expect(page.locator('text=Count: 1')).toBeVisible();
 });
 ```
 
 ### 3. Visual Regression Tests
+
 Use Playwright's screenshot testing for visual components:
 
 ```typescript
 test('button variants', async ({ page }) => {
-  await page.goto('/components/interactive/button');
-  await expect(page).toHaveScreenshot('button-variants.png');
+	await page.goto('/components/interactive/button');
+	await expect(page).toHaveScreenshot('button-variants.png');
 });
 ```
 

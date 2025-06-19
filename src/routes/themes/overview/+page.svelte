@@ -7,9 +7,12 @@
 	import ThemeToggle from '$lib/theme/ThemeToggle.svelte';
 	import { theme } from '$lib/theme';
 
-	let themeUsage = `<` + `script lang="ts">
+	let themeUsage =
+		`<` +
+		`script lang="ts">
   import { Theme, ThemeToggle } from '@cinderlink/ui-kit';
-<` + `/script>
+<` +
+		`/script>
 
 <!-- Wrap your app with Theme provider -->
 <Theme>
@@ -77,7 +80,8 @@ html.dark .bg-white.dark\\:bg-gray-900 {
 <div class="max-w-4xl mx-auto space-y-6">
 	<Typography el="h1">Theming Overview</Typography>
 	<Typography el="p">
-		@cinderlink/ui-kit provides a comprehensive theming system built on UnoCSS with automatic dark mode support.
+		@cinderlink/ui-kit provides a comprehensive theming system built on UnoCSS with automatic dark
+		mode support.
 	</Typography>
 
 	<!-- Theme Demo -->
@@ -89,14 +93,14 @@ html.dark .bg-white.dark\\:bg-gray-900 {
 		<Typography el="p" classes="mb-4">
 			Toggle the theme above to see how all components adapt automatically:
 		</Typography>
-		
+
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 			<div class="space-y-3">
 				<Button variant="glass">Primary Button</Button>
 				<Button variant="outlined">Outlined Button</Button>
 				<Button variant="frosted">Frosted Button</Button>
 			</div>
-			
+
 			<div class="bg-purple-50 dark:bg-purple-900 p-4 rounded-lg transition-colors">
 				<Typography el="h4" classes="mb-2">Theme-aware Container</Typography>
 				<Typography el="p">
@@ -113,11 +117,12 @@ html.dark .bg-white.dark\\:bg-gray-900 {
 			<div>
 				<Typography el="h4" classes="mb-2">1. Theme Provider</Typography>
 				<Typography el="p" classes="mb-3">
-					The Theme component manages the global theme state and applies the appropriate CSS classes:
+					The Theme component manages the global theme state and applies the appropriate CSS
+					classes:
 				</Typography>
 				<CodeEditor bind:code={themeUsage} language="svelte" readOnly />
 			</div>
-			
+
 			<div>
 				<Typography el="h4" classes="mb-2">2. CSS Class Strategy</Typography>
 				<Typography el="p" classes="mb-3">
@@ -129,7 +134,7 @@ html.dark .bg-white.dark\\:bg-gray-900 {
 					<li>• All components use `dark:` prefixed classes</li>
 				</ul>
 			</div>
-			
+
 			<div>
 				<Typography el="h4" classes="mb-2">3. UnoCSS Integration</Typography>
 				<Typography el="p">
@@ -145,7 +150,7 @@ html.dark .bg-white.dark\\:bg-gray-900 {
 		<Typography el="p" classes="mb-4">
 			The UI kit uses a carefully crafted color palette optimized for accessibility:
 		</Typography>
-		
+
 		<div class="grid grid-cols-2 md:grid-cols-5 gap-4">
 			<div class="space-y-2">
 				<Typography el="h4">Purple</Typography>
@@ -155,7 +160,7 @@ html.dark .bg-white.dark\\:bg-gray-900 {
 					<div class="w-full h-8 bg-purple-900 rounded"></div>
 				</div>
 			</div>
-			
+
 			<div class="space-y-2">
 				<Typography el="h4">Green</Typography>
 				<div class="space-y-1">
@@ -164,7 +169,7 @@ html.dark .bg-white.dark\\:bg-gray-900 {
 					<div class="w-full h-8 bg-green-900 rounded"></div>
 				</div>
 			</div>
-			
+
 			<div class="space-y-2">
 				<Typography el="h4">Blue</Typography>
 				<div class="space-y-1">
@@ -173,7 +178,7 @@ html.dark .bg-white.dark\\:bg-gray-900 {
 					<div class="w-full h-8 bg-blue-900 rounded"></div>
 				</div>
 			</div>
-			
+
 			<div class="space-y-2">
 				<Typography el="h4">Yellow</Typography>
 				<div class="space-y-1">
@@ -182,7 +187,7 @@ html.dark .bg-white.dark\\:bg-gray-900 {
 					<div class="w-full h-8 bg-yellow-900 rounded"></div>
 				</div>
 			</div>
-			
+
 			<div class="space-y-2">
 				<Typography el="h4">Gray</Typography>
 				<div class="space-y-1">
@@ -214,7 +219,7 @@ html.dark .bg-white.dark\\:bg-gray-900 {
 				</Typography>
 				<CodeEditor bind:code={darkModeCSS} language="css" readOnly />
 			</div>
-			
+
 			<div>
 				<Typography el="h4" classes="mb-2">State Management</Typography>
 				<Typography el="p">
@@ -231,16 +236,31 @@ html.dark .bg-white.dark\\:bg-gray-900 {
 			<div class="space-y-2">
 				<Typography el="h4">Learn More</Typography>
 				<ul class="space-y-1 text-sm">
-					<li>• <a href="/themes/colors" class="text-purple-600 hover:text-purple-800">Color System</a></li>
-					<li>• <a href="/themes/customization" class="text-purple-600 hover:text-purple-800">Custom Themes</a></li>
+					<li>
+						• <a href="/themes/colors" class="text-purple-600 hover:text-purple-800">Color System</a
+						>
+					</li>
+					<li>
+						• <a href="/themes/customization" class="text-purple-600 hover:text-purple-800"
+							>Custom Themes</a
+						>
+					</li>
 				</ul>
 			</div>
-			
+
 			<div class="space-y-2">
 				<Typography el="h4">See Examples</Typography>
 				<ul class="space-y-1 text-sm">
-					<li>• <a href="/guides/examples" class="text-purple-600 hover:text-purple-800">Live Examples</a></li>
-					<li>• <a href="/components/content" class="text-purple-600 hover:text-purple-800">Component Gallery</a></li>
+					<li>
+						• <a href="/guides/examples" class="text-purple-600 hover:text-purple-800"
+							>Live Examples</a
+						>
+					</li>
+					<li>
+						• <a href="/components/content" class="text-purple-600 hover:text-purple-800"
+							>Component Gallery</a
+						>
+					</li>
 				</ul>
 			</div>
 		</div>

@@ -1,9 +1,11 @@
 # Suggested Commands for Cinderlink UI Kit
 
 ## Package Manager
+
 **CRITICAL**: Always use `pnpm` instead of `npm`
 
 ## Development Commands
+
 ```bash
 # Start dev server (port 3002)
 pnpm dev
@@ -16,6 +18,7 @@ pnpm build
 ```
 
 ## Testing Commands
+
 ```bash
 # Run Playwright E2E tests
 pnpm test
@@ -31,6 +34,7 @@ pnpm test:coverage
 ```
 
 ## Code Quality Commands
+
 ```bash
 # Type checking with svelte-check
 pnpm check
@@ -49,6 +53,7 @@ pnpm format:check
 ```
 
 ## Dev Server Management
+
 ```bash
 # Check if server is running
 lsof -ti:3002
@@ -65,6 +70,7 @@ curl -s http://localhost:3002 > /dev/null && echo "Server is running" || echo "S
 ```
 
 ## System Commands (Darwin/macOS)
+
 ```bash
 # Git
 git status
@@ -91,7 +97,9 @@ tmux attach -t ui-kit-dev
 ```
 
 ## Bun Support
+
 The project also has bun.lock, indicating Bun compatibility:
+
 ```bash
 bun install
 bun run dev

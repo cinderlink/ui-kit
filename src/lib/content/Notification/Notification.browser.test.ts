@@ -17,13 +17,13 @@ describe('Notification component', () => {
 
 	test('renders notification with content', async () => {
 		const { container } = render(Notification, {
-				notification: mockNotification
-			});
-		
+			notification: mockNotification
+		});
+
 		// Should render notification container
 		const notification = container.querySelector('.notification');
 		expect(notification).toBeTruthy();
-		
+
 		// Should have dismiss button
 		const dismissButton = container.querySelector('[aria-label="Dismiss notification"]');
 		expect(dismissButton).toBeTruthy();
@@ -31,9 +31,9 @@ describe('Notification component', () => {
 
 	test('renders with header snippet', async () => {
 		const { container } = render(Notification, {
-				notification: mockNotification
-			});
-		
+			notification: mockNotification
+		});
+
 		// Test with header by checking structure
 		const header = container.querySelector('.notification__header');
 		expect(header).toBeTruthy();
@@ -41,9 +41,9 @@ describe('Notification component', () => {
 
 	test('renders with children snippet', async () => {
 		const { container } = render(Notification, {
-				notification: mockNotification
-			});
-		
+			notification: mockNotification
+		});
+
 		// Test with children by checking structure
 		const body = container.querySelector('.notification__body');
 		expect(body).toBeTruthy();
@@ -51,9 +51,9 @@ describe('Notification component', () => {
 
 	test('renders with footer snippet', async () => {
 		const { container } = render(Notification, {
-				notification: mockNotification
-			});
-		
+			notification: mockNotification
+		});
+
 		// Footer is conditional - only renders if footer snippet or link exists
 		const footer = container.querySelector('.notification__footer');
 		// Should not exist without footer or link
@@ -65,11 +65,11 @@ describe('Notification component', () => {
 			...mockNotification,
 			link: 'https://example.com'
 		};
-		
+
 		const screen = render(Notification, {
-				notification: notificationWithLink
-			});
-		
+			notification: notificationWithLink
+		});
+
 		const linkButton = await screen.getByRole('button', { name: 'Go to link' });
 		await expect.element(linkButton).toBeInTheDocument();
 	});
@@ -77,13 +77,13 @@ describe('Notification component', () => {
 	test('handles dismiss callback', async () => {
 		const handleDismiss = vi.fn();
 		const screen = render(Notification, {
-				notification: mockNotification,
-				ondismiss: handleDismiss
-			});
-		
+			notification: mockNotification,
+			ondismiss: handleDismiss
+		});
+
 		const dismissButton = await screen.getByRole('button', { name: 'Dismiss notification' });
 		await dismissButton.click();
-		
+
 		expect(handleDismiss).toHaveBeenCalledTimes(1);
 		expect(handleDismiss).toHaveBeenCalledWith(mockNotification);
 	});
@@ -95,16 +95,16 @@ describe('Notification component', () => {
 			...mockNotification,
 			link: 'https://example.com'
 		};
-		
+
 		const screen = render(Notification, {
-				notification: notificationWithLink,
-				ongoToLink: handleGoToLink,
-				ondismiss: handleDismiss
-			});
-		
+			notification: notificationWithLink,
+			ongoToLink: handleGoToLink,
+			ondismiss: handleDismiss
+		});
+
 		const linkButton = await screen.getByRole('button', { name: 'Go to link' });
 		await linkButton.click();
-		
+
 		// Should call both callbacks
 		expect(handleGoToLink).toHaveBeenCalledTimes(1);
 		expect(handleGoToLink).toHaveBeenCalledWith(notificationWithLink);
@@ -116,11 +116,11 @@ describe('Notification component', () => {
 			...mockNotification,
 			dismissed: true
 		};
-		
+
 		const { container } = render(Notification, {
-				notification: dismissedNotification
-			});
-		
+			notification: dismissedNotification
+		});
+
 		// Should not render notification
 		const notification = container.querySelector('.notification');
 		expect(notification).toBeFalsy();
@@ -128,31 +128,31 @@ describe('Notification component', () => {
 
 	test('applies custom classes', async () => {
 		const { container } = render(Notification, {
-				notification: mockNotification,
-				classes: 'custom-notification-class'
-			});
-		
+			notification: mockNotification,
+			classes: 'custom-notification-class'
+		});
+
 		// Wait a bit for Panel to render
-		await new Promise(resolve => setTimeout(resolve, 100));
-		
+		await new Promise((resolve) => setTimeout(resolve, 100));
+
 		const notification = container.querySelector('.notification');
 		expect(notification?.classList.contains('custom-notification-class')).toBe(true);
 	});
 
 	test('renders with different notification types', async () => {
 		const types = ['info', 'success', 'warning', 'error'];
-		
+
 		for (const type of types) {
 			const typedNotification = {
 				...mockNotification,
 				type,
 				uid: `test-${type}`
 			};
-			
+
 			const { container } = render(Notification, {
-					notification: typedNotification
-				});
-			
+				notification: typedNotification
+			});
+
 			// Should render for all types
 			const notification = container.querySelector('.notification');
 			expect(notification).toBeTruthy();

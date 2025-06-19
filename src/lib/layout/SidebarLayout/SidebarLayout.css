@@ -9,18 +9,18 @@
 	@apply overflow-y-auto overflow-x-visible;
 	@apply flex flex-col items-start justify-start;
 	@apply transition-transform duration-300 ease-out;
-	
+
 	/* Mobile width */
 	width: min(85vw, 320px);
 	transform: translateX(-100%);
-	
+
 	/* Use glass design system - just like panels */
 	background: var(--glass-bg-frosted);
 	backdrop-filter: blur(var(--glass-blur-heavy)) saturate(var(--glass-saturation));
 	-webkit-backdrop-filter: blur(var(--glass-blur-heavy)) saturate(var(--glass-saturation));
 	border: var(--glass-border);
 	box-shadow: var(--glass-shadow);
-	
+
 	/* Minimal padding */
 	padding: 0.75rem;
 }
@@ -34,15 +34,16 @@
 		max-width: 280px;
 		transform: translateX(0);
 		padding: 1rem;
-		
+
 		/* Use slightly lighter glass on desktop */
 		background: var(--glass-bg-surface);
 		backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
 		-webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
 	}
-	
+
 	/* Hide on desktop by default */
-	.layout.layout--sidebar aside.layout__sidebar:not(.layout__sidebar--locked):not(.layout__sidebar--open) {
+	.layout.layout--sidebar
+		aside.layout__sidebar:not(.layout__sidebar--locked):not(.layout__sidebar--open) {
 		transform: translateX(-100%);
 		margin-right: -280px;
 	}
@@ -65,8 +66,12 @@
 }
 
 @keyframes fadeIn {
-	from { opacity: 0; }
-	to { opacity: 1; }
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
 
 .layout.layout--sidebar aside.layout__sidebar a:not(.button) {
@@ -82,7 +87,7 @@
 	@apply relative; /* For positioning the toggle */
 	/* Clean, minimal background */
 	background: #fafbfc;
-	
+
 	/* Add transition for desktop sidebar toggle */
 	@apply transition-all duration-300 ease-out;
 }
@@ -153,7 +158,6 @@
 	/* Ensure shadows are visible */
 	@apply relative z-10;
 }
-
 
 #theme .layout.layout--sidebar aside nav > a:not(.button) {
 	@apply flex flex-row gap-2 items-center p-2 border-b-2 w-full border-neutral-300 text-purple-600 transition-colors duration-300;

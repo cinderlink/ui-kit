@@ -20,7 +20,7 @@
 		[key: string]: any;
 	}
 
-	let { 
+	let {
 		align = 'items-center',
 		justify = 'justify-center',
 		href = undefined,
@@ -35,18 +35,16 @@
 		footer,
 		...restProps
 	}: Props = $props();
-	
+
 	// Determine the wrapper element and props
 	let wrapperTag = $derived(onclick ? 'button' : 'div');
-	let wrapperClass = $derived(`card card--${variant} card--${color} ${classes} ${className} ${href || onclick ? 'card--interactive' : ''}`);
+	let wrapperClass = $derived(
+		`card card--${variant} card--${color} ${classes} ${className} ${href || onclick ? 'card--interactive' : ''}`
+	);
 </script>
 
 {#if onclick}
-	<button
-		class={wrapperClass}
-		{onclick}
-		{...restProps}
-	>
+	<button class={wrapperClass} {onclick} {...restProps}>
 		{#if title || titleSlot}
 			<div class="card__title">
 				{#if titleSlot}
@@ -70,10 +68,7 @@
 		{/if}
 	</button>
 {:else}
-	<div
-		class={wrapperClass}
-		{...restProps}
-	>
+	<div class={wrapperClass} {...restProps}>
 		{#if href}
 			<a {href} class="card__link">
 				{#if title || titleSlot}

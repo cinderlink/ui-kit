@@ -8,12 +8,7 @@
 		children?: import('svelte').Snippet;
 	}
 
-	let {
-		status = 'info',
-		size = 'xs',
-		classes = '',
-		children
-	}: Props = $props();
+	let { status = 'info', size = 'xs', classes = '', children }: Props = $props();
 </script>
 
 <div class="status-indicator status-indicator--{status} status-indicator--{size} {classes}">

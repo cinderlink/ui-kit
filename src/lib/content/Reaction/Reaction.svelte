@@ -12,13 +12,7 @@
 		onreactionclick?: (data: { reaction: Reaction; id: string }) => void;
 	}
 
-	let { 
-		id = '', 
-		reactions = [], 
-		children,
-		onreactionadd,
-		onreactionclick
-	}: Props = $props();
+	let { id = '', reactions = [], children, onreactionadd, onreactionclick }: Props = $props();
 
 	function onReactionAdd(emoji: string) {
 		let reaction: Reaction = { id: '1', emoji, count: 1 };

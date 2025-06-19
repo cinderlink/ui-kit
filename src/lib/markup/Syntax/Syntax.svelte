@@ -5,7 +5,7 @@
 	import lightTheme from 'svelte-highlight/styles/a11y-light';
 	import { theme } from '$lib/theme';
 	import { onMount } from 'svelte';
-	
+
 	interface Props {
 		code?: string;
 		language?: string;
@@ -19,12 +19,12 @@
 		ref = $bindable(undefined),
 		dark = false
 	}: Props = $props();
-	
+
 	let style = $state(theme.darkMode || dark ? darkTheme : lightTheme);
 	$effect(() => {
 		style = theme.darkMode || dark ? darkTheme : lightTheme;
 	});
-	
+
 	// Map string identifiers to language definition functions expected by Highlight
 	const languageMap: Record<string, any> = {
 		javascript: lang.javascript,
@@ -71,7 +71,7 @@
 		border: var(--glass-border);
 		box-shadow: var(--glass-shadow);
 	}
-	
+
 	:global(.dark) .syntax-highlight :global(pre) {
 		background: var(--glass-bg-surface);
 		color: rgba(255, 255, 255, 0.9);

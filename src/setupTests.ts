@@ -8,12 +8,12 @@ const require = createRequire(import.meta.url);
 const matchers = require('@testing-library/jest-dom/matchers');
 // debug
 console.log('[setup] expect.extend type:', typeof expect.extend);
-console.log('[setup] matchers keys:', Object.keys(matchers).slice(0,5), '...');
+console.log('[setup] matchers keys:', Object.keys(matchers).slice(0, 5), '...');
 expect.extend(matchers);
 import { cleanup } from '@testing-library/svelte';
 
 afterEach(() => {
-  cleanup();
+	cleanup();
 });
 
 // Any additional global test setup can be added here.
