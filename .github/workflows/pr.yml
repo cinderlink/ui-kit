@@ -15,6 +15,7 @@ jobs:
       lint-status: ${{ steps.lint.outcome }}
       format-status: ${{ steps.format.outcome }}
       typecheck-status: ${{ steps.typecheck.outcome }}
+      unit-test-status: ${{ steps.unit-test.outcome }}
       test-status: ${{ steps.test.outcome }}
       build-status: ${{ steps.build.outcome }}
       e2e-status: ${{ steps.e2e.outcome }}
@@ -41,6 +42,11 @@ jobs:
       - name: Run type checking
         id: typecheck
         run: bun run check
+
+      - name: Run unit tests
+        id: unit-test
+        run: bun run test:unit --run
+        if: matrix.browser == 'chromium' # Only run once
 
       - name: Install Playwright browsers
         run: bunx playwright install --with-deps ${{ matrix.browser }}
@@ -160,6 +166,7 @@ jobs:
               lint: '${{ needs.test.outputs.lint-status }}',
               format: '${{ needs.test.outputs.format-status }}',
               typecheck: '${{ needs.test.outputs.typecheck-status }}',
+              unittest: '${{ needs.test.outputs.unit-test-status }}',
               test: '${{ needs.test.outputs.test-status }}',
               build: '${{ needs.test.outputs.build-status }}',
             };
@@ -183,7 +190,8 @@ jobs:
             | Linting (oxlint) | ${getStatusEmoji(testResults.lint)} |
             | Formatting (prettier) | ${getStatusEmoji(testResults.format)} |
             | Type Checking (svelte-check) | ${getStatusEmoji(testResults.typecheck)} |
-            | Unit Tests (vitest) | ${getStatusEmoji(testResults.test)} |
+            | Unit Tests (vitest) | ${getStatusEmoji(testResults.unittest)} |
+            | Browser Tests (vitest) | ${getStatusEmoji(testResults.test)} |
             | Build | ${getStatusEmoji(testResults.build)} |
             | E2E Tests | ${getStatusEmoji(testResults.chromium)} |
             

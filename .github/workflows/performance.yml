@@ -39,8 +39,8 @@ jobs:
             http://localhost:3000/components
             http://localhost:3000/guides/quickstart
           budgetPath: ./lighthouse-budget.json
-          uploadArtifacts: true
-          temporaryPublicStorage: true
+          uploadArtifacts: false
+          temporaryPublicStorage: false
 
   bundle-size:
     runs-on: ubuntu-latest
@@ -74,28 +74,5 @@ jobs:
             exit 1
           fi
 
-      - name: Comment PR with bundle size
-        uses: actions/github-script@v7
-        if: github.event_name == 'pull_request'
-        with:
-          script: |
-            const fs = require('fs');
-            const { execSync } = require('child_process');
-
-            const bundleInfo = execSync('find dist -name "*.js" -exec du -h {} +').toString();
-            const totalSize = execSync('find dist -name "*.js" -exec du -c {} + | tail -1').toString();
-
-            const comment = `## 📦 Bundle Size Report
-
-            \`\`\`
-            ${bundleInfo}
-            ${totalSize}
-            \`\`\`
-            `;
-
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: comment
-            });
+      # Bundle size reporting is now handled by the comprehensive PR report in pr.yml
+      # This avoids duplicate comments and provides a unified view
