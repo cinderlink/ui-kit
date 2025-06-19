@@ -4,8 +4,10 @@
 	"version": "1.0.0-next.0",
 	"scripts": {
 		"dev": "vite dev --port 3002",
+		"preview": "vite preview --port 4173",
 		"watch": "svelte-package --watch",
 		"build": "svelte-kit sync && svelte-package",
+		"build:app": "vite build",
 		"test": "bun run test:browser",
 		"test:all": "bun run test:browser && bun run test:e2e",
 		"test:e2e": "playwright test --config playwright-e2e.config.ts",

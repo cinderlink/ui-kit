@@ -11,6 +11,13 @@ jobs:
     strategy:
       matrix:
         browser: [chromium, firefox, webkit]
+    outputs:
+      lint-status: ${{ steps.lint.outcome }}
+      format-status: ${{ steps.format.outcome }}
+      typecheck-status: ${{ steps.typecheck.outcome }}
+      test-status: ${{ steps.test.outcome }}
+      build-status: ${{ steps.build.outcome }}
+      e2e-status: ${{ steps.e2e.outcome }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -24,26 +31,38 @@ jobs:
         run: bun install
 
       - name: Run linting
+        id: lint
         run: bun run lint
 
       - name: Run formatting check
+        id: format
         run: bun run format:check
 
       - name: Run type checking
+        id: typecheck
         run: bun run check
 
       - name: Install Playwright browsers
         run: bunx playwright install --with-deps ${{ matrix.browser }}
 
       - name: Run browser tests (Vitest)
+        id: test
         run: bun run test:browser --run
         if: matrix.browser == 'chromium' # Only run once
 
       - name: Build package
+        id: build
         run: bun run build
 
+      - name: Build app for E2E tests
+        run: bun run build:app
+        if: success() && (steps.build.outcome == 'success')
+
       - name: Run E2E tests (${{ matrix.browser }})
+        id: e2e
         run: bun run test:e2e --project=${{ matrix.browser }}
+        env:
+          CI: true
 
       - name: Upload test artifacts on failure
         uses: actions/upload-artifact@v4
@@ -77,3 +96,139 @@ jobs:
         with:
           file: ./coverage/lcov.info
           fail_ci_if_error: true
+
+  # Comprehensive PR Report
+  report:
+    needs: [test, coverage]
+    runs-on: ubuntu-latest
+    if: always() # Run even if tests fail
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build for bundle analysis
+        run: bun run build
+        continue-on-error: true
+
+      - name: Analyze bundle size
+        id: bundle
+        run: |
+          if [ -d "dist" ]; then
+            echo "js_files<<EOF" >> $GITHUB_OUTPUT
+            find dist -name "*.js" -exec du -h {} + | sort -h >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+            
+            total_size=$(find dist -name "*.js" -exec du -c {} + | tail -1 | awk '{print $1}')
+            echo "total_size=${total_size}" >> $GITHUB_OUTPUT
+            
+            # Get individual file sizes for main files
+            if [ -f "dist/index.js" ]; then
+              index_size=$(du -h dist/index.js | awk '{print $1}')
+              echo "index_size=${index_size}" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "js_files=Build failed - no dist directory" >> $GITHUB_OUTPUT
+            echo "total_size=0" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create or Update PR Comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('<!-- cinderlink-ui-kit-pr-report -->')
+            );
+            
+            // Collect test results from matrix
+            const testResults = {
+              chromium: '${{ needs.test.outputs.e2e-status }}',
+              lint: '${{ needs.test.outputs.lint-status }}',
+              format: '${{ needs.test.outputs.format-status }}',
+              typecheck: '${{ needs.test.outputs.typecheck-status }}',
+              test: '${{ needs.test.outputs.test-status }}',
+              build: '${{ needs.test.outputs.build-status }}',
+            };
+            
+            // Status emoji helper
+            const getStatusEmoji = (status) => {
+              return status === 'success' ? '✅' : status === 'failure' ? '❌' : '⏭️';
+            };
+            
+            const bundleSize = '${{ steps.bundle.outputs.total_size }}';
+            const bundleFiles = `${{ steps.bundle.outputs.js_files }}`;
+            const indexSize = '${{ steps.bundle.outputs.index_size }}' || 'N/A';
+            
+            const body = `<!-- cinderlink-ui-kit-pr-report -->
+            # 📊 Cinderlink UI Kit - PR Report
+            
+            ## 🔍 Code Quality Checks
+            
+            | Check | Status |
+            |-------|--------|
+            | Linting (oxlint) | ${getStatusEmoji(testResults.lint)} |
+            | Formatting (prettier) | ${getStatusEmoji(testResults.format)} |
+            | Type Checking (svelte-check) | ${getStatusEmoji(testResults.typecheck)} |
+            | Unit Tests (vitest) | ${getStatusEmoji(testResults.test)} |
+            | Build | ${getStatusEmoji(testResults.build)} |
+            | E2E Tests | ${getStatusEmoji(testResults.chromium)} |
+            
+            ## 📦 Bundle Size Analysis
+            
+            **Total JS Bundle Size:** ${bundleSize}KB ${bundleSize > 500 ? '⚠️ (exceeds 500KB limit)' : '✅'}
+            
+            <details>
+            <summary>📁 File Breakdown</summary>
+            
+            \`\`\`
+            ${bundleFiles}
+            \`\`\`
+            </details>
+            
+            ## 🎯 Performance Metrics
+            
+            | Metric | Value |
+            |--------|-------|
+            | Main Bundle (index.js) | ${indexSize} |
+            | Total Bundle Size | ${bundleSize}KB |
+            | Bundle Size Limit | 500KB |
+            
+            ## 📈 Workflow Summary
+            
+            - **Branch:** \`${{ github.head_ref }}\`
+            - **Commit:** \`${{ github.sha.substring(0, 7) }}\`
+            - **Workflow Run:** [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            
+            ---
+            <sub>Last updated: ${new Date().toUTCString()}</sub>
+            `;
+            
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body
+              });
+            }
