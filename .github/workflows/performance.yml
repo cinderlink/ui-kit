@@ -24,11 +24,11 @@ jobs:
         run: bun install
 
       - name: Build application
-        run: bun run build
+        run: bun run build:app
 
       - name: Serve application
         run: |
-          bunx serve -l 3000 .svelte-kit/output/client &
+          bun run preview --port 3000 &
           sleep 5
 
       - name: Run Lighthouse CI
