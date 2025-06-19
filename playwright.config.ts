@@ -2,6 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
 	testDir: './tests',
+	testMatch: '**/*.spec.ts',
 	fullyParallel: true,
 	forbidOnly: !!process.env.CI,
 	retries: process.env.CI ? 2 : 0,
@@ -27,7 +28,7 @@ export default defineConfig({
 		// }
 	],
 	webServer: {
-		command: 'pnpm dev',
+		command: 'bun dev',
 		port: 3002,
 		reuseExistingServer: !process.env.CI,
 		timeout: 120000,

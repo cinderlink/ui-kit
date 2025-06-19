@@ -15,7 +15,7 @@
 
 	let md: MarkdownIt | undefined = $state();
 	let searchValue = $state('');
-	
+
 	onMount(() => {
 		md = new MarkdownItLib();
 		md.use(emojiModule.default);
@@ -30,9 +30,11 @@
 		onselected?.(emoji);
 	}
 
-	let filtered = $derived(Object.keys(emojiList).filter((key) => {
-		return key.includes(searchValue);
-	}));
+	let filtered = $derived(
+		Object.keys(emojiList).filter((key) => {
+			return key.includes(searchValue);
+		})
+	);
 </script>
 
 {#if md}
@@ -47,7 +49,7 @@
 			/>
 			<div class="list__container">
 				{#each filtered as key}
-					<span class="emoji emoji__{key}" onclick={onClick} onkeypress={onClick}>
+					<span class="emoji emoji__{key}" role="button" tabindex="0" onclick={onClick} onkeypress={onClick}>
 						{@html md.render(`:${key}:`)}
 					</span>
 				{/each}

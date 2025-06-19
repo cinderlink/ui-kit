@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Reaction } from './types';
-	
+
 	interface Props {
 		reactions?: Reaction[];
 		onreactionclick?: (reaction: Reaction) => void;
@@ -17,6 +17,8 @@
 	{#each reactions as reaction}
 		<div
 			class="reactions-list__reaction"
+			role="button"
+			tabindex="0"
 			onclick={() => handleReactionClick(reaction)}
 			onkeypress={() => handleReactionClick(reaction)}
 		>

@@ -60,22 +60,21 @@
 	onchange={updateImagePreview}
 >
 	{#snippet previewSlot()}
-	
-			{#if preview_render}{@render preview_render({ image, })}{:else}
-				<Avatar image={image || undefined} {size} classes="bg-gray-400 dark-bg-blue-100" />
-			{/if}
-		
+		{#if preview_render}{@render preview_render({ image })}{:else}
+			<Avatar image={image || undefined} {size} classes="bg-gray-400 dark-bg-blue-100" />
+		{/if}
 	{/snippet}
 	{#snippet buttonSlot()}
 		<div
-			
 			class="input--file__button input--file__button--{size}"
+			role="button"
+			tabindex="0"
 			onclick={() => {
-			if (inputRef) inputRef.click();
-		}}
+				if (inputRef) inputRef.click();
+			}}
 			onkeypress={() => {
-			if (inputRef) inputRef.click();
-		}}
+				if (inputRef) inputRef.click();
+			}}
 		>
 			<div class="input--file__text">
 				{#if selected}

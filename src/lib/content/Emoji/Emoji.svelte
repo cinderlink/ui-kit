@@ -44,6 +44,8 @@
 		<div
 			class="emojis__btn"
 			class:active={showEmojis}
+			role="button"
+			tabindex="0"
 			onclick={toggleEmojis}
 			onkeypress={toggleEmojis}
 		>
