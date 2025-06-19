@@ -12,69 +12,69 @@ jobs:
       matrix:
         browser: [chromium, firefox, webkit]
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v4
+      - name: Check out repository
+        uses: actions/checkout@v4
 
-    - name: Setup Bun
-      uses: oven-sh/setup-bun@v1
-      with:
-        bun-version: latest
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
 
-    - name: Install dependencies
-      run: bun install
+      - name: Install dependencies
+        run: bun install
 
-    - name: Run linting
-      run: bun run lint
+      - name: Run linting
+        run: bun run lint
 
-    - name: Run formatting check
-      run: bun run format:check
+      - name: Run formatting check
+        run: bun run format:check
 
-    - name: Run type checking
-      run: bun run check
+      - name: Run type checking
+        run: bun run check
 
-    - name: Run browser tests (Vitest)
-      run: bun run test:browser --run
-      if: matrix.browser == 'chromium'  # Only run once
+      - name: Run browser tests (Vitest)
+        run: bun run test:browser --run
+        if: matrix.browser == 'chromium' # Only run once
 
-    - name: Build package
-      run: bun run build
+      - name: Build package
+        run: bun run build
 
-    # E2E tests - run on multiple browsers
-    - name: Install Playwright browsers
-      run: bunx playwright install --with-deps ${{ matrix.browser }}
+      # E2E tests - run on multiple browsers
+      - name: Install Playwright browsers
+        run: bunx playwright install --with-deps ${{ matrix.browser }}
 
-    - name: Run E2E tests (${{ matrix.browser }})
-      run: bun run test:e2e --project=${{ matrix.browser }}
+      - name: Run E2E tests (${{ matrix.browser }})
+        run: bun run test:e2e --project=${{ matrix.browser }}
 
-    - name: Upload test artifacts on failure
-      uses: actions/upload-artifact@v4
-      if: failure()
-      with:
-        name: test-artifacts-${{ matrix.browser }}
-        path: |
-          playwright-report/
-          test-results/
-          tests/e2e/__screenshots__/
+      - name: Upload test artifacts on failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: test-artifacts-${{ matrix.browser }}
+          path: |
+            playwright-report/
+            test-results/
+            tests/e2e/__screenshots__/
 
   coverage:
     runs-on: ubuntu-latest
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v4
+      - name: Check out repository
+        uses: actions/checkout@v4
 
-    - name: Setup Bun
-      uses: oven-sh/setup-bun@v1
-      with:
-        bun-version: latest
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
 
-    - name: Install dependencies
-      run: bun install
+      - name: Install dependencies
+        run: bun install
 
-    - name: Run tests with coverage
-      run: bun run test:coverage
+      - name: Run tests with coverage
+        run: bun run test:coverage
 
-    - name: Upload coverage reports
-      uses: codecov/codecov-action@v4
-      with:
-        file: ./coverage/lcov.info
-        fail_ci_if_error: true
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v4
+        with:
+          file: ./coverage/lcov.info
+          fail_ci_if_error: true
