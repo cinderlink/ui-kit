@@ -19,9 +19,7 @@ describe('StatusIndicator component', () => {
 		const statuses = ['success', 'warning', 'error', 'info', 'neutral'] as const;
 		
 		for (const status of statuses) {
-			const { container } = render(StatusIndicator, {
-				props: { status }
-			});
+			const { container } = render(StatusIndicator, { status });
 			
 			const indicator = container.querySelector('.status-indicator');
 			expect(indicator?.classList.contains(`status-indicator--${status}`)).toBe(true);
@@ -32,9 +30,7 @@ describe('StatusIndicator component', () => {
 		const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
 		
 		for (const size of sizes) {
-			const { container } = render(StatusIndicator, {
-				props: { size }
-			});
+			const { container } = render(StatusIndicator, { size });
 			
 			const indicator = container.querySelector('.status-indicator');
 			expect(indicator?.classList.contains(`status-indicator--${size}`)).toBe(true);
@@ -43,10 +39,8 @@ describe('StatusIndicator component', () => {
 
 	test('applies custom classes', async () => {
 		const { container } = render(StatusIndicator, {
-			props: {
 				classes: 'custom-indicator animate-pulse'
-			}
-		});
+			});
 		
 		const indicator = container.querySelector('.status-indicator');
 		expect(indicator?.classList.contains('custom-indicator')).toBe(true);
@@ -65,11 +59,9 @@ describe('StatusIndicator component', () => {
 
 	test('combines status and size correctly', async () => {
 		const { container } = render(StatusIndicator, {
-			props: {
 				status: 'success',
 				size: 'lg'
-			}
-		});
+			});
 		
 		const indicator = container.querySelector('.status-indicator');
 		expect(indicator?.classList.contains('status-indicator--success')).toBe(true);
@@ -97,9 +89,7 @@ describe('StatusIndicator component', () => {
 		};
 		
 		for (const [status] of Object.entries(statusColors)) {
-			const { container } = render(StatusIndicator, {
-				props: { status: status as any }
-			});
+			const { container } = render(StatusIndicator, { status: status as any });
 			
 			const indicator = container.querySelector('.status-indicator');
 			expect(indicator?.classList.contains(`status-indicator--${status}`)).toBe(true);

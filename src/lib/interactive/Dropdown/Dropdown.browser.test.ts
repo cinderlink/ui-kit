@@ -30,20 +30,16 @@ describe('Dropdown component', () => {
 		await new Promise(resolve => setTimeout(resolve, 250));
 		
 		// Menu should be visible now
-		const { container } = render(Dropdown, {
-			props: { toggled: true }
-		});
+		const { container } = render(Dropdown, { toggled: true });
 		const menu = container.querySelector('.dropdown__menu');
 		expect(menu).toBeTruthy();
 	});
 
 	test('renders with selected option', async () => {
 		const { container } = render(Dropdown, {
-			props: {
 				type: 'select',
 				selected: { label: 'Option 2', value: 'option2' }
-			}
-		});
+			});
 		
 		// Should display selected value
 		const selectedDiv = container.querySelector('.dropdown__selected');
@@ -52,11 +48,9 @@ describe('Dropdown component', () => {
 
 	test('renders with label for dropdown type', async () => {
 		const { container } = render(Dropdown, {
-			props: {
 				type: 'dropdown',
 				label: 'Dropdown Label'
-			}
-		});
+			});
 		
 		// Should display label in dropdown
 		const selectedDiv = container.querySelector('.dropdown__selected');
@@ -65,11 +59,9 @@ describe('Dropdown component', () => {
 
 	test('renders with label for select type', async () => {
 		const screen = render(Dropdown, {
-			props: {
 				type: 'select',
 				label: 'Select Label'
-			}
-		});
+			});
 		
 		// Should have label element for select type
 		const label = await screen.getByText('Select Label');
@@ -80,9 +72,7 @@ describe('Dropdown component', () => {
 		const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
 		
 		for (const size of sizes) {
-			const { container } = render(Dropdown, {
-				props: { size }
-			});
+			const { container } = render(Dropdown, { size });
 			
 			const dropdownContainer = container.querySelector('.dropdown__container');
 			expect(dropdownContainer?.classList.contains(`dropdown--${size}`)).toBe(true);
@@ -92,10 +82,8 @@ describe('Dropdown component', () => {
 	test('applies custom class', async () => {
 		const customClass = 'custom-dropdown';
 		const { container } = render(Dropdown, {
-			props: {
 				classes: customClass
-			}
-		});
+			});
 		
 		const dropdownContainer = container.querySelector('.dropdown__container');
 		expect(dropdownContainer?.classList.contains(customClass)).toBe(true);
@@ -104,11 +92,9 @@ describe('Dropdown component', () => {
 	test('handles toggle events', async () => {
 		let toggledState = false;
 		const screen = render(Dropdown, {
-			props: {
 				get toggled() { return toggledState; },
 				set toggled(v: boolean) { toggledState = v; }
-			}
-		});
+			});
 		
 		// Toggle open
 		const trigger = await screen.getByTestId('dropdown-trigger');
@@ -120,11 +106,9 @@ describe('Dropdown component', () => {
 	test('closes on escape key', async () => {
 		let toggledState = true;
 		const { container } = render(Dropdown, {
-			props: {
 				get toggled() { return toggledState; },
 				set toggled(v: boolean) { toggledState = v; }
-			}
-		});
+			});
 		
 		const trigger = container.querySelector('[role="button"]') as HTMLElement;
 		expect(trigger).toBeTruthy();

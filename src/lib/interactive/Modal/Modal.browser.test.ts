@@ -12,9 +12,7 @@ describe('Modal component', () => {
 	});
 
 	test('opens when visible prop is true', async () => {
-		const { container } = render(Modal, {
-			props: { visible: true }
-		});
+		const { container } = render(Modal, { visible: true });
 		
 		// Wait for transition
 		await new Promise(resolve => setTimeout(resolve, 50));
@@ -30,12 +28,10 @@ describe('Modal component', () => {
 
 	test('has bindable visible prop', async () => {
 		let visible = true;
-		const { container } = render(Modal, {
-			props: { 
+		const { container } = render(Modal, { 
 				get visible() { return visible; },
 				set visible(v: boolean) { visible = v; }
-			}
-		});
+			});
 		
 		// Wait for render
 		await new Promise(resolve => setTimeout(resolve, 50));
@@ -50,12 +46,10 @@ describe('Modal component', () => {
 
 	test('closes on Escape key', async () => {
 		let visible = true;
-		const { container } = render(Modal, {
-			props: { 
+		const { container } = render(Modal, { 
 				get visible() { return visible; },
 				set visible(v: boolean) { visible = v; }
-			}
-		});
+			});
 		
 		// Wait for render
 		await new Promise(resolve => setTimeout(resolve, 50));
@@ -71,9 +65,7 @@ describe('Modal component', () => {
 	});
 
 	test('renders with Panel overlay variant', async () => {
-		const { container } = render(Modal, {
-			props: { visible: true }
-		});
+		const { container } = render(Modal, { visible: true });
 		
 		// Wait for render
 		await new Promise(resolve => setTimeout(resolve, 50));
@@ -88,9 +80,7 @@ describe('Modal component', () => {
 	});
 
 	test('renders slots correctly', async () => {
-		const { container } = render(Modal, {
-			props: { visible: true }
-		});
+		const { container } = render(Modal, { visible: true });
 		
 		// Wait for render
 		await new Promise(resolve => setTimeout(resolve, 50));

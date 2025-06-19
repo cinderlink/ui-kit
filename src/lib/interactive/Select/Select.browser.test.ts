@@ -11,10 +11,8 @@ describe('Select component', () => {
 
 	test('renders with default props', async () => {
 		const { container } = render(Select, {
-			props: {
 				options: []
-			}
-		});
+			});
 		
 		// Should render dropdown container
 		const dropdown = container.querySelector('.dropdown');
@@ -27,10 +25,8 @@ describe('Select component', () => {
 
 	test('renders with custom options', async () => {
 		const { container } = render(Select, {
-			props: {
 				options: mockOptions
-			}
-		});
+			});
 		
 		// Should render dropdown
 		const dropdown = container.querySelector('.dropdown');
@@ -61,12 +57,10 @@ describe('Select component', () => {
 	test('handles value binding', async () => {
 		let value = 'opt2';
 		const { container } = render(Select, {
-			props: {
 				options: mockOptions,
 				get value() { return value; },
 				set value(v: string) { value = v; }
-			}
-		});
+			});
 		
 		// Should show selected option label
 		const selected = container.querySelector('.dropdown__selected');
@@ -97,12 +91,10 @@ describe('Select component', () => {
 	test('handles selected object binding', async () => {
 		let selected = mockOptions[1];
 		const { container } = render(Select, {
-			props: {
 				options: mockOptions,
 				get selected() { return selected; },
 				set selected(s: typeof selected) { selected = s; }
-			}
-		});
+			});
 		
 		// Should show selected option label
 		const selectedText = container.querySelector('.dropdown__selected');
@@ -135,12 +127,10 @@ describe('Select component', () => {
 		// For now, we'll test the selection behavior
 		let selectedOption = { label: 'Select', value: 'select' };
 		const { container } = render(Select, {
-			props: {
 				options: mockOptions,
 				get selected() { return selectedOption; },
 				set selected(s: any) { selectedOption = s; }
-			}
-		});
+			});
 		
 		// Open dropdown
 		const trigger = container.querySelector('[data-testid="dropdown-trigger"]') as HTMLElement;
@@ -165,11 +155,9 @@ describe('Select component', () => {
 		
 		for (const variant of variants) {
 			const { container } = render(Select, {
-				props: {
 					options: mockOptions,
 					variant
-				}
-			});
+				});
 			
 			// The variant class is applied to dropdown__select
 			const select = container.querySelector('.dropdown__select');
@@ -179,11 +167,9 @@ describe('Select component', () => {
 
 	test('applies square prop', async () => {
 		const { container } = render(Select, {
-			props: {
 				options: mockOptions,
 				square: true
-			}
-		});
+			});
 		
 		// Check if square prop is passed through - the Select component doesn't apply it directly
 		// We'll check if the dropdown list has the square class when opened
@@ -204,11 +190,9 @@ describe('Select component', () => {
 
 	test('marks active option with aria-selected', async () => {
 		const { container } = render(Select, {
-			props: {
 				options: mockOptions,
 				value: 'opt2'
-			}
-		});
+			});
 		
 		// Open dropdown
 		const trigger = container.querySelector('[data-testid="dropdown-trigger"]') as HTMLElement;
@@ -229,10 +213,8 @@ describe('Select component', () => {
 
 	test('handles empty options array', async () => {
 		const { container } = render(Select, {
-			props: {
 				options: []
-			}
-		});
+			});
 		
 		// Should still render
 		const dropdown = container.querySelector('.dropdown');
@@ -253,11 +235,9 @@ describe('Select component', () => {
 	test('syncs value with selected option', async () => {
 		// Test that the component syncs value changes to selected
 		const { container } = render(Select, {
-			props: {
 				options: mockOptions,
 				value: 'opt3'
-			}
-		});
+			});
 		
 		// Wait for component to mount and effects to run
 		await new Promise(resolve => setTimeout(resolve, 100));

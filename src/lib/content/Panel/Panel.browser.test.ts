@@ -26,9 +26,7 @@ describe('Panel component', () => {
 		] as const;
 		
 		for (const variant of variants) {
-			const { container } = render(Panel, {
-				props: { variant }
-			});
+			const { container } = render(Panel, { variant });
 			
 			const panel = container.querySelector('.panel');
 			expect(panel?.classList.contains(`panel--${variant}`)).toBe(true);
@@ -39,9 +37,7 @@ describe('Panel component', () => {
 		const depths = [1, 2, 3, 4, 5] as const;
 		
 		for (const depth of depths) {
-			const { container } = render(Panel, {
-				props: { depth }
-			});
+			const { container } = render(Panel, { depth });
 			
 			const panel = container.querySelector('.panel');
 			expect(panel?.classList.contains(`panel--depth-${depth}`)).toBe(true);
@@ -52,9 +48,7 @@ describe('Panel component', () => {
 		const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
 		
 		for (const size of sizes) {
-			const { container } = render(Panel, {
-				props: { size }
-			});
+			const { container } = render(Panel, { size });
 			
 			const panel = container.querySelector('.panel');
 			expect(panel?.classList.contains(`panel--${size}`)).toBe(true);
@@ -63,10 +57,8 @@ describe('Panel component', () => {
 
 	test('renders as anchor when href provided', async () => {
 		const { container } = render(Panel, {
-			props: {
 				href: 'https://example.com'
-			}
-		});
+			});
 		
 		const panel = container.querySelector('.panel');
 		expect(panel?.tagName).toBe('A');
@@ -75,10 +67,8 @@ describe('Panel component', () => {
 
 	test('renders with custom element', async () => {
 		const { container } = render(Panel, {
-			props: {
 				el: 'section'
-			}
-		});
+			});
 		
 		const panel = container.querySelector('.panel');
 		expect(panel?.tagName).toBe('SECTION');
@@ -86,10 +76,8 @@ describe('Panel component', () => {
 
 	test('applies interactive class', async () => {
 		const { container } = render(Panel, {
-			props: {
 				interactive: true
-			}
-		});
+			});
 		
 		const panel = container.querySelector('.panel');
 		expect(panel?.classList.contains('panel--interactive')).toBe(true);
@@ -97,10 +85,8 @@ describe('Panel component', () => {
 
 	test('applies custom classes', async () => {
 		const { container } = render(Panel, {
-			props: {
 				classes: 'custom-panel test-class'
-			}
-		});
+			});
 		
 		const panel = container.querySelector('.panel');
 		expect(panel?.classList.contains('custom-panel')).toBe(true);
@@ -110,10 +96,8 @@ describe('Panel component', () => {
 	test('handles click events', async () => {
 		const handleClick = vi.fn();
 		const { container } = render(Panel, {
-			props: {
 				onclick: handleClick
-			}
-		});
+			});
 		
 		const panel = container.querySelector('.panel') as HTMLElement;
 		panel.click();
@@ -131,10 +115,8 @@ describe('Panel component', () => {
 
 	test('applies custom flex classes', async () => {
 		const { container } = render(Panel, {
-			props: {
 				flex: 'flex flex-row gap-4'
-			}
-		});
+			});
 		
 		const panel = container.querySelector('.panel');
 		expect(panel?.classList.contains('flex-row')).toBe(true);
@@ -143,10 +125,8 @@ describe('Panel component', () => {
 
 	test('applies custom rounded classes', async () => {
 		const { container } = render(Panel, {
-			props: {
 				rounded: 'rounded-lg'
-			}
-		});
+			});
 		
 		const panel = container.querySelector('.panel');
 		expect(panel?.classList.contains('rounded-lg')).toBe(true);
@@ -154,10 +134,8 @@ describe('Panel component', () => {
 
 	test('applies invert modifier', async () => {
 		const { container } = render(Panel, {
-			props: {
 				invert: true
-			}
-		});
+			});
 		
 		const panel = container.querySelector('.panel');
 		expect(panel?.classList.contains('panel--invert')).toBe(true);
@@ -165,11 +143,9 @@ describe('Panel component', () => {
 
 	test('spreads additional props', async () => {
 		const { container } = render(Panel, {
-			props: {
 				'data-testid': 'test-panel',
 				'aria-label': 'Test Panel'
-			}
-		});
+			});
 		
 		const panel = container.querySelector('.panel');
 		expect(panel?.getAttribute('data-testid')).toBe('test-panel');

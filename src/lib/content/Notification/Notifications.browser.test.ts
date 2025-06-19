@@ -39,10 +39,8 @@ describe('Notifications component', () => {
 
 	test('renders notifications container', async () => {
 		const { container } = render(Notifications, {
-			props: {
 				notifications: mockNotifications
-			}
-		});
+			});
 		
 		// Should render notifications container
 		const notificationsContainer = container.querySelector('.notifications');
@@ -55,10 +53,8 @@ describe('Notifications component', () => {
 
 	test('renders with custom header', async () => {
 		const { container } = render(Notifications, {
-			props: {
 				notifications: mockNotifications
-			}
-		});
+			});
 		
 		// Check that header area exists
 		const header = container.querySelector('.notifications__header');
@@ -67,10 +63,8 @@ describe('Notifications component', () => {
 
 	test('renders default header when none provided', async () => {
 		const screen = render(Notifications, {
-			props: {
 				notifications: mockNotifications
-			}
-		});
+			});
 		
 		const defaultHeader = await screen.getByText('Notifications title');
 		await expect.element(defaultHeader).toBeInTheDocument();
@@ -78,10 +72,8 @@ describe('Notifications component', () => {
 
 	test('renders dismiss all button', async () => {
 		const screen = render(Notifications, {
-			props: {
 				notifications: mockNotifications
-			}
-		});
+			});
 		
 		const dismissAllButton = await screen.getByText('Dismiss all');
 		await expect.element(dismissAllButton).toBeInTheDocument();
@@ -90,11 +82,9 @@ describe('Notifications component', () => {
 	test('handles dismiss all callback', async () => {
 		const handleDismissAll = vi.fn();
 		const screen = render(Notifications, {
-			props: {
 				notifications: mockNotifications,
 				ondismissedAll: handleDismissAll
-			}
-		});
+			});
 		
 		const dismissAllButton = await screen.getByText('Dismiss all');
 		await dismissAllButton.click();
@@ -106,11 +96,9 @@ describe('Notifications component', () => {
 	test('handles individual notification dismiss', async () => {
 		const handleDismiss = vi.fn();
 		const { container } = render(Notifications, {
-			props: {
 				notifications: mockNotifications,
 				ondismiss: handleDismiss
-			}
-		});
+			});
 		
 		// Find first dismiss button
 		const dismissButtons = container.querySelectorAll('[aria-label="Dismiss notification"]');
@@ -134,11 +122,9 @@ describe('Notifications component', () => {
 		];
 		
 		const { container } = render(Notifications, {
-			props: {
 				notifications: notificationsWithLink,
 				ongoToLink: handleGoToLink
-			}
-		});
+			});
 		
 		// Find link button
 		const linkButton = container.querySelector('[aria-label="Go to link"]') as HTMLElement;
@@ -153,10 +139,8 @@ describe('Notifications component', () => {
 		const allDismissed = mockNotifications.map(n => ({ ...n, dismissed: true }));
 		
 		const { container } = render(Notifications, {
-			props: {
 				notifications: allDismissed
-			}
-		});
+			});
 		
 		// Should not render anything
 		const notificationsContainer = container.querySelector('.notifications');
@@ -165,10 +149,8 @@ describe('Notifications component', () => {
 
 	test('does not render with empty notifications array', async () => {
 		const { container } = render(Notifications, {
-			props: {
 				notifications: []
-			}
-		});
+			});
 		
 		// Should not render anything
 		const notificationsContainer = container.querySelector('.notifications');
@@ -177,10 +159,8 @@ describe('Notifications component', () => {
 
 	test('renders notification details correctly', async () => {
 		const { container } = render(Notifications, {
-			props: {
 				notifications: mockNotifications
-			}
-		});
+			});
 		
 		// Check notification content exists
 		const notificationBodies = container.querySelectorAll('.notification__body');
@@ -197,10 +177,8 @@ describe('Notifications component', () => {
 
 	test('formats notification dates', async () => {
 		const { container } = render(Notifications, {
-			props: {
 				notifications: mockNotifications
-			}
-		});
+			});
 		
 		// Should have date formatting in footer
 		const footers = container.querySelectorAll('.notification__footer');

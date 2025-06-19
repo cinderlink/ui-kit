@@ -15,10 +15,8 @@ describe('Card component', () => {
 
 	test('renders with title', async () => {
 		const screen = render(Card, {
-			props: {
 				title: 'Test Title'
-			}
-		});
+			});
 		
 		// Check title renders
 		const title = await screen.getByText('Test Title');
@@ -29,9 +27,7 @@ describe('Card component', () => {
 		const variants = ['default', 'outlined', 'secondary'] as const;
 		
 		for (const variant of variants) {
-			const { container } = render(Card, {
-				props: { variant }
-			});
+			const { container } = render(Card, { variant });
 			
 			const card = container.querySelector('.card');
 			expect(card?.classList.contains(`card--${variant}`)).toBe(true);
@@ -41,10 +37,8 @@ describe('Card component', () => {
 	test('handles click events', async () => {
 		let clicked = false;
 		const screen = render(Card, {
-			props: {
 				onclick: () => { clicked = true; }
-			}
-		});
+			});
 		
 		// When onclick is provided, card renders as a button
 		const card = await screen.getByRole('button');
@@ -57,9 +51,7 @@ describe('Card component', () => {
 		const colors = ['neutral', 'purple', 'green', 'blue', 'pink', 'yellow', 'red'] as const;
 		
 		for (const color of colors) {
-			const { container } = render(Card, {
-				props: { color }
-			});
+			const { container } = render(Card, { color });
 			
 			const card = container.querySelector('.card');
 			expect(card?.classList.contains(`card--${color}`)).toBe(true);

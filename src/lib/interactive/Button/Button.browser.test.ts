@@ -15,9 +15,7 @@ describe('Button component (Browser Tests)', () => {
 	test('handles click events', async () => {
 		let clicked = false;
 		const screen = render(Button, {
-			props: {
-				onclick: () => { clicked = true; }
-			}
+			onclick: () => { clicked = true; }
 		});
 		
 		const button = await screen.getByRole('button');
@@ -29,10 +27,8 @@ describe('Button component (Browser Tests)', () => {
 
 	test('applies variant classes', async () => {
 		const screen = render(Button, {
-			props: {
-				variant: 'purple',
-				size: 'lg'
-			}
+			variant: 'purple',
+			size: 'lg'
 		});
 		
 		const button = await screen.getByRole('button');
@@ -42,9 +38,7 @@ describe('Button component (Browser Tests)', () => {
 
 	test('respects disabled state', async () => {
 		const screen = render(Button, {
-			props: {
-				disabled: true
-			}
+			disabled: true
 		});
 		
 		const button = await screen.getByRole('button');

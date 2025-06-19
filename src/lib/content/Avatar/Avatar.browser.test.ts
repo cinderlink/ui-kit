@@ -18,9 +18,7 @@ describe('Avatar component', () => {
 		const image = 'https://example.com/avatar.jpg';
 		const name = 'User Avatar';
 		
-		const { container } = render(Avatar, {
-			props: { image, name }
-		});
+		const { container } = render(Avatar, { image, name });
 		
 		const img = container.querySelector('img.avatar__image') as HTMLImageElement;
 		expect(img).toBeTruthy();
@@ -32,9 +30,7 @@ describe('Avatar component', () => {
 		const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
 		
 		for (const size of sizes) {
-			const { container } = render(Avatar, {
-				props: { size, image: 'test.jpg' }
-			});
+			const { container } = render(Avatar, { size, image: 'test.jpg' });
 			
 			const avatar = container.querySelector('div.avatar');
 			expect(avatar?.classList.contains(`avatar--${size}`)).toBe(true);
@@ -45,9 +41,7 @@ describe('Avatar component', () => {
 		const statuses = ['online', 'offline', 'busy', 'away'] as const;
 		
 		for (const status of statuses) {
-			const { container } = render(Avatar, {
-				props: { status, image: 'test.jpg' }
-			});
+			const { container } = render(Avatar, { status, image: 'test.jpg' });
 			
 			const avatar = container.querySelector('div.avatar');
 			expect(avatar?.classList.contains(`avatar--${status}`)).toBe(true);
@@ -56,9 +50,7 @@ describe('Avatar component', () => {
 
 	test('renders with custom class', async () => {
 		const customClass = 'custom-avatar-class';
-		const { container } = render(Avatar, {
-			props: { classes: customClass }
-		});
+		const { container } = render(Avatar, { classes: customClass });
 		
 		const avatar = container.querySelector('div.avatar');
 		expect(avatar?.classList.contains(customClass)).toBe(true);

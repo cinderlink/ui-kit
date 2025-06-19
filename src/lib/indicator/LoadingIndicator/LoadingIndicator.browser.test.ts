@@ -24,9 +24,7 @@ describe('LoadingIndicator component', () => {
 		const sizes = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const;
 		
 		for (const size of sizes) {
-			const { container } = render(LoadingIndicator, {
-				props: { size }
-			});
+			const { container } = render(LoadingIndicator, { size });
 			
 			const indicator = container.querySelector('.loading-indicator');
 			expect(indicator?.classList.contains(`loading-indicator--${size}`)).toBe(true);
@@ -35,10 +33,8 @@ describe('LoadingIndicator component', () => {
 
 	test('renders with custom icon', async () => {
 		const { container } = render(LoadingIndicator, {
-			props: {
 				icon: 'i-tabler-refresh'
-			}
-		});
+			});
 		
 		const icon = container.querySelector('.loading-indicator__icon');
 		expect(icon?.classList.contains('i-tabler-refresh')).toBe(true);
@@ -62,13 +58,9 @@ describe('LoadingIndicator component', () => {
 
 	test('applies correct size styling', async () => {
 		// Test that different sizes have different classes
-		const { container: smallContainer } = render(LoadingIndicator, {
-			props: { size: 'sm' }
-		});
+		const { container: smallContainer } = render(LoadingIndicator, { size: 'sm' });
 		
-		const { container: largeContainer } = render(LoadingIndicator, {
-			props: { size: 'lg' }
-		});
+		const { container: largeContainer } = render(LoadingIndicator, { size: 'lg' });
 		
 		const smallIndicator = smallContainer.querySelector('.loading-indicator');
 		const largeIndicator = largeContainer.querySelector('.loading-indicator');
@@ -88,10 +80,8 @@ describe('LoadingIndicator component', () => {
 
 	test('renders with medium size', async () => {
 		const { container } = render(LoadingIndicator, {
-			props: {
 				size: 'md'
-			}
-		});
+			});
 		
 		const indicator = container.querySelector('.loading-indicator');
 		expect(indicator).toBeTruthy();

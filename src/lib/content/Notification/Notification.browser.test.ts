@@ -17,10 +17,8 @@ describe('Notification component', () => {
 
 	test('renders notification with content', async () => {
 		const { container } = render(Notification, {
-			props: {
 				notification: mockNotification
-			}
-		});
+			});
 		
 		// Should render notification container
 		const notification = container.querySelector('.notification');
@@ -33,10 +31,8 @@ describe('Notification component', () => {
 
 	test('renders with header snippet', async () => {
 		const { container } = render(Notification, {
-			props: {
 				notification: mockNotification
-			}
-		});
+			});
 		
 		// Test with header by checking structure
 		const header = container.querySelector('.notification__header');
@@ -45,10 +41,8 @@ describe('Notification component', () => {
 
 	test('renders with children snippet', async () => {
 		const { container } = render(Notification, {
-			props: {
 				notification: mockNotification
-			}
-		});
+			});
 		
 		// Test with children by checking structure
 		const body = container.querySelector('.notification__body');
@@ -57,10 +51,8 @@ describe('Notification component', () => {
 
 	test('renders with footer snippet', async () => {
 		const { container } = render(Notification, {
-			props: {
 				notification: mockNotification
-			}
-		});
+			});
 		
 		// Footer is conditional - only renders if footer snippet or link exists
 		const footer = container.querySelector('.notification__footer');
@@ -75,10 +67,8 @@ describe('Notification component', () => {
 		};
 		
 		const screen = render(Notification, {
-			props: {
 				notification: notificationWithLink
-			}
-		});
+			});
 		
 		const linkButton = await screen.getByRole('button', { name: 'Go to link' });
 		await expect.element(linkButton).toBeInTheDocument();
@@ -87,11 +77,9 @@ describe('Notification component', () => {
 	test('handles dismiss callback', async () => {
 		const handleDismiss = vi.fn();
 		const screen = render(Notification, {
-			props: {
 				notification: mockNotification,
 				ondismiss: handleDismiss
-			}
-		});
+			});
 		
 		const dismissButton = await screen.getByRole('button', { name: 'Dismiss notification' });
 		await dismissButton.click();
@@ -109,12 +97,10 @@ describe('Notification component', () => {
 		};
 		
 		const screen = render(Notification, {
-			props: {
 				notification: notificationWithLink,
 				ongoToLink: handleGoToLink,
 				ondismiss: handleDismiss
-			}
-		});
+			});
 		
 		const linkButton = await screen.getByRole('button', { name: 'Go to link' });
 		await linkButton.click();
@@ -132,10 +118,8 @@ describe('Notification component', () => {
 		};
 		
 		const { container } = render(Notification, {
-			props: {
 				notification: dismissedNotification
-			}
-		});
+			});
 		
 		// Should not render notification
 		const notification = container.querySelector('.notification');
@@ -144,11 +128,9 @@ describe('Notification component', () => {
 
 	test('applies custom classes', async () => {
 		const { container } = render(Notification, {
-			props: {
 				notification: mockNotification,
 				classes: 'custom-notification-class'
-			}
-		});
+			});
 		
 		// Wait a bit for Panel to render
 		await new Promise(resolve => setTimeout(resolve, 100));
@@ -168,10 +150,8 @@ describe('Notification component', () => {
 			};
 			
 			const { container } = render(Notification, {
-				props: {
 					notification: typedNotification
-				}
-			});
+				});
 			
 			// Should render for all types
 			const notification = container.querySelector('.notification');

@@ -24,10 +24,8 @@ describe('ProgressBar component', () => {
 
 	test('renders with custom progress value', async () => {
 		const { container } = render(ProgressBar, {
-			props: {
 				progress: 75
-			}
-		});
+			});
 		
 		const fill = container.querySelector('.progress__fill') as HTMLElement;
 		expect(fill.style.width).toBe('75%');
@@ -37,9 +35,7 @@ describe('ProgressBar component', () => {
 		const sizes = ['sm', 'md', 'lg', 'xl', '2xl'] as const;
 		
 		for (const size of sizes) {
-			const { container } = render(ProgressBar, {
-				props: { size }
-			});
+			const { container } = render(ProgressBar, { size });
 			
 			const progressBar = container.querySelector('.progress__bar');
 			expect(progressBar?.classList.contains(`progress__bar--${size}`)).toBe(true);
@@ -49,11 +45,9 @@ describe('ProgressBar component', () => {
 	test('handles progress binding', async () => {
 		let progress = 25;
 		const { container } = render(ProgressBar, {
-			props: {
 				get progress() { return progress; },
 				set progress(v: number) { progress = v; }
-			}
-		});
+			});
 		
 		const fill = container.querySelector('.progress__fill') as HTMLElement;
 		expect(fill.style.width).toBe('25%');
@@ -68,10 +62,8 @@ describe('ProgressBar component', () => {
 
 	test('renders with zero progress', async () => {
 		const { container } = render(ProgressBar, {
-			props: {
 				progress: 0
-			}
-		});
+			});
 		
 		const fill = container.querySelector('.progress__fill') as HTMLElement;
 		expect(fill.style.width).toBe('0%');
@@ -79,10 +71,8 @@ describe('ProgressBar component', () => {
 
 	test('renders with full progress', async () => {
 		const { container } = render(ProgressBar, {
-			props: {
 				progress: 100
-			}
-		});
+			});
 		
 		const fill = container.querySelector('.progress__fill') as HTMLElement;
 		expect(fill.style.width).toBe('100%');
@@ -112,9 +102,7 @@ describe('ProgressBar component', () => {
 		const progressValues = [0, 25, 50, 75, 100];
 		
 		for (const progress of progressValues) {
-			const { container } = render(ProgressBar, {
-				props: { progress }
-			});
+			const { container } = render(ProgressBar, { progress });
 			
 			const fill = container.querySelector('.progress__fill') as HTMLElement;
 			expect(fill.style.width).toBe(`${progress}%`);

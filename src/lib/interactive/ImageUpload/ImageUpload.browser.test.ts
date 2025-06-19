@@ -21,10 +21,8 @@ describe('ImageUpload component', () => {
 
 	test('renders with label', async () => {
 		const { container } = render(ImageUpload, {
-			props: {
 				label: 'Profile Picture'
-			}
-		});
+			});
 		
 		// Should have label
 		const label = container.querySelector('label');
@@ -35,9 +33,7 @@ describe('ImageUpload component', () => {
 		const sizes = ['sm', 'md', 'lg', 'xl'] as const;
 		
 		for (const size of sizes) {
-			const { container } = render(ImageUpload, {
-				props: { size }
-			});
+			const { container } = render(ImageUpload, { size });
 			
 			const button = container.querySelector('.input--file__button');
 			expect(button?.classList.contains(`input--file__button--${size}`)).toBe(true);
@@ -46,10 +42,8 @@ describe('ImageUpload component', () => {
 
 	test('shows upload text when not selected', async () => {
 		const { container } = render(ImageUpload, {
-			props: {
 				selected: false
-			}
-		});
+			});
 		
 		const buttonText = container.querySelector('.input--file__text');
 		expect(buttonText?.textContent?.trim()).toBe('Upload');
@@ -57,10 +51,8 @@ describe('ImageUpload component', () => {
 
 	test('shows change text when selected', async () => {
 		const { container } = render(ImageUpload, {
-			props: {
 				selected: true
-			}
-		});
+			});
 		
 		const buttonText = container.querySelector('.input--file__text');
 		expect(buttonText?.textContent?.trim()).toBe('Change');
@@ -76,10 +68,8 @@ describe('ImageUpload component', () => {
 
 	test('renders with custom image', async () => {
 		const { container } = render(ImageUpload, {
-			props: {
 				image: 'data:image/png;base64,test'
-			}
-		});
+			});
 		
 		// Avatar should receive the image prop
 		const avatar = container.querySelector('.avatar');
@@ -89,11 +79,9 @@ describe('ImageUpload component', () => {
 	test('handles file input binding', async () => {
 		let inputRef: HTMLInputElement | undefined;
 		const { container } = render(ImageUpload, {
-			props: {
 				get inputRef() { return inputRef; },
 				set inputRef(ref: HTMLInputElement | undefined) { inputRef = ref; }
-			}
-		});
+			});
 		
 		// Should bind the input reference
 		const fileInput = container.querySelector('input[type="file"]') as HTMLInputElement;
