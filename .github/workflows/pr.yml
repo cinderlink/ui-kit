@@ -32,16 +32,15 @@ jobs:
       - name: Run type checking
         run: bun run check
 
+      - name: Install Playwright browsers
+        run: bunx playwright install --with-deps ${{ matrix.browser }}
+
       - name: Run browser tests (Vitest)
         run: bun run test:browser --run
         if: matrix.browser == 'chromium' # Only run once
 
       - name: Build package
         run: bun run build
-
-      # E2E tests - run on multiple browsers
-      - name: Install Playwright browsers
-        run: bunx playwright install --with-deps ${{ matrix.browser }}
 
       - name: Run E2E tests (${{ matrix.browser }})
         run: bun run test:e2e --project=${{ matrix.browser }}

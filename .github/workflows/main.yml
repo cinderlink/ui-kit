@@ -26,6 +26,9 @@ jobs:
       - name: Run type checking
         run: bun run check
 
+      - name: Install Playwright browsers for Vitest
+        run: bunx playwright install --with-deps chromium
+
       - name: Run browser tests (Vitest)
         run: bun run test:browser --run
 
