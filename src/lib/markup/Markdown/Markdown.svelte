@@ -56,9 +56,7 @@
 </script>
 
 <svelte:head>
-	<style lang="postcss">
-		{@html currentThemeStyle}
-	</style>
+	{@html `<style>${currentThemeStyle}</style>`}
 </svelte:head>
 
 {#if children}{@render children({ renderedMarkdown })}{:else}

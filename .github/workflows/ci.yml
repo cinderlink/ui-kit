@@ -307,18 +307,18 @@ jobs:
           script: |
             // Get PR number for pull_request events
             const prNumber = context.issue.number;
-            
+
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: prNumber,
             });
-            
+
             const botComment = comments.find(comment => 
               comment.user.type === 'Bot' && 
               comment.body.includes('<!-- cinderlink-ui-kit-ci-report -->')
             );
-            
+
             // Collect job results
             const jobResults = {
               setup: '${{ needs.setup.result }}',
@@ -328,7 +328,7 @@ jobs:
               coverage: '${{ needs.coverage.result }}',
               lighthouse: '${{ needs.lighthouse.result }}'
             };
-            
+
             // Status emoji helper
             const getStatusEmoji = (status) => {
               return status === 'success' ? '✅' : 
@@ -336,16 +336,16 @@ jobs:
                      status === 'skipped' ? '⏭️' : 
                      status === 'cancelled' ? '🚫' : '⏳';
             };
-            
+
             const bundleSize = '${{ steps.bundle.outputs.total_size }}';
             const bundleFiles = `${{ steps.bundle.outputs.js_files }}`;
             const indexSize = '${{ steps.bundle.outputs.index_size }}' || 'N/A';
-            
+
             const body = `<!-- cinderlink-ui-kit-ci-report -->
             # 🚀 Cinderlink UI Kit - CI Report
-            
+
             ## 📋 Pipeline Status
-            
+
             | Stage | Status |
             |-------|--------|
             | Setup & Build | ${getStatusEmoji(jobResults.setup)} |
@@ -354,37 +354,37 @@ jobs:
             | E2E Tests | ${getStatusEmoji(jobResults.e2e)} |
             | Coverage | ${getStatusEmoji(jobResults.coverage)} |
             | Lighthouse | ${getStatusEmoji(jobResults.lighthouse)} |
-            
+
             ## 📦 Bundle Analysis
-            
+
             **Total JS Bundle Size:** ${bundleSize}KB ${bundleSize > 500 ? '⚠️ (exceeds 500KB limit)' : '✅'}
-            
+
             <details>
             <summary>📁 File Breakdown</summary>
-            
+
             \`\`\`
             ${bundleFiles}
             \`\`\`
             </details>
-            
+
             ## 🎯 Performance Summary
-            
+
             | Metric | Value |
             |--------|-------|
             | Main Bundle (index.js) | ${indexSize} |
             | Total Bundle Size | ${bundleSize}KB |
             | Bundle Size Limit | 500KB |
-            
+
             ## 📈 Workflow Details
-            
+
             - **Branch:** \`${{ github.head_ref || github.ref_name }}\`
             - **Commit:** \`${context.sha.substring(0, 7)}\`
             - **Workflow Run:** [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
-            
+
             ---
             <sub>Last updated: ${new Date().toUTCString()}</sub>
             `;
-            
+
             if (botComment) {
               await github.rest.issues.updateComment({
                 owner: context.repo.owner,
@@ -400,3 +400,4 @@ jobs:
                 body
               });
             }
+
