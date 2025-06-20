@@ -61,7 +61,7 @@ test.describe('Navigation User Journey', () => {
 		// Navigate on mobile - navigate to a component group
 		// Wait for the Interactive text to be visible and clickable
 		await page.waitForSelector('text=Interactive', { timeout: 10000 });
-		
+
 		// Force click since element might be outside viewport on mobile
 		await page.getByText('Interactive').click({ force: true });
 
