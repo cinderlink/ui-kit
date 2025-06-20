@@ -1,7 +1,7 @@
 {
 	"name": "@cinderlink/ui-kit",
 	"type": "module",
-	"version": "1.0.0-next.1",
+	"version": "1.0.0-next.2",
 	"scripts": {
 		"dev": "vite dev --port 3002",
 		"preview": "vite preview --port 4173",
@@ -28,13 +28,21 @@
 		".": {
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
+		},
+		"./styles.css": "./dist/styles.css",
+		"./theme/glass.css": "./dist/theme/glass.css",
+		"./theme/Theme.css": "./dist/theme/Theme.css",
+		"./theme": {
+			"types": "./dist/theme/index.d.ts",
+			"import": "./dist/theme/index.js"
 		}
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"files": [
 		"dist/",
-		"README"
+		"README",
+		"INTEGRATION.md"
 	],
 	"devDependencies": {
 		"rimraf": "^5.0.5",
