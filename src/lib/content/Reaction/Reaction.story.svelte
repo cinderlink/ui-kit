@@ -15,8 +15,8 @@
 	import Syntax from '$lib/markup/Syntax/Syntax.svelte';
 	import Typography from '$lib/content/Typography/Typography.svelte';
 	let reactions: ReactionType[] = $state([]);
-	const reactionAdd = (e: CustomEvent) => {
-		const { reaction } = e.detail;
+	const reactionAdd = (data: { reaction: ReactionType; id: string }) => {
+		const { reaction } = data;
 		const exist = reactions.find((r) => r.emoji === reaction.emoji);
 		if (exist) {
 			exist.count++;
@@ -26,8 +26,8 @@
 		reactions = [...reactions, { ...reaction, count: 1 }];
 	};
 
-	const reactionClick = (e: CustomEvent) => {
-		const { reaction } = e.detail;
+	const reactionClick = (data: { reaction: ReactionType; id: string }) => {
+		const { reaction } = data;
 		const exist = reactions.find((r) => r.emoji === reaction.emoji && r.count > 1);
 		if (exist) {
 			exist.count--;
@@ -45,8 +45,8 @@
 <Typography>{story.title}</Typography>
 
 <Panel>
-	<Reaction id={1} {reactions} onreactionadd={reactionAdd} onreactionclick={reactionClick}>
-		<Panel variant="offset">
+	<Reaction id="1" {reactions} onreactionadd={reactionAdd} onreactionclick={reactionClick}>
+		<Panel variant="surface">
 			<Typography el="p">Panel With reaction</Typography>
 		</Panel>
 	</Reaction>
@@ -54,7 +54,7 @@
 
 <Syntax
 	code={`<Reaction id="1" on:reaction={readReactions}>
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="p">Panel With reaction</Typography>
 	</Panel>
 </Reaction>

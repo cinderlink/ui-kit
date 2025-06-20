@@ -24,7 +24,7 @@
 
 <div class="flex flex-col gap-4">
 	<Typography el="h3">Default</Typography>
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<div class="grid grid-cols-2">
 			<Typography el="h6">Selected: {value}</Typography>
 		</div>
@@ -36,7 +36,7 @@
 			bind:value
 		/>
 	</Panel>
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="h4">Usage</Typography>
 		<Syntax
 			code={`<Select

@@ -6,9 +6,11 @@ A modern Svelte 5 component library for the Cinderlink ecosystem.
 
 - **Svelte 5 Ready**: Built with Svelte 5 runes API (`$props()`, `$state()`, `$effect()`)
 - **TypeScript First**: Full TypeScript support with comprehensive type definitions
+- **Glass Morphism Design**: Beautiful glass effects with backdrop blur and transparency
 - **UnoCSS Styling**: Utility-first CSS with custom theme integration
-- **Dark Mode**: Built-in dark mode support
+- **Dark Mode**: Built-in dark mode support with automatic theme switching
 - **Modular**: Tree-shakeable components organized by category
+- **Accessible**: WCAG AA compliant with proper ARIA support
 - **Framework Integration**: Designed to work seamlessly with @cinderlink framework packages
 
 ## 📦 Installation
@@ -28,31 +30,33 @@ yarn add @cinderlink/ui-kit
 
 ```svelte
 <script>
-  import { Button, Card, Typography } from '@cinderlink/ui-kit';
-  
-  let count = $state(0);
+	import { Button, Card, Typography } from '@cinderlink/ui-kit';
+
+	let count = $state(0);
 </script>
 
 <Card>
-  {#snippet titleSlot()}
-    <Typography el="h2">Counter Example</Typography>
-  {/snippet}
-  
-  <Typography>Count: {count}</Typography>
-  <Button onclick={() => count++}>Increment</Button>
+	{#snippet titleSlot()}
+		<Typography el="h2">Counter Example</Typography>
+	{/snippet}
+
+	<Typography>Count: {count}</Typography>
+	<Button onclick={() => count++}>Increment</Button>
 </Card>
 ```
 
 ## 🏗️ Component Categories
 
 ### Content Components
+
 - **Avatar** - User avatars with status indicators
 - **Card** - Flexible content containers
 - **Typography** - Text styling and hierarchy
 - **Notification** - Toast and alert components
 - **Panel** - Layout panels and surfaces
 
-### Interactive Components  
+### Interactive Components
+
 - **Button** - Buttons with various styles and states
 - **Input** - Form inputs with validation
 - **Modal** - Dialog and overlay components
@@ -60,10 +64,12 @@ yarn add @cinderlink/ui-kit
 - **Toggle** - Switch and checkbox components
 
 ### Layout Components
+
 - **Sidebar** - Navigation sidebars
 - **CenteredPanelLayout** - Centered content layouts
 
 ### Indicator Components
+
 - **LoadingIndicator** - Loading spinners and progress
 - **StatusIndicator** - Status badges and indicators
 
@@ -73,7 +79,7 @@ The UI kit includes built-in theme support with UnoCSS:
 
 ```svelte
 <script>
-  import { ThemeToggle } from '@cinderlink/ui-kit';
+	import { ThemeToggle } from '@cinderlink/ui-kit';
 </script>
 
 <ThemeToggle />
@@ -102,6 +108,10 @@ pnpm lint
 ```
 
 ## 📚 Documentation
+
+- **[Theme Guide](./THEME_GUIDE.md)**: Complete guide to the glass morphism design system, theming, and customization
+- **[Component Guide](./COMPONENT_GUIDE.md)**: Comprehensive guide to component usage, patterns, and best practices
+- **[CLAUDE.md](./CLAUDE.md)**: Development instructions and project architecture for contributors
 
 Visit the component stories at `http://localhost:3002` when running the dev server to see all components with examples and usage patterns.
 

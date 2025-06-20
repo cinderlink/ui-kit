@@ -24,7 +24,7 @@
 <div class="story">
 	<Card title="Elements" align="items-start">
 		<div class="flex flex-row gap-4">
-			<Panel variant="offset">
+			<Panel variant="surface">
 				<Typography>h1</Typography>
 				<Typography el="h2">h3</Typography>
 				<Typography el="h3">h4</Typography>
@@ -33,7 +33,7 @@
 				<Typography el="h6">h6</Typography>
 				<Typography el="p">p</Typography>
 			</Panel>
-			<Panel variant="offset">
+			<Panel variant="surface">
 				<Syntax
 					code={`<Typography>h1</Typography>
 <Typography el="h2">h3</Typography>

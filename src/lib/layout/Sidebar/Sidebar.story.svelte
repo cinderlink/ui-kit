@@ -21,7 +21,7 @@
 <Typography>Sidebar</Typography>
 
 <div class="story">
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="h3">Preview</Typography>
 		<div>
 			<Sidebar>

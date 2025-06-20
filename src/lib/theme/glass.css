@@ -1,0 +1,155 @@
+/* Glass Design System CSS Variables */
+:root {
+	/* Glass effects */
+	--glass-blur: 16px;
+	--glass-blur-light: 8px;
+	--glass-blur-heavy: 32px;
+	--glass-saturation: 1.2;
+
+	/* Glass backgrounds - smooth liquid glass */
+	--glass-bg: linear-gradient(
+		to bottom right,
+		rgba(255, 255, 255, 0.12) 0%,
+		rgba(255, 255, 255, 0.08) 50%,
+		rgba(255, 255, 255, 0.05) 100%
+	);
+	--glass-bg-frosted: linear-gradient(
+		to bottom right,
+		rgba(255, 255, 255, 0.7) 0%,
+		rgba(255, 255, 255, 0.6) 50%,
+		rgba(255, 255, 255, 0.5) 100%
+	);
+	--glass-bg-surface: linear-gradient(
+		to bottom right,
+		rgba(255, 255, 255, 0.06) 0%,
+		rgba(255, 255, 255, 0.03) 100%
+	);
+
+	/* Glass borders - elegant and subtle */
+	--glass-border: 1px solid rgba(255, 255, 255, 0.18);
+	--glass-border-light: 1px solid rgba(255, 255, 255, 0.1);
+	--glass-border-strong: 1px solid rgba(255, 255, 255, 0.25);
+
+	/* Glass shadows - subtle and clean */
+	--glass-shadow:
+		0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06),
+		inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+	--glass-shadow-hover:
+		0 4px 12px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.08),
+		inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+	--glass-shadow-active:
+		0 1px 4px rgba(0, 0, 0, 0.04), 0 0 2px rgba(0, 0, 0, 0.06),
+		inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+
+	/* Animation timing */
+	--glass-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+	--glass-transition-slow: all 600ms cubic-bezier(0.4, 0, 0.2, 1);
+
+	/* Text styling */
+	--glass-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	--glass-text-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Dark mode adjustments - Clean dark glass */
+.dark {
+	--glass-bg: linear-gradient(
+		to bottom right,
+		rgba(255, 255, 255, 0.04) 0%,
+		rgba(255, 255, 255, 0.02) 50%,
+		rgba(255, 255, 255, 0.01) 100%
+	);
+	--glass-bg-frosted: linear-gradient(
+		to bottom right,
+		rgba(10, 10, 15, 0.95) 0%,
+		rgba(10, 10, 15, 0.9) 50%,
+		rgba(10, 10, 15, 0.85) 100%
+	);
+	--glass-bg-surface: linear-gradient(
+		to bottom right,
+		rgba(255, 255, 255, 0.02) 0%,
+		rgba(255, 255, 255, 0.01) 100%
+	);
+
+	--glass-border: 1px solid rgba(255, 255, 255, 0.08);
+	--glass-border-light: 1px solid rgba(255, 255, 255, 0.04);
+	--glass-border-strong: 1px solid rgba(255, 255, 255, 0.12);
+
+	--glass-shadow:
+		0 2px 8px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1),
+		inset 0 1px 0 0 rgba(255, 255, 255, 0.03);
+	--glass-shadow-hover:
+		0 4px 12px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.15),
+		inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+	--glass-shadow-active:
+		0 1px 4px rgba(0, 0, 0, 0.2), 0 0 2px rgba(0, 0, 0, 0.1),
+		inset 0 1px 0 0 rgba(255, 255, 255, 0.02);
+
+	--glass-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+	--glass-text-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Ensure dark mode is properly applied globally */
+:global(.dark) {
+	--glass-bg: linear-gradient(
+		to bottom right,
+		rgba(255, 255, 255, 0.04) 0%,
+		rgba(255, 255, 255, 0.02) 50%,
+		rgba(255, 255, 255, 0.01) 100%
+	);
+	--glass-bg-frosted: linear-gradient(
+		to bottom right,
+		rgba(10, 10, 15, 0.95) 0%,
+		rgba(10, 10, 15, 0.9) 50%,
+		rgba(10, 10, 15, 0.85) 100%
+	);
+	--glass-bg-surface: linear-gradient(
+		to bottom right,
+		rgba(255, 255, 255, 0.02) 0%,
+		rgba(255, 255, 255, 0.01) 100%
+	);
+
+	--glass-border: 1px solid rgba(255, 255, 255, 0.08);
+	--glass-border-light: 1px solid rgba(255, 255, 255, 0.04);
+	--glass-border-strong: 1px solid rgba(255, 255, 255, 0.12);
+
+	--glass-shadow:
+		0 8px 32px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4),
+		inset 0 1px 0 0 rgba(255, 255, 255, 0.04), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+	--glass-shadow-hover:
+		0 12px 48px rgba(0, 0, 0, 0.7), 0 4px 12px rgba(0, 0, 0, 0.45),
+		inset 0 1px 0 0 rgba(255, 255, 255, 0.06), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+	--glass-shadow-active:
+		0 4px 24px rgba(0, 0, 0, 0.65), 0 1px 4px rgba(0, 0, 0, 0.4),
+		inset 0 1px 0 0 rgba(255, 255, 255, 0.02), inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+
+	--glass-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+	--glass-text-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Color variants - generate using color functions */
+@mixin glass-tint($color-rgb) {
+	background: linear-gradient(135deg, rgba($color-rgb, 0.08) 0%, rgba($color-rgb, 0.04) 100%);
+	border-color: rgba($color-rgb, 0.2);
+}
+
+/* Utility classes for consistent glass effects */
+.glass {
+	background: var(--glass-bg);
+	backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+	-webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+	border: var(--glass-border);
+	box-shadow: var(--glass-shadow);
+	transition: var(--glass-transition);
+}
+
+.glass-frosted {
+	background: var(--glass-bg-frosted);
+	backdrop-filter: blur(var(--glass-blur-heavy)) saturate(1.2);
+	-webkit-backdrop-filter: blur(var(--glass-blur-heavy)) saturate(1.2);
+}
+
+.glass-surface {
+	background: var(--glass-bg-surface);
+	backdrop-filter: blur(var(--glass-blur-light)) saturate(1.2);
+	-webkit-backdrop-filter: blur(var(--glass-blur-light)) saturate(1.2);
+}

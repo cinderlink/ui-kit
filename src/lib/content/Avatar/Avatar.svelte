@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Size } from '$lib/unocss';
+	import type { Size } from '$lib/theme/types';
 	import type { Snippet } from 'svelte';
 	import { fade } from 'svelte/transition';
 
@@ -13,11 +13,11 @@
 		corner?: Snippet;
 	}
 
-	let { 
-		image = undefined,
-		name = undefined,
-		status = undefined,
-		size = 'md',
+	let {
+		image = $bindable(),
+		name = $bindable(),
+		status = $bindable(),
+		size = $bindable('md'),
 		classes = '',
 		imageSlot,
 		corner
@@ -38,7 +38,7 @@
 	{/if}
 </div>
 
-<style>
+<style lang="postcss">
 	.avatar {
 		@apply rounded-full block relative shadow;
 		@apply hover-(scale-102 rotate-1 shadow-lg) transition-transform duration-300 transform-gpu;

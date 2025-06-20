@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Emoji from '$lib/content/Emoji/Emoji.svelte';
-	import type { Size } from '$lib/unocss/types';
+	import type { Size } from '$lib/theme/types';
 	import type { Snippet } from 'svelte';
 	import Button from '../Button/Button.svelte';
 	import Toggle from '../Toggle/Toggle.svelte';
@@ -10,11 +10,12 @@
 		name?: string | undefined;
 		label?: string | undefined;
 		error?: string | undefined;
-		type?: 
+		type?:
 			| 'text'
 			| 'password'
 			| 'number'
 			| 'email'
+			| 'search'
 			| 'textarea'
 			| 'file'
 			| 'markdown'
@@ -48,6 +49,7 @@
 		buttonSlot?: Snippet<[{ input: HTMLInputElement | undefined }]>;
 		buttonText?: Snippet;
 		append?: Snippet;
+		icon?: string;
 		errorSlot?: Snippet;
 	}
 
@@ -85,10 +87,13 @@
 		buttonSlot,
 		buttonText,
 		append,
+		icon,
 		errorSlot
 	}: Props = $props();
 
-	let computedPreviewClasses = $derived(preview ? 'flex-col gap-2 items-center justify-center' : previewClasses);
+	let computedPreviewClasses = $derived(
+		preview ? 'flex-col gap-2 items-center justify-center' : previewClasses
+	);
 	let empty = $derived(value === '');
 </script>
 
@@ -139,7 +144,10 @@
 				{placeholder}
 				class="input"
 			/>
-		{:else if type === 'text'}
+		{:else if type === 'text' || type === 'search'}
+			{#if icon}
+				<div class="{icon} text-gray-400 dark:text-gray-500 text-sm"></div>
+			{/if}
 			<input
 				bind:this={inputRef}
 				{readonly}
@@ -147,7 +155,7 @@
 				{name}
 				{disabled}
 				{autocomplete}
-				type="text"
+				{type}
 				{onfocus}
 				{onblur}
 				bind:value
@@ -163,7 +171,7 @@
 				/>
 			{/if}
 		{:else if type === 'textarea'}
-			<textarea {readonly} {id} {name} {disabled} bind:value {placeholder} class="input" />
+			<textarea {readonly} {id} {name} {disabled} bind:value {placeholder} class="input"></textarea>
 			{#if emoji}
 				<Emoji onselected={(emoji) => (value += emoji)} />
 			{/if}
@@ -201,7 +209,7 @@
 					{#if buttonText}
 						{@render buttonText()}
 					{:else}
-						<div class="i-tabler-upload" />
+						<div class="i-tabler-upload"></div>
 						Upload
 					{/if}
 				</Button>
@@ -218,7 +226,7 @@
 				{onkeypress}
 				{placeholder}
 				class="input"
-			/>
+			></textarea>
 			{#if emoji}
 				<Emoji
 					onselected={(emoji) => {
@@ -243,7 +251,7 @@
 	{/if}
 </div>
 
-<style>
+<style lang="postcss">
 	.input__container {
 		@apply flex flex-col gap-2 items-start justify-center;
 	}
@@ -263,7 +271,14 @@
 		@apply font-sans font-normal text-md b-none outline-none resize-none bg-transparent;
 	}
 	.input__wrapper {
-		@apply rounded-lg flex flex-row gap-2 text-xl w-full border-4;
+		@apply rounded-lg flex flex-row gap-2 text-xl w-full;
+		/* Glass effect for inputs */
+		background: var(--glass-bg);
+		backdrop-filter: blur(var(--glass-blur-light)) saturate(var(--glass-saturation));
+		-webkit-backdrop-filter: blur(var(--glass-blur-light)) saturate(var(--glass-saturation));
+		border: var(--glass-border);
+		box-shadow: var(--glass-shadow);
+		transition: var(--glass-transition);
 	}
 
 	.input__preview {
@@ -289,12 +304,14 @@
 	}
 
 	.input--default:not(.input--file) .input__wrapper {
-		@apply bg-purple-50 text-purple-900 border-purple-100;
-		@apply dark-(bg-purple-900 text-purple-50 border-purple-100);
+		/* Glass with subtle tint */
+		background: linear-gradient(135deg, rgba(147, 51, 234, 0.03) 0%, rgba(147, 51, 234, 0.01) 100%);
+		@apply text-purple-900 dark:text-purple-50;
 	}
 	.input--inverted:not(.input--file) .input__wrapper {
-		@apply bg-purple-900 text-purple-50 border-purple-100;
-		@apply dark-(bg-purple-50 text-purple-900 border-purple-100);
+		/* Darker glass variant */
+		background: linear-gradient(135deg, rgba(147, 51, 234, 0.08) 0%, rgba(147, 51, 234, 0.04) 100%);
+		@apply text-purple-50;
 	}
 
 	.input--file .input__wrapper {
@@ -303,8 +320,13 @@
 
 	.input__wrapper:focus-within,
 	.input__wrapper:hover {
-		@apply border-purple-800;
-		@apply dark-(border-purple-200);
+		box-shadow: var(--glass-shadow-hover);
+		border-color: rgba(147, 51, 234, 0.3);
+	}
+
+	/* Dark mode adjustments */
+	:global(.dark) .input__wrapper {
+		/* Inherit glass variables which adjust for dark mode */
 	}
 	.error {
 		@apply w-full p-2;

@@ -1,13 +1,35 @@
+# Build artifacts and generated files
 .DS_Store
-node_modules
-/build
-/.svelte-kit
-/package
+node_modules/
+dist/
+build/
+.svelte-kit/
+package/
+coverage/
+test-results/
+playwright-report/
+
+# Tool-specific directories
+.claude/
+.serena/
+.vscode/
+
+# Environment files
 .env
 .env.*
 !.env.example
 
-# Ignore files for PNPM, NPM and YARN
+# Lockfiles
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
+bun.lockb
+bun.lock
+
+# GitHub workflows (contain JavaScript template strings in YAML)
+.github/workflows/
+
+# Screenshots and artifacts
+**/__screenshots__/
+**/test-results/
+ui-screenshots/

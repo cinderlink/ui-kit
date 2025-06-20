@@ -8,19 +8,14 @@
 		children?: import('svelte').Snippet;
 	}
 
-	let {
-		status = 'info',
-		size = 'xs',
-		classes = '',
-		children
-	}: Props = $props();
+	let { status = 'info', size = 'xs', classes = '', children }: Props = $props();
 </script>
 
 <div class="status-indicator status-indicator--{status} status-indicator--{size} {classes}">
 	{@render children?.()}
 </div>
 
-<style>
+<style lang="postcss">
 	.status-indicator {
 		@apply inline-flex items-center justify-center rounded-full;
 	}

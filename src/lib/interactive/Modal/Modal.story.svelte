@@ -25,44 +25,40 @@
 <Typography>Modal</Typography>
 
 <div class="story">
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="h4">Example</Typography>
-		<Button onclick={() => (open = true)}>Open Modal</Button>
+		<Button onclick={() => (open = true)} data-testid="open-modal-button">Open Modal</Button>
 		<Modal bind:visible={open}>
 			{#snippet header()}
-					
-					<Typography el="h3">Modal Title</Typography>
-					<Button size="sm" variant="outlined" color="rose" onclick={() => (open = false)}
-						>Close</Button
-					>
-				
-					{/snippet}
+				<Typography el="h3">Modal Title</Typography>
+				<Button size="sm" variant="outlined" color="rose" onclick={() => (open = false)}
+					>Close</Button
+				>
+			{/snippet}
 
 			<Typography el="p">Modal content</Typography>
 
 			{#snippet footer()}
-					
-					<Typography el="p">Modal footer</Typography>
-				
-					{/snippet}
+				<Typography el="p">Modal footer</Typography>
+			{/snippet}
 		</Modal>
 
 		<Typography el="h4">Usage</Typography>
 		<Syntax
 			code={`<Button onclick={openModal}>Open Modal</Button>
 <Modal bind:visible={open}>
-  <svelte:fragment slot="header">
+  {#snippet header()}
     <Typography el="h3">Modal Title</Typography>
     <Button size="sm" variant="outlined" color="rose" onclick={closeModal}>
       Close
     </Button>
-  </svelte:fragment>
+  {/snippet}
 
   <Typography el="p">Modal content</Typography>
 
-  <svelte:fragment slot="footer">
+  {#snippet footer()}
     <Typography el="p">Modal footer</Typography>
-  </svelte:fragment>
+  {/snippet}
 </Modal>`}
 		/>
 	</Panel>

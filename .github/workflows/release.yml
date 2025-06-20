@@ -1,0 +1,89 @@
+name: Release Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Run linting
+        run: bun run lint
+
+      - name: Run type checking
+        run: bun run check
+
+      - name: Install Playwright browsers for Vitest
+        run: bunx playwright install --with-deps chromium
+
+      - name: Run browser tests (Vitest)
+        run: bun run test:browser --run
+
+      - name: Build package
+        run: bun run build
+
+      # E2E tests run after build to test production build
+      - name: Install Playwright browsers
+        run: bunx playwright install --with-deps chromium
+
+      - name: Run E2E tests
+        run: bun run test:e2e --project=chromium
+
+      - name: Upload test artifacts on failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: test-artifacts
+          path: |
+            playwright-report/
+            test-results/
+
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    if: success()
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build package
+        run: bun run build
+
+      - name: Publish package
+        run: npm publish --access public --no-git-checks
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create release artifact
+        run: |
+          mkdir -p release
+          cp -r dist/* release/
+          zip -r release.zip release
+        shell: bash
+
+      - name: Upload release artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-artifact
+          path: release.zip

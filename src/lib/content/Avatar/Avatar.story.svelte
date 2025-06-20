@@ -18,8 +18,8 @@
 
 	let image = $state('https://loremflickr.com/640/360');
 	let size: 'md' | 'sm' | 'lg' = $state('md');
-	let badge = $state(false);
-	let status: 'online' | 'offline' | 'busy' | 'away' | undefined = $state(undefined);
+	let badge = $state('false');
+	let status: 'online' | 'offline' | 'busy' | 'away' | undefined = $state('online');
 </script>
 
 <svelte:head>
@@ -30,13 +30,13 @@
 <p>{story.description}</p>
 
 <div class="story">
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="h2">Preview</Typography>
 		<Avatar bind:image bind:size bind:status />
 	</Panel>
 
 	<div class="flex gap-2">
-		<Panel variant="offset" classes="flex flex-col gap-2 w-1/2">
+		<Panel variant="surface" classes="flex flex-col gap-2 w-1/2">
 			<Typography el="h2">Props</Typography>
 			<Input id="image" label="image" placeholder="https://..." bind:value={image} />
 			<Select
@@ -65,12 +65,12 @@
 				label="badge"
 				bind:value={badge}
 				options={[
-					{ value: false, label: 'false' },
-					{ value: true, label: 'true' }
+					{ value: 'false', label: 'false' },
+					{ value: 'true', label: 'true' }
 				]}
 			/>
 		</Panel>
-		<Panel variant="offset" classes="w-1/2">
+		<Panel variant="surface" classes="w-1/2">
 			<Typography el="h2">Code</Typography>
 			<Syntax code={`<Avatar image="{image}" size="{size}" />`} />
 		</Panel>

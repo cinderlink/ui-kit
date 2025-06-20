@@ -15,7 +15,7 @@
 	{@render children?.()}
 </div>
 
-<style>
+<style lang="postcss">
 	.loading-indicator {
 		@apply flex flex-row items-center justify-center;
 	}

@@ -22,18 +22,18 @@
 </svelte:head>
 
 <div class="story">
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="h3">Customize</Typography>
 		<Toggle id="toggle-dropdown" bind:toggled={square}>
 			{#snippet on()}
-						Square
-					{/snippet}
+				Square
+			{/snippet}
 			{#snippet off()}
-						Rounded - Default
-					{/snippet}
+				Rounded - Default
+			{/snippet}
 		</Toggle>
 	</Panel>
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Dropdown
 			label="Options list"
 			type="select"
@@ -46,20 +46,21 @@
 			selected={{ label: 'Select', value: '' }}
 		/>
 	</Panel>
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Dropdown label="custom content" width="w-full" {square}>
-			{#snippet content()}
-						<div class="p-4" >
+			{#snippet children({ toggle })}
+				<div class="p-4">
 					<Typography el="h4">Custom content</Typography>
 					<Typography el="p">
 						You can add custom content to the dropdown. This is useful for adding a search input or
 						other interactive elements.
 					</Typography>
+					<button onclick={() => toggle(false)}>Close</button>
 				</div>
-					{/snippet}
+			{/snippet}
 		</Dropdown>
 	</Panel>
-	<Panel variant="offset">
+	<Panel variant="surface">
 		<Typography el="h4">Usage</Typography>
 		<hr />
 		<Typography el="h6">Options list</Typography>

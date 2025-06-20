@@ -2,7 +2,7 @@
 	interface Props {
 		flex?: string;
 		children?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let { flex = 'flex flex-col gap-2', children, ...rest }: Props = $props();
@@ -12,7 +12,7 @@
 	{@render children?.()}
 </div>
 
-<style>
+<style lang="postcss">
 	.list {
 		@apply list-style-none m-0 p-0;
 	}
