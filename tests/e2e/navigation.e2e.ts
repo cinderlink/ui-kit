@@ -15,8 +15,9 @@ test.describe('Navigation User Journey', () => {
 		await expect(page.getByRole('heading', { name: 'Quick Start' }).first()).toBeVisible();
 
 		// Navigate to Components section - click on Content which is the first component group
-		await page.waitForSelector('text=Content', { timeout: 10000 });
-		await page.getByText('Content').click();
+		// Use specific selector for navigation drawer
+		await page.waitForSelector('nav', { timeout: 10000 });
+		await page.locator('.nav-drawer .drawer__toggle').filter({ hasText: 'Content' }).click();
 		// Wait for the drawer to expand, then click the View Content link
 		await page.waitForSelector('text=View Content', { timeout: 10000 });
 		await page.getByRole('link', { name: 'View Content' }).click();
@@ -59,11 +60,12 @@ test.describe('Navigation User Journey', () => {
 		await page.waitForSelector('nav', { timeout: 10000 });
 
 		// Navigate on mobile - navigate to a component group
-		// Wait for the Interactive text to be visible and clickable
-		await page.waitForSelector('text=Interactive', { timeout: 10000 });
-
-		// Force click since element might be outside viewport on mobile
-		await page.getByText('Interactive').click({ force: true });
+		// Use specific navigation selector for mobile with force click for viewport issues
+		await page.waitForSelector('nav', { timeout: 10000 });
+		await page
+			.locator('.nav-drawer .drawer__toggle')
+			.filter({ hasText: 'Interactive' })
+			.click({ force: true });
 
 		// Wait for the drawer to expand and the link to be visible
 		await page.waitForSelector('text=View Interactive', { timeout: 10000 });
