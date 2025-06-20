@@ -5,6 +5,11 @@ test.describe('Accessibility Tests', () => {
 	test('homepage meets WCAG standards', async ({ page }) => {
 		await page.goto('/');
 
+		// Wait for page to be fully loaded and hydrated
+		await page.waitForLoadState('networkidle');
+		await page.waitForSelector('h1', { timeout: 10000 });
+		await page.waitForSelector('main', { timeout: 10000 });
+
 		// Check for accessibility violations
 		const accessibilityScanResults = await new AxeBuilder({ page: page as any }).analyze();
 

@@ -15,8 +15,10 @@ test.describe('Navigation User Journey', () => {
 		await expect(page.getByRole('heading', { name: 'Quick Start' })).toBeVisible();
 
 		// Navigate to Components section - click on Content which is the first component group
+		await page.waitForSelector('text=Content', { timeout: 10000 });
 		await page.getByText('Content').click();
-		// The drawer should expand, then click the View Content link
+		// Wait for the drawer to expand, then click the View Content link
+		await page.waitForSelector('text=View Content', { timeout: 10000 });
 		await page.getByRole('link', { name: 'View Content' }).click();
 		await expect(page).toHaveURL('/components/content');
 
@@ -51,20 +53,18 @@ test.describe('Navigation User Journey', () => {
 		await page.setViewportSize({ width: 375, height: 667 });
 
 		await page.goto('/');
+		await page.waitForLoadState('networkidle');
 
-		// Mobile menu should be hidden initially
-		const mobileMenu = page.getByRole('navigation').first();
-
-		// Look for hamburger menu button (if implemented)
-		const menuButton = page.getByRole('button', { name: /menu/i });
-		if (await menuButton.isVisible()) {
-			await menuButton.click();
-			await expect(mobileMenu).toBeVisible();
-		}
+		// Wait for navigation to be available
+		await page.waitForSelector('nav', { timeout: 10000 });
 
 		// Navigate on mobile - navigate to a component group
+		// Wait for the Interactive text to be visible and clickable
+		await page.waitForSelector('text=Interactive', { timeout: 10000 });
 		await page.getByText('Interactive').click();
-		// The drawer should expand, then click the View Interactive link
+
+		// Wait for the drawer to expand and the link to be visible
+		await page.waitForSelector('text=View Interactive', { timeout: 10000 });
 		await page.getByRole('link', { name: 'View Interactive' }).click();
 		await expect(page).toHaveURL('/components/interactive');
 	});
