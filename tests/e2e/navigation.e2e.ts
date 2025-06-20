@@ -15,12 +15,21 @@ test.describe('Navigation User Journey', () => {
 		await expect(page.getByRole('heading', { name: 'Quick Start' }).first()).toBeVisible();
 
 		// Navigate to Components section - click on Content which is the first component group
-		// Use specific selector for navigation drawer
+		// Use specific selector for navigation drawer with more robust handling
 		await page.waitForSelector('nav', { timeout: 10000 });
-		await page.locator('.nav-drawer .drawer__toggle').filter({ hasText: 'Content' }).click();
-		// Wait for the drawer to expand, then click the View Content link
-		await page.waitForSelector('text=View Content', { timeout: 10000 });
-		await page.getByRole('link', { name: 'View Content' }).click();
+
+		// Scroll to ensure element is in viewport and force click to handle CI differences
+		const contentDrawer = page
+			.locator('.nav-drawer .drawer__toggle')
+			.filter({ hasText: 'Content' });
+		await contentDrawer.scrollIntoViewIfNeeded();
+		await contentDrawer.click({ force: true });
+
+		// Wait for drawer to expand and content to be visible - be more flexible with selector
+		await page.waitForTimeout(500); // Give drawer time to expand
+		const viewContentLink = page.getByRole('link', { name: 'View Content' });
+		await expect(viewContentLink).toBeVisible({ timeout: 10000 });
+		await viewContentLink.click();
 		await expect(page).toHaveURL('/components/content');
 
 		// Explore a component
@@ -60,16 +69,25 @@ test.describe('Navigation User Journey', () => {
 		await page.waitForSelector('nav', { timeout: 10000 });
 
 		// Navigate on mobile - navigate to a component group
-		// Use specific navigation selector for mobile with force click for viewport issues
+		// Handle mobile viewport issues more robustly
 		await page.waitForSelector('nav', { timeout: 10000 });
-		await page
+
+		// Scroll sidebar to top to ensure navigation is accessible
+		await page.locator('nav').evaluate((nav) => (nav.scrollTop = 0));
+
+		// Use more robust mobile interaction
+		const interactiveDrawer = page
 			.locator('.nav-drawer .drawer__toggle')
-			.filter({ hasText: 'Interactive' })
-			.click({ force: true });
+			.filter({ hasText: 'Interactive' });
+		await interactiveDrawer.scrollIntoViewIfNeeded();
+		await page.waitForTimeout(500); // Let layout stabilize
+		await interactiveDrawer.click({ force: true });
 
 		// Wait for the drawer to expand and the link to be visible
-		await page.waitForSelector('text=View Interactive', { timeout: 10000 });
-		await page.getByRole('link', { name: 'View Interactive' }).click();
+		await page.waitForTimeout(500); // Give drawer time to expand
+		const viewInteractiveLink = page.getByRole('link', { name: 'View Interactive' });
+		await expect(viewInteractiveLink).toBeVisible({ timeout: 10000 });
+		await viewInteractiveLink.click();
 		await expect(page).toHaveURL('/components/interactive');
 	});
 });

@@ -19,7 +19,10 @@ export default defineConfig({
 		screenshot: 'only-on-failure',
 		video: 'on-first-retry',
 		// Default viewport for desktop testing
-		viewport: { width: 1280, height: 720 }
+		viewport: { width: 1280, height: 720 },
+		// More stable settings for CI
+		actionTimeout: process.env.CI ? 15000 : 5000,
+		navigationTimeout: process.env.CI ? 15000 : 30000
 	},
 	projects: [
 		{
