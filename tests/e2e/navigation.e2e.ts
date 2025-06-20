@@ -35,16 +35,8 @@ test.describe('Navigation User Journey', () => {
 		await avatarLink.click();
 		await expect(page).toHaveURL('/components/content/avatar');
 
-		// Navigate to Interactive components to explore Button
-		// First expand the Interactive drawer
-		const interactiveDrawer = page
-			.locator('.nav-drawer .drawer__toggle')
-			.filter({ hasText: 'Interactive' });
-		await interactiveDrawer.scrollIntoViewIfNeeded();
-		await interactiveDrawer.click({ force: true });
-		await page.waitForTimeout(500); // Wait for drawer to expand
-
-		// Now click on Button component
+		// Navigate to Interactive components - Button link should be visible already
+		// All drawers are expanded by default, so Button link should be immediately available
 		const buttonLink = page.getByRole('link', { name: 'Button' });
 		await expect(buttonLink).toBeVisible({ timeout: 10000 });
 		await buttonLink.click();
@@ -54,12 +46,12 @@ test.describe('Navigation User Journey', () => {
 		await page.waitForLoadState('networkidle');
 		await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
 
-		// Navigate to themes to test top-level navigation
-		await page.getByRole('link', { name: 'Themes' }).click();
-		await expect(page).toHaveURL(/\/themes/);
+		// Navigate to theme overview (not a generic "Themes" link)
+		await page.getByRole('link', { name: 'View Overview' }).click();
+		await expect(page).toHaveURL('/themes/overview');
 
-		// Test dark mode toggle
-		const themeToggle = page.getByRole('button', { name: /theme/i });
+		// Test dark mode toggle - use the first one (in sidebar)
+		const themeToggle = page.getByRole('button', { name: /theme/i }).first();
 		await themeToggle.click();
 
 		// Verify dark mode is applied
