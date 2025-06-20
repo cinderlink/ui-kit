@@ -4,11 +4,6 @@ on:
   pull_request:
     branches:
       - main
-  push:
-    branches:
-      - 'feature/**'
-      - 'fix/**'
-      - 'release/**'
 
 jobs:
   # Build and basic checks first
@@ -259,7 +254,7 @@ jobs:
   report:
     needs: [setup, test-unit, test-browser, test-e2e, coverage, lighthouse]
     runs-on: ubuntu-latest
-    if: always() && (github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref != 'refs/heads/main'))
+    if: always()
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -310,24 +305,8 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            // Get PR number (different for push vs pull_request events)
-            let prNumber;
-            if (context.eventName === 'pull_request') {
-              prNumber = context.issue.number;
-            } else {
-              // For push events, find PR by head branch
-              const { data: prs } = await github.rest.pulls.list({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                head: `${context.repo.owner}:${context.ref.replace('refs/heads/', '')}`,
-                state: 'open'
-              });
-              if (prs.length === 0) {
-                console.log('No open PR found for this branch');
-                return;
-              }
-              prNumber = prs[0].number;
-            }
+            // Get PR number for pull_request events
+            const prNumber = context.issue.number;
             
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
