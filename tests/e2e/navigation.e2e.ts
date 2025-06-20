@@ -25,12 +25,15 @@ test.describe('Navigation User Journey', () => {
 		await contentDrawer.scrollIntoViewIfNeeded();
 		await contentDrawer.click({ force: true });
 
-		// Wait for drawer to expand and content to be visible - be more flexible with selector
+		// Wait for drawer to expand and individual component links to be visible
+		// Content group shows individual components, not a "View Content" link
 		await page.waitForTimeout(500); // Give drawer time to expand
-		const viewContentLink = page.getByRole('link', { name: 'View Content' });
-		await expect(viewContentLink).toBeVisible({ timeout: 10000 });
-		await viewContentLink.click();
-		await expect(page).toHaveURL('/components/content');
+		const avatarLink = page.getByRole('link', { name: 'Avatar' });
+		await expect(avatarLink).toBeVisible({ timeout: 10000 });
+
+		// Click on Avatar component to verify navigation works
+		await avatarLink.click();
+		await expect(page).toHaveURL('/components/content/avatar');
 
 		// Explore a component
 		await page.getByRole('link', { name: 'Button' }).first().click();
@@ -68,26 +71,26 @@ test.describe('Navigation User Journey', () => {
 		// Wait for navigation to be available
 		await page.waitForSelector('nav', { timeout: 10000 });
 
-		// Navigate on mobile - navigate to a component group
+		// Navigate on mobile - use Getting Started items which have "View" links
 		// Handle mobile viewport issues more robustly
 		await page.waitForSelector('nav', { timeout: 10000 });
 
 		// Scroll sidebar to top to ensure navigation is accessible
 		await page.locator('nav').evaluate((nav) => (nav.scrollTop = 0));
 
-		// Use more robust mobile interaction
-		const interactiveDrawer = page
+		// Use Getting Started item which doesn't have components array
+		const installationDrawer = page
 			.locator('.nav-drawer .drawer__toggle')
-			.filter({ hasText: 'Interactive' });
-		await interactiveDrawer.scrollIntoViewIfNeeded();
+			.filter({ hasText: 'Installation' });
+		await installationDrawer.scrollIntoViewIfNeeded();
 		await page.waitForTimeout(500); // Let layout stabilize
-		await interactiveDrawer.click({ force: true });
+		await installationDrawer.click({ force: true });
 
-		// Wait for the drawer to expand and the link to be visible
+		// Wait for the drawer to expand and the "View Installation" link to be visible
 		await page.waitForTimeout(500); // Give drawer time to expand
-		const viewInteractiveLink = page.getByRole('link', { name: 'View Interactive' });
-		await expect(viewInteractiveLink).toBeVisible({ timeout: 10000 });
-		await viewInteractiveLink.click();
-		await expect(page).toHaveURL('/components/interactive');
+		const viewInstallationLink = page.getByRole('link', { name: 'View Installation' });
+		await expect(viewInstallationLink).toBeVisible({ timeout: 10000 });
+		await viewInstallationLink.click();
+		await expect(page).toHaveURL('/guides/installation');
 	});
 });
