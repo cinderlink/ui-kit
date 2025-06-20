@@ -32,7 +32,7 @@ jobs:
           path: |
             node_modules
             ~/.cache/ms-playwright
-          key: ${{ runner.os }}-deps-${{ hashFiles('bun.lock', 'package.json') }}
+          key: ${{ runner.os }}-deps-${{ hashFiles('**/bun.lock', '**/package.json') }}
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
@@ -89,7 +89,7 @@ jobs:
           path: |
             node_modules
             ~/.cache/ms-playwright
-          key: ${{ runner.os }}-deps-${{ hashFiles('bun.lock', 'package.json') }}
+          key: ${{ runner.os }}-deps-${{ hashFiles('**/bun.lock', '**/package.json') }}
 
       - name: Restore build cache
         uses: actions/cache@v4
@@ -121,7 +121,7 @@ jobs:
           path: |
             node_modules
             ~/.cache/ms-playwright
-          key: ${{ runner.os }}-deps-${{ hashFiles('bun.lock', 'package.json') }}
+          key: ${{ runner.os }}-deps-${{ hashFiles('**/bun.lock', '**/package.json') }}
 
       - name: Restore build cache
         uses: actions/cache@v4
@@ -156,7 +156,7 @@ jobs:
           path: |
             node_modules
             ~/.cache/ms-playwright
-          key: ${{ runner.os }}-deps-${{ hashFiles('bun.lock', 'package.json') }}
+          key: ${{ runner.os }}-deps-${{ hashFiles('**/bun.lock', '**/package.json') }}
 
       - name: Restore build cache
         uses: actions/cache@v4
@@ -199,7 +199,7 @@ jobs:
           path: |
             node_modules
             ~/.cache/ms-playwright
-          key: ${{ runner.os }}-deps-${{ hashFiles('bun.lock', 'package.json') }}
+          key: ${{ runner.os }}-deps-${{ hashFiles('**/bun.lock', '**/package.json') }}
 
       - name: Run tests with coverage
         run: bun run test:coverage
@@ -228,7 +228,7 @@ jobs:
           path: |
             node_modules
             ~/.cache/ms-playwright
-          key: ${{ runner.os }}-deps-${{ hashFiles('bun.lock', 'package.json') }}
+          key: ${{ runner.os }}-deps-${{ hashFiles('**/bun.lock', '**/package.json') }}
 
       - name: Restore build cache
         uses: actions/cache@v4
@@ -275,7 +275,7 @@ jobs:
           path: |
             node_modules
             ~/.cache/ms-playwright
-          key: ${{ runner.os }}-deps-${{ hashFiles('bun.lock', 'package.json') }}
+          key: ${{ runner.os }}-deps-${{ hashFiles('**/bun.lock', '**/package.json') }}
 
       - name: Restore build cache
         uses: actions/cache@v4
@@ -399,7 +399,7 @@ jobs:
             ## 📈 Workflow Details
             
             - **Branch:** \`${{ github.head_ref || github.ref_name }}\`
-            - **Commit:** \`${{ github.sha.substring(0, 7) }}\`
+            - **Commit:** \`${context.sha.substring(0, 7)}\`
             - **Workflow Run:** [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
             
             ---
