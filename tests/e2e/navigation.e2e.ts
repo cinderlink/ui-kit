@@ -6,17 +6,19 @@ test.describe('Navigation User Journey', () => {
 		await page.goto('/');
 
 		// Verify homepage loads
-		await expect(page).toHaveTitle(/Cinderlink UI Kit/);
-		await expect(page.getByRole('heading', { name: 'Cinderlink UI Kit' })).toBeVisible();
+		await expect(page).toHaveTitle(/@cinderlink\/ui-kit/);
+		await expect(page.getByRole('heading', { name: 'Customizable Svelte UI Kit' })).toBeVisible();
 
 		// Navigate to Quick Start guide
 		await page.getByRole('link', { name: 'Quick Start' }).click();
 		await expect(page).toHaveURL('/guides/quickstart');
 		await expect(page.getByRole('heading', { name: 'Quick Start' })).toBeVisible();
 
-		// Navigate to Components section
-		await page.getByRole('link', { name: 'Components' }).click();
-		await expect(page).toHaveURL('/components');
+		// Navigate to Components section - click on Content which is the first component group
+		await page.getByText('Content').click();
+		// The drawer should expand, then click the View Content link
+		await page.getByRole('link', { name: 'View Content' }).click();
+		await expect(page).toHaveURL('/components/content');
 
 		// Explore a component
 		await page.getByRole('link', { name: 'Button' }).first().click();
@@ -60,8 +62,10 @@ test.describe('Navigation User Journey', () => {
 			await expect(mobileMenu).toBeVisible();
 		}
 
-		// Navigate on mobile
-		await page.getByRole('link', { name: 'Components' }).click();
-		await expect(page).toHaveURL('/components');
+		// Navigate on mobile - navigate to a component group
+		await page.getByText('Interactive').click();
+		// The drawer should expand, then click the View Interactive link
+		await page.getByRole('link', { name: 'View Interactive' }).click();
+		await expect(page).toHaveURL('/components/interactive');
 	});
 });
