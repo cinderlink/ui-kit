@@ -162,6 +162,19 @@ jobs:
             .svelte-kit/
           key: build-${{ github.sha }}
 
+      - name: Install Playwright browsers
+        run: |
+          # Install the specific browser with dependencies
+          bunx playwright install --with-deps ${{ matrix.browser }}
+          
+          # Additional fix for WebKit on Ubuntu (missing libwoff2dec)
+          if [ "${{ matrix.browser }}" = "webkit" ]; then
+            sudo apt-get update
+            sudo apt-get install -y libwoff2-1.0.2 libwoff2-dev || true
+            # If the above fails, try alternative packages
+            sudo apt-get install -y libwoff1 || true
+          fi
+
       - name: Run E2E tests (${{ matrix.browser }})
         run: bun run test:e2e --project=${{ matrix.browser }}
         env:
