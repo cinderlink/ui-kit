@@ -4,14 +4,4 @@ import { sveltekit } from '@sveltejs/kit/vite';
 
 export default defineConfig({
 	plugins: [UnoCSS(), sveltekit()],
-	build: {
-		minify: false,
-		target: 'esnext'
-	},
-	optimizeDeps: {
-		exclude: ['unocss', 'uno.css', 'fsevents'],
-		esbuildOptions: {
-			target: 'esnext'
-		}
-	}
 });

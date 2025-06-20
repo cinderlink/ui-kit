@@ -1,12 +1,12 @@
 {
 	"name": "@cinderlink/ui-kit",
 	"type": "module",
-	"version": "1.0.0-next.0",
+	"version": "1.0.0-next.1",
 	"scripts": {
 		"dev": "vite dev --port 3002",
 		"preview": "vite preview --port 4173",
 		"watch": "svelte-package --watch",
-		"build": "svelte-kit sync && svelte-package",
+		"build": "rimraf dist && svelte-kit sync && svelte-package",
 		"build:app": "vite build",
 		"test": "bun run test:browser",
 		"test:all": "bun run test:browser && bun run test:e2e",
@@ -37,6 +37,7 @@
 		"README"
 	],
 	"devDependencies": {
+		"rimraf": "^5.0.5",
 		"@axe-core/playwright": "^4.10.2",
 		"@esbuild-plugins/node-globals-polyfill": "^0.2.3",
 		"@iconify-json/logos": "^1.1.30",
