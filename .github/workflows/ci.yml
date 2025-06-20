@@ -1,0 +1,423 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - 'feature/**'
+      - 'fix/**'
+      - 'release/**'
+
+jobs:
+  # Build and basic checks first
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      cache-key: ${{ steps.cache.outputs.cache-hit }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-deps-${{ hashFiles('bun.lock', 'package.json') }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: bun install
+
+      - name: Install dependencies (cache hit)
+        if: steps.cache.outputs.cache-hit == 'true'
+        run: bun install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: bunx playwright install --with-deps
+
+      - name: Run linting
+        run: bun run lint
+
+      - name: Run formatting check
+        run: bun run format:check
+
+      - name: Run type checking
+        run: bun run check
+
+      - name: Build package
+        run: bun run build
+
+      - name: Build app for testing
+        run: bun run build:app
+
+      - name: Cache build artifacts
+        uses: actions/cache@v4
+        with:
+          path: |
+            dist/
+            build/
+            .svelte-kit/
+          key: build-${{ github.sha }}
+
+  # Run tests in parallel
+  test-unit:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Restore dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-deps-${{ hashFiles('bun.lock', 'package.json') }}
+
+      - name: Restore build cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            dist/
+            build/
+            .svelte-kit/
+          key: build-${{ github.sha }}
+
+      - name: Run unit tests
+        run: bun run test:unit --run
+
+  test-browser:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Restore dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-deps-${{ hashFiles('bun.lock', 'package.json') }}
+
+      - name: Restore build cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            dist/
+            build/
+            .svelte-kit/
+          key: build-${{ github.sha }}
+
+      - name: Run browser tests
+        run: bun run test:browser --run
+
+  test-e2e:
+    needs: setup
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        browser: [chromium, firefox, webkit]
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Restore dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-deps-${{ hashFiles('bun.lock', 'package.json') }}
+
+      - name: Restore build cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            dist/
+            build/
+            .svelte-kit/
+          key: build-${{ github.sha }}
+
+      - name: Run E2E tests (${{ matrix.browser }})
+        run: bun run test:e2e --project=${{ matrix.browser }}
+        env:
+          CI: true
+
+      - name: Upload test artifacts on failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: e2e-artifacts-${{ matrix.browser }}
+          path: |
+            playwright-report/
+            test-results/
+
+  coverage:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Restore dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-deps-${{ hashFiles('bun.lock', 'package.json') }}
+
+      - name: Run tests with coverage
+        run: bun run test:coverage
+
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v4
+        with:
+          file: ./coverage/lcov.info
+          fail_ci_if_error: false
+
+  lighthouse:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Restore dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-deps-${{ hashFiles('bun.lock', 'package.json') }}
+
+      - name: Restore build cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            dist/
+            build/
+            .svelte-kit/
+          key: build-${{ github.sha }}
+
+      - name: Serve application
+        run: |
+          bun run preview --port 3000 &
+          sleep 5
+
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          urls: |
+            http://localhost:3000
+            http://localhost:3000/components
+            http://localhost:3000/guides/quickstart
+          budgetPath: ./lighthouse-budget.json
+          uploadArtifacts: false
+          temporaryPublicStorage: false
+
+  # Comprehensive reporting
+  report:
+    needs: [setup, test-unit, test-browser, test-e2e, coverage, lighthouse]
+    runs-on: ubuntu-latest
+    if: always() && (github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref != 'refs/heads/main'))
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Restore dependencies cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-deps-${{ hashFiles('bun.lock', 'package.json') }}
+
+      - name: Restore build cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            dist/
+            build/
+            .svelte-kit/
+          key: build-${{ github.sha }}
+
+      - name: Analyze bundle size
+        id: bundle
+        run: |
+          if [ -d "dist" ]; then
+            echo "js_files<<EOF" >> $GITHUB_OUTPUT
+            find dist -name "*.js" -exec du -h {} + | sort -h >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+            
+            total_size=$(find dist -name "*.js" -exec du -c {} + | tail -1 | awk '{print $1}')
+            echo "total_size=${total_size}" >> $GITHUB_OUTPUT
+            
+            if [ -f "dist/index.js" ]; then
+              index_size=$(du -h dist/index.js | awk '{print $1}')
+              echo "index_size=${index_size}" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "js_files=Build failed - no dist directory" >> $GITHUB_OUTPUT
+            echo "total_size=0" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create or Update PR Comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Get PR number (different for push vs pull_request events)
+            let prNumber;
+            if (context.eventName === 'pull_request') {
+              prNumber = context.issue.number;
+            } else {
+              // For push events, find PR by head branch
+              const { data: prs } = await github.rest.pulls.list({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                head: `${context.repo.owner}:${context.ref.replace('refs/heads/', '')}`,
+                state: 'open'
+              });
+              if (prs.length === 0) {
+                console.log('No open PR found for this branch');
+                return;
+              }
+              prNumber = prs[0].number;
+            }
+            
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+            });
+            
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('<!-- cinderlink-ui-kit-ci-report -->')
+            );
+            
+            // Collect job results
+            const jobResults = {
+              setup: '${{ needs.setup.result }}',
+              unit: '${{ needs.test-unit.result }}',
+              browser: '${{ needs.test-browser.result }}',
+              e2e: '${{ needs.test-e2e.result }}',
+              coverage: '${{ needs.coverage.result }}',
+              lighthouse: '${{ needs.lighthouse.result }}'
+            };
+            
+            // Status emoji helper
+            const getStatusEmoji = (status) => {
+              return status === 'success' ? '✅' : 
+                     status === 'failure' ? '❌' : 
+                     status === 'skipped' ? '⏭️' : 
+                     status === 'cancelled' ? '🚫' : '⏳';
+            };
+            
+            const bundleSize = '${{ steps.bundle.outputs.total_size }}';
+            const bundleFiles = `${{ steps.bundle.outputs.js_files }}`;
+            const indexSize = '${{ steps.bundle.outputs.index_size }}' || 'N/A';
+            
+            const body = `<!-- cinderlink-ui-kit-ci-report -->
+            # 🚀 Cinderlink UI Kit - CI Report
+            
+            ## 📋 Pipeline Status
+            
+            | Stage | Status |
+            |-------|--------|
+            | Setup & Build | ${getStatusEmoji(jobResults.setup)} |
+            | Unit Tests | ${getStatusEmoji(jobResults.unit)} |
+            | Browser Tests | ${getStatusEmoji(jobResults.browser)} |
+            | E2E Tests | ${getStatusEmoji(jobResults.e2e)} |
+            | Coverage | ${getStatusEmoji(jobResults.coverage)} |
+            | Lighthouse | ${getStatusEmoji(jobResults.lighthouse)} |
+            
+            ## 📦 Bundle Analysis
+            
+            **Total JS Bundle Size:** ${bundleSize}KB ${bundleSize > 500 ? '⚠️ (exceeds 500KB limit)' : '✅'}
+            
+            <details>
+            <summary>📁 File Breakdown</summary>
+            
+            \`\`\`
+            ${bundleFiles}
+            \`\`\`
+            </details>
+            
+            ## 🎯 Performance Summary
+            
+            | Metric | Value |
+            |--------|-------|
+            | Main Bundle (index.js) | ${indexSize} |
+            | Total Bundle Size | ${bundleSize}KB |
+            | Bundle Size Limit | 500KB |
+            
+            ## 📈 Workflow Details
+            
+            - **Branch:** \`${{ github.head_ref || github.ref_name }}\`
+            - **Commit:** \`${{ github.sha.substring(0, 7) }}\`
+            - **Workflow Run:** [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            
+            ---
+            <sub>Last updated: ${new Date().toUTCString()}</sub>
+            `;
+            
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body
+              });
+            }
