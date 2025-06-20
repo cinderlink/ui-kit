@@ -19,9 +19,9 @@
 
 		<div class="grid md:grid-cols-2 gap-6 mt-8">
 			<div class="glass-section">
-				<h3 class="text-xl font-semibold mb-4 text-purple-900 dark:text-purple-100">
+				<h2 class="text-xl font-semibold mb-4 text-purple-900 dark:text-purple-100">
 					Getting Started
-				</h3>
+				</h2>
 				<p class="text-base leading-relaxed text-gray-800 dark:text-gray-100">
 					See the <a href="/guides/installation" class="glass-link">Installation Guide</a> for instructions
 					on how to install and use @cinderlink/ui-kit in your SvelteKit application.
@@ -29,7 +29,7 @@
 			</div>
 
 			<div class="glass-section">
-				<h3 class="text-xl font-semibold mb-4 text-purple-900 dark:text-purple-100">Components</h3>
+				<h2 class="text-xl font-semibold mb-4 text-purple-900 dark:text-purple-100">Components</h2>
 				<p class="text-base leading-relaxed text-gray-800 dark:text-gray-100">
 					@cinderlink/ui-kit is ultimately a collection of Svelte components. Each component is
 					designed to be highly customizable, and can be used in a variety of ways. See the <a

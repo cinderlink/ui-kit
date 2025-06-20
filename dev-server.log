@@ -1,7 +1,0 @@
-$ vite dev --port 3002
-
-  VITE v5.4.19  ready in 517 ms
-
-  ➜  Local:   http://localhost:3002/
-  ➜  Network: use --host to expose
-  ➜  UnoCSS Inspector: http://localhost:3002/__unocss/

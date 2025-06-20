@@ -209,7 +209,7 @@
 				<!-- Compact Header -->
 				<div class="sidebar-header flex items-center gap-2">
 					<Logo />
-					<Typography el="h3" classes="text-xs font-medium text-gray-700 dark:text-gray-300">
+					<Typography el="span" classes="text-xs font-medium text-gray-700 dark:text-gray-300">
 						@cinderlink/ui-kit
 					</Typography>
 					<!-- Global theme toggle -->
@@ -221,6 +221,7 @@
 					<Input
 						id="sidebar-search"
 						type="search"
+						label="Search components"
 						placeholder="Search..."
 						bind:value={searchQuery}
 						size="sm"
@@ -241,7 +242,7 @@
 					{/if}
 					{#each filteredNavigation as section}
 						<div class="nav-section">
-							<Typography el="h4" classes="nav-section-title">
+							<Typography el="span" classes="nav-section-title">
 								{section.label}
 							</Typography>
 							<div class="nav-items">

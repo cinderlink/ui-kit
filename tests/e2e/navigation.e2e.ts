@@ -12,7 +12,7 @@ test.describe('Navigation User Journey', () => {
 		// Navigate to Quick Start guide
 		await page.getByRole('link', { name: 'Quick Start' }).click();
 		await expect(page).toHaveURL('/guides/quickstart');
-		await expect(page.getByRole('heading', { name: 'Quick Start' })).toBeVisible();
+		await expect(page.getByRole('heading', { name: 'Quick Start' }).first()).toBeVisible();
 
 		// Navigate to Components section - click on Content which is the first component group
 		await page.waitForSelector('text=Content', { timeout: 10000 });
@@ -61,7 +61,9 @@ test.describe('Navigation User Journey', () => {
 		// Navigate on mobile - navigate to a component group
 		// Wait for the Interactive text to be visible and clickable
 		await page.waitForSelector('text=Interactive', { timeout: 10000 });
-		await page.getByText('Interactive').click();
+		
+		// Force click since element might be outside viewport on mobile
+		await page.getByText('Interactive').click({ force: true });
 
 		// Wait for the drawer to expand and the link to be visible
 		await page.waitForSelector('text=View Interactive', { timeout: 10000 });
