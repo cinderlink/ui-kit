@@ -19,7 +19,7 @@
 		"test:browser": "vitest --config vitest.browser.config.ts",
 		"test:browser:ui": "vitest --config vitest.browser.config.ts --ui",
 		"test:coverage": "vitest run --coverage",
-		"lint": "oxlint",
+		"lint": "oxlint && prettier --check .",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
 		"prepare": "husky"
@@ -101,7 +101,7 @@
 	},
 	"lint-staged": {
 		"src/**/*.{js,ts,svelte}": [
-			"oxlint",
+			"bun run lint",
 			"bun run check"
 		]
 	}
