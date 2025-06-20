@@ -209,6 +209,15 @@ jobs:
             ~/.cache/ms-playwright
           key: ${{ runner.os }}-deps-${{ hashFiles('**/bun.lock', '**/package.json') }}
 
+      - name: Restore build cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            dist/
+            build/
+            .svelte-kit/
+          key: build-${{ github.sha }}
+
       - name: Run tests with coverage
         run: bun run test:coverage
 
