@@ -15,3 +15,10 @@ dist/
 test-results/
 playwright-report/
 tests/**/*-snapshots/
+
+# Development logs & pid files
+*.log
+*.pid
+
+# Debug helpers
+debug-*.js
