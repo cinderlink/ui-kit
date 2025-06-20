@@ -13,7 +13,7 @@ export default defineConfig({
 	workers: process.env.CI ? 1 : undefined,
 	reporter: process.env.CI ? 'github' : 'html',
 	use: {
-		baseURL: process.env.BASE_URL || 'http://localhost:3002',
+		baseURL: process.env.BASE_URL || (process.env.CI ? 'http://localhost:4173' : 'http://localhost:3002'),
 		trace: 'on-first-retry',
 		screenshot: 'only-on-failure',
 		video: 'on-first-retry',
