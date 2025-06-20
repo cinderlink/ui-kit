@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Visual Regression Tests', () => {
+	test.skip(!!process.env.CI, 'Visual regression tests are skipped in CI due to platform rendering differences');
+	
 	test('homepage renders consistently across browsers', async ({ page, browserName }) => {
 		await page.goto('/');
 

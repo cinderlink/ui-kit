@@ -58,8 +58,8 @@ test.describe('Performance Tests', () => {
 
 		// Force garbage collection if available
 		await page.evaluate(() => {
-			if (global.gc) {
-				global.gc();
+			if (window.gc) {
+				window.gc();
 			}
 		});
 
